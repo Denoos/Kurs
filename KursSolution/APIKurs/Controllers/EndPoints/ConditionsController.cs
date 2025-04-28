@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using APIKurs.Models;
+using APIKurs.Controllers.BackStage;
+using Microsoft.AspNetCore.Authorization;
 
 namespace APIKurs.Controllers.EndPoints
 {
@@ -13,95 +15,36 @@ namespace APIKurs.Controllers.EndPoints
     [ApiController]
     public class ConditionsController : ControllerBase
     {
-        private readonly QwertyContext _context;
-
-        public ConditionsController(QwertyContext context)
-        {
-            _context = context;
-        }
+        DataBaseController db = DataBaseController.Instance;
 
         // GET: api/Conditions
         [HttpGet]
+        [Authorize(Roles = "0,1,AdminHavaetPelmeni")]
         public async Task<ActionResult<IEnumerable<Condition>>> GetConditions()
-        {
-            return await _context.Conditions.ToListAsync();
-        }
+            => await db.GetConditions();
 
         // GET: api/Conditions/5
         [HttpGet("{id}")]
+        [Authorize(Roles = "0,1,AdminHavaetPelmeni")]
         public async Task<ActionResult<Condition>> GetCondition(int id)
-        {
-            var condition = await _context.Conditions.FindAsync(id);
-
-            if (condition == null)
-            {
-                return NotFound();
-            }
-
-            return condition;
-        }
+            => await db.GetCondition(id);
 
         // PUT: api/Conditions/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
+        [Authorize(Roles = "1,AdminHavaetPelmeni")]
         public async Task<IActionResult> PutCondition(int id, Condition condition)
-        {
-            if (id != condition.Id)
-            {
-                return BadRequest();
-            }
-
-            _context.Entry(condition).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!ConditionExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
-        }
+            => await db.PutCondition(id, condition);
 
         // POST: api/Conditions
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
+        [Authorize(Roles = "1,AdminHavaetPelmeni")]
         public async Task<ActionResult<Condition>> PostCondition(Condition condition)
-        {
-            _context.Conditions.Add(condition);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction("GetCondition", new { id = condition.Id }, condition);
-        }
+            => await db.PostCondition(condition);
 
         // DELETE: api/Conditions/5
         [HttpDelete("{id}")]
+        [Authorize(Roles = "1,AdminHavaetPelmeni")]
         public async Task<IActionResult> DeleteCondition(int id)
-        {
-            var condition = await _context.Conditions.FindAsync(id);
-            if (condition == null)
-            {
-                return NotFound();
-            }
-
-            _context.Conditions.Remove(condition);
-            await _context.SaveChangesAsync();
-
-            return NoContent();
-        }
-
-        private bool ConditionExists(int id)
-        {
-            return _context.Conditions.Any(e => e.Id == id);
-        }
+            => await db.DeleteCondition(id);
     }
 }
