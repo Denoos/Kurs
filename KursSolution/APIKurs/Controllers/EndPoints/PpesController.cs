@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using APIKurs.Models;
+using APIKurs.Controllers.BackStage;
+using Microsoft.AspNetCore.Authorization;
 
 namespace APIKurs.Controllers.EndPoints
 {
@@ -20,88 +22,37 @@ namespace APIKurs.Controllers.EndPoints
             _context = context;
         }
 
+        
+        DataBaseController db = DataBaseController.Instance;
+
         // GET: api/Ppes
         [HttpGet]
+        [Authorize(Roles = "0,1,AdminHavaetPelmeni")]
         public async Task<ActionResult<IEnumerable<Ppe>>> GetPpes()
-        {
-            return await _context.Ppes.ToListAsync();
-        }
+            => await db.GetPpes();
 
         // GET: api/Ppes/5
         [HttpGet("{id}")]
+        [Authorize(Roles = "0,1,AdminHavaetPelmeni")]
         public async Task<ActionResult<Ppe>> GetPpe(int id)
-        {
-            var ppe = await _context.Ppes.FindAsync(id);
-
-            if (ppe == null)
-            {
-                return NotFound();
-            }
-
-            return ppe;
-        }
+            => await db.GetPpe(id);
 
         // PUT: api/Ppes/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutPpe(int id, Ppe ppe)
-        {
-            if (id != ppe.Id)
-            {
-                return BadRequest();
-            }
-
-            _context.Entry(ppe).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!PpeExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
-        }
+        [Authorize(Roles = "1,AdminHavaetPelmeni")]
+        public async Task<IActionResult> PutPpe(int id, Ppe condition)
+            => await db.PutPpe(id, condition);
 
         // POST: api/Ppes
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Ppe>> PostPpe(Ppe ppe)
-        {
-            _context.Ppes.Add(ppe);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction("GetPpe", new { id = ppe.Id }, ppe);
-        }
+        [Authorize(Roles = "1,AdminHavaetPelmeni")]
+        public async Task<ActionResult<Ppe>> PostPpe(Ppe condition)
+            => await db.PostPpe(condition);
 
         // DELETE: api/Ppes/5
         [HttpDelete("{id}")]
+        [Authorize(Roles = "1,AdminHavaetPelmeni")]
         public async Task<IActionResult> DeletePpe(int id)
-        {
-            var ppe = await _context.Ppes.FindAsync(id);
-            if (ppe == null)
-            {
-                return NotFound();
-            }
-
-            _context.Ppes.Remove(ppe);
-            await _context.SaveChangesAsync();
-
-            return NoContent();
-        }
-
-        private bool PpeExists(int id)
-        {
-            return _context.Ppes.Any(e => e.Id == id);
-        }
+            => await db.DeletePpe(id);
     }
 }

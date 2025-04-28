@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using APIKurs.Models;
+using APIKurs.Controllers.BackStage;
+using Microsoft.AspNetCore.Authorization;
 
 namespace APIKurs.Controllers.EndPoints
 {
@@ -21,87 +23,38 @@ namespace APIKurs.Controllers.EndPoints
         }
 
         // GET: api/Status
+      
+        
+        DataBaseController db = DataBaseController.Instance;
+
+        // GET: api/Statuss
         [HttpGet]
+        [Authorize(Roles = "0,1,AdminHavaetPelmeni")]
         public async Task<ActionResult<IEnumerable<Status>>> GetStatuses()
-        {
-            return await _context.Statuses.ToListAsync();
-        }
+            => await db.GetStatuses();
 
-        // GET: api/Status/5
+        // GET: api/Statuss/5
         [HttpGet("{id}")]
+        [Authorize(Roles = "0,1,AdminHavaetPelmeni")]
         public async Task<ActionResult<Status>> GetStatus(int id)
-        {
-            var status = await _context.Statuses.FindAsync(id);
+            => await db.GetStatus(id);
 
-            if (status == null)
-            {
-                return NotFound();
-            }
-
-            return status;
-        }
-
-        // PUT: api/Status/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        // PUT: api/Statuss/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutStatus(int id, Status status)
-        {
-            if (id != status.Id)
-            {
-                return BadRequest();
-            }
+        [Authorize(Roles = "1,AdminHavaetPelmeni")]
+        public async Task<IActionResult> PutStatus(int id, Status condition)
+            => await db.PutStatus(id, condition);
 
-            _context.Entry(status).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!StatusExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
-        }
-
-        // POST: api/Status
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        // POST: api/Statuss
         [HttpPost]
-        public async Task<ActionResult<Status>> PostStatus(Status status)
-        {
-            _context.Statuses.Add(status);
-            await _context.SaveChangesAsync();
+        [Authorize(Roles = "1,AdminHavaetPelmeni")]
+        public async Task<ActionResult<Status>> PostStatus(Status condition)
+            => await db.PostStatus(condition);
 
-            return CreatedAtAction("GetStatus", new { id = status.Id }, status);
-        }
-
-        // DELETE: api/Status/5
+        // DELETE: api/Statuss/5
         [HttpDelete("{id}")]
+        [Authorize(Roles = "1,AdminHavaetPelmeni")]
         public async Task<IActionResult> DeleteStatus(int id)
-        {
-            var status = await _context.Statuses.FindAsync(id);
-            if (status == null)
-            {
-                return NotFound();
-            }
-
-            _context.Statuses.Remove(status);
-            await _context.SaveChangesAsync();
-
-            return NoContent();
-        }
-
-        private bool StatusExists(int id)
-        {
-            return _context.Statuses.Any(e => e.Id == id);
-        }
+            => await db.DeleteStatus(id);
     }
 }

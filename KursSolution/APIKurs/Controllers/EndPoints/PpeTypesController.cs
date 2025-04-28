@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using APIKurs.Models;
+using APIKurs.Controllers.BackStage;
+using Microsoft.AspNetCore.Authorization;
 
 namespace APIKurs.Controllers.EndPoints
 {
@@ -21,87 +23,38 @@ namespace APIKurs.Controllers.EndPoints
         }
 
         // GET: api/PpeTypes
+      
+       
+        DataBaseController db = DataBaseController.Instance;
+
+        // GET: api/PpeTypes
         [HttpGet]
+        [Authorize(Roles = "0,1,AdminHavaetPelmeni")]
         public async Task<ActionResult<IEnumerable<PpeType>>> GetPpeTypes()
-        {
-            return await _context.PpeTypes.ToListAsync();
-        }
+            => await db.GetPpeTypes();
 
         // GET: api/PpeTypes/5
         [HttpGet("{id}")]
+        [Authorize(Roles = "0,1,AdminHavaetPelmeni")]
         public async Task<ActionResult<PpeType>> GetPpeType(int id)
-        {
-            var ppeType = await _context.PpeTypes.FindAsync(id);
-
-            if (ppeType == null)
-            {
-                return NotFound();
-            }
-
-            return ppeType;
-        }
+            => await db.GetPpeType(id);
 
         // PUT: api/PpeTypes/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutPpeType(int id, PpeType ppeType)
-        {
-            if (id != ppeType.Id)
-            {
-                return BadRequest();
-            }
-
-            _context.Entry(ppeType).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!PpeTypeExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
-        }
+        [Authorize(Roles = "1,AdminHavaetPelmeni")]
+        public async Task<IActionResult> PutPpeType(int id, PpeType condition)
+            => await db.PutPpeType(id, condition);
 
         // POST: api/PpeTypes
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<PpeType>> PostPpeType(PpeType ppeType)
-        {
-            _context.PpeTypes.Add(ppeType);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction("GetPpeType", new { id = ppeType.Id }, ppeType);
-        }
+        [Authorize(Roles = "1,AdminHavaetPelmeni")]
+        public async Task<ActionResult<PpeType>> PostPpeType(PpeType condition)
+            => await db.PostPpeType(condition);
 
         // DELETE: api/PpeTypes/5
         [HttpDelete("{id}")]
+        [Authorize(Roles = "1,AdminHavaetPelmeni")]
         public async Task<IActionResult> DeletePpeType(int id)
-        {
-            var ppeType = await _context.PpeTypes.FindAsync(id);
-            if (ppeType == null)
-            {
-                return NotFound();
-            }
-
-            _context.PpeTypes.Remove(ppeType);
-            await _context.SaveChangesAsync();
-
-            return NoContent();
-        }
-
-        private bool PpeTypeExists(int id)
-        {
-            return _context.PpeTypes.Any(e => e.Id == id);
-        }
+            => await db.DeletePpeType(id);
     }
 }

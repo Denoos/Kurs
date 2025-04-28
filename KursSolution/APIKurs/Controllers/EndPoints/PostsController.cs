@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using APIKurs.Models;
+using APIKurs.Controllers.BackStage;
+using Microsoft.AspNetCore.Authorization;
 
 namespace APIKurs.Controllers.EndPoints
 {
@@ -13,95 +15,36 @@ namespace APIKurs.Controllers.EndPoints
     [ApiController]
     public class PostsController : ControllerBase
     {
-        private readonly QwertyContext _context;
-
-        public PostsController(QwertyContext context)
-        {
-            _context = context;
-        }
+        DataBaseController db = DataBaseController.Instance;
 
         // GET: api/Posts
         [HttpGet]
+        [Authorize(Roles = "0,1,AdminHavaetPelmeni")]
         public async Task<ActionResult<IEnumerable<Post>>> GetPosts()
-        {
-            return await _context.Posts.ToListAsync();
-        }
+            => await db.GetPosts();
 
         // GET: api/Posts/5
         [HttpGet("{id}")]
+        [Authorize(Roles = "0,1,AdminHavaetPelmeni")]
         public async Task<ActionResult<Post>> GetPost(int id)
-        {
-            var post = await _context.Posts.FindAsync(id);
-
-            if (post == null)
-            {
-                return NotFound();
-            }
-
-            return post;
-        }
+            => await db.GetPost(id);
 
         // PUT: api/Posts/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutPost(int id, Post post)
-        {
-            if (id != post.Id)
-            {
-                return BadRequest();
-            }
-
-            _context.Entry(post).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!PostExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
-        }
+        [Authorize(Roles = "1,AdminHavaetPelmeni")]
+        public async Task<IActionResult> PutPost(int id, Post condition)
+            => await db.PutPost(id, condition);
 
         // POST: api/Posts
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Post>> PostPost(Post post)
-        {
-            _context.Posts.Add(post);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction("GetPost", new { id = post.Id }, post);
-        }
+        [Authorize(Roles = "1,AdminHavaetPelmeni")]
+        public async Task<ActionResult<Post>> PostPost(Post condition)
+            => await db.PostPost(condition);
 
         // DELETE: api/Posts/5
         [HttpDelete("{id}")]
+        [Authorize(Roles = "1,AdminHavaetPelmeni")]
         public async Task<IActionResult> DeletePost(int id)
-        {
-            var post = await _context.Posts.FindAsync(id);
-            if (post == null)
-            {
-                return NotFound();
-            }
-
-            _context.Posts.Remove(post);
-            await _context.SaveChangesAsync();
-
-            return NoContent();
-        }
-
-        private bool PostExists(int id)
-        {
-            return _context.Posts.Any(e => e.Id == id);
-        }
+            => await db.DeletePost(id);
     }
 }

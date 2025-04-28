@@ -1,8 +1,8 @@
 ﻿using APIKurs.Models;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;
+using System.IO;
 
 namespace APIKurs.Controllers.BackStage
 {
@@ -43,16 +43,19 @@ namespace APIKurs.Controllers.BackStage
         //Model Methods
 
         //Enter
-        public ActionResult<TokEnRole> Authorise(string someString, string otherString)
+        public async Task<ActionResult<TokEnRole>> Authorise(string someString, string otherString)
         {
             Save();
             return new(new TokEnRole());
         }
 
-        public ActionResult<TokEnRole> Register(string someString, string otherString)
+        public async Task<ActionResult<TokEnRole>> Register(string someString, string otherString)
         {
+            var role = _context.Roles.First(s => s.Ttle == "1");
+            await _context.Users.AddAsync(new User() { Login = someString, Password = EncryptPassword(otherString), IdRoleNavigation = role, IdRole = role.Id });
+
             Save();
-            return Authorise(someString, otherString);
+            return await Authorise(someString, otherString);
         }
 
         //Conditions

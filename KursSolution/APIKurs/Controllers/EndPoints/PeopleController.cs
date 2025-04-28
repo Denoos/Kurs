@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using APIKurs.Models;
+using APIKurs.Controllers.BackStage;
+using Microsoft.AspNetCore.Authorization;
 
 namespace APIKurs.Controllers.EndPoints
 {
@@ -13,95 +15,36 @@ namespace APIKurs.Controllers.EndPoints
     [ApiController]
     public class PeopleController : ControllerBase
     {
-        private readonly QwertyContext _context;
+        DataBaseController db = DataBaseController.Instance;
 
-        public PeopleController(QwertyContext context)
-        {
-            _context = context;
-        }
-
-        // GET: api/People
+        // GET: api/Peoples
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Person>>> GetPeople()
-        {
-            return await _context.People.ToListAsync();
-        }
+        [Authorize(Roles = "0,1,AdminHavaetPelmeni")]
+        public async Task<ActionResult<IEnumerable<Person>>> GetPersons()
+            => await db.GetPeople();
 
-        // GET: api/People/5
+        // GET: api/Peoples/5
         [HttpGet("{id}")]
+        [Authorize(Roles = "0,1,AdminHavaetPelmeni")]
         public async Task<ActionResult<Person>> GetPerson(int id)
-        {
-            var person = await _context.People.FindAsync(id);
+            => await db.GetPerson(id);
 
-            if (person == null)
-            {
-                return NotFound();
-            }
-
-            return person;
-        }
-
-        // PUT: api/People/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        // PUT: api/Peoples/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutPerson(int id, Person person)
-        {
-            if (id != person.Id)
-            {
-                return BadRequest();
-            }
+        [Authorize(Roles = "1,AdminHavaetPelmeni")]
+        public async Task<IActionResult> PutPerson(int id, Person condition)
+            => await db.PutPerson(id, condition);
 
-            _context.Entry(person).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!PersonExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
-        }
-
-        // POST: api/People
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        // POST: api/Peoples
         [HttpPost]
-        public async Task<ActionResult<Person>> PostPerson(Person person)
-        {
-            _context.People.Add(person);
-            await _context.SaveChangesAsync();
+        [Authorize(Roles = "1,AdminHavaetPelmeni")]
+        public async Task<ActionResult<Person>> PostPerson(Person condition)
+            => await db.PostPerson(condition);
 
-            return CreatedAtAction("GetPerson", new { id = person.Id }, person);
-        }
-
-        // DELETE: api/People/5
+        // DELETE: api/Peoples/5
         [HttpDelete("{id}")]
+        [Authorize(Roles = "1,AdminHavaetPelmeni")]
         public async Task<IActionResult> DeletePerson(int id)
-        {
-            var person = await _context.People.FindAsync(id);
-            if (person == null)
-            {
-                return NotFound();
-            }
-
-            _context.People.Remove(person);
-            await _context.SaveChangesAsync();
-
-            return NoContent();
-        }
-
-        private bool PersonExists(int id)
-        {
-            return _context.People.Any(e => e.Id == id);
-        }
+            => await db.DeletePerson(id);
     }
 }
