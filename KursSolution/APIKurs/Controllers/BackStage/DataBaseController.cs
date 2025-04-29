@@ -5,6 +5,10 @@ using System.Threading.Tasks;
 using System.IO;
 using System.Text;
 using System.Security.Cryptography;
+using Microsoft.IdentityModel.Tokens;
+using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.BlazorIdentity.Pages;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
 
 namespace APIKurs.Controllers.BackStage
 {
@@ -40,13 +44,11 @@ namespace APIKurs.Controllers.BackStage
         }
 
         private string EncryptToken(string someString)
-        {
-            return "";
-        }
+            => PeperEncrypting(someString);
+
         private string DecryptToken(string someString)
-        {
-            return "";
-        }
+            => PeperDecrypting(someString);
+
         private string PeperDecrypting(string someString)
         {
             var nums = System.IO.File.ReadAllText("Models/NumsFile.txt").Split(';', StringSplitOptions.RemoveEmptyEntries);
@@ -93,8 +95,32 @@ namespace APIKurs.Controllers.BackStage
         //Enter
         public async Task<ActionResult<TokEnRole>> Authorise(string someString, string otherString)
         {
-            Save();
-            return new(new TokEnRole());
+            User? user = _context.Users.FirstOrDefault(u => u.Login == someString && u.Password == otherString);
+            if (user is null)
+                return Unauthorized();
+
+            var role = await _context.Roles.FirstOrDefaultAsync(s=> s.Id == user.IdRole);
+            int? id = user.Id;
+
+            var claims = new List<Claim> {
+                new Claim(ClaimValueTypes.Integer32, id.ToString()),
+                new Claim(ClaimTypes.Role, role.Ttle)
+            };
+
+            // создаем JWT-токен
+            var jwt = new JwtSecurityToken(
+                    issuer: AuthOptions.ISSUER,
+                    audience: AuthOptions.AUDIENCE,
+                    claims: claims,
+                    expires: DateTime.UtcNow.Add(TimeSpan.FromDays(7)),
+                    signingCredentials: new SigningCredentials(AuthOptions.GetSymmetricSecurityKey(), SecurityAlgorithms.HmacSha256));
+
+            string token = new JwtSecurityTokenHandler().WriteToken(jwt);
+            token = EncryptToken(token);
+
+            var result = new TokEnRole() { Title = role, Token = token };
+
+            return result;
         }
 
         public async Task<ActionResult<TokEnRole>> Register(string someString, string otherString)

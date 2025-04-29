@@ -28,31 +28,31 @@ namespace APIKurs.Controllers.EndPoints
         DataBaseController db = DataBaseController.Instance;
 
         // GET: api/Statuss
-        [HttpGet]
+        [HttpGet("GetStatuses")]
         [Authorize(Roles = "0,1,AdminHavaetPelmeni")]
         public async Task<ActionResult<IEnumerable<Status>>> GetStatuses()
             => await db.GetStatuses();
 
         // GET: api/Statuss/5
-        [HttpGet("{id}")]
+        [HttpGet("GetStatus")]
         [Authorize(Roles = "0,1,AdminHavaetPelmeni")]
         public async Task<ActionResult<Status>> GetStatus(int id)
             => await db.GetStatus(id);
 
         // PUT: api/Statuss/5
-        [HttpPut("{id}")]
+        [HttpPut("PutStatus")]
         [Authorize(Roles = "1,AdminHavaetPelmeni")]
         public async Task<IActionResult> PutStatus(int id, Status condition)
             => await db.PutStatus(id, condition);
 
         // POST: api/Statuss
-        [HttpPost]
+        [HttpPost("PostStatus")]
         [Authorize(Roles = "1,AdminHavaetPelmeni")]
         public async Task<ActionResult<Status>> PostStatus(Status condition)
             => await db.PostStatus(condition);
 
         // DELETE: api/Statuss/5
-        [HttpDelete("{id}")]
+        [HttpDelete("DeleteStatus")]
         [Authorize(Roles = "1,AdminHavaetPelmeni")]
         public async Task<IActionResult> DeleteStatus(int id)
             => await db.DeleteStatus(id);

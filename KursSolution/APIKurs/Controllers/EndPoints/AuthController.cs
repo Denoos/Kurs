@@ -11,11 +11,11 @@ namespace APIKurs.Controllers.EndPoint
     {
         DataBaseController db = DataBaseController.Instance;
 
-        [HttpGet]
+        [HttpGet("Authorise")]
         public async Task<ActionResult<TokEnRole>> Authorise(string login, string password)
             => await db.Authorise(login, password);
         
-        [HttpPost]
+        [HttpPost("Register")]
         public async Task<ActionResult<TokEnRole>> Register(string login, string password)
             => await db.Register(login, password);
     }

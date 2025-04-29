@@ -26,31 +26,31 @@ namespace APIKurs.Controllers.EndPoints
         DataBaseController db = DataBaseController.Instance;
 
         // GET: api/Ppes
-        [HttpGet]
+        [HttpGet("GetPpes")]
         [Authorize(Roles = "0,1,AdminHavaetPelmeni")]
         public async Task<ActionResult<IEnumerable<Ppe>>> GetPpes()
             => await db.GetPpes();
 
         // GET: api/Ppes/5
-        [HttpGet("{id}")]
+        [HttpGet("GetPpe")]
         [Authorize(Roles = "0,1,AdminHavaetPelmeni")]
         public async Task<ActionResult<Ppe>> GetPpe(int id)
             => await db.GetPpe(id);
 
         // PUT: api/Ppes/5
-        [HttpPut("{id}")]
+        [HttpPut("PutPpe")]
         [Authorize(Roles = "1,AdminHavaetPelmeni")]
         public async Task<IActionResult> PutPpe(int id, Ppe condition)
             => await db.PutPpe(id, condition);
 
         // POST: api/Ppes
-        [HttpPost]
+        [HttpPost("PostPpe")]
         [Authorize(Roles = "1,AdminHavaetPelmeni")]
         public async Task<ActionResult<Ppe>> PostPpe(Ppe condition)
             => await db.PostPpe(condition);
 
         // DELETE: api/Ppes/5
-        [HttpDelete("{id}")]
+        [HttpDelete("DeletePpe")]
         [Authorize(Roles = "1,AdminHavaetPelmeni")]
         public async Task<IActionResult> DeletePpe(int id)
             => await db.DeletePpe(id);

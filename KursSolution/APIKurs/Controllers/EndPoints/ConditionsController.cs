@@ -18,31 +18,31 @@ namespace APIKurs.Controllers.EndPoints
         DataBaseController db = DataBaseController.Instance;
 
         // GET: api/Conditions
-        [HttpGet]
+        [HttpGet("GetConditions")]
         [Authorize(Roles = "0,1,AdminHavaetPelmeni")]
         public async Task<ActionResult<IEnumerable<Condition>>> GetConditions()
             => await db.GetConditions();
 
         // GET: api/Conditions/5
-        [HttpGet("{id}")]
+        [HttpGet("GetCondition")]
         [Authorize(Roles = "0,1,AdminHavaetPelmeni")]
         public async Task<ActionResult<Condition>> GetCondition(int id)
             => await db.GetCondition(id);
 
         // PUT: api/Conditions/5
-        [HttpPut("{id}")]
+        [HttpPut("PutCondition")]
         [Authorize(Roles = "1,AdminHavaetPelmeni")]
         public async Task<IActionResult> PutCondition(int id, Condition condition)
             => await db.PutCondition(id, condition);
 
         // POST: api/Conditions
-        [HttpPost]
+        [HttpPost("PostCondition")]
         [Authorize(Roles = "1,AdminHavaetPelmeni")]
         public async Task<ActionResult<Condition>> PostCondition(Condition condition)
             => await db.PostCondition(condition);
 
         // DELETE: api/Conditions/5
-        [HttpDelete("{id}")]
+        [HttpDelete("DeleteCondition")]
         [Authorize(Roles = "1,AdminHavaetPelmeni")]
         public async Task<IActionResult> DeleteCondition(int id)
             => await db.DeleteCondition(id);
