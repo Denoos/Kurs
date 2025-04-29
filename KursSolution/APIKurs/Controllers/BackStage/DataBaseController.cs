@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;
 using System.IO;
+using System.Text;
+using System.Security.Cryptography;
 
 namespace APIKurs.Controllers.BackStage
 {
@@ -23,8 +25,20 @@ namespace APIKurs.Controllers.BackStage
         //Security Methods
         private string EncryptPassword(string someString)
         {
-            return "";
+            someString = BasePasswordEncode(someString);
+            someString = PeperEncrypting(someString);
+
+            return someString;
         }
+
+        private static string BasePasswordEncode(string someString)
+        {
+            var bytes = Encoding.UTF8.GetBytes(someString);
+            bytes = SHA256.HashData(bytes);
+
+            return Convert.ToHexString(bytes).ToLower();
+        }
+
         private string EncryptToken(string someString)
         {
             return "";
@@ -33,11 +47,45 @@ namespace APIKurs.Controllers.BackStage
         {
             return "";
         }
-
-        private string PeperSecurity(string someString)
+        private string PeperDecrypting(string someString)
         {
-            var nums = System.IO.File.ReadAllText("Models/NumsFile.txt");
-            return "";
+            var nums = System.IO.File.ReadAllText("Models/NumsFile.txt").Split(';', StringSplitOptions.RemoveEmptyEntries);
+
+            var array = someString.ToCharArray().ToList();
+
+            // Этап 2: тесто отдыхает (обратный этап)
+            var boofCh = array[int.Parse(nums[1])];
+            array[int.Parse(nums[1])] = array[int.Parse(nums[0])];
+            array[int.Parse(nums[0])] = boofCh;
+            var count = 0;
+            // Этап 1: замес теста (обратный этап)
+            for (int i = 0; i < array.Count - 3; i += 3)
+                count += 3;
+
+            for (int i = count; i >= 3; i -= 3)
+                (array[i - 3], array[i]) = (array[i], array[i - 3]);
+
+            return new string(array.ToArray());
+        }
+
+        private string PeperEncrypting(string someString)
+        {
+            var nums = System.IO.File.ReadAllText("Models/NumsFile.txt").Split(';', StringSplitOptions.RemoveEmptyEntries);
+            var rnd = new Random();
+
+            var array = someString.ToCharArray().ToList();
+
+            //Этап 1: замес теста
+            for (int i = 0; i < array.Count - 3; i += 3)
+                (array[i], array[i + 3]) = (array[i + 3], array[i]);
+
+            //Этап 2: тесто отдыхает
+            var boofCh = array[int.Parse(nums[0])];
+
+            array[int.Parse(nums[0])] = array[int.Parse(nums[1])];
+            array[int.Parse(nums[1])] = boofCh;
+
+            return new string(array.ToArray());
         }
 
         //Model Methods
