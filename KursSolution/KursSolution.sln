@@ -9,6 +9,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Desktop", "Desktop", "{5387
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "APIKurs", "APIKurs\APIKurs.csproj", "{60D59FA2-1770-482E-A69E-C148C749B164}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CLientApp", "CLientApp\CLientApp.csproj", "{42B17DAD-7312-4BC0-8965-C29E7A8BB227}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -19,12 +21,17 @@ Global
 		{60D59FA2-1770-482E-A69E-C148C749B164}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{60D59FA2-1770-482E-A69E-C148C749B164}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{60D59FA2-1770-482E-A69E-C148C749B164}.Release|Any CPU.Build.0 = Release|Any CPU
+		{42B17DAD-7312-4BC0-8965-C29E7A8BB227}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{42B17DAD-7312-4BC0-8965-C29E7A8BB227}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{42B17DAD-7312-4BC0-8965-C29E7A8BB227}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{42B17DAD-7312-4BC0-8965-C29E7A8BB227}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{60D59FA2-1770-482E-A69E-C148C749B164} = {36D591C7-65C7-A0D1-1CBC-10CDE441BDC8}
+		{42B17DAD-7312-4BC0-8965-C29E7A8BB227} = {5387D07E-F17D-4EA3-8BE8-9888899A4D20}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {7E94D182-B0FC-497E-A51E-7CE27EE6B4AD}
