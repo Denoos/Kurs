@@ -3,12 +3,12 @@
   "WorkspaceRootPath": "C:\\Users\\Denoos\\source\\repos\\Denoos\\Kurs\\KursSolution\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{42B17DAD-7312-4BC0-8965-C29E7A8BB227}|CLientApp\\CLientApp.csproj|c:\\users\\denoos\\source\\repos\\denoos\\kurs\\kurssolution\\clientapp\\view\\pages\\forms\\loginformpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{42B17DAD-7312-4BC0-8965-C29E7A8BB227}|CLientApp\\CLientApp.csproj|solutionrelative:clientapp\\view\\pages\\forms\\loginformpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{42B17DAD-7312-4BC0-8965-C29E7A8BB227}|CLientApp\\CLientApp.csproj|c:\\users\\denoos\\source\\repos\\denoos\\kurs\\kurssolution\\clientapp\\view\\pages\\forms\\loginformpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{42B17DAD-7312-4BC0-8965-C29E7A8BB227}|CLientApp\\CLientApp.csproj|solutionrelative:clientapp\\view\\pages\\forms\\loginformpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{42B17DAD-7312-4BC0-8965-C29E7A8BB227}|CLientApp\\CLientApp.csproj|c:\\users\\denoos\\source\\repos\\denoos\\kurs\\kurssolution\\clientapp\\view\\pages\\menues\\ppepagemenu.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{42B17DAD-7312-4BC0-8965-C29E7A8BB227}|CLientApp\\CLientApp.csproj|solutionrelative:clientapp\\view\\pages\\menues\\ppepagemenu.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -27,26 +27,27 @@
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "LoginFormPage.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\Denoos\\source\\repos\\Denoos\\Kurs\\KursSolution\\CLientApp\\View\\Pages\\Forms\\LoginFormPage.xaml.cs",
-              "RelativeDocumentMoniker": "CLientApp\\View\\Pages\\Forms\\LoginFormPage.xaml.cs",
-              "ToolTip": "C:\\Users\\Denoos\\source\\repos\\Denoos\\Kurs\\KursSolution\\CLientApp\\View\\Pages\\Forms\\LoginFormPage.xaml.cs",
-              "RelativeToolTip": "CLientApp\\View\\Pages\\Forms\\LoginFormPage.xaml.cs",
-              "ViewState": "AgIAABEAAAAAAAAAAAAmwCoAAAAAAAAAAAAAAA==",
+              "Title": "PpePageMenu.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\Denoos\\source\\repos\\Denoos\\Kurs\\KursSolution\\CLientApp\\View\\Pages\\Menues\\PpePageMenu.xaml.cs",
+              "RelativeDocumentMoniker": "CLientApp\\View\\Pages\\Menues\\PpePageMenu.xaml.cs",
+              "ToolTip": "C:\\Users\\Denoos\\source\\repos\\Denoos\\Kurs\\KursSolution\\CLientApp\\View\\Pages\\Menues\\PpePageMenu.xaml.cs",
+              "RelativeToolTip": "CLientApp\\View\\Pages\\Menues\\PpePageMenu.xaml.cs",
+              "ViewState": "AgIAAAcAAAAAAAAAAAAuwBoAAAAdAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-02T05:13:09.501Z",
+              "WhenOpened": "2025-05-02T05:42:38.78Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "LoginFormPage.xaml",
-              "DocumentMoniker": "C:\\Users\\Denoos\\source\\repos\\Denoos\\Kurs\\KursSolution\\CLientApp\\View\\Pages\\Forms\\LoginFormPage.xaml",
-              "RelativeDocumentMoniker": "CLientApp\\View\\Pages\\Forms\\LoginFormPage.xaml",
-              "ToolTip": "C:\\Users\\Denoos\\source\\repos\\Denoos\\Kurs\\KursSolution\\CLientApp\\View\\Pages\\Forms\\LoginFormPage.xaml*",
-              "RelativeToolTip": "CLientApp\\View\\Pages\\Forms\\LoginFormPage.xaml*",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-05-02T05:05:33.441Z",
+              "Title": "LoginFormPage.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\Denoos\\source\\repos\\Denoos\\Kurs\\KursSolution\\CLientApp\\View\\Pages\\Forms\\LoginFormPage.xaml.cs",
+              "RelativeDocumentMoniker": "CLientApp\\View\\Pages\\Forms\\LoginFormPage.xaml.cs",
+              "ToolTip": "C:\\Users\\Denoos\\source\\repos\\Denoos\\Kurs\\KursSolution\\CLientApp\\View\\Pages\\Forms\\LoginFormPage.xaml.cs",
+              "RelativeToolTip": "CLientApp\\View\\Pages\\Forms\\LoginFormPage.xaml.cs",
+              "ViewState": "AgIAACYAAAAAAAAAAAA9wDoAAAAjAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-02T05:13:09.501Z",
               "EditorCaption": ""
             }
           ]

@@ -20,9 +20,12 @@ namespace CLientApp.View.Pages.Menues
     /// </summary>
     public partial class PpePageMenu : Page
     {
-        public PpePageMenu()
+        private MainWindow _window;
+        public PpePageMenu(MainWindow window)
         {
             InitializeComponent();
+            _window = window;
+            DataContext = this;
         }
     }
 }
