@@ -1,4 +1,12 @@
 {
-  "ExpandedNodes": [],
+  "ExpandedNodes": [
+    "",
+    "\\KursSolution",
+    "\\KursSolution\\APIKurs",
+    "\\KursSolution\\APIKurs\\Controllers",
+    "\\KursSolution\\APIKurs\\Controllers\\EndPoints",
+    "\\KursSolution\\CLientApp"
+  ],
+  "SelectedNode": "\\KursSolution\\CLientApp\\App.xaml",
   "PreviewInSolutionExplorer": false
 }

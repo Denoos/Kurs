@@ -8,9 +8,4 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Folder Include="ViewModel\EndPoints\" />
-    <Folder Include="View\Pages\Menues\" />
-  </ItemGroup>
-
 </Project>

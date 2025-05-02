@@ -12,7 +12,6 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using CLientApp.ViewModel.Contexts;
 
 namespace CLientApp.View.Pages.Forms
 {
@@ -21,13 +20,27 @@ namespace CLientApp.View.Pages.Forms
     /// </summary>
     public partial class LoginFormPage : Page
     {
-        public LoginFormPage()
+        private MainWindow _mainWindow;
+        public LoginFormPage(MainWindow window)
         {
             InitializeComponent();
+            _mainWindow = window;
+            DataContext = this;
         }
 
-        public LoginFormPage(MainWindowContext mainWindowContext)
+        private void LoginButton_Click(object sender, RoutedEventArgs e)
         {
+
+        }
+
+        private void RegisterButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ExitButton_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

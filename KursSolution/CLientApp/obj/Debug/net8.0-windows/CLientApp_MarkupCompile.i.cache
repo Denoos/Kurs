@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET8_0;NETCOREAPP;WINDOWS;WINDOWS7_0;NET5_0_OR_GREATER;NET6_0_OR_GREATER;NET7_0_OR_GREATER;NET8_0_OR_GREATER;NETCOREAPP3_0_OR_GREATER;NETCOREAPP3_1_OR_GREATER;WINDOWS7_0_OR_GREATER
 C:\Users\Denoos\source\repos\Denoos\Kurs\KursSolution\CLientApp\App.xaml
-2-466428715
+3-1655647077
 
-21-175743908
+18-255493854
 198-211836927
-View\Pages\Forms\LoginFormPage.xaml;View\Windows\MainWindow.xaml;
+View\Pages\Forms\LoginFormPage.xaml;View\Pages\Menues\PpePageMenu.xaml;View\Windows\MainWindow.xaml;
 
 False
 

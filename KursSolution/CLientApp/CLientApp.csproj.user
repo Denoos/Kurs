@@ -5,5 +5,8 @@
     <Compile Update="View\Pages\Forms\LoginFormPage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="View\Pages\Menues\PpePageMenu.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
 </Project>
