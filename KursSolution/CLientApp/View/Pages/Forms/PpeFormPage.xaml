@@ -4,11 +4,60 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:CLientApp.View.Pages.Forms"
-      mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
-      Title="PpeFormPage">
-
+                mc:Ignorable="d"
+    Title="Вход"
+    Background="White">
     <Grid>
-        
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="10*" />
+            <ColumnDefinition Width="1*" />
+        </Grid.ColumnDefinitions>
+
+        <Border BorderThickness="3" Grid.Column="1" BorderBrush="#FF4500" HorizontalAlignment="Center" VerticalAlignment="Center" CornerRadius="30" Padding="20" Background="#FFF5F5F5">
+            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Width="500">
+                <TextBlock Text="Вход в приложение" FontSize="24" FontWeight="Bold" Foreground="#FF4500" 
+                           HorizontalAlignment="Center" Margin="0,0,0,20"/>
+
+                <TextBlock Text="Логин" FontSize="18" FontWeight="Bold" Foreground="#FF4500" 
+                           HorizontalAlignment="Left" Margin="0,0,0,20"/>
+                <TextBox Name="UsernameTextBox" 
+
+                         Margin="0,0,0,10" 
+                         Height="40" 
+                         FontSize="16" 
+                         Padding="5"/>
+
+                <TextBlock Text="Пароль" FontSize="18" FontWeight="Bold" Foreground="#FF4500" 
+                           HorizontalAlignment="Left" Margin="0,0,0,20"/>
+                <PasswordBox Name="PasswordBox" 
+                             Margin="0,0,0,20" 
+                             Height="40" 
+                             FontSize="16" 
+                             Padding="5"/>
+
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,10">
+                    <Button Content="Войти" 
+                            FontSize="18"
+                            Width="200" 
+                            Height="40" 
+                            Background="#FF4500" 
+                            Foreground="White" 
+                            FontWeight="Bold" 
+                            Click="LoginButton_Click"/>
+
+                    <Button Content="Зарегистрироваться" 
+                            Width="230"
+                            FontSize="18"
+                            Height="40" 
+                            Background="#FF4500" 
+                            Foreground="White" 
+                            FontWeight="Bold" 
+                            Margin="10,0,0,0" 
+                            Click="RegisterButton_Click"/>
+                </StackPanel>
+            </StackPanel>
+        </Border>
     </Grid>
 </Page>

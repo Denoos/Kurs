@@ -72,7 +72,5 @@
                 Click="ExitButton_Click"/>
             </StackPanel>
         </Border>
-
-
     </Grid>
 </Page>

@@ -51,7 +51,7 @@ namespace CLientApp.View.Pages.Forms
 
         private void RegisterButton_Click(object sender, RoutedEventArgs e)
         {
-            if (_db.Login(User))
+            if (_db.Register(User))
                 LoginButton_Click(sender, e);
         }
 

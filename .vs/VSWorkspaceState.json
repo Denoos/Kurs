@@ -5,8 +5,11 @@
     "\\KursSolution\\APIKurs",
     "\\KursSolution\\APIKurs\\Controllers",
     "\\KursSolution\\APIKurs\\Controllers\\EndPoints",
-    "\\KursSolution\\CLientApp"
+    "\\KursSolution\\CLientApp",
+    "\\KursSolution\\CLientApp\\View",
+    "\\KursSolution\\CLientApp\\View\\Pages",
+    "\\KursSolution\\CLientApp\\View\\Pages\\Forms"
   ],
-  "SelectedNode": "\\KursSolution\\CLientApp\\App.xaml",
+  "SelectedNode": "\\KursSolution\\CLientApp\\View\\Pages\\Forms\\LoginFormPage.xaml",
   "PreviewInSolutionExplorer": false
 }
