@@ -19,6 +19,7 @@ using System.Windows.Shapes;
 using CLientApp.Logic;
 using CLientApp.Models;
 using CLientApp.View.Pages.Forms;
+using Microsoft.VisualBasic;
 
 namespace CLientApp.View.Pages.Menues
 {
@@ -88,31 +89,48 @@ namespace CLientApp.View.Pages.Menues
             Sorting = item.ContentStringFormat;
         }
 
-        private void Signal([CallerMemberName]string? prop = null )
+        private void Signal([CallerMemberName] string? prop = null)
             => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
 
         private void RenderList(string? sorting = null, string? searching = null)
         {
+            //zero step - get all
             var list = _db.GetAllPpes();
-            /*
-            switch (item.Content)
+
+            //first step - filtering
+            list = [..list.Where(p =>
+                p.Title.Contains(search) ||
+                p.InventoryNumber.Contains(search) ||
+                p.Condition.Title.Contains(search) ||
+                p.Type.Title.Contains(search) ||
+                p.DateGet.ToString().Contains(search) ||
+                p.DateEnd.ToString().Contains(search)
+                )];
+
+
+            var cond = (ComboBoxItem)ComboFilter_Condition.SelectedValue;
+            var type = (ComboBoxItem)ComboFilter_Type.SelectedValue;
+            list = [.. list.Where(p=>
+                p.Condition.Title == cond.Content ||
+                p.Type.Title == type.Content
+                )];
+
+            //second step - sorting
+            list = sorting switch
             {
-                case "По названию":
-                    Sorting = "на"
-                    break;
-                case "По дате получения":
-                    break;
-                case "По дате окончания":
-                    break;
-                case "По типу":
-                    break;
-                case "По состоянию":
-                    break;
-                default:
-                    break;
-            }
-            */
+                "По названию" => [.. list.OrderBy(i => i.Title)],
+                "По дате получения" => [.. list.OrderBy(i => i.DateGet)],
+                "По дате окончания" => [.. list.OrderBy(i => i.DateEnd)],
+                "По типу" => [.. list.OrderBy(i => i.TypeId)],
+                "По состоянию" => [.. list.OrderBy(i => i.ConditionId)],
+                _ => [.. list.OrderBy(i => i.InventoryNumber)],
+            };
+
+            //third step - setting value
+            SortedList = list;
         }
 
+        private void Filter_Changed(object sender, SelectionChangedEventArgs e)
+            => RenderList(Sorting, Search);
     }
 }

@@ -20,7 +20,7 @@ namespace CLientApp.View.Pages.Menues
     /// </summary>
     public partial class StatusPageMenu : Page
     {
-        public StatusPageMenu()
+        public StatusPageMenu(MainWindow window)
         {
             InitializeComponent();
         }

@@ -20,7 +20,7 @@ namespace CLientApp.View.Pages.Menues
     /// </summary>
     public partial class ConditionPageMenu : Page
     {
-        public ConditionPageMenu()
+        public ConditionPageMenu(MainWindow window)
         {
             InitializeComponent();
         }

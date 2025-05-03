@@ -20,7 +20,7 @@ namespace CLientApp.View.Pages.Menues
     /// </summary>
     public partial class PostPageMenu : Page
     {
-        public PostPageMenu()
+        public PostPageMenu(MainWindow window)
         {
             InitializeComponent();
         }

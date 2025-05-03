@@ -45,7 +45,7 @@
                             Background="#FF4500" 
                             Foreground="White" 
                             FontWeight="Bold" 
-                            Click="LoginButton_Click"/>
+                            />
 
                     <Button Content="Зарегистрироваться" 
                             Width="230"
@@ -55,7 +55,7 @@
                             Foreground="White" 
                             FontWeight="Bold" 
                             Margin="10,0,0,0" 
-                            Click="RegisterButton_Click"/>
+                           />
                 </StackPanel>
             </StackPanel>
         </Border>

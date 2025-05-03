@@ -40,11 +40,9 @@
 
             <!-- Выпадающие списки для фильтрации -->
             <StackPanel Orientation="Horizontal" Height="30" Margin="25">
-                <ComboBox Width="220" Margin="10,0" />
-                <ComboBox Width="220" Margin="10,0" />
-                <ComboBox Width="220" Margin="10,0" />
-                <ComboBox Width="220" Margin="10,0" />
-                <ComboBox Width="220" Margin="10,0" />
+                <TextBlock Width="Auto" Foreground="White" FontSize="24" Text="Блок фильтрации:" Margin="10, 0" /> 
+                <ComboBox x:Name="ComboFilter_Condition" ItemsSource="{Binding }" SelectionChanged="Filter_Changed" Width="220" Margin="10,0" />
+                <ComboBox x:Name="ComboFilter_Type" ItemsSource="{Binding }" SelectionChanged="Filter_Changed" Width="220" Margin="10,0" />
             </StackPanel>
 
             <ListBox MinHeight="100" Height="800" Margin="10">
