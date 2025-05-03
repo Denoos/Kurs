@@ -29,10 +29,16 @@ namespace CLientApp.View.Pages.Menues
         private string sorting;
         private MainWindow _window;
         private DataBaseEndPoint _db = DataBaseEndPoint.Instance;
+        private Ppe selectedPpe;
         private ObservableCollection<Ppe> list;
+        private ObservableCollection<PpeType> types;
+        private ObservableCollection<Models.Condition> conditions;
 
         public event PropertyChangedEventHandler? PropertyChanged;
+        public Ppe SelectedPpe { get => selectedPpe; set { selectedPpe = value; Signal(); } }
         public ObservableCollection<Ppe> SortedList { get => list; set { list = value; Signal(); } }
+        public ObservableCollection<Models.Condition> Conditions { get => conditions; set { conditions = value; Signal(); } }
+        public ObservableCollection<PpeType> Types { get => types; set { types = value; Signal(); } }
         public string Search { get => search; set { search = value; Signal(); RenderList(Sorting, Search); } }
         public string Sorting { get => sorting; set { sorting = value; Signal(); RenderList(Sorting, Search); } }
 
@@ -40,6 +46,8 @@ namespace CLientApp.View.Pages.Menues
         {
             InitializeComponent();
             _window = window;
+            Conditions = _db.GetAllConditions();
+            Types = _db.GetAllTypes();
             RenderList();
             DataContext = this;
         }
@@ -94,10 +102,8 @@ namespace CLientApp.View.Pages.Menues
 
         private void RenderList(string? sorting = null, string? searching = null)
         {
-            //zero step - get all
             var list = _db.GetAllPpes();
 
-            //first step - filtering
             list = [..list.Where(p =>
                 p.Title.Contains(search) ||
                 p.InventoryNumber.Contains(search) ||
@@ -107,7 +113,6 @@ namespace CLientApp.View.Pages.Menues
                 p.DateEnd.ToString().Contains(search)
                 )];
 
-
             var cond = (ComboBoxItem)ComboFilter_Condition.SelectedValue;
             var type = (ComboBoxItem)ComboFilter_Type.SelectedValue;
             list = [.. list.Where(p=>
@@ -115,7 +120,6 @@ namespace CLientApp.View.Pages.Menues
                 p.Type.Title == type.Content
                 )];
 
-            //second step - sorting
             list = sorting switch
             {
                 "По названию" => [.. list.OrderBy(i => i.Title)],
@@ -126,11 +130,38 @@ namespace CLientApp.View.Pages.Menues
                 _ => [.. list.OrderBy(i => i.InventoryNumber)],
             };
 
-            //third step - setting value
             SortedList = list;
         }
 
         private void Filter_Changed(object sender, SelectionChangedEventArgs e)
             => RenderList(Sorting, Search);
+
+        private void Add_Click(object sender, RoutedEventArgs e)
+            => _window.SetPage(new PpeFormPage(_window, true));
+        private void Edit_Click(object sender, RoutedEventArgs e)
+        {
+            if (SelectedPpe is not null)
+                _window.SetPage(new PpeFormPage(_window, true, SelectedPpe));
+            else MessageBox.Show("Пожалуйста выберите СИЗ!", "Внимание!");
+        }
+
+        private void Delete_Click(object sender, RoutedEventArgs e)
+        {
+            if (SelectedPpe is null)
+                MessageBox.Show("Пожалуйста выберите СИЗ!", "Внимание!");
+            else
+            {
+                if (MessageBox.Show("Вы действительно хотите удалить СИЗ?", "Удаление!", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                    _db.DeletePpe(SelectedPpe);
+                RenderList(Sorting, Search);
+            }
+        }
+
+        private void ShowInfo_Click(object sender, RoutedEventArgs e)
+        {
+            if (SelectedPpe is not null)
+                _window.SetPage(new PpeFormPage(_window, false, SelectedPpe));
+            else MessageBox.Show("Пожалуйста выберите СИЗ!", "Внимание!");
+        }
     }
 }

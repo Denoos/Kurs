@@ -33,5 +33,20 @@ namespace CLientApp.Logic
         {
             return [];
         }
+
+        internal ObservableCollection<Condition> GetAllConditions()
+        {
+            return [];
+        }
+
+        internal ObservableCollection<PpeType> GetAllTypes()
+        {
+            return [];
+        }
+
+        internal void DeletePpe(Ppe selectedPpe)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
