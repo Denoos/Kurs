@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -15,6 +16,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using CLientApp.Logic;
+using CLientApp.Models;
 using CLientApp.View.Pages.Forms;
 
 namespace CLientApp.View.Pages.Menues
@@ -22,15 +25,21 @@ namespace CLientApp.View.Pages.Menues
     public partial class PpePageMenu : Page, INotifyPropertyChanged
     {
         private string search;
+        private string sorting;
         private MainWindow _window;
+        private DataBaseEndPoint _db = DataBaseEndPoint.Instance;
+        private ObservableCollection<Ppe> list;
 
         public event PropertyChangedEventHandler? PropertyChanged;
-        public string Search { get => search; set { search = value; Signal(); } }
+        public ObservableCollection<Ppe> SortedList { get => list; set { list = value; Signal(); } }
+        public string Search { get => search; set { search = value; Signal(); RenderList(Sorting, Search); } }
+        public string Sorting { get => sorting; set { sorting = value; Signal(); RenderList(Sorting, Search); } }
 
         public PpePageMenu(MainWindow window)
         {
             InitializeComponent();
             _window = window;
+            RenderList();
             DataContext = this;
         }
 
@@ -72,8 +81,38 @@ namespace CLientApp.View.Pages.Menues
                     break;
             }
         }
+        private void SortingChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var snd = (ComboBox)sender;
+            var item = (ComboBoxItem)snd.SelectedItem;
+            Sorting = item.ContentStringFormat;
+        }
 
         private void Signal([CallerMemberName]string? prop = null )
             => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
+
+        private void RenderList(string? sorting = null, string? searching = null)
+        {
+            var list = _db.GetAllPpes();
+            /*
+            switch (item.Content)
+            {
+                case "По названию":
+                    Sorting = "на"
+                    break;
+                case "По дате получения":
+                    break;
+                case "По дате окончания":
+                    break;
+                case "По типу":
+                    break;
+                case "По состоянию":
+                    break;
+                default:
+                    break;
+            }
+            */
+        }
+
     }
 }
