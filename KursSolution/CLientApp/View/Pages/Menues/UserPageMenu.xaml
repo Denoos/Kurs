@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:CLientApp.View.Pages.Menues" 
       mc:Ignorable="d" 
       Background="White"
-      Title="Главная страница">
+      Title="Пользователи">
 
     <Grid>
         <Grid.ColumnDefinitions>
@@ -17,11 +17,11 @@
         <!-- Левая часть с кнопками навигации -->
         <StackPanel  Grid.Column="0" Background="#FF4500" Margin=" 30">
             <Button Click="NavigationButtonClicked" FontSize="18" Padding="20,10" Margin="10, 40" Content="Типы СИЗ"/>
+            <Button Click="NavigationButtonClicked" FontSize="18" Padding="20,10" Margin="10, 40" Content="СИЗ"/>
             <Button Click="NavigationButtonClicked" FontSize="18" Padding="20,10" Margin="10, 40" Content="Состояния СИЗ"/>
-            <Button Click="NavigationButtonClicked" FontSize="18" Padding="20,10" Margin="10, 40" Content="Сотрудники"/>
             <Button Click="NavigationButtonClicked" FontSize="18" Padding="20,10" Margin="10, 40" Content="Статусы сотрудников"/>
             <Button Click="NavigationButtonClicked" FontSize="18" Padding="20,10" Margin="10, 40" Content="Должности"/>
-            <Button Click="NavigationButtonClicked" FontSize="18" Padding="20,10" Margin="10, 40" Content="Пользователи"/>
+            <Button Click="NavigationButtonClicked" FontSize="18" Padding="20,10" Margin="10, 40" Content="Сотрудники"/>
             <Button Click="NavigationButtonClicked" FontSize="18" Padding="20,10" Margin="10, 40" Content="Выход"/>
         </StackPanel>
         <!-- Правая часть с информацией о СИЗ -->
@@ -30,36 +30,26 @@
             <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
                 <TextBox Text="{Binding Search}"  Width="1200" Height="30" FontSize="18" TextAlignment="Justify" Margin="10,20" />
                 <ComboBox SelectionChanged="SortingChanged" Width="300" Margin="20">
-                    <ComboBoxItem Content="По названию" />
-                    <ComboBoxItem Content="По дате получения" />
-                    <ComboBoxItem Content="По дате окончания" />
-                    <ComboBoxItem Content="По типу" />
-                    <ComboBoxItem Content="По состоянию" />
+                    <ComboBoxItem Content="По логину" />
+                    <ComboBoxItem Content="По паролю" />
+                    <ComboBoxItem Content="По роли" />
                 </ComboBox>
             </StackPanel>
 
             <!-- Выпадающие списки для фильтрации -->
             <StackPanel Orientation="Horizontal" Height="30" Margin="25">
                 <TextBlock Width="Auto" Foreground="White" FontSize="24" Text="Блок фильтрации:" Margin="10, 0" />
-                <ComboBox  x:Name="ComboFilter_Condition" ItemsSource="{Binding Conditions}" SelectionChanged="Filter_Changed" Width="220" Margin="10,0" DisplayMemberPath="Title" IsSynchronizedWithCurrentItem="True" DockPanel.Dock="Top"/>
-                <ComboBox x:Name="ComboFilter_Type" ItemsSource="{Binding Types}" SelectionChanged="Filter_Changed" Width="220" Margin="10,0"  DisplayMemberPath="Title" IsSynchronizedWithCurrentItem="True" DockPanel.Dock="Top"/>
+                <ComboBox  x:Name="ComboFilter_Condition" ItemsSource="{Binding FirstSort}" SelectionChanged="Filter_Changed" Width="220" Margin="10,0" DisplayMemberPath="Title" IsSynchronizedWithCurrentItem="True" DockPanel.Dock="Top"/>
             </StackPanel>
 
-            <ListView ItemsSource="{Binding SortedList}" SelectedItem="{Binding SelectedPpe}" MinHeight="100" Height="800" Margin="10">
+            <ListView ItemsSource="{Binding SortedList}" SelectedItem="{Binding SelectedItem}" MinHeight="100" Height="800" Margin="10">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal" Margin="5">
                             <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="{Binding Title}" FontWeight="Bold" FontSize="14"/>
-                                <TextBlock Text="{Binding InventoryNumber}" FontStyle="Italic"/>
-                            </StackPanel>
-                            <StackPanel Orientation="Vertical">
-                                <TextBlock Text="{Binding Type.Name}" />
-                                <TextBlock Text="{Binding Condition.Name}" />
-                            </StackPanel>
-                            <StackPanel Orientation="Vertical">
-                                <TextBlock Text="{Binding DateGet, StringFormat='Получено: {0:dd.MM.yyyy}'}" />
-                                <TextBlock Text="{Binding DateEnd, StringFormat='Срок действия: {0:dd.MM.yyyy}'}" />
+                                <TextBlock Text="{Binding Login}" FontWeight="Bold" FontSize="14"/>
+                                <TextBlock Text="{Binding Password}" FontWeight="Bold" FontSize="14"/>
+                                <TextBlock Text="{Binding IdRoleNavigation.Title}" FontWeight="Bold" FontSize="14"/>
                             </StackPanel>
                         </StackPanel>
                     </DataTemplate>

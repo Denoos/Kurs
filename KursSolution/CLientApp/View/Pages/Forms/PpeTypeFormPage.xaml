@@ -4,8 +4,8 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:CLientApp.View.Pages.Forms"
-                mc:Ignorable="d"
-    Title="Вход"
+          mc:Ignorable="d"
+    Title="Типы"
     Background="White">
     <Grid>
 
@@ -17,29 +17,23 @@
 
         <Border BorderThickness="3" Grid.Column="1" BorderBrush="#FF4500" HorizontalAlignment="Center" VerticalAlignment="Center" CornerRadius="30" Padding="20" Background="#FFF5F5F5">
             <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Width="500">
-                <TextBlock Text="Вход в приложение" FontSize="24" FontWeight="Bold" Foreground="#FF4500" 
+                <TextBlock Text="Типы СИЗ" FontSize="24" FontWeight="Bold" Foreground="#FF4500" 
                            HorizontalAlignment="Center" Margin="0,0,0,20"/>
 
-                <TextBlock Text="Логин" FontSize="18" FontWeight="Bold" Foreground="#FF4500" 
+                <TextBlock Text="Название" FontSize="18" FontWeight="Bold" Foreground="#FF4500" 
                            HorizontalAlignment="Left" Margin="0,0,0,20"/>
                 <TextBox Name="UsernameTextBox" 
-
+                         Text="{Binding Item.Title}"
                          Margin="0,0,0,10" 
                          Height="40" 
                          FontSize="16" 
                          Padding="5"/>
 
-                <TextBlock Text="Пароль" FontSize="18" FontWeight="Bold" Foreground="#FF4500" 
-                           HorizontalAlignment="Left" Margin="0,0,0,20"/>
-                <PasswordBox Name="PasswordBox" 
-                             Margin="0,0,0,20" 
-                             Height="40" 
-                             FontSize="16" 
-                             Padding="5"/>
 
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,10">
-                    <Button Content="Войти" 
+                    <Button Content="Сохранить" 
                             FontSize="18"
+                            Click="Save_Click"
                             Width="200" 
                             Height="40" 
                             Background="#FF4500" 
@@ -47,15 +41,16 @@
                             FontWeight="Bold" 
                             />
 
-                    <Button Content="Зарегистрироваться" 
+                    <Button Content="Назад" 
                             Width="230"
                             FontSize="18"
+                            Click="Exit_Click"
                             Height="40" 
                             Background="#FF4500" 
                             Foreground="White" 
                             FontWeight="Bold" 
                             Margin="10,0,0,0" 
-                           />
+                            />
                 </StackPanel>
             </StackPanel>
         </Border>

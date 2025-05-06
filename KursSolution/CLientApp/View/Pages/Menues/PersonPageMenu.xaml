@@ -41,25 +41,22 @@
             <!-- Выпадающие списки для фильтрации -->
             <StackPanel Orientation="Horizontal" Height="30" Margin="25">
                 <TextBlock Width="Auto" Foreground="White" FontSize="24" Text="Блок фильтрации:" Margin="10, 0" />
-                <ComboBox  x:Name="ComboFilter_Condition" ItemsSource="{Binding Conditions}" SelectionChanged="Filter_Changed" Width="220" Margin="10,0" DisplayMemberPath="Title" IsSynchronizedWithCurrentItem="True" DockPanel.Dock="Top"/>
-                <ComboBox x:Name="ComboFilter_Type" ItemsSource="{Binding Types}" SelectionChanged="Filter_Changed" Width="220" Margin="10,0"  DisplayMemberPath="Title" IsSynchronizedWithCurrentItem="True" DockPanel.Dock="Top"/>
+                <ComboBox  x:Name="ComboFilter_Condition" ItemsSource="{Binding FirstSort}" SelectionChanged="Filter_Changed" Width="220" Margin="10,0" DisplayMemberPath="Title" IsSynchronizedWithCurrentItem="True" DockPanel.Dock="Top"/>
+                <ComboBox x:Name="ComboFilter_Type" ItemsSource="{Binding SecondSort}" SelectionChanged="Filter_Changed" Width="220" Margin="10,0"  DisplayMemberPath="Title" IsSynchronizedWithCurrentItem="True" DockPanel.Dock="Top"/>
             </StackPanel>
 
-            <ListView ItemsSource="{Binding SortedList}" SelectedItem="{Binding SelectedPpe}" MinHeight="100" Height="800" Margin="10">
+            <ListView ItemsSource="{Binding SortedList}" SelectedItem="{Binding SelectedItem}" MinHeight="100" Height="800" Margin="10">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal" Margin="5">
                             <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="{Binding Title}" FontWeight="Bold" FontSize="14"/>
-                                <TextBlock Text="{Binding InventoryNumber}" FontStyle="Italic"/>
+                                <TextBlock Text="{Binding Name}" FontWeight="Bold" FontSize="14"/>
+                                <TextBlock Text="{Binding Surname}" FontWeight="Bold" FontSize="14"/>
+                                <TextBlock Text="{Binding Patronymic}" FontWeight="Bold" FontSize="14"/>
                             </StackPanel>
-                            <StackPanel Orientation="Vertical">
-                                <TextBlock Text="{Binding Type.Name}" />
-                                <TextBlock Text="{Binding Condition.Name}" />
-                            </StackPanel>
-                            <StackPanel Orientation="Vertical">
-                                <TextBlock Text="{Binding DateGet, StringFormat='Получено: {0:dd.MM.yyyy}'}" />
-                                <TextBlock Text="{Binding DateEnd, StringFormat='Срок действия: {0:dd.MM.yyyy}'}" />
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="{Binding Post.Title}" FontWeight="Bold" FontSize="14"/>
+                                <TextBlock Text="{Binding Status.Title}" FontWeight="Bold" FontSize="14"/>
                             </StackPanel>
                         </StackPanel>
                     </DataTemplate>

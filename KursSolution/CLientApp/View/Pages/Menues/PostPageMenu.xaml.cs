@@ -92,7 +92,7 @@ namespace CLientApp.View.Pages.Menues
             var list = _db.GetAllPosts();
 
             list = [..list.Where(p =>
-                p.Title.Contains(search)
+                p.Title.Contains(searching)
                 )];
 
             SortedList = list;

@@ -106,12 +106,12 @@ namespace CLientApp.View.Pages.Menues
             var list = _db.GetAllPpes();
 
             list = [..list.Where(p =>
-                p.Title.Contains(search) ||
-                p.InventoryNumber.Contains(search) ||
-                p.Condition.Title.Contains(search) ||
-                p.Type.Title.Contains(search) ||
-                p.DateGet.ToString().Contains(search) ||
-                p.DateEnd.ToString().Contains(search)
+                p.Title.Contains(searching) ||
+                p.InventoryNumber.Contains(searching) ||
+                p.Condition.Title.Contains(searching) ||
+                p.Type.Title.Contains(searching) ||
+                p.DateGet.ToString().Contains(searching) ||
+                p.DateEnd.ToString().Contains(searching)
                 )];
 
             var cond = (ComboBoxItem)ComboFilter_Condition.SelectedValue;

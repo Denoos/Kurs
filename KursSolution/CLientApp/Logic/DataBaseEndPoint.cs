@@ -39,11 +39,6 @@ namespace CLientApp.Logic
             return [];
         }
 
-        public ObservableCollection<PpeType> GetAllTypes()
-        {
-            return [];
-        }
-
         public ObservableCollection<Post> GetAllPosts()
         {
             return [];
@@ -57,6 +52,16 @@ namespace CLientApp.Logic
         public ObservableCollection<Person> GetAllPersons()
         {
             return [];
+        }
+
+        public ObservableCollection<Status> GetAllStatuses()
+        {
+            return [];
+        }
+
+        internal ObservableCollection<User> GetAllUsers()
+        {
+            throw new NotImplementedException();
         }
 
         public void DeletePpe(Ppe selectedPpe)
@@ -78,13 +83,73 @@ namespace CLientApp.Logic
         {
             throw new NotImplementedException();
         }
-
-        public ObservableCollection<Status> GetAllStatuses()
+        
+        public void DeleteStatus(Status selectedItem)
         {
             throw new NotImplementedException();
         }
 
-        public void DeleteStatus(Status selectedItem)
+        public void DeletePerson(Person selectedItem)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void DeleteUser(User selectedItem)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool AddCondition(Condition item)
+        {
+            return item.Title == "nigga";
+        }
+
+        public bool EditCondition(Condition item)
+        {
+            return item.Title == "Denoos";
+        }
+
+        internal bool AddPost(Post item)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal bool EditPost(Post item)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal bool AddPpeType(PpeType item)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal bool EditPpeType(PpeType item)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal bool AddStatus(Status item)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal bool EditStatus(Status item)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal bool AddUser(User item)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal bool EditUser(User item)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal List<Role> GetAllRoles()
         {
             throw new NotImplementedException();
         }

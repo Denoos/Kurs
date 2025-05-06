@@ -30,25 +30,21 @@ namespace CLientApp.View.Pages.Menues
         private string sorting;
         private MainWindow _window;
         private DataBaseEndPoint _db = DataBaseEndPoint.Instance;
-        private Ppe selectedPpe;
-        private ObservableCollection<Ppe> list;
-        private ObservableCollection<PpeType> types;
-        private ObservableCollection<Models.Condition> conditions;
+        private User selectedItem;
+        private ObservableCollection<User> list;
+        private ObservableCollection<Role> firstSort;
 
         public event PropertyChangedEventHandler? PropertyChanged;
-        public Ppe SelectedPpe { get => selectedPpe; set { selectedPpe = value; Signal(); } }
-        public ObservableCollection<Ppe> SortedList { get => list; set { list = value; Signal(); } }
-        public ObservableCollection<Models.Condition> Conditions { get => conditions; set { conditions = value; Signal(); } }
-        public ObservableCollection<PpeType> Types { get => types; set { types = value; Signal(); } }
+        public User SelectedItem { get => selectedItem; set { selectedItem = value; Signal(); } }
+        public ObservableCollection<User> SortedList { get => list; set { list = value; Signal(); } }
+        public ObservableCollection<Role> FirstSort { get => firstSort; set { firstSort = value; Signal(); } }
         public string Search { get => search; set { search = value; Signal(); RenderList(Sorting, Search); } }
         public string Sorting { get => sorting; set { sorting = value; Signal(); RenderList(Sorting, Search); } }
 
-        public PpePageMenu(MainWindow window)
+        public UserPageMenu(MainWindow window)
         {
             InitializeComponent();
             _window = window;
-            Conditions = _db.GetAllConditions();
-            Types = _db.GetAllTypes();
             RenderList();
             DataContext = this;
         }
@@ -91,6 +87,7 @@ namespace CLientApp.View.Pages.Menues
                     break;
             }
         }
+
         private void SortingChanged(object sender, SelectionChangedEventArgs e)
         {
             var snd = (ComboBox)sender;
@@ -103,32 +100,25 @@ namespace CLientApp.View.Pages.Menues
 
         private void RenderList(string? sorting = null, string? searching = null)
         {
-            var list = _db.GetAllPpes();
+            var list = _db.GetAllUsers();
 
             list = [..list.Where(p =>
-                p.Title.Contains(search) ||
-                p.InventoryNumber.Contains(search) ||
-                p.Condition.Title.Contains(search) ||
-                p.Type.Title.Contains(search) ||
-                p.DateGet.ToString().Contains(search) ||
-                p.DateEnd.ToString().Contains(search)
-                )];
+            p.Login.Contains(searching) ||
+            p.Password.Contains(searching) ||
+            p.IdRoleNavigation.Ttle.Contains(searching)
+            )];
 
             var cond = (ComboBoxItem)ComboFilter_Condition.SelectedValue;
-            var type = (ComboBoxItem)ComboFilter_Type.SelectedValue;
             list = [.. list.Where(p=>
-                p.Condition.Title == cond.Content ||
-                p.Type.Title == type.Content
-                )];
+            p.IdRoleNavigation.Ttle == cond.Content
+            )];
 
             list = sorting switch
             {
-                "По названию" => [.. list.OrderBy(i => i.Title)],
-                "По дате получения" => [.. list.OrderBy(i => i.DateGet)],
-                "По дате окончания" => [.. list.OrderBy(i => i.DateEnd)],
-                "По типу" => [.. list.OrderBy(i => i.TypeId)],
-                "По состоянию" => [.. list.OrderBy(i => i.ConditionId)],
-                _ => [.. list.OrderBy(i => i.InventoryNumber)],
+                "По логину" => [.. list.OrderBy(i => i.Login)],
+                "По паролю" => [.. list.OrderBy(i => i.Password)],
+                "По роли" => [.. list.OrderBy(i => i.IdRole)],
+                _ => [.. list.OrderBy(i => i.Id)],
             };
 
             SortedList = list;
@@ -138,31 +128,31 @@ namespace CLientApp.View.Pages.Menues
             => RenderList(Sorting, Search);
 
         private void Add_Click(object sender, RoutedEventArgs e)
-            => _window.SetPage(new PpeFormPage(_window, true));
+            => _window.SetPage(new PersonFormPage(_window, true));
         private void Edit_Click(object sender, RoutedEventArgs e)
         {
-            if (SelectedPpe is not null)
-                _window.SetPage(new PpeFormPage(_window, true, SelectedPpe));
-            else MessageBox.Show("Пожалуйста выберите СИЗ!", "Внимание!");
+            if (SelectedItem is not null)
+                _window.SetPage(new UserFormPage(_window, true, SelectedItem));
+            else MessageBox.Show("Пожалуйста выберите пользователя!", "Внимание!");
         }
 
         private void Delete_Click(object sender, RoutedEventArgs e)
         {
-            if (SelectedPpe is null)
-                MessageBox.Show("Пожалуйста выберите СИЗ!", "Внимание!");
+            if (SelectedItem is null)
+                MessageBox.Show("Пожалуйста выберите пользователя!", "Внимание!");
             else
             {
-                if (MessageBox.Show("Вы действительно хотите удалить СИЗ?", "Удаление!", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
-                    _db.DeletePpe(SelectedPpe);
+                if (MessageBox.Show("Вы действительно хотите удалить пользователя?", "Удаление!", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                    _db.DeleteUser(SelectedItem);
                 RenderList(Sorting, Search);
             }
         }
 
         private void ShowInfo_Click(object sender, RoutedEventArgs e)
         {
-            if (SelectedPpe is not null)
-                _window.SetPage(new PpeFormPage(_window, false, SelectedPpe));
-            else MessageBox.Show("Пожалуйста выберите СИЗ!", "Внимание!");
+            if (SelectedItem is not null)
+                _window.SetPage(new UserFormPage(_window, false, SelectedItem));
+            else MessageBox.Show("Пожалуйста выберите пользователя!", "Внимание!");
         }
     }
 }

@@ -8,8 +8,9 @@
     "\\KursSolution\\CLientApp",
     "\\KursSolution\\CLientApp\\View",
     "\\KursSolution\\CLientApp\\View\\Pages",
-    "\\KursSolution\\CLientApp\\View\\Pages\\Forms"
+    "\\KursSolution\\CLientApp\\View\\Pages\\Forms",
+    "\\KursSolution\\CLientApp\\View\\Pages\\Menues"
   ],
-  "SelectedNode": "\\KursSolution\\CLientApp\\View\\Pages\\Forms\\ConditionFormPage.xaml",
+  "SelectedNode": "\\KursSolution\\CLientApp\\View\\Pages\\Menues\\PersonPageMenu.xaml",
   "PreviewInSolutionExplorer": false
 }

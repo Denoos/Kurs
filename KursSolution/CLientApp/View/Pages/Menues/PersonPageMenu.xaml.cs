@@ -32,14 +32,14 @@ namespace CLientApp.View.Pages.Menues
         private DataBaseEndPoint _db = DataBaseEndPoint.Instance;
         private Person selectedItem;
         private ObservableCollection<Person> list;
-        //private ObservableCollection<PpeType> types;
-        //private ObservableCollection<Models.Condition> conditions;
+        private ObservableCollection<Status> firstSort;
+        private ObservableCollection<Post> secondSort;
 
         public event PropertyChangedEventHandler? PropertyChanged;
         public Person SelectedItem { get => selectedItem; set { selectedItem = value; Signal(); } }
         public ObservableCollection<Person> SortedList { get => list; set { list = value; Signal(); } }
-        //public ObservableCollection<Models.Condition> Conditions { get => conditions; set { conditions = value; Signal(); } }
-        //public ObservableCollection<PpeType> Types { get => types; set { types = value; Signal(); } }
+        public ObservableCollection<Status> FirstSort { get => firstSort; set { firstSort = value; Signal(); } }
+        public ObservableCollection<Post> SecondSort { get => secondSort; set { secondSort = value; Signal(); } }
         public string Search { get => search; set { search = value; Signal(); RenderList(Sorting, Search); } }
         public string Sorting { get => sorting; set { sorting = value; Signal(); RenderList(Sorting, Search); } }
 
@@ -47,8 +47,8 @@ namespace CLientApp.View.Pages.Menues
         {
             InitializeComponent();
             _window = window;
-            //Conditions = _db.GetAllConditions();
-            //Types = _db.GetAllTypes();
+            FirstSort = _db.GetAllStatuses();
+            SecondSort = _db.GetAllPosts();
             RenderList();
             DataContext = this;
         }
@@ -107,28 +107,28 @@ namespace CLientApp.View.Pages.Menues
             var list = _db.GetAllPersons();
 
             list = [..list.Where(p =>
-            p.Name.Contains(search) ||
-            p.Surname.Contains(search) ||
-            p.Patronymic.Contains(search) ||
-            p.Post.Title.Contains(search) ||
-            p.Status.Title.Contains(search)
+            p.Name.Contains(searching) ||
+            p.Surname.Contains(searching) ||
+            p.Patronymic.Contains(searching) ||
+            p.Post.Title.Contains(searching) ||
+            p.Status.Title.Contains(searching)
             )];
 
             var cond = (ComboBoxItem)ComboFilter_Condition.SelectedValue;
             var type = (ComboBoxItem)ComboFilter_Type.SelectedValue;
-            //list = [.. list.Where(p=>
-            //p.Condition.Title == cond.Content ||
-            //p.Type.Title == type.Content
-            //)];
+            list = [.. list.Where(p=>
+            p.Status.Title == cond.Content ||
+            p.Post.Title == type.Content
+            )];
 
             list = sorting switch
             {
                 "По имени" => [.. list.OrderBy(i => i.Name)],
-                "По дате получения" => [.. list.OrderBy(i => i.DateGet)],
-                "По дате окончания" => [.. list.OrderBy(i => i.DateEnd)],
-                "По типу" => [.. list.OrderBy(i => i.TypeId)],
-                "По состоянию" => [.. list.OrderBy(i => i.ConditionId)],
-                _ => [.. list.OrderBy(i => i.InventoryNumber)],
+                "По фамилии" => [.. list.OrderBy(i => i.Surname)],
+                "По отчеству" => [.. list.OrderBy(i => i.Patronymic)],
+                "По должности" => [.. list.OrderBy(i => i.PostId)],
+                "По статусу" => [.. list.OrderBy(i => i.StatusId)],
+                _ => [.. list.OrderBy(i => i.Id)],
             };
 
             SortedList = list;
@@ -138,31 +138,31 @@ namespace CLientApp.View.Pages.Menues
             => RenderList(Sorting, Search);
 
         private void Add_Click(object sender, RoutedEventArgs e)
-            => _window.SetPage(new PpeFormPage(_window, true));
+            => _window.SetPage(new PersonFormPage(_window, true));
         private void Edit_Click(object sender, RoutedEventArgs e)
         {
-            if (SelectedPpe is not null)
-                _window.SetPage(new PpeFormPage(_window, true, SelectedPpe));
-            else MessageBox.Show("Пожалуйста выберите СИЗ!", "Внимание!");
+            if (SelectedItem is not null)
+                _window.SetPage(new PersonFormPage(_window, true, SelectedItem));
+            else MessageBox.Show("Пожалуйста выберите сотрудника!", "Внимание!");
         }
 
         private void Delete_Click(object sender, RoutedEventArgs e)
         {
-            if (SelectedPpe is null)
-                MessageBox.Show("Пожалуйста выберите СИЗ!", "Внимание!");
+            if (SelectedItem is null)
+                MessageBox.Show("Пожалуйста выберите сотрудника!", "Внимание!");
             else
             {
-                if (MessageBox.Show("Вы действительно хотите удалить СИЗ?", "Удаление!", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
-                    _db.DeletePpe(SelectedPpe);
+                if (MessageBox.Show("Вы действительно хотите удалить сотрудника?", "Удаление!", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                    _db.DeletePerson(SelectedItem);
                 RenderList(Sorting, Search);
             }
         }
 
         private void ShowInfo_Click(object sender, RoutedEventArgs e)
         {
-            if (SelectedPpe is not null)
-                _window.SetPage(new PpeFormPage(_window, false, SelectedPpe));
-            else MessageBox.Show("Пожалуйста выберите СИЗ!", "Внимание!");
+            if (SelectedItem is not null)
+                _window.SetPage(new PersonFormPage(_window, false, SelectedItem));
+            else MessageBox.Show("Пожалуйста выберите сотрудника!", "Внимание!");
         }
     }
 }
