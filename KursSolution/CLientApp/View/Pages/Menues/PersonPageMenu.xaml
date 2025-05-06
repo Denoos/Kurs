@@ -3,11 +3,10 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:CLientApp.View.Pages.Menues"
-            mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      xmlns:local="clr-namespace:CLientApp.View.Pages.Menues" 
+      mc:Ignorable="d" 
       Background="White"
-      Title="Главная страница">
+      Title="Сотрудники">
 
     <Grid>
         <Grid.ColumnDefinitions>
@@ -17,60 +16,66 @@
 
         <!-- Левая часть с кнопками навигации -->
         <StackPanel  Grid.Column="0" Background="#FF4500" Margin=" 30">
-            <Button FontSize="18" Padding="20,10" Margin="10, 40" Content="Состояния"/>
-            <Button FontSize="18" Padding="20,10" Margin="10, 40" Content="Типы СИЗ"/>
-            <Button FontSize="18" Padding="20,10" Margin="10, 40" Content="Сотрудники"/>
-            <Button FontSize="18" Padding="20,10" Margin="10, 40" Content="Должности"/>
-            <Button FontSize="18" Padding="20,10" Margin="10, 40" Content="Пользователи"/>
-            <Button FontSize="18" Padding="20,10" Margin="10, 40" Content="Статусы сотрудников"/>
-            <Button FontSize="18" Padding="20,10" Margin="10, 40" Content="Выход"/>
+            <Button Click="NavigationButtonClicked" FontSize="18" Padding="20,10" Margin="10, 40" Content="Типы СИЗ"/>
+            <Button Click="NavigationButtonClicked" FontSize="18" Padding="20,10" Margin="10, 40" Content="СИЗ"/>
+            <Button Click="NavigationButtonClicked" FontSize="18" Padding="20,10" Margin="10, 40" Content="Состояния СИЗ"/>
+            <Button Click="NavigationButtonClicked" FontSize="18" Padding="20,10" Margin="10, 40" Content="Статусы сотрудников"/>
+            <Button Click="NavigationButtonClicked" FontSize="18" Padding="20,10" Margin="10, 40" Content="Должности"/>
+            <Button Click="NavigationButtonClicked" FontSize="18" Padding="20,10" Margin="10, 40" Content="Пользователи"/>
+            <Button Click="NavigationButtonClicked" FontSize="18" Padding="20,10" Margin="10, 40" Content="Выход"/>
         </StackPanel>
-
         <!-- Правая часть с информацией о СИЗ -->
         <StackPanel Background="#FF4500" Grid.Column="1" Margin="10">
             <!-- Строка поиска -->
             <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
-                <TextBox x:Name="SearchTextBox"  Width="1200" Height="30" FontSize="18" TextAlignment="Justify" Margin="10,20" />
-                <ComboBox x:Name="SortComboBox" Width="300" Margin="20">
-                    <ComboBoxItem Content="По названию" />
-                    <ComboBoxItem Content="По дате получения" />
+                <TextBox Text="{Binding Search}"  Width="1200" Height="30" FontSize="18" TextAlignment="Justify" Margin="10,20" />
+                <ComboBox SelectionChanged="SortingChanged" Width="300" Margin="20">
+                    <ComboBoxItem Content="По имени" />
+                    <ComboBoxItem Content="По фамилии" />
+                    <ComboBoxItem Content="По отчеству" />
+                    <ComboBoxItem Content="По должности" />
+                    <ComboBoxItem Content="По статусу" />
                 </ComboBox>
             </StackPanel>
 
             <!-- Выпадающие списки для фильтрации -->
             <StackPanel Orientation="Horizontal" Height="30" Margin="25">
-                <ComboBox Width="220" Margin="10,0" />
-                <ComboBox Width="220" Margin="10,0" />
-                <ComboBox Width="220" Margin="10,0" />
-                <ComboBox Width="220" Margin="10,0" />
-                <ComboBox Width="220" Margin="10,0" />
+                <TextBlock Width="Auto" Foreground="White" FontSize="24" Text="Блок фильтрации:" Margin="10, 0" />
+                <ComboBox  x:Name="ComboFilter_Condition" ItemsSource="{Binding Conditions}" SelectionChanged="Filter_Changed" Width="220" Margin="10,0" DisplayMemberPath="Title" IsSynchronizedWithCurrentItem="True" DockPanel.Dock="Top"/>
+                <ComboBox x:Name="ComboFilter_Type" ItemsSource="{Binding Types}" SelectionChanged="Filter_Changed" Width="220" Margin="10,0"  DisplayMemberPath="Title" IsSynchronizedWithCurrentItem="True" DockPanel.Dock="Top"/>
             </StackPanel>
 
-            <ListBox MinHeight="100" Height="800" Margin="10">
-                <ListBox.ItemTemplate>
+            <ListView ItemsSource="{Binding SortedList}" SelectedItem="{Binding SelectedPpe}" MinHeight="100" Height="800" Margin="10">
+                <ListView.ItemTemplate>
                     <DataTemplate>
-                        <StackPanel Orientation="Vertical" Margin="5">
-                            <TextBlock Text="{Binding Title}" FontWeight="Bold" FontSize="14"/>
-                            <TextBlock Text="{Binding InventoryNumber}" FontStyle="Italic"/>
-                            <TextBlock Text="{Binding Type.Name}" />
-                            <TextBlock Text="{Binding Condition.Name}" />
-                            <TextBlock Text="{Binding DateGet, StringFormat='Получено: {0:dd.MM.yyyy}'}" />
-                            <TextBlock Text="{Binding DateEnd, StringFormat='Срок действия: {0:dd.MM.yyyy}'}" />
+                        <StackPanel Orientation="Horizontal" Margin="5">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="{Binding Title}" FontWeight="Bold" FontSize="14"/>
+                                <TextBlock Text="{Binding InventoryNumber}" FontStyle="Italic"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Vertical">
+                                <TextBlock Text="{Binding Type.Name}" />
+                                <TextBlock Text="{Binding Condition.Name}" />
+                            </StackPanel>
+                            <StackPanel Orientation="Vertical">
+                                <TextBlock Text="{Binding DateGet, StringFormat='Получено: {0:dd.MM.yyyy}'}" />
+                                <TextBlock Text="{Binding DateEnd, StringFormat='Срок действия: {0:dd.MM.yyyy}'}" />
+                            </StackPanel>
                         </StackPanel>
                     </DataTemplate>
-                </ListBox.ItemTemplate>
-                <ListBox.ContextMenu>
+                </ListView.ItemTemplate>
+                <ListView.ContextMenu>
                     <ContextMenu>
-                        <MenuItem Header="Добавить" />
+                        <MenuItem Header="Добавить" Click="Add_Click"/>
                         <Separator/>
-                        <MenuItem Header="Редактировать" />
+                        <MenuItem Header="Редактировать" Click="Edit_Click"/>
                         <Separator/>
-                        <MenuItem Header="Удалить" />
+                        <MenuItem Header="Удалить" Click="Delete_Click"/>
                         <Separator/>
-                        <MenuItem Header="Посмотреть иинформацию" />
+                        <MenuItem Header="Посмотреть иинформацию" Click="ShowInfo_Click"/>
                     </ContextMenu>
-                </ListBox.ContextMenu>
-            </ListBox>
+                </ListView.ContextMenu>
+            </ListView>
         </StackPanel>
     </Grid>
 </Page>

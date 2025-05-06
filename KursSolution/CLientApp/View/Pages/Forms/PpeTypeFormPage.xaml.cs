@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using CLientApp.Models;
 
 namespace CLientApp.View.Pages.Forms
 {
@@ -20,7 +21,7 @@ namespace CLientApp.View.Pages.Forms
     /// </summary>
     public partial class PpeTypeFormPage : Page
     {
-        public PpeTypeFormPage()
+        public PpeTypeFormPage(MainWindow window, bool IsEn, PpeType Item = null)
         {
             InitializeComponent();
         }

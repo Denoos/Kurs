@@ -20,7 +20,7 @@ namespace CLientApp.View.Pages.Forms
     /// </summary>
     public partial class ConditionFormPage : Page
     {
-        public ConditionFormPage()
+        public ConditionFormPage(MainWindow window, bool IsEn, Models.Condition Item = null)
         {
             InitializeComponent();
         }

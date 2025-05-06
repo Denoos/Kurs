@@ -90,6 +90,7 @@ namespace CLientApp.View.Pages.Menues
                     break;
             }
         }
+
         private void SortingChanged(object sender, SelectionChangedEventArgs e)
         {
             var snd = (ComboBox)sender;

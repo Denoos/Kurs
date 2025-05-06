@@ -29,22 +29,62 @@ namespace CLientApp.Logic
             return true;
         }
 
-        public ObservableCollection<Ppe>  GetAllPpes()
+        public ObservableCollection<Ppe> GetAllPpes()
         {
             return [];
         }
 
-        internal ObservableCollection<Condition> GetAllConditions()
+        public ObservableCollection<Condition> GetAllConditions()
         {
             return [];
         }
 
-        internal ObservableCollection<PpeType> GetAllTypes()
+        public ObservableCollection<PpeType> GetAllTypes()
         {
             return [];
         }
 
-        internal void DeletePpe(Ppe selectedPpe)
+        public ObservableCollection<Post> GetAllPosts()
+        {
+            return [];
+        }
+
+        public ObservableCollection<PpeType> GetAllPpeTypes()
+        {
+            return [];
+        }
+
+        public ObservableCollection<Person> GetAllPersons()
+        {
+            return [];
+        }
+
+        public void DeletePpe(Ppe selectedPpe)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void DeleteCondition(Condition selectedItem)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void DeletePost(Post selectedItem)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void DeletePpeType(PpeType selectedItem)
+        {
+            throw new NotImplementedException();
+        }
+
+        public ObservableCollection<Status> GetAllStatuses()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void DeleteStatus(Status selectedItem)
         {
             throw new NotImplementedException();
         }
