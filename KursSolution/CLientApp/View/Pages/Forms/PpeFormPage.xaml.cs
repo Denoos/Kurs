@@ -62,15 +62,16 @@ namespace CLientApp.View.Pages.Forms
         private void Save_Click(object sender, RoutedEventArgs e)
         {
             bool IsFail = true;
-            Item.IdRole = Item.IdRoleNavigation.Id;
+            Item.ConditionId = Item.Condition.Id;
+            Item.TypeId = Item.Type.Id;
 
             if (!IsEnabled)
                 IsFail = false;
             else
             {
                 if (isAdd)
-                    IsFail = _db.AddUser(Item);
-                else IsFail = _db.EditUser(Item);
+                    IsFail = _db.AddPpe(Item);
+                else IsFail = _db.EditPpe(Item);
             }
 
             if (!IsFail)

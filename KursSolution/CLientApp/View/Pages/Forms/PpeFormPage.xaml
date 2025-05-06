@@ -22,7 +22,7 @@
 
                 <TextBlock Text="Название" FontSize="18" FontWeight="Bold" Foreground="#FF4500" 
                            HorizontalAlignment="Left" Margin="0,0,0,20"/>
-                <TextBox Name="UsernameTextBox" 
+                <TextBox IsEnabled="{Binding IsEnabled}" Name="UsernameTextBox" 
                          Text="{Binding Item.Title}"
                          Margin="0,0,0,10" 
                          Height="40" 
@@ -30,7 +30,7 @@
                          Padding="5"/>
                 <TextBlock Text="Инвентарный номер" FontSize="18" FontWeight="Bold" Foreground="#FF4500" 
                            HorizontalAlignment="Left" Margin="0,0,0,20"/>
-                <TextBox
+                <TextBox IsEnabled="{Binding IsEnabled}"
                          Text="{Binding Item.InventoryNumber}"
                          Margin="0,0,0,10" 
                          Height="40" 
@@ -39,24 +39,24 @@
 
                 <TextBlock Text="Состояние" FontSize="18" FontWeight="Bold" Foreground="#FF4500" 
                            HorizontalAlignment="Left" Margin="0,0,0,20"/>
-                <ComboBox ItemsSource="{Binding Items}" Margin="20, 10" Height="40" SelectedItem="{Binding Item.Condition}" />
+                <ComboBox  IsEnabled="{Binding IsEnabled}" ItemsSource="{Binding Items}" Margin="20, 10" Height="40" SelectedItem="{Binding Item.Condition}" />
                 <TextBlock Text="Тип" FontSize="18" FontWeight="Bold" Foreground="#FF4500" 
                            HorizontalAlignment="Left" Margin="0,0,0,20"/>
-                <ComboBox ItemsSource="{Binding ItemsSecond}" Margin="20, 10" Height="40" SelectedItem="{Binding Item.Type}" />
+                <ComboBox IsEnabled="{Binding IsEnabled}" ItemsSource="{Binding ItemsSecond}" Margin="20, 10" Height="40" SelectedItem="{Binding Item.Type}" />
 
                 <StackPanel Orientation="Horizontal">
                     <StackPanel Margin="30, 5">
                         <TextBlock Text="Дата получения" FontSize="16" FontWeight="Bold" Foreground="#FF4500"/>
-                        <DatePicker SelectedDate="{Binding Item.DateGet}" Height="40"/>
+                        <DatePicker IsEnabled="{Binding IsEnabled}" SelectedDate="{Binding Item.DateGet}" Height="40"/>
                     </StackPanel>
                     <StackPanel Margin="30, 5" >
                         <TextBlock Text="Дата окончания" FontSize="16" FontWeight="Bold" Foreground="#FF4500"/>
-                        <DatePicker SelectedDate="{Binding Item.DateEnd}" Height="40"/>
+                        <DatePicker IsEnabled="{Binding IsEnabled}" SelectedDate="{Binding Item.DateEnd}" Height="40"/>
                     </StackPanel>
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,10">
-                    <Button Content="Сохранить" 
+                    <Button IsEnabled="{Binding IsEnabled}" Content="Сохранить" 
                             FontSize="18"
                             Click="Save_Click"
                             Width="200" 

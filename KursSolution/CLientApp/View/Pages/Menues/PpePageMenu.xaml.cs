@@ -47,7 +47,7 @@ namespace CLientApp.View.Pages.Menues
             InitializeComponent();
             _window = window;
             Conditions = _db.GetAllConditions();
-            Types = _db.GetAllTypes();
+            Types = _db.GetAllPpeTypes();
             RenderList();
             DataContext = this;
         }

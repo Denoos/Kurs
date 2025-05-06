@@ -153,5 +153,25 @@ namespace CLientApp.Logic
         {
             throw new NotImplementedException();
         }
+
+        internal bool EditPpe(Ppe item)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal bool AddPpe(Ppe item)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal bool AddPerson(Person item)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal bool EditPerson(Person item)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

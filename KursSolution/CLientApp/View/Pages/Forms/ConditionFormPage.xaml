@@ -22,7 +22,7 @@
 
                 <TextBlock Text="Название" FontSize="18" FontWeight="Bold" Foreground="#FF4500" 
                            HorizontalAlignment="Left" Margin="0,0,0,20"/>
-                <TextBox Name="UsernameTextBox" 
+                <TextBox IsEnabled="{Binding IsEnabled}" Name="UsernameTextBox" 
                          Text="{Binding Item.Title}"
                          Margin="0,0,0,10" 
                          Height="40" 
@@ -31,7 +31,7 @@
 
                 
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,10">
-                    <Button Content="Сохранить" 
+                    <Button IsEnabled="{Binding IsEnabled}" Content="Сохранить" 
                             FontSize="18"
                             Click="Save_Click"
                             Width="200" 

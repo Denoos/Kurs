@@ -20,22 +20,32 @@
                 <TextBlock Text="Вход в приложение" FontSize="24" FontWeight="Bold" Foreground="#FF4500" 
                            HorizontalAlignment="Center" Margin="0,0,0,20"/>
 
-                <TextBlock Text="Логин" FontSize="18" FontWeight="Bold" Foreground="#FF4500" 
+                <TextBlock Text="Имя" FontSize="18" FontWeight="Bold" Foreground="#FF4500" 
                            HorizontalAlignment="Left" Margin="0,0,0,20"/>
-                <TextBox Name="UsernameTextBox" 
-
+                <TextBox 
+                        Text="{Binding Item.Name}"
                          Margin="0,0,0,10" 
                          Height="40" 
                          FontSize="16" 
                          Padding="5"/>
-
-                <TextBlock Text="Пароль" FontSize="18" FontWeight="Bold" Foreground="#FF4500" 
+                
+                <TextBlock Text="Фамилия" FontSize="18" FontWeight="Bold" Foreground="#FF4500" 
                            HorizontalAlignment="Left" Margin="0,0,0,20"/>
-                <PasswordBox Name="PasswordBox" 
-                             Margin="0,0,0,20" 
-                             Height="40" 
-                             FontSize="16" 
-                             Padding="5"/>
+                <TextBox 
+                        Text="{Binding Item.Surname}"
+                         Margin="0,0,0,10" 
+                         Height="40" 
+                         FontSize="16" 
+                         Padding="5"/>
+                
+                <TextBlock Text="Отчество" FontSize="18" FontWeight="Bold" Foreground="#FF4500" 
+                           HorizontalAlignment="Left" Margin="0,0,0,20"/>
+                <TextBox 
+                        Text="{Binding Item.Patronymic}"
+                         Margin="0,0,0,10" 
+                         Height="40" 
+                         FontSize="16" 
+                         Padding="5"/>
 
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,10">
                     <Button Content="Войти" 

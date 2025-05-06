@@ -22,7 +22,7 @@
 
                 <TextBlock Text="Логин" FontSize="18" FontWeight="Bold" Foreground="#FF4500" 
                            HorizontalAlignment="Left" Margin="0,0,0,20"/>
-                <TextBox Name="UsernameTextBox" 
+                <TextBox IsEnabled="{Binding IsEnabled}" Name="UsernameTextBox" 
                          Text="{Binding Item.Title}"
                          Margin="0,0,0,10" 
                          Height="40" 
@@ -30,18 +30,18 @@
                          Padding="5"/>
                 <TextBlock Text="Пароль" FontSize="18" FontWeight="Bold" Foreground="#FF4500" 
                            HorizontalAlignment="Left" Margin="0,0,0,20"/>
-                <TextBox
+                <TextBox IsEnabled="{Binding IsEnabled}"
                          Text="{Binding Item.Password}"
                          Margin="0,0,0,10" 
                          Height="40" 
                          FontSize="16" 
                          Padding="5"/>
 
-                <ComboBox ItemsSource="{Binding Items}" Margin="20, 10" Height="40" SelectedItem="{Binding Item.IdRoleNavigation}" />
+                <ComboBox IsEnabled="{Binding IsEnabled}" ItemsSource="{Binding Items}" Margin="20, 10" Height="40" SelectedItem="{Binding Item.IdRoleNavigation}" />
 
 
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,10">
-                    <Button Content="Сохранить" 
+                    <Button IsEnabled="{Binding IsEnabled}" Content="Сохранить" 
                             FontSize="18"
                             Click="Save_Click"
                             Width="200" 
