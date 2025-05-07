@@ -76,7 +76,7 @@ namespace CLientApp.View.Pages.Forms
 
             if (!IsFail)
                 Exit_Click(sender, e);
-            else MessageBox.Show("Внимание! ПРоизошла непредвиденная ошибка!", "Ошибка!");
+            else MessageBox.Show("Внимание! Произошла непредвиденная ошибка!", "Ошибка!");
         }
 
         private void Exit_Click(object sender, RoutedEventArgs e)

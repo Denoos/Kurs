@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:CLientApp.View.Pages.Forms"
                 mc:Ignorable="d"
-    Title="Вход"
+    Title="Сотрудники"
     Background="White">
     <Grid>
 
@@ -17,7 +17,7 @@
 
         <Border BorderThickness="3" Grid.Column="1" BorderBrush="#FF4500" HorizontalAlignment="Center" VerticalAlignment="Center" CornerRadius="30" Padding="20" Background="#FFF5F5F5">
             <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Width="500">
-                <TextBlock Text="Вход в приложение" FontSize="24" FontWeight="Bold" Foreground="#FF4500" 
+                <TextBlock Text="Сотрудники" FontSize="24" FontWeight="Bold" Foreground="#FF4500" 
                            HorizontalAlignment="Center" Margin="0,0,0,20"/>
 
                 <TextBlock Text="Имя" FontSize="18" FontWeight="Bold" Foreground="#FF4500" 
