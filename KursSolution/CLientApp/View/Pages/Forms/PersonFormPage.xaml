@@ -31,7 +31,7 @@
                 
                 <TextBlock Text="Фамилия" FontSize="18" FontWeight="Bold" Foreground="#FF4500" 
                            HorizontalAlignment="Left" Margin="0,0,0,20"/>
-                <TextBox 
+                <TextBox  IsEnabled="{Binding IsEnabled}"
                         Text="{Binding Item.Surname}"
                          Margin="0,0,0,10" 
                          Height="40" 
@@ -47,17 +47,22 @@
                          FontSize="16" 
                          Padding="5"/>
 
+                <ComboBox IsEnabled="{Binding IsEnabled}" ItemsSource="{Binding Items}" Margin="20, 10" Height="40" SelectedItem="{Binding Item.Post}" />
+                <ComboBox IsEnabled="{Binding IsEnabled}" ItemsSource="{Binding ItemsSecond}" Margin="20, 10" Height="40" SelectedItem="{Binding Item.Status}" />
+
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,10">
-                    <Button Content="Войти" 
+                    <Button Content="Сохранить" IsEnabled="{ Binding IsEnabled}"
                             FontSize="18"
                             Width="200" 
                             Height="40" 
                             Background="#FF4500" 
                             Foreground="White" 
                             FontWeight="Bold" 
+                            Click="Save_Click"
                             />
 
-                    <Button Content="Зарегистрироваться" 
+                    <Button Content="Назад"
+                            Click="Exit_Click"
                             Width="230"
                             FontSize="18"
                             Height="40" 
