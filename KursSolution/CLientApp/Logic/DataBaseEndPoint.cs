@@ -3,8 +3,11 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Net.Http;
+using System.Net.Http.Json;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
+using System.Windows;
 using CLientApp.Models;
 
 namespace CLientApp.Logic
@@ -13,20 +16,66 @@ namespace CLientApp.Logic
     {
         private static DataBaseEndPoint instance;
         public static DataBaseEndPoint Instance { get => instance ??= new(); }
-        HttpClient _client;
-        //=> _client = nexw() { BaseAddress = new Uri("") };
+        private readonly HttpClient _client;
 
         public DataBaseEndPoint()
-        { }
+            => _client = new() { BaseAddress = new Uri("https://localhost:7230/api/") };
 
-        public bool Login(User user)
+        public async Task<bool> Login(User user)
         {
-            return true;
+            try
+            {
+                var result = false;
+                if (user is null ||
+                    string.IsNullOrEmpty(user.Login) ||
+                    string.IsNullOrEmpty(user.Password) ||
+                    string.IsNullOrWhiteSpace(user.Login) ||
+                    string.IsNullOrWhiteSpace(user.Password))
+                    return result;
+
+
+                var responce = await _client.GetFromJsonAsync<TokEnRole>($"Auth/Authorise?login={user.Login}&password={user.Password}");
+
+                if (responce is null)
+                    result = false;
+
+                return result;
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Введены неверные данные!", "Ошибка!");
+                return false;
+            }
         }
 
-        public bool Register(User user)
+        public async Task<bool> Register(User user)
         {
-            return true;
+            try
+            {
+                var result = false;
+                if (user is null ||
+                    string.IsNullOrEmpty(user.Login) ||
+                    string.IsNullOrEmpty(user.Password) ||
+                    string.IsNullOrWhiteSpace(user.Login) ||
+                    string.IsNullOrWhiteSpace(user.Password))
+                    return result;
+
+                user.IdRole = 0;
+                user.Token = "";
+                user.IdRoleNavigation = new Role() { Id = 0, Ttle = "0" };
+
+                result = true;
+
+                var responce = await _client.PostAsJsonAsync($"Auth/Register", user);
+                result = await Login(user);
+
+                return result;
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Ошибка добавления!", "Ошибка!");
+                return false;
+            }
         }
 
         public ObservableCollection<Ppe> GetAllPpes()
@@ -34,7 +83,7 @@ namespace CLientApp.Logic
             return [];
         }
 
-        public ObservableCollection<Condition> GetAllConditions()
+        public ObservableCollection<Models.Condition> GetAllConditions()
         {
             return [];
         }
@@ -69,7 +118,7 @@ namespace CLientApp.Logic
             throw new NotImplementedException();
         }
 
-        public void DeleteCondition(Condition selectedItem)
+        public void DeleteCondition(Models.Condition selectedItem)
         {
             throw new NotImplementedException();
         }
@@ -83,7 +132,7 @@ namespace CLientApp.Logic
         {
             throw new NotImplementedException();
         }
-        
+
         public void DeleteStatus(Status selectedItem)
         {
             throw new NotImplementedException();
@@ -99,12 +148,12 @@ namespace CLientApp.Logic
             throw new NotImplementedException();
         }
 
-        public bool AddCondition(Condition item)
+        public bool AddCondition(Models.Condition item)
         {
             return item.Title == "nigga";
         }
 
-        public bool EditCondition(Condition item)
+        public bool EditCondition(Models.Condition item)
         {
             return item.Title == "Denoos";
         }

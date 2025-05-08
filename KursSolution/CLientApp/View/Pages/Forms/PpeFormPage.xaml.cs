@@ -62,6 +62,11 @@ namespace CLientApp.View.Pages.Forms
         private void Save_Click(object sender, RoutedEventArgs e)
         {
             bool IsFail = true;
+            if (Item.Condition is null || Item.Type is null)
+            {
+                MessageBox.Show("Выберите состояние СИЗ, а также его тип!", "Внимание!");
+                return;
+            }
             Item.ConditionId = Item.Condition.Id;
             Item.TypeId = Item.Type.Id;
 

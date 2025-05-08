@@ -62,6 +62,12 @@ namespace CLientApp.View.Pages.Forms
         private void Save_Click(object sender, RoutedEventArgs e)
         {
             bool IsFail = true;
+
+            if (Item.Post is null || Item.Status is null)
+            {
+                MessageBox.Show("Выберите текущий статус сотрудника, а также его должность!", "Внимание!");
+                return;
+            }
             Item.PostId = Item.Post.Id;
             Item.StatusId = Item.Status.Id;
 

@@ -60,7 +60,7 @@ namespace CLientApp.View.Pages.Forms {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/CLientApp;component/view/pages/forms/postformpage.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/CLientApp;V1.0.0.0;component/view/pages/forms/postformpage.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\..\..\View\Pages\Forms\PostFormPage.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

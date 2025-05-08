@@ -6,11 +6,12 @@
     "\\KursSolution\\APIKurs\\Controllers",
     "\\KursSolution\\APIKurs\\Controllers\\EndPoints",
     "\\KursSolution\\CLientApp",
+    "\\KursSolution\\CLientApp\\Logic",
     "\\KursSolution\\CLientApp\\View",
     "\\KursSolution\\CLientApp\\View\\Pages",
     "\\KursSolution\\CLientApp\\View\\Pages\\Forms",
     "\\KursSolution\\CLientApp\\View\\Pages\\Menues"
   ],
-  "SelectedNode": "\\KursSolution\\CLientApp\\View\\Pages\\Forms\\ConditionFormPage.xaml",
+  "SelectedNode": "\\KursSolution\\CLientApp\\Logic\\DataBaseEndPoint.cs",
   "PreviewInSolutionExplorer": false
 }

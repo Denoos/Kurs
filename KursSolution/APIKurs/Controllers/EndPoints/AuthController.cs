@@ -1,14 +1,15 @@
 ﻿using APIKurs.Controllers.BackStage;
 using APIKurs.Models;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace APIKurs.Controllers.EndPoint
 {
-    [Route("api/[controller]")]
+    [Route("api/Auth")]
     [ApiController]
     public class AuthController : ControllerBase
     {
+        public AuthController() { }
+
         DataBaseController db = DataBaseController.Instance;
 
         [HttpGet("Authorise")]
@@ -16,7 +17,7 @@ namespace APIKurs.Controllers.EndPoint
             => await db.Authorise(login, password);
         
         [HttpPost("Register")]
-        public async Task<ActionResult<TokEnRole>> Register(string login, string password)
-            => await db.Register(login, password);
+        public async Task<ActionResult<TokEnRole>> Register(User user)
+            => await db.Register(user);
     }
 }

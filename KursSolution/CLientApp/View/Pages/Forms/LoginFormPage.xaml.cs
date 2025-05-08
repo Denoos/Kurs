@@ -43,15 +43,18 @@ namespace CLientApp.View.Pages.Forms
             DataContext = this;
         }
 
-        private void LoginButton_Click(object sender, RoutedEventArgs e)
+        private async void LoginButton_Click(object sender, RoutedEventArgs e)
         {
-            if (_db.Login(User))
+            User = new() { Login = UsernameTextBox.Text, Password = PasswordBox.Password };
+            if (await _db.Login(User))
                 _mainWindow.SetPage(new PpePageMenu(_mainWindow));
         }
 
-        private void RegisterButton_Click(object sender, RoutedEventArgs e)
+        private async void RegisterButton_Click(object sender, RoutedEventArgs e)
         {
-            if (_db.Register(User))
+            User = new() { Login = UsernameTextBox.Text, Password = PasswordBox.Password };
+            var a = await _db.Register(User);
+            if (a)
                 LoginButton_Click(sender, e);
         }
 

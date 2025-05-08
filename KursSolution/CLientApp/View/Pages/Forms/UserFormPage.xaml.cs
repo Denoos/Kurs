@@ -59,6 +59,11 @@ namespace CLientApp.View.Pages.Forms
         private void Save_Click(object sender, RoutedEventArgs e)
         {
             bool IsFail = true;
+            if (Item.IdRoleNavigation is null)
+            {
+                MessageBox.Show("Выберите текущую роль пользователя!", "Внимание!");
+                return;
+            }
             Item.IdRole = Item.IdRoleNavigation.Id;
 
             if (!IsEnabled)

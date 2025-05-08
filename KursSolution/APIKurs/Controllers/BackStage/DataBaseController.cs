@@ -9,6 +9,7 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.BlazorIdentity.Pages;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
+using System.Runtime.InteropServices;
 
 namespace APIKurs.Controllers.BackStage
 {
@@ -24,7 +25,6 @@ namespace APIKurs.Controllers.BackStage
         //System Metods
         private async Task Save()
             => await _context.SaveChangesAsync();
-
 
         //Security Methods
         private string EncryptPassword(string someString)
@@ -97,7 +97,7 @@ namespace APIKurs.Controllers.BackStage
         {
             User? user = _context.Users.FirstOrDefault(u => u.Login == someString && u.Password == otherString);
             if (user is null)
-                return Unauthorized();
+                return NotFound();
 
             var role = await _context.Roles.FirstOrDefaultAsync(s=> s.Id == user.IdRole);
             int? id = user.Id;
@@ -123,13 +123,14 @@ namespace APIKurs.Controllers.BackStage
             return result;
         }
 
-        public async Task<ActionResult<TokEnRole>> Register(string someString, string otherString)
+        public async Task<ActionResult<TokEnRole>> Register(User user)
         {
             var role = _context.Roles.First(s => s.Ttle == "1");
-            await _context.Users.AddAsync(new User() { Login = someString, Password = EncryptPassword(otherString), IdRoleNavigation = role, IdRole = role.Id });
-
-            Save();
-            return await Authorise(someString, otherString);
+            user = new User() { Login = user.Login, Password = EncryptPassword(user.Password), IdRoleNavigation = role, IdRole = role.Id };
+            await _context.Users.AddAsync(user);
+            await _context.SaveChangesAsync();
+            await Save();
+            return await Authorise(user.Login, user.Password);
         }
 
         //Conditions
