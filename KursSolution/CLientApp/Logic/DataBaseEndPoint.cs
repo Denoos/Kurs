@@ -19,6 +19,8 @@ namespace CLientApp.Logic
         public static DataBaseEndPoint Instance { get => instance ??= new(); }
         private readonly HttpClient _client;
 
+        private User CurrentAccount;
+
         public DataBaseEndPoint()
             => _client = new() { BaseAddress = new Uri("https://localhost:7230/api/") };
 
@@ -27,6 +29,8 @@ namespace CLientApp.Logic
             try
             {
                 var result = false;
+                CurrentAccount ??= user;
+
                 if (user is null ||
                     string.IsNullOrEmpty(user.Login) ||
                     string.IsNullOrEmpty(user.Password) ||
@@ -41,6 +45,7 @@ namespace CLientApp.Logic
 
                 if (responce.Title is not null && !string.IsNullOrWhiteSpace(responce.Token))
                     result = true;
+
 
                 return result;
             }
@@ -65,12 +70,9 @@ namespace CLientApp.Logic
 
                 user.IdRoleNavigation = new() { Ttle = "0" };
 
-                var a = JsonSerializer.Serialize(user);
-
-
                 var responceCode = await _client.PostAsJsonAsync($"Auth/Register", user);
 
-                var responce = new TokEnRole();
+                var responce = await responceCode.Content.ReadFromJsonAsync<TokEnRole>();
 
                 if (responce is null)
                     return false;
@@ -87,9 +89,13 @@ namespace CLientApp.Logic
             }
         }
 
-        public ObservableCollection<Ppe> GetAllPpes()
+        public async Task<ObservableCollection<Ppe>> GetAllPpes()
         {
-            return [];
+
+            var responce = _client.GetFromJsonAsync<IEnumerable<Ppe>> ($"Ppes/GetPpes");
+
+            ObservableCollection<Ppe> res = [.. responce.Result.ToList()];
+            return res;
         }
 
         public ObservableCollection<Model.Condition> GetAllConditions()

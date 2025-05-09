@@ -26,6 +26,9 @@ namespace APIKurs.Controllers.BackStage
         private async Task Save()
             => await _context.SaveChangesAsync();
 
+        private async Task Update()
+            => _context = new();
+
         //Security Methods
         private string EncryptPassword(string someString)
         {
@@ -95,7 +98,9 @@ namespace APIKurs.Controllers.BackStage
         //Enter
         public async Task<ActionResult<TokEnRole>> Authorise(string someString, string otherString)
         {
-            User? user = _context.Users.FirstOrDefault(u => u.Login == someString && u.Password == otherString);
+            Update();
+            List<User> a = _context.Users.ToList();
+            User? user = _context.Users.FirstOrDefault(u => u.Login == someString && u.Password == EncryptPassword(otherString));
             if (user is null)
                 return NotFound();
 
@@ -103,8 +108,7 @@ namespace APIKurs.Controllers.BackStage
             int? id = user.Id;
 
             var claims = new List<Claim> {
-                new Claim(ClaimValueTypes.Integer32, id.ToString()),
-                new Claim(ClaimTypes.Role, role.Ttle)
+                new(ClaimTypes.Role, role.Ttle)
             };
 
             // создаем JWT-токен
@@ -116,7 +120,6 @@ namespace APIKurs.Controllers.BackStage
                     signingCredentials: new SigningCredentials(AuthOptions.GetSymmetricSecurityKey(), SecurityAlgorithms.HmacSha256));
 
             string token = new JwtSecurityTokenHandler().WriteToken(jwt);
-            token = EncryptToken(token);
 
             var result = new TokEnRole() { Title = role, Token = token };
 
@@ -126,10 +129,11 @@ namespace APIKurs.Controllers.BackStage
         public async Task<ActionResult<TokEnRole>> Register(User user)
         {
             var role = _context.Roles.First(s => s.Ttle == "1");
-            user = new User() {Id = _context.Users.Count(), Login = user.Login, Password = EncryptPassword(user.Password), IdRoleNavigation = role, IdRole = role.Id };
+            user = new User() {Login = user.Login, Password = EncryptPassword(user.Password), IdRoleNavigation = role, IdRole = role.Id };
             await _context.Users.AddAsync(user);
             await Save();
-            return await Authorise(user.Login, user.Password);
+            await Update();
+            return new TokEnRole();
         }
 
         //Conditions

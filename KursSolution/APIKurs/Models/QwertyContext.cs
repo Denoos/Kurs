@@ -239,7 +239,6 @@ public partial class QwertyContext : DbContext
             entity.HasIndex(e => e.IdRole, "FK_users_roles_id");
 
             entity.Property(e => e.Id)
-                .ValueGeneratedNever()
                 .HasColumnType("int(11)")
                 .HasColumnName("id");
             entity.Property(e => e.IdRole)

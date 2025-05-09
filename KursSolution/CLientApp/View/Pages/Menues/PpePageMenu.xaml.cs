@@ -102,9 +102,9 @@ namespace CLientApp.View.Pages.Menues
         private void Signal([CallerMemberName] string? prop = null)
             => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
 
-        private void RenderList(string? sorting = null, string? searching = null)
+        private async void RenderList(string? sorting = null, string? searching = null)
         {
-            var list = _db.GetAllPpes();
+            var list = await _db.GetAllPpes();
 
             list = [..list.Where(p =>
                 p.Title.Contains(searching) ||
