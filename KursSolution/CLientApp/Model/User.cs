@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace CLientApp.Models;
+namespace CLientApp.Model;
 
 public partial class User
 {
-    public int? Id { get; set; }
+    public int Id { get; set; }
 
     public string Login { get; set; } = null!;
 

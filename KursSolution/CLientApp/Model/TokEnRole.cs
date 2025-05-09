@@ -1,4 +1,6 @@
-﻿namespace CLientApp.Models
+﻿using CLientApp.Model;
+
+namespace CLientApp.Models
 {
     public class TokEnRole
     {

@@ -15,6 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using CLientApp.Logic;
+using CLientApp.Model;
 using CLientApp.Models;
 using CLientApp.View.Pages.Menues;
 
@@ -30,13 +31,13 @@ namespace CLientApp.View.Pages.Forms
         private Ppe item;
         private bool isEnabled;
         private bool isAdd = true;
-        private List<Models.Condition> roles;
+        private List<Model.Condition> roles;
         private List<PpeType> itemsSecond;
 
         public event PropertyChangedEventHandler? PropertyChanged;
 
         public Ppe Item { get => item; set { item = value; Signal(); } }
-        private List<Models.Condition> Items { get => roles; set { roles = value; Signal(); } }
+        private List<Model.Condition> Items { get => roles; set { roles = value; Signal(); } }
         private List<PpeType> ItemsSecond { get => itemsSecond; set { itemsSecond = value; Signal(); } }
         public bool IsEnabled { get => isEnabled; set { isEnabled = value; Signal(); } }
 

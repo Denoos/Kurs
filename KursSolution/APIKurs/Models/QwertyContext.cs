@@ -34,7 +34,7 @@ public partial class QwertyContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseMySql("server=127.0.0.1;user=root;password=;database=_qwerty", Microsoft.EntityFrameworkCore.ServerVersion.Parse("10.3.39-mariadb"));
+        => optionsBuilder.UseMySql("server=127.0.0.1;user=root;database=_qwerty", Microsoft.EntityFrameworkCore.ServerVersion.Parse("8.0.15-mysql"));
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -232,12 +232,14 @@ public partial class QwertyContext : DbContext
 
         modelBuilder.Entity<User>(entity =>
         {
-            entity
-                .ToTable("users");
+            entity.HasKey(e => e.Id).HasName("PRIMARY");
+
+            entity.ToTable("users");
 
             entity.HasIndex(e => e.IdRole, "FK_users_roles_id");
 
             entity.Property(e => e.Id)
+                .ValueGeneratedNever()
                 .HasColumnType("int(11)")
                 .HasColumnName("id");
             entity.Property(e => e.IdRole)
@@ -255,7 +257,7 @@ public partial class QwertyContext : DbContext
                 .HasMaxLength(255)
                 .HasColumnName("token");
 
-            entity.HasOne(d => d.IdRoleNavigation).WithMany()
+            entity.HasOne(d => d.IdRoleNavigation).WithMany(p => p.Users)
                 .HasForeignKey(d => d.IdRole)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_users_roles_id");

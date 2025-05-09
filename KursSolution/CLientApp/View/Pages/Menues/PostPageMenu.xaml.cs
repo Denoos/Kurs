@@ -16,6 +16,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using CLientApp.Logic;
+using CLientApp.Model;
 using CLientApp.Models;
 using CLientApp.View.Pages.Forms;
 

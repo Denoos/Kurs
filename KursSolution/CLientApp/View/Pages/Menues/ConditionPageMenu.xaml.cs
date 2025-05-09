@@ -29,12 +29,12 @@ namespace CLientApp.View.Pages.Menues
         private string search;
         private MainWindow _window;
         private DataBaseEndPoint _db = DataBaseEndPoint.Instance;
-        private Models.Condition selectedItem;
-        private ObservableCollection<Models.Condition> list;
+        private Model.Condition selectedItem;
+        private ObservableCollection<Model.Condition> list;
 
         public event PropertyChangedEventHandler? PropertyChanged;
-        public Models.Condition SelectedItem { get => selectedItem; set { selectedItem = value; Signal(); } }
-        public ObservableCollection<Models.Condition> SortedList { get => list; set { list = value; Signal(); } }
+        public Model.Condition SelectedItem { get => selectedItem; set { selectedItem = value; Signal(); } }
+        public ObservableCollection<Model.Condition> SortedList { get => list; set { list = value; Signal(); } }
         public string Search { get => search; set { search = value; Signal(); RenderList(Search); } }
 
         public ConditionPageMenu(MainWindow window)

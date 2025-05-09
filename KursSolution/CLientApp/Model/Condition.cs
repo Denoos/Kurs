@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace CLientApp.Models;
+namespace CLientApp.Model;
 
 public partial class Condition
 {

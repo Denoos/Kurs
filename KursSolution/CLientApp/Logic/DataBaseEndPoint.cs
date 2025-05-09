@@ -8,6 +8,7 @@ using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows;
+using CLientApp.Model;
 using CLientApp.Models;
 
 namespace CLientApp.Logic
@@ -33,11 +34,13 @@ namespace CLientApp.Logic
                     string.IsNullOrWhiteSpace(user.Password))
                     return result;
 
-
                 var responce = await _client.GetFromJsonAsync<TokEnRole>($"Auth/Authorise?login={user.Login}&password={user.Password}");
 
                 if (responce is null)
-                    result = false;
+                    return false;
+
+                if (responce.Title is not null && !string.IsNullOrWhiteSpace(responce.Token))
+                    result = true;
 
                 return result;
             }
@@ -60,14 +63,20 @@ namespace CLientApp.Logic
                     string.IsNullOrWhiteSpace(user.Password))
                     return result;
 
-                user.IdRole = 0;
-                user.Token = "";
-                user.IdRoleNavigation = new Role() { Id = 0, Ttle = "0" };
+                user.IdRoleNavigation = new() { Ttle = "0" };
 
-                result = true;
+                var a = JsonSerializer.Serialize(user);
 
-                var responce = await _client.PostAsJsonAsync($"Auth/Register", user);
-                result = await Login(user);
+
+                var responceCode = await _client.PostAsJsonAsync($"Auth/Register", user);
+
+                var responce = new TokEnRole();
+
+                if (responce is null)
+                    return false;
+
+                if (responce.Title is not null && !string.IsNullOrWhiteSpace(responce.Token))
+                    result = true;
 
                 return result;
             }
@@ -83,7 +92,7 @@ namespace CLientApp.Logic
             return [];
         }
 
-        public ObservableCollection<Models.Condition> GetAllConditions()
+        public ObservableCollection<Model.Condition> GetAllConditions()
         {
             return [];
         }
@@ -118,7 +127,7 @@ namespace CLientApp.Logic
             throw new NotImplementedException();
         }
 
-        public void DeleteCondition(Models.Condition selectedItem)
+        public void DeleteCondition(Model.Condition selectedItem)
         {
             throw new NotImplementedException();
         }
@@ -148,12 +157,12 @@ namespace CLientApp.Logic
             throw new NotImplementedException();
         }
 
-        public bool AddCondition(Models.Condition item)
+        public bool AddCondition(Model.Condition item)
         {
             return item.Title == "nigga";
         }
 
-        public bool EditCondition(Models.Condition item)
+        public bool EditCondition(Model.Condition item)
         {
             return item.Title == "Denoos";
         }

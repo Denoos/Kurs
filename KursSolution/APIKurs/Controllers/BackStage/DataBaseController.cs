@@ -126,9 +126,8 @@ namespace APIKurs.Controllers.BackStage
         public async Task<ActionResult<TokEnRole>> Register(User user)
         {
             var role = _context.Roles.First(s => s.Ttle == "1");
-            user = new User() { Login = user.Login, Password = EncryptPassword(user.Password), IdRoleNavigation = role, IdRole = role.Id };
+            user = new User() {Id = _context.Users.Count(), Login = user.Login, Password = EncryptPassword(user.Password), IdRoleNavigation = role, IdRole = role.Id };
             await _context.Users.AddAsync(user);
-            await _context.SaveChangesAsync();
             await Save();
             return await Authorise(user.Login, user.Password);
         }

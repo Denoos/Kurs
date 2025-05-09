@@ -1,13 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 
 namespace APIKurs.Models;
 
 public partial class User
 {
-    [Key]
-    public int? Id { get; set; }
+    public int Id { get; set; }
 
     public string Login { get; set; } = null!;
 

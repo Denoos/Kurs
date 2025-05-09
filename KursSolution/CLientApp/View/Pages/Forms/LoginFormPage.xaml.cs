@@ -15,7 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using CLientApp.Logic;
-using CLientApp.Models;
+using CLientApp.Model;
 using CLientApp.View.Pages.Menues;
 
 namespace CLientApp.View.Pages.Forms

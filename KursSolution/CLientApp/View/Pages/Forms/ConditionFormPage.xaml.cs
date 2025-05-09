@@ -27,19 +27,19 @@ namespace CLientApp.View.Pages.Forms
     {
         private MainWindow _mainWindow;
         private DataBaseEndPoint _db = DataBaseEndPoint.Instance;
-        private Models.Condition item;
+        private Model.Condition item;
         private bool isEnabled;
         private bool isAdd = true;
 
         public event PropertyChangedEventHandler? PropertyChanged;
 
-        public Models.Condition Item { get => item; set { item = value; Signal(); } }
+        public Model.Condition Item { get => item; set { item = value; Signal(); } }
         public bool IsEnabled { get => isEnabled; set { isEnabled = value; Signal(); } }
 
         private void Signal([CallerMemberName] string? prop = null)
             => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
 
-        public ConditionFormPage(MainWindow window, bool IsEn, Models.Condition item = null)
+        public ConditionFormPage(MainWindow window, bool IsEn, Model.Condition item = null)
         {
             InitializeComponent();
             _mainWindow = window;

@@ -17,6 +17,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using CLientApp.Logic;
+using CLientApp.Model;
 using CLientApp.Models;
 using CLientApp.View.Pages.Forms;
 using Microsoft.VisualBasic;
@@ -32,12 +33,12 @@ namespace CLientApp.View.Pages.Menues
         private Ppe selectedPpe;
         private ObservableCollection<Ppe> list;
         private ObservableCollection<PpeType> types;
-        private ObservableCollection<Models.Condition> conditions;
+        private ObservableCollection<Model.Condition> conditions;
 
         public event PropertyChangedEventHandler? PropertyChanged;
         public Ppe SelectedPpe { get => selectedPpe; set { selectedPpe = value; Signal(); } }
         public ObservableCollection<Ppe> SortedList { get => list; set { list = value; Signal(); } }
-        public ObservableCollection<Models.Condition> Conditions { get => conditions; set { conditions = value; Signal(); } }
+        public ObservableCollection<Model.Condition> Conditions { get => conditions; set { conditions = value; Signal(); } }
         public ObservableCollection<PpeType> Types { get => types; set { types = value; Signal(); } }
         public string Search { get => search; set { search = value; Signal(); RenderList(Sorting, Search); } }
         public string Sorting { get => sorting; set { sorting = value; Signal(); RenderList(Sorting, Search); } }
