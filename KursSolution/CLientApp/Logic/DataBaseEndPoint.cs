@@ -204,6 +204,29 @@ namespace CLientApp.Logic
             }
         }
 
+        public List<Role> GetAllRoles()
+        {
+            try
+            {
+                var responce = _client.GetFromJsonAsync<IEnumerable<Role>>($"User/GetPosts");
+                return responce.Result.ToList();
+            }
+            catch (Exception ex)
+            {
+                switch (ex.Message)
+                {
+                    case "One or more errors occurred. (Response status code does not indicate success: 403 (Forbidden).)":
+                        MessageBox.Show("Ошибка доступа, Вы не можете получить доступ к этой части приложения!", "Ошибка!");
+                        break;
+
+                    default:
+                        MessageBox.Show("Ошибка связи, проверьте подключение к сети!", "Ошибка!");
+                        break;
+                }
+                return [];
+            }
+        }
+
         public async Task DeletePpe(Ppe selectedItem)
         {
             if (selectedItem is null)
@@ -346,79 +369,386 @@ namespace CLientApp.Logic
             }
         }
 
-        public bool AddCondition(Model.Condition item)
+        public async Task<bool> AddCondition(Model.Condition item)
         {
-            return item.Title == "nigga";
+            var result = false;
+
+            if (item is null)
+                return result;
+
+            try
+            {
+                var responce = await _client.PostAsJsonAsync<Model.Condition>($"Conditions/PostCondition", item);
+                var list = GetAllConditions();
+
+                if (responce is null)
+                    return result;
+
+                if(list.Contains(item))
+                    result = true;
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Ошибка связи, проверьте подключение к сети!", "Ошибка!");
+            }
+
+            return result;
         }
 
-        public bool EditCondition(Model.Condition item)
+        public async Task<bool> EditCondition(Model.Condition item)
         {
-            return item.Title == "Denoos";
+            var result = false;
+
+            if (item is null)
+                return result;
+
+            try
+            {
+                var responce = await _client.PutAsJsonAsync<Model.Condition>($"Conditions/PutCondition?id={item.Id}", item);
+                var list = GetAllConditions();
+
+                if (responce is null)
+                    return result;
+
+                if (list.Contains(item))
+                    result = true;
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Ошибка связи, проверьте подключение к сети!", "Ошибка!");
+            }
+
+            return result;
         }
 
-        internal bool AddPost(Post item)
+        public async Task<bool> AddPost(Post item)
         {
-            throw new NotImplementedException();
+            var result = false;
+
+            if (item is null)
+                return result;
+
+            try
+            {
+                var responce = await _client.PostAsJsonAsync<Post>($"Posts/PostPost", item);
+                var list = GetAllPosts();
+
+                if (responce is null)
+                    return result;
+
+                if (list.Contains(item))
+                    result = true;
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Ошибка связи, проверьте подключение к сети!", "Ошибка!");
+            }
+
+            return result;
         }
 
-        internal bool EditPost(Post item)
+        public async Task<bool> EditPost(Post item)
         {
-            throw new NotImplementedException();
+            var result = false;
+
+            if (item is null)
+                return result;
+
+            try
+            {
+                var responce = await _client.PutAsJsonAsync<Post>($"Posts/PutPost?id={item.Id}", item);
+                var list = GetAllPosts();
+
+                if (responce is null)
+                    return result;
+
+                if (list.Contains(item))
+                    result = true;
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Ошибка связи, проверьте подключение к сети!", "Ошибка!");
+            }
+
+            return result;
         }
 
-        internal bool AddPpeType(PpeType item)
+        public async Task<bool> AddPpeType(PpeType item)
         {
-            throw new NotImplementedException();
+            var result = false;
+
+            if (item is null)
+                return result;
+
+            try
+            {
+                var responce = await _client.PostAsJsonAsync<PpeType>($"PpeTypes/PostPpeType", item);
+                var list = GetAllPpeTypes();
+
+                if (responce is null)
+                    return result;
+
+                if (list.Contains(item))
+                    result = true;
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Ошибка связи, проверьте подключение к сети!", "Ошибка!");
+            }
+
+            return result;
         }
 
-        internal bool EditPpeType(PpeType item)
+        public async Task<bool> EditPpeType(PpeType item)
         {
-            throw new NotImplementedException();
+            var result = false;
+
+            if (item is null)
+                return result;
+
+            try
+            {
+                var responce = await _client.PutAsJsonAsync<PpeType>($"PpeTypes/PutPpeType?id={item.Id}", item);
+                var list = GetAllPpeTypes();
+
+                if (responce is null)
+                    return result;
+
+                if (list.Contains(item))
+                    result = true;
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Ошибка связи, проверьте подключение к сети!", "Ошибка!");
+            }
+
+            return result;
         }
 
-        internal bool AddStatus(Status item)
+        public async Task<bool> AddStatus(Status item)
         {
-            throw new NotImplementedException();
+            var result = false;
+
+            if (item is null)
+                return result;
+
+            try
+            {
+                var responce = await _client.PostAsJsonAsync<Status>($"Status/PostStatus", item);
+                var list = GetAllStatuses();
+
+                if (responce is null)
+                    return result;
+
+                if (list.Contains(item))
+                    result = true;
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Ошибка связи, проверьте подключение к сети!", "Ошибка!");
+            }
+
+            return result;
         }
 
-        internal bool EditStatus(Status item)
+        public async Task<bool> EditStatus(Status item)
         {
-            throw new NotImplementedException();
+            var result = false;
+
+            if (item is null)
+                return result;
+
+            try
+            {
+                var responce = await _client.PutAsJsonAsync<Status>($"Status/PutStatus?id={item.Id}", item);
+                var list = GetAllStatuses();
+
+                if (responce is null)
+                    return result;
+
+                if (list.Contains(item))
+                    result = true;
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Ошибка связи, проверьте подключение к сети!", "Ошибка!");
+            }
+
+            return result;
         }
 
-        internal bool AddUser(User item)
+        public async Task<bool> AddUser(User item)
         {
-            throw new NotImplementedException();
+            var result = false;
+
+            if (item is null)
+                return result;
+
+            try
+            {
+                var responce = await _client.PostAsJsonAsync<User>($"User/PostUser", item);
+                var list = GetAllUsers();
+
+                if (responce is null)
+                    return result;
+
+                if (list.Contains(item))
+                    result = true;
+            }
+            catch (Exception ex)
+            {
+                switch (ex.Message)
+                {
+                    case "One or more errors occurred. (Response status code does not indicate success: 403 (Forbidden).)":
+                        MessageBox.Show("Ошибка доступа, Вы не можете получить доступ к этой части приложения!", "Ошибка!");
+                        break;
+
+                    default:
+                        MessageBox.Show("Ошибка связи, проверьте подключение к сети!", "Ошибка!");
+                        break;
+                }
+            }
+
+            return result;
         }
 
-        internal bool EditUser(User item)
+        public async Task<bool> EditUser(User item)
         {
-            throw new NotImplementedException();
+            var result = false;
+
+            if (item is null)
+                return result;
+
+            try
+            {
+                var responce = await _client.PutAsJsonAsync<User>($"User/PutUser?id={item.Id}", item);
+                var list = GetAllUsers();
+
+                if (responce is null)
+                    return result;
+
+                if (list.Contains(item))
+                    result = true;
+            }
+            catch (Exception ex)
+            {
+                switch (ex.Message)
+                {
+                    case "One or more errors occurred. (Response status code does not indicate success: 403 (Forbidden).)":
+                        MessageBox.Show("Ошибка доступа, Вы не можете получить доступ к этой части приложения!", "Ошибка!");
+                        break;
+
+                    default:
+                        MessageBox.Show("Ошибка связи, проверьте подключение к сети!", "Ошибка!");
+                        break;
+                }
+            }
+
+            return result;
         }
 
-        internal List<Role> GetAllRoles()
+        public async Task<bool> EditPpe(Ppe item)
         {
-            throw new NotImplementedException();
+            var result = false;
+
+            if (item is null)
+                return result;
+
+            try
+            {
+                var responce = await _client.PutAsJsonAsync<Ppe>($"Ppes/PutPpe?id={item.Id}", item);
+                var list = GetAllPpes();
+
+                if (responce is null)
+                    return result;
+
+                if (list.Contains(item))
+                    result = true;
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Ошибка связи, проверьте подключение к сети!", "Ошибка!");
+            }
+
+            return result;
         }
 
-        internal bool EditPpe(Ppe item)
+        public async Task<bool> AddPpe(Ppe item)
         {
-            throw new NotImplementedException();
+            var result = false;
+
+            if (item is null)
+                return result;
+
+            try
+            {
+                var responce = await _client.PostAsJsonAsync<Ppe>($"Ppes/PostPpe", item);
+                var list = GetAllPpes();
+
+                if (responce is null)
+                    return result;
+
+                if (list.Contains(item))
+                    result = true;
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Ошибка связи, проверьте подключение к сети!", "Ошибка!");
+            }
+
+            return result;
         }
 
-        internal bool AddPpe(Ppe item)
+        public async Task<bool> AddPerson(Person item)
         {
-            throw new NotImplementedException();
+            var result = false;
+
+            if (item is null)
+                return result;
+
+            try
+            {
+                var responce = await _client.PostAsJsonAsync<Person>($"People/PostPerson", item);
+                var list = GetAllPersons();
+
+                if (responce is null)
+                    return result;
+
+                if (list.Contains(item))
+                    result = true;
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Ошибка связи, проверьте подключение к сети!", "Ошибка!");
+            }
+
+            return result;
         }
 
-        internal bool AddPerson(Person item)
+        public async Task<bool> EditPerson(Person item)
         {
-            throw new NotImplementedException();
-        }
+            var result = false;
 
-        internal bool EditPerson(Person item)
-        {
-            throw new NotImplementedException();
+            if (item is null)
+                return result;
+
+            try
+            {
+                var responce = await _client.PutAsJsonAsync<Person>($"People/PutPerson?id={item.Id}", item);
+                var list = GetAllPersons();
+
+                if (responce is null)
+                    return result;
+
+                if (list.Contains(item))
+                    result = true;
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Ошибка связи, проверьте подключение к сети!", "Ошибка!");
+            }
+
+            return result;
         }
     }
 }
