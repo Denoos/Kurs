@@ -53,8 +53,8 @@ namespace CLientApp.View.Pages.Menues
             _window = window;
             RenderList();
             DataContext = this;
-            FirstSort = [.. await _db.GetAllStatuses()];
-            SecondSort = [.. await _db.GetAllPosts()];
+            FirstSort = [.. _db.GetAllStatuses()];
+            SecondSort = [.. _db.GetAllPosts()];
         }
 
         private void NavigationButtonClicked(object sender, RoutedEventArgs e)
@@ -108,7 +108,7 @@ namespace CLientApp.View.Pages.Menues
 
         private async Task RenderList(string? sorting = null, string? searching = null)
         {
-            var list = await _db.GetAllPersons();
+            var list = _db.GetAllPersons();
 
             list = [..list.Where(p =>
             p.Name.Contains(searching) ||

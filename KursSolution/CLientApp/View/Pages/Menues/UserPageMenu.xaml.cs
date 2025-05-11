@@ -101,7 +101,7 @@ namespace CLientApp.View.Pages.Menues
 
         private async Task RenderList(string? sorting = null, string? searching = null)
         {
-            var list = await _db.GetAllUsers();
+            var list = _db.GetAllUsers();
 
             list = [..list.Where(p =>
             p.Login.Contains(searching) ||

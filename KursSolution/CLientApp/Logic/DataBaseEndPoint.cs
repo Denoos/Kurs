@@ -96,13 +96,12 @@ namespace CLientApp.Logic
             }
         }
 
-        public async Task<List<Ppe>> GetAllPpes()
+        public List<Ppe> GetAllPpes()
         {
             try
             {
-                var responce = await _client.GetAsync($"Ppes/GetPpes");
-                var betw = await responce.Content.ReadFromJsonAsync<IEnumerable<Ppe>>();
-                return betw.ToList();
+                var responce = _client.GetFromJsonAsync<IEnumerable<Ppe>>($"Ppes/GetPpes");
+                return responce.Result.ToList();
             }
             catch (Exception)
             {
@@ -111,7 +110,7 @@ namespace CLientApp.Logic
             }
         }
 
-        public async Task<List<Model.Condition>> GetAllConditions()
+        public List<Model.Condition> GetAllConditions()
         {
             try
             {
@@ -125,7 +124,7 @@ namespace CLientApp.Logic
             }
         }
 
-        public async Task<List<Post>> GetAllPosts()
+        public List<Post> GetAllPosts()
         {
             try
             {
@@ -140,13 +139,12 @@ namespace CLientApp.Logic
         }
 
 
-        public async Task<List<PpeType>> GetAllPpeTypes()
+        public List<PpeType> GetAllPpeTypes()
         {
             try
             {
-                var responce = await _client.GetAsync($"PpeTypes/GetPpeTypes");
-                var betw = await responce.Content.ReadFromJsonAsync<IEnumerable<PpeType>>();
-                return betw.ToList();
+                var responce = _client.GetFromJsonAsync<IEnumerable<PpeType>>($"PpeTypes/GetPpeTypes");
+                return responce.Result.ToList();
             }
             catch (Exception)
             {
@@ -155,27 +153,12 @@ namespace CLientApp.Logic
             }
         }
 
-        public async Task<List<Person>> GetAllPersons()
+        public List<Person> GetAllPersons()
         {
             try
             {
-                var responce = await _client.GetAsync($"People/GetPersons");
-                var betw = await responce.Content.ReadFromJsonAsync<IEnumerable<Person>>();
-                return betw.ToList();
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("Ошибка связи, проверьте подключение к сети!", "Ошибка!");
-                return [];
-            }
-        }
-        public async Task<List<Status>> GetAllStatuses()
-        {
-            try
-            {
-                var responce = await _client.GetAsync($"Status/GetStatuses");
-                var betw = await responce.Content.ReadFromJsonAsync<IEnumerable<Status>>();
-                return betw.ToList();
+                var responce = _client.GetFromJsonAsync<IEnumerable<Person>>($"People/GetPersons");
+                return responce.Result.ToList();
             }
             catch (Exception)
             {
@@ -184,13 +167,12 @@ namespace CLientApp.Logic
             }
         }
 
-        public async Task<List<User>> GetAllUsers()
+        public List<Status> GetAllStatuses()
         {
             try
             {
-                var responce = await _client.GetAsync($"User/GetUsers");
-                var betw = await responce.Content.ReadFromJsonAsync<IEnumerable<User>>();
-                return betw.ToList();
+                var responce = _client.GetFromJsonAsync<IEnumerable<Status>>($"Status/GetStatuses");
+                return responce.Result.ToList();
             }
             catch (Exception)
             {
@@ -199,39 +181,169 @@ namespace CLientApp.Logic
             }
         }
 
-        public void DeletePpe(Ppe selectedPpe)
+        public List<User> GetAllUsers()
         {
-            throw new NotImplementedException();
+            try
+            {
+                var responce = _client.GetFromJsonAsync<IEnumerable<User>>($"User/GetUsers");
+                return responce.Result.ToList();
+            }
+            catch (Exception ex)
+            {
+                switch (ex.Message)
+                {
+                    case "One or more errors occurred. (Response status code does not indicate success: 403 (Forbidden).)":
+                        MessageBox.Show("Ошибка доступа, Вы не можете получить доступ к этой части приложения!", "Ошибка!");
+                        break;
+
+                    default:
+                        MessageBox.Show("Ошибка связи, проверьте подключение к сети!", "Ошибка!");
+                        break;
+                }
+                return [];
+            }
         }
 
-        public void DeleteCondition(Model.Condition selectedItem)
+        public async Task DeletePpe(Ppe selectedItem)
         {
-            throw new NotImplementedException();
+            if (selectedItem is null)
+                return;
+
+            try
+            {
+                var responce = await _client.DeleteAsync($"Ppes/DeletePpe?id={selectedItem.Id}");
+
+                if (responce != null && responce.StatusCode == System.Net.HttpStatusCode.OK)
+                    MessageBox.Show("Объект удален!", "Успех!");
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Ошибка связи, проверьте подключение к сети!", "Ошибка!");
+                return;
+            }
         }
 
-        public void DeletePost(Post selectedItem)
+        public async Task DeleteCondition(Model.Condition selectedItem)
         {
-            throw new NotImplementedException();
+            if (selectedItem is null)
+                return;
+
+            try
+            {
+                var responce = await _client.DeleteAsync($"Conditions/DeleteCondition?id={selectedItem.Id}");
+
+                if (responce != null && responce.StatusCode == System.Net.HttpStatusCode.OK)
+                    MessageBox.Show("Объект удален!", "Успех!");
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Ошибка связи, проверьте подключение к сети!", "Ошибка!");
+                return;
+            }
         }
 
-        public void DeletePpeType(PpeType selectedItem)
+        public async Task DeletePost(Post selectedItem)
         {
-            throw new NotImplementedException();
+            if (selectedItem is null)
+                return;
+
+            try
+            {
+                var responce = await _client.DeleteAsync($"Posts/DeletePost?id={selectedItem.Id}");
+
+                if (responce != null && responce.StatusCode == System.Net.HttpStatusCode.OK)
+                    MessageBox.Show("Объект удален!", "Успех!");
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Ошибка связи, проверьте подключение к сети!", "Ошибка!");
+                return;
+            }
         }
 
-        public void DeleteStatus(Status selectedItem)
+        public async Task DeletePpeType(PpeType selectedItem)
         {
-            throw new NotImplementedException();
+            if (selectedItem is null)
+                return;
+
+            try
+            {
+                var responce = await _client.DeleteAsync($"PpeTypes/DeletePpeType?id={selectedItem.Id}");
+
+                if (responce != null && responce.StatusCode == System.Net.HttpStatusCode.OK)
+                    MessageBox.Show("Объект удален!", "Успех!");
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Ошибка связи, проверьте подключение к сети!", "Ошибка!");
+                return;
+            }
         }
 
-        public void DeletePerson(Person selectedItem)
+        public async Task DeleteStatus(Status selectedItem)
         {
-            throw new NotImplementedException();
+            if (selectedItem is null)
+                return;
+
+            try
+            {
+                var responce = await _client.DeleteAsync($"Status/DeleteStatus?id={selectedItem.Id}");
+
+                if (responce != null && responce.StatusCode == System.Net.HttpStatusCode.OK)
+                    MessageBox.Show("Объект удален!", "Успех!");
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Ошибка связи, проверьте подключение к сети!", "Ошибка!");
+                return;
+            }
         }
 
-        public void DeleteUser(User selectedItem)
+        public async Task DeletePerson(Person selectedItem)
         {
-            throw new NotImplementedException();
+            if (selectedItem is null)
+                return;
+
+            try
+            {
+                var responce = await _client.DeleteAsync($"People/DeletePerson?id={selectedItem.Id}");
+
+                if (responce != null && responce.StatusCode == System.Net.HttpStatusCode.OK)
+                    MessageBox.Show("Объект удален!", "Успех!");
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Ошибка связи, проверьте подключение к сети!", "Ошибка!");
+                return;
+            }
+        }
+
+        public async Task DeleteUser(User selectedItem)
+        {
+            if (selectedItem is null)
+                return;
+
+            try
+            {
+                var responce = await _client.DeleteAsync($"User/DeleteUser?id={selectedItem.Id}");
+
+                if (responce != null && responce.StatusCode == System.Net.HttpStatusCode.OK)
+                    MessageBox.Show("Объект удален!", "Успех!");
+            }
+            catch (Exception ex)
+            {
+                switch (ex.Message)
+                {
+                    case "One or more errors occurred. (Response status code does not indicate success: 403 (Forbidden).)":
+                        MessageBox.Show("Ошибка доступа, Вы не можете получить доступ к этой части приложения!", "Ошибка!");
+                        break;
+
+                    default:
+                        MessageBox.Show("Ошибка связи, проверьте подключение к сети!", "Ошибка!");
+                        break;
+                }
+                return;
+            }
         }
 
         public bool AddCondition(Model.Condition item)

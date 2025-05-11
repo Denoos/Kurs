@@ -52,8 +52,8 @@ namespace CLientApp.View.Pages.Menues
             _window = window;
             RenderList();
             DataContext = this;
-            Conditions = [.. await _db.GetAllConditions()];
-            Types = [.. await _db.GetAllPpeTypes()];
+            Conditions = [.. _db.GetAllConditions()];
+            Types = [.. _db.GetAllPpeTypes()];
         }
 
         private void NavigationButtonClicked(object sender, RoutedEventArgs e)
@@ -107,7 +107,7 @@ namespace CLientApp.View.Pages.Menues
 
         private async void RenderList(string? sorting = null, string? searching = null)
         {
-            var list = await _db.GetAllPpes();
+            var list = _db.GetAllPpes();
 
             list = [..list.Where(p =>
                 p.Title.Contains(searching) ||

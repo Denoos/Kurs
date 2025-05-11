@@ -90,7 +90,7 @@ namespace CLientApp.View.Pages.Menues
 
         private async Task RenderList(string? sorting = null, string? searching = null)
         {
-            var list = await _db.GetAllPosts();
+            var list =  _db.GetAllPosts();
 
             list = [..list.Where(p =>
                 p.Title.Contains(searching)

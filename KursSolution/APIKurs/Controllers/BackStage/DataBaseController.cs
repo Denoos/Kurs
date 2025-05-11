@@ -126,7 +126,7 @@ namespace APIKurs.Controllers.BackStage
 
             return result;
         }
-
+        
         public async Task<ActionResult<TokEnRole>> Register(User user)
         {
             var role = _context.Roles.First(s => s.Ttle == "1");
