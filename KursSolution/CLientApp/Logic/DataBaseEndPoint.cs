@@ -96,48 +96,107 @@ namespace CLientApp.Logic
             }
         }
 
-        public async Task<ObservableCollection<Ppe>> GetAllPpes()
+        public async Task<List<Ppe>> GetAllPpes()
         {
-            var responce = await _client.GetAsync($"Ppes/GetPpes");
-            var betw = await responce.Content.ReadFromJsonAsync<IEnumerable<Ppe>>();
-            ObservableCollection <Ppe> res = [.. betw];
-            return res;
+            try
+            {
+                var responce = await _client.GetAsync($"Ppes/GetPpes");
+                var betw = await responce.Content.ReadFromJsonAsync<IEnumerable<Ppe>>();
+                return betw.ToList();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Ошибка связи, проверьте подключение к сети!", "Ошибка!");
+                return [];
+            }
         }
 
-        public async Task<ObservableCollection<Model.Condition>> GetAllConditions()
+        public async Task<List<Model.Condition>> GetAllConditions()
         {
-            var responce = await _client.GetAsync($"Conditions/GetConditions");
-            var betw = await responce.Content.ReadFromJsonAsync<IEnumerable<Model.Condition>>();
-            ObservableCollection<Model.Condition> res = [.. betw];
-            return res;
+            try
+            {
+                var responce = _client.GetFromJsonAsync<IEnumerable<Model.Condition>>($"Conditions/GetConditions");
+                return responce.Result.ToList();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Ошибка связи, проверьте подключение к сети!", "Ошибка!");
+                return [];
+            }
         }
 
-        public async Task<ObservableCollection<Post>> GetAllPosts()
+        public async Task<List<Post>> GetAllPosts()
         {
-            var responce = await _client.GetAsync($"Posts/GetPosts");
-            var betw = await responce.Content.ReadFromJsonAsync<IEnumerable<Post>>();
-            ObservableCollection<Post> res = [.. betw];
-            return res;
+            try
+            {
+                var responce = _client.GetFromJsonAsync<IEnumerable<Post>>($"Posts/GetPosts");
+                return responce.Result.ToList();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Ошибка связи, проверьте подключение к сети!", "Ошибка!");
+                return [];
+            }
         }
 
-        public ObservableCollection<PpeType> GetAllPpeTypes()
+
+        public async Task<List<PpeType>> GetAllPpeTypes()
         {
-            return [];
+            try
+            {
+                var responce = await _client.GetAsync($"PpeTypes/GetPpeTypes");
+                var betw = await responce.Content.ReadFromJsonAsync<IEnumerable<PpeType>>();
+                return betw.ToList();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Ошибка связи, проверьте подключение к сети!", "Ошибка!");
+                return [];
+            }
         }
 
-        public ObservableCollection<Person> GetAllPersons()
+        public async Task<List<Person>> GetAllPersons()
         {
-            return [];
+            try
+            {
+                var responce = await _client.GetAsync($"People/GetPersons");
+                var betw = await responce.Content.ReadFromJsonAsync<IEnumerable<Person>>();
+                return betw.ToList();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Ошибка связи, проверьте подключение к сети!", "Ошибка!");
+                return [];
+            }
+        }
+        public async Task<List<Status>> GetAllStatuses()
+        {
+            try
+            {
+                var responce = await _client.GetAsync($"Status/GetStatuses");
+                var betw = await responce.Content.ReadFromJsonAsync<IEnumerable<Status>>();
+                return betw.ToList();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Ошибка связи, проверьте подключение к сети!", "Ошибка!");
+                return [];
+            }
         }
 
-        public ObservableCollection<Status> GetAllStatuses()
+        public async Task<List<User>> GetAllUsers()
         {
-            return [];
-        }
-
-        internal ObservableCollection<User> GetAllUsers()
-        {
-            throw new NotImplementedException();
+            try
+            {
+                var responce = await _client.GetAsync($"User/GetUsers");
+                var betw = await responce.Content.ReadFromJsonAsync<IEnumerable<User>>();
+                return betw.ToList();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Ошибка связи, проверьте подключение к сети!", "Ошибка!");
+                return [];
+            }
         }
 
         public void DeletePpe(Ppe selectedPpe)

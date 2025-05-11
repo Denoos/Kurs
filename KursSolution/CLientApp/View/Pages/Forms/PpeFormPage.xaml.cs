@@ -49,8 +49,7 @@ namespace CLientApp.View.Pages.Forms
             InitializeComponent();
             _mainWindow = window;
             IsEnabled = IsEn;
-            Items = _db.GetAllConditions().ToList();
-            ItemsSecond = _db.GetAllPpeTypes().ToList();
+            _ = GetItems();
             if (item is not null)
             {
                 isAdd = false;
@@ -58,6 +57,12 @@ namespace CLientApp.View.Pages.Forms
             }
             else Item = new();
             DataContext = this;
+        }
+
+        private async Task GetItems()
+        {
+            Items = await _db.GetAllConditions();
+            ItemsSecond = await _db.GetAllPpeTypes();
         }
 
         private void Save_Click(object sender, RoutedEventArgs e)

@@ -44,13 +44,16 @@ namespace CLientApp.View.Pages.Menues
         public string Sorting { get => sorting; set { sorting = value; Signal(); RenderList(Sorting, Search); } }
 
         public PpePageMenu(MainWindow window)
+            => BaseStart(window);
+
+        private async Task BaseStart(MainWindow window)
         {
             InitializeComponent();
             _window = window;
-            Conditions = _db.GetAllConditions();
-            Types = _db.GetAllPpeTypes();
             RenderList();
             DataContext = this;
+            Conditions = [.. await _db.GetAllConditions()];
+            Types = [.. await _db.GetAllPpeTypes()];
         }
 
         private void NavigationButtonClicked(object sender, RoutedEventArgs e)
@@ -132,7 +135,7 @@ namespace CLientApp.View.Pages.Menues
                 _ => [.. list.OrderBy(i => i.InventoryNumber)],
             };
 
-            SortedList = list;
+            SortedList = [.. list];
         }
 
         private void Filter_Changed(object sender, SelectionChangedEventArgs e)

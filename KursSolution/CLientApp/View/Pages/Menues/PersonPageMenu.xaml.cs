@@ -45,13 +45,16 @@ namespace CLientApp.View.Pages.Menues
         public string Sorting { get => sorting; set { sorting = value; Signal(); RenderList(Sorting, Search); } }
 
         public PersonPageMenu(MainWindow window)
+            => BaseStart(window);
+
+        private async Task BaseStart(MainWindow window)
         {
             InitializeComponent();
             _window = window;
-            FirstSort = _db.GetAllStatuses();
-            SecondSort = _db.GetAllPosts();
             RenderList();
             DataContext = this;
+            FirstSort = [.. await _db.GetAllStatuses()];
+            SecondSort = [.. await _db.GetAllPosts()];
         }
 
         private void NavigationButtonClicked(object sender, RoutedEventArgs e)
@@ -103,9 +106,9 @@ namespace CLientApp.View.Pages.Menues
         private void Signal([CallerMemberName] string? prop = null)
             => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
 
-        private void RenderList(string? sorting = null, string? searching = null)
+        private async Task RenderList(string? sorting = null, string? searching = null)
         {
-            var list = _db.GetAllPersons();
+            var list = await _db.GetAllPersons();
 
             list = [..list.Where(p =>
             p.Name.Contains(searching) ||
@@ -132,7 +135,7 @@ namespace CLientApp.View.Pages.Menues
                 _ => [.. list.OrderBy(i => i.Id)],
             };
 
-            SortedList = list;
+            SortedList = [.. list];
         }
 
         private void Filter_Changed(object sender, SelectionChangedEventArgs e)

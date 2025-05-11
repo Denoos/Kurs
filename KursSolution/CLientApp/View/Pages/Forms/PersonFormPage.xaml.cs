@@ -49,8 +49,8 @@ namespace CLientApp.View.Pages.Forms
             InitializeComponent();
             _mainWindow = window;
             IsEnabled = IsEn;
-            Items = [.. _db.GetAllPosts()];
-            ItemsSecond = [.. _db.GetAllStatuses()];
+            Items = [.. _db.GetAllPosts().Result];
+            ItemsSecond = [.. _db.GetAllStatuses().Result];
             if (item is not null)
             {
                 isAdd = false;

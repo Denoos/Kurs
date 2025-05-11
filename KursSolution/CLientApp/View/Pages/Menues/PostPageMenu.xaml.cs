@@ -88,15 +88,15 @@ namespace CLientApp.View.Pages.Menues
         private void Signal([CallerMemberName] string? prop = null)
             => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
 
-        private void RenderList(string? sorting = null, string? searching = null)
+        private async Task RenderList(string? sorting = null, string? searching = null)
         {
-            var list = _db.GetAllPosts();
+            var list = await _db.GetAllPosts();
 
             list = [..list.Where(p =>
                 p.Title.Contains(searching)
                 )];
 
-            SortedList = list;
+            SortedList = [.. list];
         }
 
         private void Add_Click(object sender, RoutedEventArgs e)
