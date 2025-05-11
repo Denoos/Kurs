@@ -53,9 +53,11 @@ namespace CLientApp.View.Pages.Forms
         private async void RegisterButton_Click(object sender, RoutedEventArgs e)
         {
             User = new() { Login = UsernameTextBox.Text, Password = PasswordBox.Password };
-            var a = await _db.Register(User);
-            if (a)
+
+            //мы вникаем в код, но не осуждаем)
+            if (await _db.Register(User))
                 LoginButton_Click(sender, e);
+            //после этого всё равно осуждать нельзя
         }
 
         private void ExitButton_Click(object sender, RoutedEventArgs e)

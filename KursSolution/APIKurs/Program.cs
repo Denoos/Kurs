@@ -1,4 +1,6 @@
 using System.Text.Json.Serialization;
+using APIKurs.Controllers.EndPoint;
+using APIKurs.Controllers.EndPoints;
 using APIKurs.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authentication.OAuth;
@@ -12,6 +14,8 @@ builder.Services.AddControllers()
         {
             options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
         });
+
+builder.Services.AddScoped<QwertyContext>();
 
 builder.Services.AddAuthorization();
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -41,7 +45,7 @@ builder.Services.AddSwaggerGen(c =>
     //c.SwaggerDoc("v1", new Info { Title = "You api title", Version = "v1" });
     c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
     {
-        Description = "JWT Авторизация, укажите код в формате: 'пользователь код'",
+        Description = "JWT Авторизация, укажите код в формате: 'Bearer 12345abcdef'",
         Name = "Authorization",
         In = ParameterLocation.Header,
         Type = SecuritySchemeType.ApiKey,

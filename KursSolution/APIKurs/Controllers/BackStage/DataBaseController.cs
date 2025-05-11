@@ -108,7 +108,8 @@ namespace APIKurs.Controllers.BackStage
             int? id = user.Id;
 
             var claims = new List<Claim> {
-                new(ClaimTypes.Role, role.Ttle)
+                 new Claim(ClaimValueTypes.Integer32, id.ToString()),
+                 new Claim(ClaimTypes.Role, role.Ttle)
             };
 
             // создаем JWT-токен
@@ -139,9 +140,7 @@ namespace APIKurs.Controllers.BackStage
         //Conditions
 
         public async Task<ActionResult<IEnumerable<Condition>>> GetConditions()
-        {
-            return await _context.Conditions.ToListAsync();
-        }
+            => _context.Conditions.ToList();
 
         public async Task<ActionResult<Condition>> GetCondition(int id)
         {

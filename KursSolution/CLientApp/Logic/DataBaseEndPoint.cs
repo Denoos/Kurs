@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Net.Http.Json;
 using System.Text;
 using System.Text.Json;
@@ -44,7 +45,10 @@ namespace CLientApp.Logic
                     return false;
 
                 if (responce.Title is not null && !string.IsNullOrWhiteSpace(responce.Token))
+                {
+                    _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", responce.Token);
                     result = true;
+                }
 
 
                 return result;
@@ -77,8 +81,11 @@ namespace CLientApp.Logic
                 if (responce is null)
                     return false;
 
-                if (responce.Title is not null && !string.IsNullOrWhiteSpace(responce.Token))
+                if (await Login(user))
+                {
+                    MessageBox.Show("Вы успешно зарегистрировались!", "Успех!");
                     result = true;
+                }
 
                 return result;
             }
@@ -91,21 +98,26 @@ namespace CLientApp.Logic
 
         public async Task<ObservableCollection<Ppe>> GetAllPpes()
         {
-
-            var responce = _client.GetFromJsonAsync<IEnumerable<Ppe>> ($"Ppes/GetPpes");
-
-            ObservableCollection<Ppe> res = [.. responce.Result.ToList()];
+            var responce = await _client.GetAsync($"Ppes/GetPpes");
+            var betw = await responce.Content.ReadFromJsonAsync<IEnumerable<Ppe>>();
+            ObservableCollection <Ppe> res = [.. betw];
             return res;
         }
 
-        public ObservableCollection<Model.Condition> GetAllConditions()
+        public async Task<ObservableCollection<Model.Condition>> GetAllConditions()
         {
-            return [];
+            var responce = await _client.GetAsync($"Conditions/GetConditions");
+            var betw = await responce.Content.ReadFromJsonAsync<IEnumerable<Model.Condition>>();
+            ObservableCollection<Model.Condition> res = [.. betw];
+            return res;
         }
 
-        public ObservableCollection<Post> GetAllPosts()
+        public async Task<ObservableCollection<Post>> GetAllPosts()
         {
-            return [];
+            var responce = await _client.GetAsync($"Posts/GetPosts");
+            var betw = await responce.Content.ReadFromJsonAsync<IEnumerable<Post>>();
+            ObservableCollection<Post> res = [.. betw];
+            return res;
         }
 
         public ObservableCollection<PpeType> GetAllPpeTypes()
