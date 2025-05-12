@@ -65,7 +65,7 @@ namespace CLientApp.View.Pages.Forms
             ItemsSecond = _db.GetAllPpeTypes();
         }
 
-        private void Save_Click(object sender, RoutedEventArgs e)
+        private async void Save_Click(object sender, RoutedEventArgs e)
         {
             bool IsFail = true;
             if (Item.Condition is null || Item.Type is null)
@@ -81,8 +81,8 @@ namespace CLientApp.View.Pages.Forms
             else
             {
                 if (isAdd)
-                    IsFail = _db.AddPpe(Item);
-                else IsFail = _db.EditPpe(Item);
+                    IsFail = await _db.AddPpe(Item);
+                else IsFail = await _db.EditPpe(Item);
             }
 
             if (!IsFail)
@@ -91,6 +91,6 @@ namespace CLientApp.View.Pages.Forms
         }
 
         private void Exit_Click(object sender, RoutedEventArgs e)
-            => _mainWindow.SetPage(new UserPageMenu(_mainWindow));
+            => _mainWindow.SetPage(new PpePageMenu(_mainWindow));
     }
 }

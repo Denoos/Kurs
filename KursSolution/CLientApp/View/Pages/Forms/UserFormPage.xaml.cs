@@ -57,7 +57,7 @@ namespace CLientApp.View.Pages.Forms
             DataContext = this;
         }
 
-        private void Save_Click(object sender, RoutedEventArgs e)
+        private async void Save_Click(object sender, RoutedEventArgs e)
         {
             bool IsFail = true;
             if (Item.IdRoleNavigation is null)
@@ -72,8 +72,8 @@ namespace CLientApp.View.Pages.Forms
             else
             {
                 if (isAdd)
-                    IsFail = _db.AddUser(Item);
-                else IsFail = _db.EditUser(Item);
+                    IsFail = await _db.AddUser(Item);
+                else IsFail = await _db.EditUser(Item);
             }
 
             if (!IsFail)

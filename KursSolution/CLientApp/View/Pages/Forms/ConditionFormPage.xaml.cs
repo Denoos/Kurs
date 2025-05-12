@@ -28,22 +28,20 @@ namespace CLientApp.View.Pages.Forms
         private MainWindow _mainWindow;
         private DataBaseEndPoint _db = DataBaseEndPoint.Instance;
         private Model.Condition item;
-        private bool isEnabled;
         private bool isAdd = true;
 
         public event PropertyChangedEventHandler? PropertyChanged;
 
         public Model.Condition Item { get => item; set { item = value; Signal(); } }
-        public bool IsEnabled { get => isEnabled; set { isEnabled = value; Signal(); } }
 
         private void Signal([CallerMemberName] string? prop = null)
             => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
 
         public ConditionFormPage(MainWindow window, bool IsEn, Model.Condition item = null)
         {
-            InitializeComponent();
             _mainWindow = window;
-            IsEnabled = IsEn;
+            InitializeComponent();
+            UsernameTextBox.IsEnabled = IsEn;
             if (item is not null)
             {
                 isAdd = false;
@@ -59,7 +57,7 @@ namespace CLientApp.View.Pages.Forms
 
             if (!IsEnabled)
                 IsFail = false;
-            else 
+            else
             {
                 if (isAdd)
                     IsFail = await _db.AddCondition(Item);
@@ -68,7 +66,7 @@ namespace CLientApp.View.Pages.Forms
 
             if (!IsFail)
                 Exit_Click(sender, e);
-            else MessageBox.Show("Внимание! ПРоизошла непредвиденная ошибка!", "Ошибка!");
+            else MessageBox.Show("Внимание! Произошла непредвиденная ошибка!", "Ошибка!");
         }
 
         private void Exit_Click(object sender, RoutedEventArgs e)

@@ -118,12 +118,15 @@ namespace CLientApp.View.Pages.Menues
                 p.DateEnd.ToString().Contains(searching)
                 )];
 
-            var cond = (ComboBoxItem)ComboFilter_Condition.SelectedValue;
-            var type = (ComboBoxItem)ComboFilter_Type.SelectedValue;
-            list = [.. list.Where(p=>
-                p.Condition.Title == cond.Content ||
-                p.Type.Title == type.Content
+            if ((Model.Condition)ComboFilter_Condition.SelectedValue is not null)
+            {
+                var cond = (Model.Condition)ComboFilter_Condition.SelectedValue;
+                var type = (PpeType)ComboFilter_Type.SelectedValue;
+                list = [.. list.Where(p=>
+                p.Condition.Title == cond.Title ||
+                p.Type.Title == type.Title
                 )];
+            }
 
             list = sorting switch
             {

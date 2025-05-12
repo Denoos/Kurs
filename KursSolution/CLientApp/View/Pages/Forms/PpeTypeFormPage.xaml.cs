@@ -54,7 +54,7 @@ namespace CLientApp.View.Pages.Forms
             DataContext = this;
         }
 
-        private void Save_Click(object sender, RoutedEventArgs e)
+        private async void Save_Click(object sender, RoutedEventArgs e)
         {
             bool IsFail = true;
 
@@ -63,8 +63,8 @@ namespace CLientApp.View.Pages.Forms
             else
             {
                 if (isAdd)
-                    IsFail = _db.AddPpeType(Item);
-                else IsFail = _db.EditPpeType(Item);
+                    IsFail = await _db.AddPpeType(Item);
+                else IsFail = await _db.EditPpeType(Item);
             }
 
             if (!IsFail)

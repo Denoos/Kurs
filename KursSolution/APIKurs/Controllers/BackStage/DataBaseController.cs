@@ -104,7 +104,7 @@ namespace APIKurs.Controllers.BackStage
             if (user is null)
                 return NotFound();
 
-            var role = await _context.Roles.FirstOrDefaultAsync(s=> s.Id == user.IdRole);
+            var role = await _context.Roles.FirstOrDefaultAsync(s => s.Id == user.IdRole);
             int? id = user.Id;
 
             var claims = new List<Claim> {
@@ -126,11 +126,11 @@ namespace APIKurs.Controllers.BackStage
 
             return result;
         }
-        
+
         public async Task<ActionResult<TokEnRole>> Register(User user)
         {
             var role = _context.Roles.First(s => s.Ttle == "1");
-            user = new User() {Login = user.Login, Password = EncryptPassword(user.Password), IdRoleNavigation = role, IdRole = role.Id };
+            user = new User() { Login = user.Login, Password = EncryptPassword(user.Password), IdRoleNavigation = role, IdRole = role.Id };
             await _context.Users.AddAsync(user);
             await Save();
             await Update();
@@ -161,24 +161,24 @@ namespace APIKurs.Controllers.BackStage
                 return BadRequest();
             }
 
-            _context.Entry(condition).State = EntityState.Modified;
-
             try
             {
+                //_context.Entry(condition).State = EntityState.Modified;
+                var local = _context.Set<Models.Condition>()
+                .Local
+                .FirstOrDefault(entry => entry.Id.Equals(condition.Id));
+                if (local is not null)
+                    _context.Entry(local).State = EntityState.Detached;
+                _context.Entry(condition).State = EntityState.Modified;
+
                 await _context.SaveChangesAsync();
+                return Ok();
             }
             catch (DbUpdateConcurrencyException)
             {
                 if (!ConditionExists(id))
-                {
                     return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
             }
-
             return NoContent();
         }
 
@@ -201,7 +201,9 @@ namespace APIKurs.Controllers.BackStage
             _context.Conditions.Remove(condition);
             await _context.SaveChangesAsync();
 
-            return NoContent();
+            if (_context.Conditions.Contains(condition))
+                return NoContent();
+            return Ok();
         }
 
         private bool ConditionExists(int id)

@@ -404,7 +404,12 @@ namespace CLientApp.Logic
 
             try
             {
-                var responce = await _client.PutAsJsonAsync<Model.Condition>($"Conditions/PutCondition?id={item.Id}", item);
+                //var responce = await _client.PutAsJsonAsync<Model.Condition>($"Conditions/PutCondition?id={item.Id}", item);
+
+                var a = JsonSerializer.Serialize(item);
+                var responce = await _client.PutAsJsonAsync($"Conditions/PutCondition", item);
+                
+                
                 var list = GetAllConditions();
 
                 if (responce is null)

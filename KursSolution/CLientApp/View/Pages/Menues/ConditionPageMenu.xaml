@@ -30,14 +30,15 @@
             <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
                 <TextBlock Text="Состояния" Width="200" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" Foreground="White" FontSize="24" Margin="10, 0" />
                 <TextBox Text="{Binding Search}"  Width="1100" Height="30" FontSize="18" TextAlignment="Justify" Margin="10,20" />
+                <Button FontSize="18" Padding="20,10" Margin="10, 40" Content="Поиск"/>
             </StackPanel>
 
             <ListView ItemsSource="{Binding SortedList}" SelectedItem="{Binding SelectedItem}" MinHeight="100" Height="800" Margin="10">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <TextBlock Text="{Binding Title}" FontWeight="Bold" FontSize="14"/>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Название" DisplayMemberBinding="{Binding Title}" />
+                    </GridView>
+                </ListView.View>
                 <ListView.ContextMenu>
                     <ContextMenu>
                         <MenuItem Header="Добавить" Click="Add_Click"/>

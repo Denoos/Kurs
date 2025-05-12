@@ -22,7 +22,7 @@
 
                 <TextBlock Text="Название" FontSize="18" FontWeight="Bold" Foreground="#FF4500" 
                            HorizontalAlignment="Left" Margin="0,0,0,20"/>
-                <TextBox IsEnabled="{Binding IsEnabled}" Name="UsernameTextBox" 
+                <TextBox Name="UsernameTextBox" 
                          Text="{Binding Item.Title}"
                          Margin="0,0,0,10" 
                          Height="40" 
