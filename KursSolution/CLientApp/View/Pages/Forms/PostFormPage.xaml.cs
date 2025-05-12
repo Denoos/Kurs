@@ -29,13 +29,11 @@ namespace CLientApp.View.Pages.Forms
         private MainWindow _mainWindow;
         private DataBaseEndPoint _db = DataBaseEndPoint.Instance;
         private Post item;
-        private bool isEnabled;
         private bool isAdd = true;
 
         public event PropertyChangedEventHandler? PropertyChanged;
 
         public Post Item { get => item; set { item = value; Signal(); } }
-        public bool IsEnabled { get => isEnabled; set { isEnabled = value; Signal(); } }
 
         private void Signal([CallerMemberName] string? prop = null)
             => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
@@ -43,8 +41,8 @@ namespace CLientApp.View.Pages.Forms
         public PostFormPage(MainWindow window, bool IsEn, Post item = null)
         {
             InitializeComponent();
+            UsernameTextBox.IsEnabled = IsEn;
             _mainWindow = window;
-            IsEnabled = IsEn;
             if (item is not null)
             {
                 isAdd = false;

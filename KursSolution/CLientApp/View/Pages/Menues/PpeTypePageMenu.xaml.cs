@@ -88,11 +88,12 @@ namespace CLientApp.View.Pages.Menues
         private void Signal([CallerMemberName] string? prop = null)
             => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
 
-        private async Task RenderList(string? sorting = null, string? searching = null)
+        private async Task RenderList(string? searching = null)
         {
             var list = _db.GetAllPpeTypes();
 
-            list = [..list.Where(p =>
+            if (!string.IsNullOrEmpty(searching))
+                list = [..list.Where(p =>
                 p.Title.Contains(searching)
                 )];
 
@@ -117,6 +118,7 @@ namespace CLientApp.View.Pages.Menues
             {
                 if (MessageBox.Show("Вы действительно хотите удалить тип СИЗ?", "Удаление!", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
                     _db.DeletePpeType(SelectedItem);
+                Thread.Sleep(200);
                 RenderList(Search);
             }
         }

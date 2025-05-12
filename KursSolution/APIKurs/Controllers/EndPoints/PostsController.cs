@@ -32,8 +32,8 @@ namespace APIKurs.Controllers.EndPoints
         // PUT: api/Posts/5
         [HttpPut("PutPost")]
         [Authorize(Roles = "1,AdminHavaetPelmeni")]
-        public async Task<IActionResult> PutPost(int id, Post condition)
-            => await db.PutPost(id, condition);
+        public async Task<IActionResult> PutPost(Post condition)
+            => await db.PutPost(condition.Id, condition);
 
         // POST: api/Posts
         [HttpPost("PostPost")]

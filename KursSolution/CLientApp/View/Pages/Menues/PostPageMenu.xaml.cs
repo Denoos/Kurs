@@ -88,12 +88,13 @@ namespace CLientApp.View.Pages.Menues
         private void Signal([CallerMemberName] string? prop = null)
             => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
 
-        private async Task RenderList(string? sorting = null, string? searching = null)
+        private async Task RenderList(string? searching = null)
         {
             var list =  _db.GetAllPosts();
 
-            list = [..list.Where(p =>
-                p.Title.Contains(searching)
+            if (!string.IsNullOrEmpty(searching))
+                list = [..list.Where(p =>
+                p.Title.ToLower().Contains(searching)
                 )];
 
             SortedList = [.. list];
@@ -116,6 +117,7 @@ namespace CLientApp.View.Pages.Menues
             {
                 if (MessageBox.Show("Вы действительно хотите удалить должность?", "Удаление!", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
                     _db.DeletePost(SelectedItem);
+                Thread.Sleep(200);
                 RenderList(Search);
             }
         }

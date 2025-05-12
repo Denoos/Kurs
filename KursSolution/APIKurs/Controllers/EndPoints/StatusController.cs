@@ -42,8 +42,8 @@ namespace APIKurs.Controllers.EndPoints
         // PUT: api/Statuss/5
         [HttpPut("PutStatus")]
         [Authorize(Roles = "1,AdminHavaetPelmeni")]
-        public async Task<IActionResult> PutStatus(int id, Status condition)
-            => await db.PutStatus(id, condition);
+        public async Task<IActionResult> PutStatus(Status condition)
+            => await db.PutStatus(condition.Id, condition);
 
         // POST: api/Statuss
         [HttpPost("PostStatus")]

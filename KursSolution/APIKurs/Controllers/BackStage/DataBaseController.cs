@@ -163,7 +163,6 @@ namespace APIKurs.Controllers.BackStage
 
             try
             {
-                //_context.Entry(condition).State = EntityState.Modified;
                 var local = _context.Set<Models.Condition>()
                 .Local
                 .FirstOrDefault(entry => entry.Id.Equals(condition.Id));
@@ -307,26 +306,24 @@ namespace APIKurs.Controllers.BackStage
         public async Task<IActionResult> PutPost(int id, Post post)
         {
             if (id != post.Id)
-            {
                 return BadRequest();
-            }
-
-            _context.Entry(post).State = EntityState.Modified;
 
             try
             {
+                var local = _context.Set<Post>()
+                .Local
+                .FirstOrDefault(entry => entry.Id.Equals(post.Id));
+                if (local is not null)
+                    _context.Entry(local).State = EntityState.Detached;
+                _context.Entry(post).State = EntityState.Modified;
+
                 await _context.SaveChangesAsync();
+                return Ok();
             }
             catch (DbUpdateConcurrencyException)
             {
                 if (!PostExists(id))
-                {
                     return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
             }
 
             return NoContent();
@@ -455,28 +452,25 @@ namespace APIKurs.Controllers.BackStage
         public async Task<IActionResult> PutPpeType(int id, PpeType ppeType)
         {
             if (id != ppeType.Id)
-            {
                 return BadRequest();
-            }
-
-            _context.Entry(ppeType).State = EntityState.Modified;
 
             try
             {
+                var local = _context.Set<PpeType>()
+                .Local
+                .FirstOrDefault(entry => entry.Id.Equals(ppeType.Id));
+                if (local is not null)
+                    _context.Entry(local).State = EntityState.Detached;
+                _context.Entry(ppeType).State = EntityState.Modified;
+
                 await _context.SaveChangesAsync();
+                return Ok();
             }
             catch (DbUpdateConcurrencyException)
             {
                 if (!PpeTypeExists(id))
-                {
                     return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
             }
-
             return NoContent();
         }
 
@@ -528,30 +522,29 @@ namespace APIKurs.Controllers.BackStage
 
         public async Task<IActionResult> PutStatus(int id, Status status)
         {
-            if (id != status.Id)
             {
-                return BadRequest();
-            }
+                if (id != status.Id)
+                    return BadRequest();
 
-            _context.Entry(status).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!StatusExists(id))
+                try
                 {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+                    var local = _context.Set<Status>()
+                    .Local
+                    .FirstOrDefault(entry => entry.Id.Equals(status.Id));
+                    if (local is not null)
+                        _context.Entry(local).State = EntityState.Detached;
+                    _context.Entry(status).State = EntityState.Modified;
 
-            return NoContent();
+                    await _context.SaveChangesAsync();
+                    return Ok();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!StatusExists(id))
+                        return NotFound();
+                }
+                return NoContent();
+            }
         }
 
         public async Task<ActionResult<Status>> PostStatus(Status status)

@@ -404,12 +404,7 @@ namespace CLientApp.Logic
 
             try
             {
-                //var responce = await _client.PutAsJsonAsync<Model.Condition>($"Conditions/PutCondition?id={item.Id}", item);
-
-                var a = JsonSerializer.Serialize(item);
                 var responce = await _client.PutAsJsonAsync($"Conditions/PutCondition", item);
-                
-                
                 var list = GetAllConditions();
 
                 if (responce is null)
@@ -461,7 +456,7 @@ namespace CLientApp.Logic
 
             try
             {
-                var responce = await _client.PutAsJsonAsync<Post>($"Posts/PutPost?id={item.Id}", item);
+                var responce = await _client.PutAsJsonAsync<Post>($"Posts/PutPost", item);
                 var list = GetAllPosts();
 
                 if (responce is null)
@@ -513,7 +508,7 @@ namespace CLientApp.Logic
 
             try
             {
-                var responce = await _client.PutAsJsonAsync<PpeType>($"PpeTypes/PutPpeType?id={item.Id}", item);
+                var responce = await _client.PutAsJsonAsync<PpeType>($"PpeTypes/PutPpeType", item);
                 var list = GetAllPpeTypes();
 
                 if (responce is null)
@@ -565,7 +560,7 @@ namespace CLientApp.Logic
 
             try
             {
-                var responce = await _client.PutAsJsonAsync<Status>($"Status/PutStatus?id={item.Id}", item);
+                var responce = await _client.PutAsJsonAsync<Status>($"Status/PutStatus", item);
                 var list = GetAllStatuses();
 
                 if (responce is null)
@@ -626,7 +621,7 @@ namespace CLientApp.Logic
 
             try
             {
-                var responce = await _client.PutAsJsonAsync<User>($"User/PutUser?id={item.Id}", item);
+                var responce = await _client.PutAsJsonAsync<User>($"User/PutUser", item);
                 var list = GetAllUsers();
 
                 if (responce is null)
@@ -661,7 +656,7 @@ namespace CLientApp.Logic
 
             try
             {
-                var responce = await _client.PutAsJsonAsync<Ppe>($"Ppes/PutPpe?id={item.Id}", item);
+                var responce = await _client.PutAsJsonAsync<Ppe>($"Ppes/PutPpe", item);
                 var list = GetAllPpes();
 
                 if (responce is null)
@@ -739,7 +734,7 @@ namespace CLientApp.Logic
 
             try
             {
-                var responce = await _client.PutAsJsonAsync<Person>($"People/PutPerson?id={item.Id}", item);
+                var responce = await _client.PutAsJsonAsync<Person>($"People/PutPerson", item);
                 var list = GetAllPersons();
 
                 if (responce is null)

@@ -34,11 +34,11 @@
             </StackPanel>
 
             <ListView ItemsSource="{Binding SortedList}" SelectedItem="{Binding SelectedItem}" MinHeight="100" Height="800" Margin="10">
-                <ListView.View>
-                    <GridView>
-                        <GridViewColumn Header="Название" DisplayMemberBinding="{Binding Title}" />
-                    </GridView>
-                </ListView.View>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                            <TextBlock Text="{Binding Title}" FontWeight="Bold" FontSize="14"/>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
                 <ListView.ContextMenu>
                     <ContextMenu>
                         <MenuItem Header="Добавить" Click="Add_Click"/>

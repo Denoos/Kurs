@@ -42,8 +42,8 @@ namespace APIKurs.Controllers.EndPoints
         // PUT: api/PpeTypes/5
         [HttpPut("PutPpeType")]
         [Authorize(Roles = "1,AdminHavaetPelmeni")]
-        public async Task<IActionResult> PutPpeType(int id, PpeType condition)
-            => await db.PutPpeType(id, condition);
+        public async Task<IActionResult> PutPpeType(PpeType condition)
+            => await db.PutPpeType(condition.Id, condition);
 
         // POST: api/PpeTypes
         [HttpPost("PostPpeType")]

@@ -29,14 +29,11 @@ namespace CLientApp.View.Pages.Forms
         private MainWindow _mainWindow;
         private DataBaseEndPoint _db = DataBaseEndPoint.Instance;
         private PpeType item;
-        private bool isEnabled;
         private bool isAdd = true;
 
         public event PropertyChangedEventHandler? PropertyChanged;
 
         public PpeType Item { get => item; set { item = value; Signal(); } }
-        public bool IsEnabled { get => isEnabled; set { isEnabled = value; Signal(); } }
-
         private void Signal([CallerMemberName] string? prop = null)
             => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
 
@@ -44,7 +41,7 @@ namespace CLientApp.View.Pages.Forms
         {
             InitializeComponent();
             _mainWindow = window;
-            IsEnabled = IsEn;
+            UsernameTextBox.IsEnabled = IsEn;
             if (item is not null)
             {
                 isAdd = false;
@@ -73,6 +70,6 @@ namespace CLientApp.View.Pages.Forms
         }
 
         private void Exit_Click(object sender, RoutedEventArgs e)
-            => _mainWindow.SetPage(new PpePageMenu(_mainWindow));
+            => _mainWindow.SetPage(new PpeTypePageMenu(_mainWindow));
     }
 }
