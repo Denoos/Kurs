@@ -51,7 +51,7 @@ namespace CLientApp.View.Pages.Menues
         {
             InitializeComponent();
             _window = window;
-            RenderList();
+            RenderList(null, null);
             DataContext = this;
             FirstSort = [.. _db.GetAllStatuses()];
             SecondSort = [.. _db.GetAllPosts()];
@@ -110,21 +110,25 @@ namespace CLientApp.View.Pages.Menues
         {
             var list = _db.GetAllPersons();
 
-            list = [..list.Where(p =>
-            p.Name.Contains(searching) ||
-            p.Surname.Contains(searching) ||
-            p.Patronymic.Contains(searching) ||
-            p.Post.Title.Contains(searching) ||
-            p.Status.Title.Contains(searching)
-            )];
+            if (!string.IsNullOrEmpty(searching))
+                list = [..list.Where(p =>
+                p.Name.Contains(searching) ||
+                p.Surname.Contains(searching) ||
+                p.Patronymic.Contains(searching) ||
+                p.Post.Title.Contains(searching) ||
+                p.Status.Title.Contains(searching)
+                )];
 
             var cond = (ComboBoxItem)ComboFilter_Condition.SelectedValue;
             var type = (ComboBoxItem)ComboFilter_Type.SelectedValue;
-            list = [.. list.Where(p=>
-            p.Status.Title == cond.Content ||
-            p.Post.Title == type.Content
-            )];
 
+            if (cond is not null && type is not null)
+                list = [.. list.Where(p=>
+                p.Status.Title == cond.Content ||
+                p.Post.Title == type.Content
+                )];
+
+            if(!string.IsNullOrEmpty(sorting))
             list = sorting switch
             {
                 "По имени" => [.. list.OrderBy(i => i.Name)],

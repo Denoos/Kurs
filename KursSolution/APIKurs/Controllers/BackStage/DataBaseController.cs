@@ -215,7 +215,9 @@ namespace APIKurs.Controllers.BackStage
 
         public async Task<ActionResult<IEnumerable<Person>>> GetPeople()
         {
-            return await _context.People.ToListAsync();
+
+            var result = await _context.People.ToListAsync();
+            return result;
         }
 
         public async Task<ActionResult<Person>> GetPerson(int id)
