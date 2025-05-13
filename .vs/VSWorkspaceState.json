@@ -4,15 +4,13 @@
     "\\KursSolution",
     "\\KursSolution\\APIKurs",
     "\\KursSolution\\APIKurs\\Controllers",
-    "\\KursSolution\\APIKurs\\Controllers\\EndPoints",
+    "\\KursSolution\\APIKurs\\Controllers\\BackStage",
     "\\KursSolution\\CLientApp",
-    "\\KursSolution\\CLientApp\\Logic",
-    "\\KursSolution\\CLientApp\\Model",
     "\\KursSolution\\CLientApp\\View",
     "\\KursSolution\\CLientApp\\View\\Pages",
     "\\KursSolution\\CLientApp\\View\\Pages\\Forms",
     "\\KursSolution\\CLientApp\\View\\Pages\\Menues"
   ],
-  "SelectedNode": "\\KursSolution\\APIKurs\\Controllers\\EndPoints\\PostsController.cs",
+  "SelectedNode": "\\KursSolution\\CLientApp\\View\\Pages\\Menues\\PersonPageMenu.xaml.cs",
   "PreviewInSolutionExplorer": false
 }

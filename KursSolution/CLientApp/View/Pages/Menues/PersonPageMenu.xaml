@@ -8,6 +8,11 @@
       Background="White"
       Title="Сотрудники">
 
+    <Page.Resources>
+        <CollectionViewSource x:Key="First" Source="{Binding Path=FirstSort}" />
+        <CollectionViewSource x:Key="Second" Source="{Binding Path=SecondSort}" />
+    </Page.Resources>
+
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
@@ -43,8 +48,22 @@
             <!-- Выпадающие списки для фильтрации -->
             <StackPanel Orientation="Horizontal" Height="30" Margin="25">
                 <TextBlock Width="Auto" Foreground="White" FontSize="24" Text="Блок фильтрации:" Margin="10, 0" />
-                <ComboBox  x:Name="ComboFilter_Condition" ItemsSource="{Binding FirstSort}" SelectionChanged="Filter_Changed" Width="220" Margin="10,0" DisplayMemberPath="Title" IsSynchronizedWithCurrentItem="True" DockPanel.Dock="Top"/>
-                <ComboBox x:Name="ComboFilter_Type" ItemsSource="{Binding SecondSort}" SelectionChanged="Filter_Changed" Width="220" Margin="10,0"  DisplayMemberPath="Title" IsSynchronizedWithCurrentItem="True" DockPanel.Dock="Top"/>
+                <ComboBox  x:Name="ComboFilter_Condition" SelectionChanged="Filter_Changed" Width="220" Margin="10,0" DisplayMemberPath="Title" IsSynchronizedWithCurrentItem="True" DockPanel.Dock="Top">
+                    <ComboBox.ItemsSource>
+                        <CompositeCollection>
+                            <ComboBoxItem Content="Не выбрано" />
+                            <CollectionContainer Collection="{Binding Source={StaticResource First}}" />
+                        </CompositeCollection>
+                    </ComboBox.ItemsSource>
+                </ComboBox>
+                <ComboBox x:Name="ComboFilter_Type" SelectionChanged="Filter_Changed" Width="220" Margin="10,0"  DisplayMemberPath="Title" IsSynchronizedWithCurrentItem="True" DockPanel.Dock="Top">
+                    <ComboBox.ItemsSource>
+                        <CompositeCollection>
+                            <ComboBoxItem Content="Не выбрано" />
+                            <CollectionContainer Collection="{Binding Source={StaticResource Second}}" />
+                        </CompositeCollection>
+                    </ComboBox.ItemsSource>
+                </ComboBox>
             </StackPanel>
 
             <ListView ItemsSource="{Binding SortedList}" SelectedItem="{Binding SelectedItem}" MinHeight="100" Height="800" Margin="10">
@@ -53,11 +72,15 @@
                         <StackPanel Orientation="Horizontal" Margin="5">
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Text="{Binding Name}" FontWeight="Bold" FontSize="14"/>
+                                <TextBlock Text="" FontWeight="Bold" Margin="10, 0" FontSize="14"/>
                                 <TextBlock Text="{Binding Surname}" FontWeight="Bold" FontSize="14"/>
+                                <TextBlock Text="" FontWeight="Bold" Margin="10, 0" FontSize="14"/>
                                 <TextBlock Text="{Binding Patronymic}" FontWeight="Bold" FontSize="14"/>
+                                <TextBlock Text="" FontWeight="Bold" Margin="10, 0" FontSize="14"/>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Text="{Binding Post.Title}" FontWeight="Bold" FontSize="14"/>
+                                <TextBlock Text="" FontWeight="Bold" Margin="10, 0" FontSize="14"/>
                                 <TextBlock Text="{Binding Status.Title}" FontWeight="Bold" FontSize="14"/>
                             </StackPanel>
                         </StackPanel>

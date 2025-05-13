@@ -119,25 +119,33 @@ namespace CLientApp.View.Pages.Menues
                 p.Status.Title.Contains(searching)
                 )];
 
-            var cond = (ComboBoxItem)ComboFilter_Condition.SelectedValue;
-            var type = (ComboBoxItem)ComboFilter_Type.SelectedValue;
+            var cond = new ComboBoxItem();
+            var type = new ComboBoxItem();
+            if (ComboFilter_Condition is not null && (ComboBoxItem)ComboFilter_Condition.SelectedValue is not null)
+                cond = (ComboBoxItem)ComboFilter_Condition.SelectedValue;
+            if (ComboFilter_Type is not null && (ComboBoxItem)ComboFilter_Type.SelectedValue is not null)
+                type = (ComboBoxItem)ComboFilter_Type.SelectedValue;
 
-            if (cond is not null && type is not null)
+            if (cond.Content != "Не выбрано" && cond.Content is not null)
                 list = [.. list.Where(p=>
-                p.Status.Title == cond.Content ||
+                p.Status.Title == cond.Content
+                )];
+
+            if (type.Content != "Не выбрано" && type.Content is not null)
+                list = [.. list.Where(p=>
                 p.Post.Title == type.Content
                 )];
 
-            if(!string.IsNullOrEmpty(sorting))
-            list = sorting switch
-            {
-                "По имени" => [.. list.OrderBy(i => i.Name)],
-                "По фамилии" => [.. list.OrderBy(i => i.Surname)],
-                "По отчеству" => [.. list.OrderBy(i => i.Patronymic)],
-                "По должности" => [.. list.OrderBy(i => i.PostId)],
-                "По статусу" => [.. list.OrderBy(i => i.StatusId)],
-                _ => [.. list.OrderBy(i => i.Id)],
-            };
+            if (!string.IsNullOrEmpty(sorting))
+                list = sorting switch
+                {
+                    "По имени" => [.. list.OrderBy(i => i.Name)],
+                    "По фамилии" => [.. list.OrderBy(i => i.Surname)],
+                    "По отчеству" => [.. list.OrderBy(i => i.Patronymic)],
+                    "По должности" => [.. list.OrderBy(i => i.PostId)],
+                    "По статусу" => [.. list.OrderBy(i => i.StatusId)],
+                    _ => [.. list.OrderBy(i => i.Id)],
+                };
 
             SortedList = [.. list];
         }

@@ -2,6 +2,7 @@
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Text.Json;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
@@ -26,6 +27,7 @@ namespace CLientApp
         public event PropertyChangedEventHandler? PropertyChanged;
 
         public Page CurrentPage { get =>  page; set { page = value; Signal(); } }
+        public JsonSerializerOptions options;
 
         private void Signal([CallerMemberName]string? prop = null)
             => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
@@ -34,6 +36,11 @@ namespace CLientApp
             InitializeComponent();
             DataContext = this;
             SetPage(new LoginFormPage(this));
+            options = new()
+            {
+                PropertyNameCaseInsensitive = true,
+                ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.Preserve,
+            };
         }
         public void SetPage(Page _page)
             => CurrentPage = _page;
