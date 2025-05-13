@@ -38,7 +38,7 @@ namespace APIKurs.Controllers.EndPoints
         // POST: api/Peoples
         [HttpPost("PostPerson")]
         [Authorize(Roles = "1,AdminHavaetPelmeni")]
-        public async Task<ActionResult<Person>> PostPerson(Person condition)
+        public async Task<ActionResult> PostPerson(Person condition)
             => await db.PostPerson(condition);
 
         // DELETE: api/Peoples/5

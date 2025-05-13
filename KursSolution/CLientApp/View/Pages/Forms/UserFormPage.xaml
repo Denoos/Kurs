@@ -37,7 +37,7 @@
                          FontSize="16" 
                          Padding="5"/>
 
-                <ComboBox IsEnabled="{Binding IsEnabled}" ItemsSource="{Binding Items}" Margin="20, 10" Height="40" SelectedItem="{Binding Item.IdRoleNavigation}" />
+                <ComboBox DisplayMemberPath="Title"  IsEnabled="{Binding IsEnabled}" ItemsSource="{Binding Items}" Margin="20, 10" Height="40" SelectedItem="{Binding Item.IdRoleNavigation}" />
 
 
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,10">

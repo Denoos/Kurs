@@ -13,6 +13,6 @@
     "\\KursSolution\\CLientApp\\View\\Pages\\Forms",
     "\\KursSolution\\CLientApp\\View\\Pages\\Menues"
   ],
-  "SelectedNode": "\\KursSolution\\CLientApp\\Logic\\DataBaseEndPoint.cs",
+  "SelectedNode": "\\KursSolution\\APIKurs\\Controllers\\EndPoints\\PostsController.cs",
   "PreviewInSolutionExplorer": false
 }

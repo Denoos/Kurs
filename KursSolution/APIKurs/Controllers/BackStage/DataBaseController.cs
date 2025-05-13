@@ -10,6 +10,7 @@ using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.BlazorIdentity.Pag
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Runtime.InteropServices;
+using Microsoft.CodeAnalysis;
 
 namespace APIKurs.Controllers.BackStage
 {
@@ -257,11 +258,19 @@ namespace APIKurs.Controllers.BackStage
             return NoContent();
         }
 
-        public async Task<ActionResult<Person>> PostPerson(Person person)
+        public async Task<ActionResult> PostPerson(Person person)
         {
+            var existingEntity = _context.People.Local.FirstOrDefault(e => e.Id == person.Id);
+
+            if (existingEntity != null)
+                _context.Entry(existingEntity).CurrentValues.SetValues(person);
+            else
+                _context.People.Update(person);
+
             _context.People.Add(person);
             await _context.SaveChangesAsync();
 
+            await Update();
             return CreatedAtAction("GetPerson", new { id = person.Id }, person);
         }
 

@@ -708,7 +708,8 @@ namespace CLientApp.Logic
 
             try
             {
-                var responce = await _client.PostAsJsonAsync<Person>($"People/PostPerson", item);
+                var a = JsonSerializer.Serialize(item);
+                var responce = await _client.PostAsJsonAsync($"People/PostPerson", item);
                 var list = GetAllPersons();
 
                 if (responce is null)
@@ -724,6 +725,10 @@ namespace CLientApp.Logic
 
             return result;
         }
+
+        //  Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vd3d3LnczLm9yZy8yMDAxL1hNTFNjaGVtYSNpbnRlZ2VyMzIiOiIyMCIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6IjEiLCJleHAiOjE3NDc2NTU4NDksImlzcyI6Ik15QXV0aFNlcnZlciIsImF1ZCI6IllvdXJDbGllbnQifQ.vzscAmsjhmqoAhSMh3RJoj-QVJegAlia9Vo0iZ7IU-0
+
+        //  {"Id":0,"Name":"123123","Surname":"123456","Patronymic":"123789","PostId":1,"StatusId":2,"Post":{"Id":1,"Title":"\\u0421\\u0438\\u0441\\u0442\\u0435\\u043C\\u043D\\u044B\\u0439 \\u0430\\u0434\\u043C\\u0438\\u043D\\u0438\\u0441\\u0442\\u0440\\u0430\\u0442\\u043E\\u0440","People":[]},"Status":{"Id":2,"Title":"\\u0440\\u0430\\u0431\\u043E\\u0442\\u0430\\u0435\\u0442","People":[]},"IdPpes":[]}
 
         public async Task<bool> EditPerson(Person item)
         {

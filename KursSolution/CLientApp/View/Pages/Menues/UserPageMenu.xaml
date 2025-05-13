@@ -30,6 +30,7 @@
             <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
                 <TextBlock Text="Пользователи" Width="200" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" Foreground="White" FontSize="24" Margin="10, 0" />
                 <TextBox Text="{Binding Search}"  Width="1100" Height="30" FontSize="18" TextAlignment="Justify" Margin="10,20" />
+                <Button FontSize="18" Padding="20,10" Margin="10, 40" Content="Поиск"/>
                 <ComboBox SelectionChanged="SortingChanged" Width="300" Margin="20">
                     <ComboBoxItem Content="По логину" />
                     <ComboBoxItem Content="По паролю" />

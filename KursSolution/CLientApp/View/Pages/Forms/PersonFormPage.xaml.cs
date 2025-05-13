@@ -87,6 +87,6 @@ namespace CLientApp.View.Pages.Forms
         }
 
         private void Exit_Click(object sender, RoutedEventArgs e)
-            => _mainWindow.SetPage(new UserPageMenu(_mainWindow));
+            => _mainWindow.SetPage(new PersonPageMenu(_mainWindow));
     }
 }
