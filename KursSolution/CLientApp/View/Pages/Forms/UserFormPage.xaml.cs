@@ -46,7 +46,7 @@ namespace CLientApp.View.Pages.Forms
         {
             InitializeComponent();
             _mainWindow = window;
-            Items = _db.GetAllRoles();
+            GetElements();
             IsEnabled = IsEn;
             if (item is not null)
             {
@@ -56,6 +56,9 @@ namespace CLientApp.View.Pages.Forms
             else Item = new();
             DataContext = this;
         }
+
+        private async void GetElements()
+            => Items = await _db.GetAllRoles();
 
         private async void Save_Click(object sender, RoutedEventArgs e)
         {

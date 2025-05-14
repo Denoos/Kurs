@@ -53,8 +53,10 @@ namespace CLientApp.View.Pages.Menues
             _window = window;
             RenderList(null, null);
             DataContext = this;
-            FirstSort = [.. _db.GetAllStatuses()];
-            SecondSort = [.. _db.GetAllPosts()];
+            Thread.Sleep(300);
+            FirstSort = [.. await _db.GetAllStatuses()];
+            Thread.Sleep(300);
+            SecondSort = [.. await _db.GetAllPosts()];
         }
 
         private void NavigationButtonClicked(object sender, RoutedEventArgs e)
@@ -100,7 +102,7 @@ namespace CLientApp.View.Pages.Menues
         {
             var snd = (ComboBox)sender;
             var item = (ComboBoxItem)snd.SelectedItem;
-            Sorting = item.ContentStringFormat;
+            Sorting = item.Content.ToString();
         }
 
         private void Signal([CallerMemberName] string? prop = null)
@@ -108,7 +110,7 @@ namespace CLientApp.View.Pages.Menues
 
         private async Task RenderList(string? sorting = null, string? searching = null)
         {
-            var list = _db.GetAllPersons();
+            var list = await _db.GetAllPersons();
 
             if (!string.IsNullOrEmpty(searching))
                 list = [..list.Where(p =>
@@ -119,22 +121,49 @@ namespace CLientApp.View.Pages.Menues
                 p.Status.Title.Contains(searching)
                 )];
 
-            var cond = new ComboBoxItem();
-            var type = new ComboBoxItem();
-            if (ComboFilter_Condition is not null && (ComboBoxItem)ComboFilter_Condition.SelectedValue is not null)
-                cond = (ComboBoxItem)ComboFilter_Condition.SelectedValue;
-            if (ComboFilter_Type is not null && (ComboBoxItem)ComboFilter_Type.SelectedValue is not null)
-                type = (ComboBoxItem)ComboFilter_Type.SelectedValue;
+            string cond = "";
+            var type = "";
+            if (ComboFilter_Condition is not null && ComboFilter_Condition.SelectedValue is not null)
+            {
+                var b = "";
+                try
+                {
+                    var a = (ComboBoxItem)ComboFilter_Condition.SelectedValue;
+                    b = a.Content.ToString().ToLower();
+                }
+                catch
+                {
+                    var a = (Status)ComboFilter_Condition.SelectedValue;
+                    b = a.Title.ToLower();
+                }
+                cond = b;
+            }
 
-            if (cond.Content != "Не выбрано" && cond.Content is not null)
+            if (ComboFilter_Type is not null && ComboFilter_Type.SelectedValue is not null)
+            {
+                //var b = "";
+                //try
+                //{
+                //    var a = (ComboBoxItem)ComboFilter_Type.SelectedValue;
+                //    b = a.Content.ToString().ToLower();
+                //}
+                //catch
+                //{
+                //    var a = (Post)ComboFilter_Type.SelectedValue;
+                //    b = a.Title.ToLower();
+                //}
+                //cond = b;
+            }
+
+            if (cond.ToLower() != "не выбрано")
                 list = [.. list.Where(p=>
-                p.Status.Title == cond.Content
+                p.Status.Title.ToLower() == cond.ToLower()
                 )];
 
-            if (type.Content != "Не выбрано" && type.Content is not null)
-                list = [.. list.Where(p=>
-                p.Post.Title == type.Content
-                )];
+            //if (type.ToLower() != "не выбрано")
+            //    list = [.. list.Where(p=>
+            //    p.Post.Title.ToLower() == type.ToLower()
+            //    )];
 
             if (!string.IsNullOrEmpty(sorting))
                 list = sorting switch
@@ -150,8 +179,8 @@ namespace CLientApp.View.Pages.Menues
             SortedList = [.. list];
         }
 
-        private void Filter_Changed(object sender, SelectionChangedEventArgs e)
-            => RenderList(Sorting, Search);
+        private async void Filter_Changed(object sender, SelectionChangedEventArgs e)
+            => await RenderList(Sorting, Search);
 
         private void Add_Click(object sender, RoutedEventArgs e)
             => _window.SetPage(new PersonFormPage(_window, true));

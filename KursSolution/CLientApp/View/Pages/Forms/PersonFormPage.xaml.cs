@@ -49,8 +49,7 @@ namespace CLientApp.View.Pages.Forms
             InitializeComponent();
             _mainWindow = window;
             IsEnabled = IsEn;
-            Items = [.. _db.GetAllPosts()];
-            ItemsSecond = [.. _db.GetAllStatuses()];
+            GetSortElements();
             if (item is not null)
             {
                 isAdd = false;
@@ -58,6 +57,12 @@ namespace CLientApp.View.Pages.Forms
             }
             else Item = new();
             DataContext = this;
+        }
+
+        private async Task GetSortElements()
+        {
+            Items = [.. await _db.GetAllPosts()];
+            ItemsSecond = [.. await _db.GetAllStatuses()];
         }
 
         private async void Save_Click(object sender, RoutedEventArgs e)

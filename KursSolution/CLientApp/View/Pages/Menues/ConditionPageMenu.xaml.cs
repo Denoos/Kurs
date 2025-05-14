@@ -90,7 +90,7 @@ namespace CLientApp.View.Pages.Menues
 
         private async Task RenderList(string? searching = null)
         {
-            var list = _db.GetAllConditions();
+            var list = await _db.GetAllConditions();
 
             if (!string.IsNullOrEmpty(searching))
                 list = [..list.Where(p =>

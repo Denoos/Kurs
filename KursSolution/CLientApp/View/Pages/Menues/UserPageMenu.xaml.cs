@@ -101,7 +101,7 @@ namespace CLientApp.View.Pages.Menues
 
         private async Task RenderList(string? sorting = null, string? searching = null)
         {
-            var list = _db.GetAllUsers();
+            var list = await _db.GetAllUsers();
 
             list = [..list.Where(p =>
             p.Login.Contains(searching) ||
@@ -129,7 +129,7 @@ namespace CLientApp.View.Pages.Menues
             => RenderList(Sorting, Search);
 
         private void Add_Click(object sender, RoutedEventArgs e)
-            => _window.SetPage(new PersonFormPage(_window, true));
+            => _window.SetPage(new UserFormPage(_window, true));
         private void Edit_Click(object sender, RoutedEventArgs e)
         {
             if (SelectedItem is not null)

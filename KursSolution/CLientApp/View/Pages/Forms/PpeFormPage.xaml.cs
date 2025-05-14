@@ -61,8 +61,8 @@ namespace CLientApp.View.Pages.Forms
 
         private async Task GetItems()
         {
-            Items = _db.GetAllConditions();
-            ItemsSecond = _db.GetAllPpeTypes();
+            Items = await _db.GetAllConditions();
+            ItemsSecond = await _db.GetAllPpeTypes();
         }
 
         private async void Save_Click(object sender, RoutedEventArgs e)

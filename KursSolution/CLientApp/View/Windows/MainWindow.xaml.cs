@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using CLientApp.Logic;
 using CLientApp.View.Pages.Forms;
 
 namespace CLientApp
@@ -41,6 +42,8 @@ namespace CLientApp
                 PropertyNameCaseInsensitive = true,
                 ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.Preserve,
             };
+
+            DataBaseEndPoint.Instance.SetOptions(options);
         }
         public void SetPage(Page _page)
             => CurrentPage = _page;
