@@ -67,25 +67,16 @@
             </StackPanel>
 
             <ListView ItemsSource="{Binding SortedList}" SelectedItem="{Binding SelectedItem}" MinHeight="100" Height="800" Margin="10">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <StackPanel Orientation="Horizontal" Margin="5">
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="{Binding Name}" FontWeight="Bold" FontSize="14"/>
-                                <TextBlock Text="" FontWeight="Bold" Margin="10, 0" FontSize="14"/>
-                                <TextBlock Text="{Binding Surname}" FontWeight="Bold" FontSize="14"/>
-                                <TextBlock Text="" FontWeight="Bold" Margin="10, 0" FontSize="14"/>
-                                <TextBlock Text="{Binding Patronymic}" FontWeight="Bold" FontSize="14"/>
-                                <TextBlock Text="" FontWeight="Bold" Margin="10, 0" FontSize="14"/>
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="{Binding Post.Title}" FontWeight="Bold" FontSize="14"/>
-                                <TextBlock Text="" FontWeight="Bold" Margin="10, 0" FontSize="14"/>
-                                <TextBlock Text="{Binding Status.Title}" FontWeight="Bold" FontSize="14"/>
-                            </StackPanel>
-                        </StackPanel>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn DisplayMemberBinding="{Binding Name}" Header="Имя" />
+                        <GridViewColumn DisplayMemberBinding="{Binding Surname}" Header="Фамилия" />
+                        <GridViewColumn DisplayMemberBinding="{Binding Patronymic}" Header="Отчество" />
+                        <GridViewColumn DisplayMemberBinding="{Binding Post.Title}" Header="Должность" />
+                        <GridViewColumn DisplayMemberBinding="{Binding Status.Title}" Header="Статус" />
+                    </GridView>
+                </ListView.View>
+                
                 <ListView.ContextMenu>
                     <ContextMenu>
                         <MenuItem Header="Добавить" Click="Add_Click"/>
