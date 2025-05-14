@@ -141,18 +141,18 @@ namespace CLientApp.View.Pages.Menues
 
             if (ComboFilter_Type is not null && ComboFilter_Type.SelectedValue is not null)
             {
-                //var b = "";
-                //try
-                //{
-                //    var a = (ComboBoxItem)ComboFilter_Type.SelectedValue;
-                //    b = a.Content.ToString().ToLower();
-                //}
-                //catch
-                //{
-                //    var a = (Post)ComboFilter_Type.SelectedValue;
-                //    b = a.Title.ToLower();
-                //}
-                //cond = b;
+                var b = "";
+                try
+                {
+                    var a = (ComboBoxItem)ComboFilter_Type.SelectedValue;
+                    b = a.Content.ToString().ToLower();
+                }
+                catch
+                {
+                    var a = (Post)ComboFilter_Type.SelectedValue;
+                    b = a.Title.ToLower();
+                }
+                type = b;
             }
 
             if (cond.ToLower() != "не выбрано")
@@ -160,10 +160,10 @@ namespace CLientApp.View.Pages.Menues
                 p.Status.Title.ToLower() == cond.ToLower()
                 )];
 
-            //if (type.ToLower() != "не выбрано")
-            //    list = [.. list.Where(p=>
-            //    p.Post.Title.ToLower() == type.ToLower()
-            //    )];
+            if (type.ToLower() != "не выбрано")
+                list = [.. list.Where(p=>
+                p.Post.Title.ToLower() == type.ToLower()
+                )];
 
             if (!string.IsNullOrEmpty(sorting))
                 list = sorting switch
