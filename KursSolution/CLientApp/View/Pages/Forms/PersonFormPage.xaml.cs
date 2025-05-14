@@ -60,8 +60,12 @@ namespace CLientApp.View.Pages.Forms
 
             if (Item.Post is not null)
                 Postus.SelectedValue = Item.Post;
+            else Item.Post = new Post() { Title = "Не выбрано!"};
+
             if (Item.Status is not null)
                 Statusus.SelectedValue = Item.Status;
+            else Item.Status = new Status() { Title = "Не выбрано!"};
+
             Signal();
         }
 
