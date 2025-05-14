@@ -618,38 +618,50 @@ namespace APIKurs.Controllers.BackStage
 
         public async Task<IActionResult> PutUser(int id, User user)
         {
-            if (id != user.Id)
-            {
-                return BadRequest();
-            }
-
-            _context.Entry(user).State = EntityState.Modified;
-
             try
             {
+                var local = _context.Set<User>()
+                .Local
+                .FirstOrDefault(entry => entry.Id.Equals(user.Id));
+                if (local is not null)
+                    _context.Entry(local).State = EntityState.Detached;
+                _context.Entry(user).State = EntityState.Modified;
+
+                _context.Users.Update(user);
                 await _context.SaveChangesAsync();
+
+                return Ok();
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!UserExists(id))
-                {
+                if (!ConditionExists(user.Id))
                     return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
             }
-
             return NoContent();
         }
 
-        public async Task<ActionResult<User>> PostUser(User user)
+        public async Task<ActionResult> PostUser(User user)
         {
-            _context.Users.Add(user);
-            await _context.SaveChangesAsync();
+            try
+            {
+                var local = _context.Set<Person>()
+                .Local
+                .FirstOrDefault(entry => entry.Id.Equals(user.Id));
+                if (local is not null)
+                    _context.Entry(local).State = EntityState.Detached;
+                _context.Entry(user).State = EntityState.Modified;
 
-            return CreatedAtAction("GetUser", new { id = user.Id }, user);
+                _context.Users.Add(user);
+                _context.SaveChangesAsync();
+
+                return Ok();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!ConditionExists(user.Id))
+                    return NotFound();
+            }
+            return NoContent();
         }
 
         public async Task<IActionResult> DeleteUser(int id)

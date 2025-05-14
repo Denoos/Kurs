@@ -47,7 +47,7 @@ namespace APIKurs.Controllers.EndPoints
         // POST: api/Users
         [HttpPost("PostUser")]
         [Authorize(Roles = "AdminHavaetPelmeni")]
-        public async Task<ActionResult<User>> PostUser(User condition)
+        public async Task<ActionResult> PostUser(User condition)
             => await db.PostUser(condition);
 
         // DELETE: api/Users/5

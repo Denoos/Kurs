@@ -609,7 +609,7 @@ namespace CLientApp.Logic
 
             try
             {
-                var responce = await _client.PostAsJsonAsync<User>($"User/PostUser", item, _options);
+                var responce = await _client.PostAsJsonAsync($"User/PostUser", item, _options);
                 var list = await GetAllUsers();
 
                 if (responce is null)
@@ -631,7 +631,6 @@ namespace CLientApp.Logic
                         break;
                 }
             }
-
             return result;
         }
 
@@ -644,7 +643,7 @@ namespace CLientApp.Logic
 
             try
             {
-                var responce = await _client.PutAsJsonAsync<User>($"User/PutUser", item, _options);
+                var responce = await _client.PutAsJsonAsync($"User/PutUser", item, _options);
                 var list = await GetAllUsers();
 
                 if (responce is null)
