@@ -15,8 +15,8 @@
             <ColumnDefinition Width="1*" />
         </Grid.ColumnDefinitions>
 
-        <Border BorderThickness="3" Grid.Column="1" BorderBrush="#FF4500" HorizontalAlignment="Center" VerticalAlignment="Center" CornerRadius="30" Padding="20" Background="#FFF5F5F5">
-            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Width="500">
+        <Border Width="Auto" BorderThickness="3" Grid.Column="1" BorderBrush="#FF4500" HorizontalAlignment="Left" VerticalAlignment="Center" CornerRadius="30" Padding="20" Background="#FFF5F5F5" Margin="-10,0,0,0">
+            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
                 <TextBlock Text="СИЗ" FontSize="24" FontWeight="Bold" Foreground="#FF4500" 
                            HorizontalAlignment="Center" Margin="0,0,0,20"/>
 
@@ -39,19 +39,55 @@
 
                 <TextBlock Text="Состояние" FontSize="18" FontWeight="Bold" Foreground="#FF4500" 
                            HorizontalAlignment="Left" Margin="0,0,0,20"/>
-                <ComboBox DisplayMemberPath="Title"   IsEnabled="{Binding IsEnabled}" ItemsSource="{Binding Items}" Margin="20, 10" Height="40" SelectedItem="{Binding Item.Condition}" />
-                <TextBlock Text="Тип" FontSize="18" FontWeight="Bold" Foreground="#FF4500" 
-                           HorizontalAlignment="Left" Margin="0,0,0,20"/>
-                <ComboBox DisplayMemberPath="Title"  IsEnabled="{Binding IsEnabled}" ItemsSource="{Binding ItemsSecond}" Margin="20, 10" Height="40" SelectedItem="{Binding Item.Type}" />
 
                 <StackPanel Orientation="Horizontal">
+                    <TextBox Width="500" IsEnabled="False"
+                         Text="{Binding Item.Condition.Title}"
+                         Margin="0,0,0,10" 
+                         Height="40" 
+                         FontSize="16" 
+                         Padding="5"/>
+                    <ComboBox x:Name="Conditionus" MinWidth="300" DisplayMemberPath="Title"   IsEnabled="{Binding IsEnabled}" ItemsSource="{Binding Items}" Margin="20, 10" Height="40" SelectedItem="{Binding Item.Condition, Mode=TwoWay}" />
+                </StackPanel>
+
+                <TextBlock Text="Тип" FontSize="18" FontWeight="Bold" Foreground="#FF4500" 
+                           HorizontalAlignment="Left" Margin="0,0,0,20"/>
+
+                <StackPanel Orientation="Horizontal">
+                    <TextBox Width="500" IsEnabled="False"
+                         Text="{Binding Item.Type.Title}"
+                         Margin="0,0,0,10" 
+                         Height="40" 
+                         FontSize="16" 
+                         Padding="5"/>
+                    <ComboBox x:Name="Typus" MinWidth="300" DisplayMemberPath="Title"  IsEnabled="{Binding IsEnabled}" ItemsSource="{Binding ItemsSecond}" Margin="20, 10" Height="40" SelectedItem="{Binding Item.Type, Mode=TwoWay}" />
+                </StackPanel>
+
+                <StackPanel Orientation="Vertical">
                     <StackPanel Margin="30, 5">
                         <TextBlock Text="Дата получения" FontSize="16" FontWeight="Bold" Foreground="#FF4500"/>
-                        <DatePicker IsEnabled="{Binding IsEnabled}" SelectedDate="{Binding Item.DateGet}" Height="40"/>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBox x:Name="getDate" Width="500" IsEnabled="False"
+                                 Text="{Binding Item.DateGet}"
+                                 Margin="0,2,0,10" 
+                                 Height="40" 
+                                 FontSize="16" 
+                                 Padding="5"/>
+                            <DatePicker x:Name="GetDate" SelectedDateChanged="GetDateChanged" IsEnabled="{Binding IsEnabled}" SelectedDate="{Binding Item.DateGet}" Margin="20, 0, 0, 5" Height="40"/>
+                        </StackPanel>
                     </StackPanel>
-                    <StackPanel Margin="30, 5" >
+
+                    <StackPanel Margin="30, 5">
                         <TextBlock Text="Дата окончания" FontSize="16" FontWeight="Bold" Foreground="#FF4500"/>
-                        <DatePicker IsEnabled="{Binding IsEnabled}" SelectedDate="{Binding Item.DateEnd}" Height="40"/>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBox x:Name="endDate" Width="500" IsEnabled="False"
+                                 Text="{Binding Item.DateEnd}"
+                                 Margin="0,2,0,10" 
+                                 Height="40" 
+                                 FontSize="16" 
+                                 Padding="5"/>
+                            <DatePicker x:Name="EndDate" SelectedDateChanged="EndDateChanged" IsEnabled="{Binding IsEnabled}" SelectedDate="{Binding Item.DateEnd}" Margin="20, 0, 0, 5" Height="40"/>
+                        </StackPanel>
                     </StackPanel>
                 </StackPanel>
 
