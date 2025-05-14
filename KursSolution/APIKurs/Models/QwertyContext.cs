@@ -90,12 +90,10 @@ public partial class QwertyContext : DbContext
 
             entity.HasOne(d => d.Post).WithMany(p => p.People)
                 .HasForeignKey(d => d.PostId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_people");
 
             entity.HasOne(d => d.Status).WithMany(p => p.People)
                 .HasForeignKey(d => d.StatusId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_people_status_id");
 
             entity.HasMany(d => d.IdPpes).WithMany(p => p.IdPeople)
@@ -103,11 +101,9 @@ public partial class QwertyContext : DbContext
                     "CrossPpePerson",
                     r => r.HasOne<Ppe>().WithMany()
                         .HasForeignKey("IdPpe")
-                        .OnDelete(DeleteBehavior.ClientSetNull)
                         .HasConstraintName("FK_cross_ppe_people_ppe_id"),
                     l => l.HasOne<Person>().WithMany()
                         .HasForeignKey("IdPeople")
-                        .OnDelete(DeleteBehavior.ClientSetNull)
                         .HasConstraintName("FK_cross_ppe_people_people_id"),
                     j =>
                     {
@@ -176,12 +172,10 @@ public partial class QwertyContext : DbContext
 
             entity.HasOne(d => d.Condition).WithMany(p => p.Ppes)
                 .HasForeignKey(d => d.ConditionId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_ppe_condition_id");
 
             entity.HasOne(d => d.Type).WithMany(p => p.Ppes)
                 .HasForeignKey(d => d.TypeId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_ppe_ppe_type_id");
         });
 
@@ -258,7 +252,6 @@ public partial class QwertyContext : DbContext
 
             entity.HasOne(d => d.IdRoleNavigation).WithMany(p => p.Users)
                 .HasForeignKey(d => d.IdRole)
-                .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_users_roles_id");
         });
 

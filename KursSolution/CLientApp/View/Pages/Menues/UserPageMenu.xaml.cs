@@ -170,6 +170,7 @@ namespace CLientApp.View.Pages.Menues
             {
                 if (MessageBox.Show("Вы действительно хотите удалить пользователя?", "Удаление!", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
                     _db.DeleteUser(SelectedItem);
+                Thread.Sleep(500); 
                 RenderList(Sorting, Search);
             }
         }

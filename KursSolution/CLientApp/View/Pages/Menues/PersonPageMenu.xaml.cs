@@ -199,6 +199,7 @@ namespace CLientApp.View.Pages.Menues
             {
                 if (MessageBox.Show("Вы действительно хотите удалить сотрудника?", "Удаление!", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
                     _db.DeletePerson(SelectedItem);
+                Thread.Sleep(500);
                 RenderList(Sorting, Search);
             }
         }

@@ -200,6 +200,7 @@ namespace CLientApp.View.Pages.Menues
             {
                 if (MessageBox.Show("Вы действительно хотите удалить СИЗ?", "Удаление!", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
                     _db.DeletePpe(SelectedPpe);
+                Thread.Sleep(500); 
                 RenderList(Sorting, Search);
             }
         }
