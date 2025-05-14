@@ -57,7 +57,7 @@ namespace CLientApp.View.Pages.Forms
             DataContext = this;
         }
 
-        private async void GetElements()
+        private async Task GetElements()
             => Items = await _db.GetAllRoles();
 
         private async void Save_Click(object sender, RoutedEventArgs e)

@@ -3,12 +3,24 @@
   "WorkspaceRootPath": "C:\\Users\\Denoos\\source\\repos\\Denoos\\Kurs\\KursSolution\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{42B17DAD-7312-4BC0-8965-C29E7A8BB227}|CLientApp\\CLientApp.csproj|c:\\users\\denoos\\source\\repos\\denoos\\kurs\\kurssolution\\clientapp\\view\\pages\\forms\\userformpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{42B17DAD-7312-4BC0-8965-C29E7A8BB227}|CLientApp\\CLientApp.csproj|solutionrelative:clientapp\\view\\pages\\forms\\userformpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{42B17DAD-7312-4BC0-8965-C29E7A8BB227}|CLientApp\\CLientApp.csproj|c:\\users\\denoos\\source\\repos\\denoos\\kurs\\kurssolution\\clientapp\\view\\pages\\menues\\userpagemenu.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{42B17DAD-7312-4BC0-8965-C29E7A8BB227}|CLientApp\\CLientApp.csproj|solutionrelative:clientapp\\view\\pages\\menues\\userpagemenu.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{42B17DAD-7312-4BC0-8965-C29E7A8BB227}|CLientApp\\CLientApp.csproj|c:\\users\\denoos\\source\\repos\\denoos\\kurs\\kurssolution\\clientapp\\view\\pages\\menues\\userpagemenu.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{42B17DAD-7312-4BC0-8965-C29E7A8BB227}|CLientApp\\CLientApp.csproj|solutionrelative:clientapp\\view\\pages\\menues\\userpagemenu.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{42B17DAD-7312-4BC0-8965-C29E7A8BB227}|CLientApp\\CLientApp.csproj|c:\\users\\denoos\\source\\repos\\denoos\\kurs\\kurssolution\\clientapp\\view\\pages\\menues\\personpagemenu.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{42B17DAD-7312-4BC0-8965-C29E7A8BB227}|CLientApp\\CLientApp.csproj|solutionrelative:clientapp\\view\\pages\\menues\\personpagemenu.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{42B17DAD-7312-4BC0-8965-C29E7A8BB227}|CLientApp\\CLientApp.csproj|c:\\users\\denoos\\source\\repos\\denoos\\kurs\\kurssolution\\clientapp\\view\\pages\\forms\\userformpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{42B17DAD-7312-4BC0-8965-C29E7A8BB227}|CLientApp\\CLientApp.csproj|solutionrelative:clientapp\\view\\pages\\forms\\userformpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{42B17DAD-7312-4BC0-8965-C29E7A8BB227}|CLientApp\\CLientApp.csproj|c:\\users\\denoos\\source\\repos\\denoos\\kurs\\kurssolution\\clientapp\\view\\pages\\forms\\personformpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{42B17DAD-7312-4BC0-8965-C29E7A8BB227}|CLientApp\\CLientApp.csproj|solutionrelative:clientapp\\view\\pages\\forms\\personformpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -18,7 +30,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Bookmark",
@@ -26,27 +38,66 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "UserFormPage.xaml",
-              "DocumentMoniker": "C:\\Users\\Denoos\\source\\repos\\Denoos\\Kurs\\KursSolution\\CLientApp\\View\\Pages\\Forms\\UserFormPage.xaml",
-              "RelativeDocumentMoniker": "CLientApp\\View\\Pages\\Forms\\UserFormPage.xaml",
-              "ToolTip": "C:\\Users\\Denoos\\source\\repos\\Denoos\\Kurs\\KursSolution\\CLientApp\\View\\Pages\\Forms\\UserFormPage.xaml",
-              "RelativeToolTip": "CLientApp\\View\\Pages\\Forms\\UserFormPage.xaml",
+              "DocumentIndex": 1,
+              "Title": "UserPageMenu.xaml",
+              "DocumentMoniker": "C:\\Users\\Denoos\\source\\repos\\Denoos\\Kurs\\KursSolution\\CLientApp\\View\\Pages\\Menues\\UserPageMenu.xaml",
+              "RelativeDocumentMoniker": "CLientApp\\View\\Pages\\Menues\\UserPageMenu.xaml",
+              "ToolTip": "C:\\Users\\Denoos\\source\\repos\\Denoos\\Kurs\\KursSolution\\CLientApp\\View\\Pages\\Menues\\UserPageMenu.xaml",
+              "RelativeToolTip": "CLientApp\\View\\Pages\\Menues\\UserPageMenu.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-05-14T10:07:35.995Z",
+              "WhenOpened": "2025-05-14T10:19:36.066Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
+              "Title": "PersonPageMenu.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\Denoos\\source\\repos\\Denoos\\Kurs\\KursSolution\\CLientApp\\View\\Pages\\Menues\\PersonPageMenu.xaml.cs",
+              "RelativeDocumentMoniker": "CLientApp\\View\\Pages\\Menues\\PersonPageMenu.xaml.cs",
+              "ToolTip": "C:\\Users\\Denoos\\source\\repos\\Denoos\\Kurs\\KursSolution\\CLientApp\\View\\Pages\\Menues\\PersonPageMenu.xaml.cs",
+              "RelativeToolTip": "CLientApp\\View\\Pages\\Menues\\PersonPageMenu.xaml.cs",
+              "ViewState": "AgIAAIwAAAAAAAAAAADwv6gAAAAlAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-14T10:18:25.396Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
               "Title": "UserPageMenu.xaml.cs",
               "DocumentMoniker": "C:\\Users\\Denoos\\source\\repos\\Denoos\\Kurs\\KursSolution\\CLientApp\\View\\Pages\\Menues\\UserPageMenu.xaml.cs",
               "RelativeDocumentMoniker": "CLientApp\\View\\Pages\\Menues\\UserPageMenu.xaml.cs",
               "ToolTip": "C:\\Users\\Denoos\\source\\repos\\Denoos\\Kurs\\KursSolution\\CLientApp\\View\\Pages\\Menues\\UserPageMenu.xaml.cs",
               "RelativeToolTip": "CLientApp\\View\\Pages\\Menues\\UserPageMenu.xaml.cs",
-              "ViewState": "AgIAAJMAAAAAAAAAAAAiwJ8AAAAqAAAAAAAAAA==",
+              "ViewState": "AgIAAFUAAAAAAAAAAAAwwGYAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-14T09:46:15.757Z",
+              "WhenOpened": "2025-05-14T10:18:15.407Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "PersonFormPage.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\Denoos\\source\\repos\\Denoos\\Kurs\\KursSolution\\CLientApp\\View\\Pages\\Forms\\PersonFormPage.xaml.cs",
+              "RelativeDocumentMoniker": "CLientApp\\View\\Pages\\Forms\\PersonFormPage.xaml.cs",
+              "ToolTip": "C:\\Users\\Denoos\\source\\repos\\Denoos\\Kurs\\KursSolution\\CLientApp\\View\\Pages\\Forms\\PersonFormPage.xaml.cs",
+              "RelativeToolTip": "CLientApp\\View\\Pages\\Forms\\PersonFormPage.xaml.cs",
+              "ViewState": "AgIAACcAAAAAAAAAAAA5wAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-14T10:16:14.783Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "UserFormPage.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\Denoos\\source\\repos\\Denoos\\Kurs\\KursSolution\\CLientApp\\View\\Pages\\Forms\\UserFormPage.xaml.cs",
+              "RelativeDocumentMoniker": "CLientApp\\View\\Pages\\Forms\\UserFormPage.xaml.cs",
+              "ToolTip": "C:\\Users\\Denoos\\source\\repos\\Denoos\\Kurs\\KursSolution\\CLientApp\\View\\Pages\\Forms\\UserFormPage.xaml.cs",
+              "RelativeToolTip": "CLientApp\\View\\Pages\\Forms\\UserFormPage.xaml.cs",
+              "ViewState": "AgIAADAAAAAAAAAAAAAlwDwAAAAkAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-14T10:06:11.711Z",
               "EditorCaption": ""
             }
           ]

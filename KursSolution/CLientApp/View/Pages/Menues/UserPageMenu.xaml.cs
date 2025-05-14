@@ -45,7 +45,7 @@ namespace CLientApp.View.Pages.Menues
         public UserPageMenu(MainWindow window)
            => BaseStart(window);
 
-        private async Task BaseStart(MainWindow window)
+        private async void BaseStart(MainWindow window)
         {
             InitializeComponent();
             _window = window;
@@ -53,6 +53,7 @@ namespace CLientApp.View.Pages.Menues
             DataContext = this;
             Thread.Sleep(300);
             FirstSort = [.. await _db.GetAllRoles()];
+            Thread.Sleep(300);
         }
 
         private void NavigationButtonClicked(object sender, RoutedEventArgs e)
@@ -98,7 +99,7 @@ namespace CLientApp.View.Pages.Menues
         {
             var snd = (ComboBox)sender;
             var item = (ComboBoxItem)snd.SelectedItem;
-            Sorting = item.ContentStringFormat;
+            Sorting = item.Content.ToString().ToLower();
         }
 
         private void Signal([CallerMemberName] string? prop = null)
@@ -140,9 +141,9 @@ namespace CLientApp.View.Pages.Menues
             if (!string.IsNullOrEmpty(sorting))
                 list = sorting switch
                 {
-                    "По логину" => [.. list.OrderBy(i => i.Login)],
-                    "По паролю" => [.. list.OrderBy(i => i.Password)],
-                    "По роли" => [.. list.OrderBy(i => i.IdRole)],
+                    "по логину" => [.. list.OrderBy(i => i.Login)],
+                    "по паролю" => [.. list.OrderBy(i => i.Password)],
+                    "по роли" => [.. list.OrderBy(i => i.IdRole)],
                     _ => [.. list.OrderBy(i => i.Id)],
                 };
 
