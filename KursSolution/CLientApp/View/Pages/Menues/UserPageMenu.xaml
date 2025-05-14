@@ -8,6 +8,10 @@
       Background="White"
       Title="Пользователи">
 
+    <Page.Resources>
+        <CollectionViewSource x:Key="First" Source="{Binding Path=FirstSort}" />
+    </Page.Resources>
+
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
@@ -41,21 +45,25 @@
             <!-- Выпадающие списки для фильтрации -->
             <StackPanel Orientation="Horizontal" Height="30" Margin="25">
                 <TextBlock Width="Auto" Foreground="White" FontSize="24" Text="Блок фильтрации:" Margin="10, 0" />
-                <ComboBox  x:Name="ComboFilter_Condition" ItemsSource="{Binding FirstSort}" SelectionChanged="Filter_Changed" Width="220" Margin="10,0" DisplayMemberPath="Title" IsSynchronizedWithCurrentItem="True" DockPanel.Dock="Top"/>
+                <ComboBox  x:Name="ComboFilter_Condition" SelectionChanged="Filter_Changed" Width="220" Margin="10,0" DisplayMemberPath="Ttle" IsSynchronizedWithCurrentItem="True" DockPanel.Dock="Top">
+                    <ComboBox.ItemsSource>
+                        <CompositeCollection>
+                            <ComboBoxItem Content="Не выбрано" />
+                            <CollectionContainer Collection="{Binding Source={StaticResource First}}" />
+                        </CompositeCollection>
+                    </ComboBox.ItemsSource>
+                </ComboBox>
             </StackPanel>
 
             <ListView ItemsSource="{Binding SortedList}" SelectedItem="{Binding SelectedItem}" MinHeight="100" Height="800" Margin="10">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <StackPanel Orientation="Horizontal" Margin="5">
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="{Binding Login}" FontWeight="Bold" FontSize="14"/>
-                                <TextBlock Text="{Binding Password}" FontWeight="Bold" FontSize="14"/>
-                                <TextBlock Text="{Binding IdRoleNavigation.Title}" FontWeight="Bold" FontSize="14"/>
-                            </StackPanel>
-                        </StackPanel>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn DisplayMemberBinding="{Binding Login}" Header="Логин" />
+                        <GridViewColumn DisplayMemberBinding="{Binding Password}" Header="Пароль (закодирован)" />
+                        <GridViewColumn DisplayMemberBinding="{Binding IdRoleNavigation.Ttle}" Header="Роль" />
+                    </GridView>
+                </ListView.View>
+                
                 <ListView.ContextMenu>
                     <ContextMenu>
                         <MenuItem Header="Добавить" Click="Add_Click"/>
@@ -63,8 +71,8 @@
                         <MenuItem Header="Редактировать" Click="Edit_Click"/>
                         <Separator/>
                         <MenuItem Header="Удалить" Click="Delete_Click"/>
-                        <Separator/>
-                        <MenuItem Header="Посмотреть иинформацию" Click="ShowInfo_Click"/>
+                        <!--Separator/-->
+                        <!--MenuItem Header="Посмотреть иинформацию" Click="ShowInfo_Click"/-->
                     </ContextMenu>
                 </ListView.ContextMenu>
             </ListView>

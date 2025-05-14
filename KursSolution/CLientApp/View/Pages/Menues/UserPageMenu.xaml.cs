@@ -43,11 +43,16 @@ namespace CLientApp.View.Pages.Menues
         public string Sorting { get => sorting; set { sorting = value; Signal(); RenderList(Sorting, Search); } }
 
         public UserPageMenu(MainWindow window)
+           => BaseStart(window);
+
+        private async Task BaseStart(MainWindow window)
         {
             InitializeComponent();
             _window = window;
-            RenderList();
+            RenderList(null, null);
             DataContext = this;
+            Thread.Sleep(300);
+            FirstSort = [.. await _db.GetAllRoles()];
         }
 
         private void NavigationButtonClicked(object sender, RoutedEventArgs e)
@@ -103,24 +108,43 @@ namespace CLientApp.View.Pages.Menues
         {
             var list = await _db.GetAllUsers();
 
-            list = [..list.Where(p =>
-            p.Login.Contains(searching) ||
-            p.Password.Contains(searching) ||
-            p.IdRoleNavigation.Ttle.Contains(searching)
-            )];
+            if (!string.IsNullOrEmpty(searching))
+                list = [..list.Where(p =>
+                p.Login.Contains(searching) ||
+                p.Password.Contains(searching) ||
+                p.IdRoleNavigation.Ttle.Contains(searching)
+                )];
 
-            var cond = (ComboBoxItem)ComboFilter_Condition.SelectedValue;
-            list = [.. list.Where(p=>
-            p.IdRoleNavigation.Ttle == cond.Content
-            )];
-
-            list = sorting switch
+            var post = "";
+            if (ComboFilter_Condition is not null && ComboFilter_Condition.SelectedValue is not null)
             {
-                "По логину" => [.. list.OrderBy(i => i.Login)],
-                "По паролю" => [.. list.OrderBy(i => i.Password)],
-                "По роли" => [.. list.OrderBy(i => i.IdRole)],
-                _ => [.. list.OrderBy(i => i.Id)],
-            };
+                var b = "";
+                try
+                {
+                    var a = (ComboBoxItem)ComboFilter_Condition.SelectedValue;
+                    b = a.Content.ToString().ToLower();
+                }
+                catch
+                {
+                    var a = (Role)ComboFilter_Condition.SelectedValue;
+                    b = a.Ttle.ToLower();
+                }
+                post = b;
+            }
+
+            if (post.ToLower() != "не выбрано")
+                list = [.. list.Where(p=>
+                p.IdRoleNavigation.Ttle.ToLower() == post.ToLower()
+                )];
+
+            if (!string.IsNullOrEmpty(sorting))
+                list = sorting switch
+                {
+                    "По логину" => [.. list.OrderBy(i => i.Login)],
+                    "По паролю" => [.. list.OrderBy(i => i.Password)],
+                    "По роли" => [.. list.OrderBy(i => i.IdRole)],
+                    _ => [.. list.OrderBy(i => i.Id)],
+                };
 
             SortedList = [.. list];
         }

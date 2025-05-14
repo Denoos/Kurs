@@ -29,8 +29,8 @@ namespace APIKurs.Controllers.EndPoints
         // GET: api/Users
         [HttpGet("GetPosts")]
         [Authorize(Roles = "AdminHavaetPelmeni")]
-        public async Task<ActionResult<IEnumerable<Post>>> GetPosts()
-            => await db.GetPosts();
+        public async Task<ActionResult<IEnumerable<Role>>> GetPosts()
+            => await db.GetRoles();
 
         // GET: api/Users/5
         [HttpGet("GetUser")]

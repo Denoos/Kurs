@@ -597,6 +597,11 @@ namespace APIKurs.Controllers.BackStage
             return await _context.Users.ToListAsync();
         }
 
+        public async Task<ActionResult<IEnumerable<Role>>> GetRoles()
+        {
+            return await _context.Roles.ToListAsync();
+        }
+
         public async Task<ActionResult<User>> GetUser(int id)
         {
             var user = await _context.Users.FindAsync(id);
@@ -608,6 +613,8 @@ namespace APIKurs.Controllers.BackStage
 
             return user;
         }
+
+
 
         public async Task<IActionResult> PutUser(int id, User user)
         {
