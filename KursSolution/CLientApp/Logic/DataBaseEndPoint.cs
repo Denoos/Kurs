@@ -138,8 +138,10 @@ namespace CLientApp.Logic
             {
                 var resp = await _client.GetAsync($"Posts/GetPosts");
                 var responce = resp.Content.ReadFromJsonAsync<IEnumerable<Post>>(_options);
-                
-                return responce.Result.ToList();
+
+                var result = responce.Result.ToList();
+
+                return result;
             }
             catch (Exception)
             {
@@ -148,14 +150,13 @@ namespace CLientApp.Logic
             }
         }
 
-
         public async Task<List<PpeType>> GetAllPpeTypes()
         {
             try
             {
                 var resp = await _client.GetAsync($"PpeTypes/GetPpeTypes");
                 var responce = resp.Content.ReadFromJsonAsync<IEnumerable<PpeType>>(_options);
-                
+
                 return responce.Result.ToList();
             }
             catch (Exception)
@@ -398,13 +399,13 @@ namespace CLientApp.Logic
 
             try
             {
-                var responce = await _client.PostAsJsonAsync<Model.Condition>($"Conditions/PostCondition", item);
+                var responce = await _client.PostAsJsonAsync<Model.Condition>($"Conditions/PostCondition", item, _options);
                 var list = await GetAllConditions();
 
                 if (responce is null)
                     return result;
 
-                if(list.Contains(item))
+                if (list.Contains(item))
                     result = true;
             }
             catch (Exception)
@@ -424,7 +425,7 @@ namespace CLientApp.Logic
 
             try
             {
-                var responce = await _client.PutAsJsonAsync($"Conditions/PutCondition", item);
+                var responce = await _client.PutAsJsonAsync($"Conditions/PutCondition", item, _options);
                 var list = await GetAllConditions();
 
                 if (responce is null)
@@ -450,7 +451,7 @@ namespace CLientApp.Logic
 
             try
             {
-                var responce = await _client.PostAsJsonAsync<Post>($"Posts/PostPost", item);
+                var responce = await _client.PostAsJsonAsync<Post>($"Posts/PostPost", item, _options);
                 var list = await GetAllPosts();
 
                 if (responce is null)
@@ -476,7 +477,7 @@ namespace CLientApp.Logic
 
             try
             {
-                var responce = await _client.PutAsJsonAsync<Post>($"Posts/PutPost", item);
+                var responce = await _client.PutAsJsonAsync<Post>($"Posts/PutPost", item, _options);
                 var list = await GetAllPosts();
 
                 if (responce is null)
@@ -502,7 +503,7 @@ namespace CLientApp.Logic
 
             try
             {
-                var responce = await _client.PostAsJsonAsync<PpeType>($"PpeTypes/PostPpeType", item);
+                var responce = await _client.PostAsJsonAsync<PpeType>($"PpeTypes/PostPpeType", item, _options);
                 var list = await GetAllPpeTypes();
 
                 if (responce is null)
@@ -528,7 +529,7 @@ namespace CLientApp.Logic
 
             try
             {
-                var responce = await _client.PutAsJsonAsync<PpeType>($"PpeTypes/PutPpeType", item);
+                var responce = await _client.PutAsJsonAsync<PpeType>($"PpeTypes/PutPpeType", item, _options);
                 var list = await GetAllPpeTypes();
 
                 if (responce is null)
@@ -554,7 +555,7 @@ namespace CLientApp.Logic
 
             try
             {
-                var responce = await _client.PostAsJsonAsync<Status>($"Status/PostStatus", item);
+                var responce = await _client.PostAsJsonAsync<Status>($"Status/PostStatus", item, _options);
                 var list = await GetAllStatuses();
 
                 if (responce is null)
@@ -580,7 +581,7 @@ namespace CLientApp.Logic
 
             try
             {
-                var responce = await _client.PutAsJsonAsync<Status>($"Status/PutStatus", item);
+                var responce = await _client.PutAsJsonAsync<Status>($"Status/PutStatus", item, _options);
                 var list = await GetAllStatuses();
 
                 if (responce is null)
@@ -606,7 +607,7 @@ namespace CLientApp.Logic
 
             try
             {
-                var responce = await _client.PostAsJsonAsync<User>($"User/PostUser", item);
+                var responce = await _client.PostAsJsonAsync<User>($"User/PostUser", item, _options);
                 var list = await GetAllUsers();
 
                 if (responce is null)
@@ -641,7 +642,7 @@ namespace CLientApp.Logic
 
             try
             {
-                var responce = await _client.PutAsJsonAsync<User>($"User/PutUser", item);
+                var responce = await _client.PutAsJsonAsync<User>($"User/PutUser", item, _options);
                 var list = await GetAllUsers();
 
                 if (responce is null)
@@ -676,7 +677,7 @@ namespace CLientApp.Logic
 
             try
             {
-                var responce = await _client.PutAsJsonAsync<Ppe>($"Ppes/PutPpe", item);
+                var responce = await _client.PutAsJsonAsync<Ppe>($"Ppes/PutPpe", item, _options);
                 var list = await GetAllPpes();
 
                 if (responce is null)
@@ -702,7 +703,7 @@ namespace CLientApp.Logic
 
             try
             {
-                var responce = await _client.PostAsJsonAsync<Ppe>($"Ppes/PostPpe", item);
+                var responce = await _client.PostAsJsonAsync<Ppe>($"Ppes/PostPpe", item, _options);
                 var list = await GetAllPpes();
 
                 if (responce is null)
@@ -728,8 +729,7 @@ namespace CLientApp.Logic
 
             try
             {
-                var a = JsonSerializer.Serialize(item);
-                var responce = await _client.PostAsJsonAsync($"People/PostPerson", item);
+                var responce = await _client.PostAsJsonAsync($"People/PostPerson", item, _options);
                 var list = await GetAllPersons();
 
                 if (responce is null)
@@ -746,10 +746,6 @@ namespace CLientApp.Logic
             return result;
         }
 
-        //  Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vd3d3LnczLm9yZy8yMDAxL1hNTFNjaGVtYSNpbnRlZ2VyMzIiOiIyMCIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6IjEiLCJleHAiOjE3NDc2NTU4NDksImlzcyI6Ik15QXV0aFNlcnZlciIsImF1ZCI6IllvdXJDbGllbnQifQ.vzscAmsjhmqoAhSMh3RJoj-QVJegAlia9Vo0iZ7IU-0
-
-        //  {"Id":0,"Name":"123123","Surname":"123456","Patronymic":"123789","PostId":1,"StatusId":2,"Post":{"Id":1,"Title":"\\u0421\\u0438\\u0441\\u0442\\u0435\\u043C\\u043D\\u044B\\u0439 \\u0430\\u0434\\u043C\\u0438\\u043D\\u0438\\u0441\\u0442\\u0440\\u0430\\u0442\\u043E\\u0440","People":[]},"Status":{"Id":2,"Title":"\\u0440\\u0430\\u0431\\u043E\\u0442\\u0430\\u0435\\u0442","People":[]},"IdPpes":[]}
-
         public async Task<bool> EditPerson(Person item)
         {
             var result = false;
@@ -759,7 +755,7 @@ namespace CLientApp.Logic
 
             try
             {
-                var responce = await _client.PutAsJsonAsync<Person>($"People/PutPerson", item);
+                var responce = await _client.PutAsJsonAsync($"People/PutPerson", item, _options);
                 var list = await GetAllPersons();
 
                 if (responce is null)

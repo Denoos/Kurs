@@ -41,6 +41,7 @@ namespace CLientApp
             {
                 PropertyNameCaseInsensitive = true,
                 ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.Preserve,
+                DefaultIgnoreCondition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault
             };
 
             DataBaseEndPoint.Instance.SetOptions(options);

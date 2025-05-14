@@ -10,6 +10,8 @@ using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
+//  Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vd3d3LnczLm9yZy8yMDAxL1hNTFNjaGVtYSNpbnRlZ2VyMzIiOiIyMCIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6IjEiLCJleHAiOjE3NDc2NTU4NDksImlzcyI6Ik15QXV0aFNlcnZlciIsImF1ZCI6IllvdXJDbGllbnQifQ.vzscAmsjhmqoAhSMh3RJoj-QVJegAlia9Vo0iZ7IU-0
+
 builder.Services.AddControllers()
         .AddJsonOptions(options =>
         {

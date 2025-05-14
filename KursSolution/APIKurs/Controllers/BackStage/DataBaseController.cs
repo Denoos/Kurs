@@ -235,46 +235,50 @@ namespace APIKurs.Controllers.BackStage
 
         public async Task<IActionResult> PutPerson(int id, Person person)
         {
-            if (id != person.Id)
-            {
-                return BadRequest();
-            }
-
-            _context.Entry(person).State = EntityState.Modified;
-
             try
             {
+                var local = _context.Set<Person>()
+                .Local
+                .FirstOrDefault(entry => entry.Id.Equals(person.Id));
+                if (local is not null)
+                    _context.Entry(local).State = EntityState.Detached;
+                _context.Entry(person).State = EntityState.Modified;
+
+                _context.People.Update(person);
                 await _context.SaveChangesAsync();
+
+                return Ok();
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!PersonExists(id))
-                {
+                if (!ConditionExists(person.Id))
                     return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
             }
-
             return NoContent();
         }
 
         public async Task<ActionResult> PostPerson(Person person)
         {
-            var existingEntity = _context.People.Local.FirstOrDefault(e => e.Id == person.Id);
+            try
+            {
+                var local = _context.Set<Person>()
+                .Local
+                .FirstOrDefault(entry => entry.Id.Equals(person.Id));
+                if (local is not null)
+                    _context.Entry(local).State = EntityState.Detached;
+                _context.Entry(person).State = EntityState.Modified;
 
-            if (existingEntity != null)
-                _context.Entry(existingEntity).CurrentValues.SetValues(person);
-            else
-                _context.People.Update(person);
+                _context.People.Add(person);
+                await _context.SaveChangesAsync();
 
-            _context.People.Add(person);
-            await _context.SaveChangesAsync();
-
-            await Update();
-            return CreatedAtAction("GetPerson", new { id = person.Id }, person);
+                return Ok();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!ConditionExists(person.Id))
+                    return NotFound();
+            }
+            return NoContent();
         }
 
         public async Task<IActionResult> DeletePerson(int id)

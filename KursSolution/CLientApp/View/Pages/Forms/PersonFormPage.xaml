@@ -46,12 +46,30 @@
                          Height="40" 
                          FontSize="16" 
                          Padding="5"/>
+                
+                <TextBlock Text="Должность" FontSize="18" FontWeight="Bold" Foreground="#FF4500" 
+                           HorizontalAlignment="Left" Margin="0,0,0,20"/>
+                <TextBox IsEnabled="False"
+                        Text="{Binding Item.Post.Title}"
+                         Margin="0,0,0,10" 
+                         Height="40" 
+                         FontSize="16" 
+                         Padding="5"/>
+                
+                <TextBlock Text="Статус" FontSize="18" FontWeight="Bold" Foreground="#FF4500" 
+                           HorizontalAlignment="Left" Margin="0,0,0,20"/>
+                <TextBox IsEnabled="False"
+                        Text="{Binding Item.Status.Title}"
+                         Margin="0,0,0,10" 
+                         Height="40" 
+                         FontSize="16" 
+                         Padding="5"/>
 
-                <ComboBox DisplayMemberPath="Title"  IsEnabled="{Binding IsEnabled}" ItemsSource="{Binding Items}" Margin="20, 10" Height="40" SelectedItem="{Binding Item.Post}" />
-                <ComboBox DisplayMemberPath="Title"  IsEnabled="{Binding IsEnabled}" ItemsSource="{Binding ItemsSecond}" Margin="20, 10" Height="40" SelectedItem="{Binding Item.Status}" />
+                <ComboBox x:Name="Postus" DisplayMemberPath="Title" IsEnabled="{Binding IsEnabled}" ItemsSource="{Binding Items}" Margin="20, 10" Height="40" SelectedItem="{Binding Item.Post, Mode=TwoWay}" />
+                <ComboBox x:Name="Statusus" DisplayMemberPath="Title" IsEnabled="{Binding IsEnabled}" ItemsSource="{Binding ItemsSecond}" Margin="20, 10" Height="40" SelectedItem="{Binding Item.Status, Mode=TwoWay}" />
 
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,10">
-                    <Button Content="Сохранить" IsEnabled="{ Binding IsEnabled}"
+                    <Button Content="Сохранить" IsEnabled="{Binding IsEnabled}"
                             FontSize="18"
                             Width="200" 
                             Height="40" 

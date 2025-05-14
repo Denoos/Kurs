@@ -57,6 +57,12 @@ namespace CLientApp.View.Pages.Forms
             }
             else Item = new();
             DataContext = this;
+
+            if (Item.Post is not null)
+                Postus.SelectedValue = Item.Post;
+            if (Item.Status is not null)
+                Statusus.SelectedValue = Item.Status;
+            Signal();
         }
 
         private async Task GetSortElements()
