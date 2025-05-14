@@ -393,39 +393,53 @@ namespace APIKurs.Controllers.BackStage
 
         public async Task<IActionResult> PutPpe(int id, Ppe ppe)
         {
-            if (id != ppe.Id)
-            {
-                return BadRequest();
-            }
-
-            _context.Entry(ppe).State = EntityState.Modified;
-
             try
             {
+                var local = _context.Set<Ppe>()
+                .Local
+                .FirstOrDefault(entry => entry.Id.Equals(ppe.Id));
+                if (local is not null)
+                    _context.Entry(local).State = EntityState.Detached;
+                _context.Entry(ppe).State = EntityState.Modified;
+
+                _context.Ppes.Update(ppe);
                 await _context.SaveChangesAsync();
+
+                return Ok();
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!PpeExists(id))
-                {
+                if (!ConditionExists(ppe.Id))
                     return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
             }
-
             return NoContent();
         }
 
-        public async Task<ActionResult<Ppe>> PostPpe(Ppe ppe)
-        {
-            _context.Ppes.Add(ppe);
-            await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetPpe", new { id = ppe.Id }, ppe);
+        public async Task<ActionResult> PostPpe(Ppe ppe)
+        {
+            try
+            {
+                var local = _context.Set<Ppe>()
+                .Local
+                .FirstOrDefault(entry => entry.Id.Equals(ppe.Id));
+                if (local is not null)
+                    _context.Entry(local).State = EntityState.Detached;
+                _context.Entry(ppe).State = EntityState.Modified;
+
+                _context.Ppes.Add(ppe);
+                _context.SaveChangesAsync();
+
+                return Ok();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!ConditionExists(ppe.Id))
+                    return NotFound();
+            }
+            return NoContent();
         }
+
 
         public async Task<IActionResult> DeletePpe(int id)
         {

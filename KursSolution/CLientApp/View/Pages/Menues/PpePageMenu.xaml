@@ -7,6 +7,11 @@
       Background="White"
       Title="Главная страница">
 
+    <Page.Resources>
+        <CollectionViewSource x:Key="Conditions" Source="{Binding Path=Conditions}" />
+        <CollectionViewSource x:Key="Types" Source="{Binding Path=Types}" />
+    </Page.Resources>
+
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
@@ -42,29 +47,37 @@
             <!-- Выпадающие списки для фильтрации -->
             <StackPanel Orientation="Horizontal" Height="30" Margin="25">
                 <TextBlock Width="Auto" Foreground="White" FontSize="24" Text="Блок фильтрации:" Margin="10, 0" />
-                <ComboBox  x:Name="ComboFilter_Condition" ItemsSource="{Binding Conditions}" SelectionChanged="Filter_Changed" Width="220" Margin="10,0" DisplayMemberPath="Title" IsSynchronizedWithCurrentItem="True" DockPanel.Dock="Top"/>
-                <ComboBox x:Name="ComboFilter_Type" ItemsSource="{Binding Types}" SelectionChanged="Filter_Changed" Width="220" Margin="10,0"  DisplayMemberPath="Title" IsSynchronizedWithCurrentItem="True" DockPanel.Dock="Top"/>
+                <ComboBox  x:Name="ComboFilter_Condition" SelectionChanged="Filter_Changed" Width="220" Margin="10,0" DisplayMemberPath="Title" IsSynchronizedWithCurrentItem="True" DockPanel.Dock="Top">
+                    <ComboBox.ItemsSource>
+                        <CompositeCollection>
+                            <ComboBoxItem Content="Не выбрано" />
+                            <CollectionContainer Collection="{Binding Source={StaticResource Conditions}}" />
+                        </CompositeCollection>
+                    </ComboBox.ItemsSource>
+                </ComboBox>
+
+                <ComboBox x:Name="ComboFilter_Type" SelectionChanged="Filter_Changed" Width="220" Margin="10,0"  DisplayMemberPath="Title" IsSynchronizedWithCurrentItem="True" DockPanel.Dock="Top">
+                    <ComboBox.ItemsSource>
+                        <CompositeCollection>
+                            <ComboBoxItem Content="Не выбрано" />
+                            <CollectionContainer Collection="{Binding Source={StaticResource Types}}" />
+                        </CompositeCollection>
+                    </ComboBox.ItemsSource>
+                </ComboBox>
             </StackPanel>
 
             <ListView ItemsSource="{Binding SortedList}" SelectedItem="{Binding SelectedPpe}" MinHeight="100" Height="800" Margin="10">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <StackPanel Orientation="Horizontal" Margin="5">
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="{Binding Title}" FontWeight="Bold" FontSize="14"/>
-                                <TextBlock Text="{Binding InventoryNumber}" FontStyle="Italic"/>
-                            </StackPanel>
-                            <StackPanel Orientation="Vertical">
-                                <TextBlock Text="{Binding Type.Name}" />
-                                <TextBlock Text="{Binding Condition.Name}" />
-                            </StackPanel>
-                            <StackPanel Orientation="Vertical">
-                                <TextBlock Text="{Binding DateGet, StringFormat='Получено: {0:dd.MM.yyyy}'}" />
-                                <TextBlock Text="{Binding DateEnd, StringFormat='Срок действия: {0:dd.MM.yyyy}'}" />
-                            </StackPanel>
-                        </StackPanel>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn DisplayMemberBinding="{Binding Title}" Header="Название" />
+                        <GridViewColumn DisplayMemberBinding="{Binding InventoryNumber}" Header="Инвентарный номер" />
+                        <GridViewColumn DisplayMemberBinding="{Binding Type.Title}" Header="Тип" />
+                        <GridViewColumn DisplayMemberBinding="{Binding Condition.Title}" Header="Состояние" />
+                        <GridViewColumn DisplayMemberBinding="{Binding DateGet, StringFormat='Получено: {0:dd.MM.yyyy}'}" Header="Дата получения" />
+                        <GridViewColumn DisplayMemberBinding="{Binding DateEnd, StringFormat='Срок действия: {0:dd.MM.yyyy}'}" Header="Дата окончания" />
+                    </GridView>
+                </ListView.View>
+                
                 <ListView.ContextMenu>
                     <ContextMenu>
                         <MenuItem Header="Добавить" Click="Add_Click"/>
@@ -72,8 +85,8 @@
                         <MenuItem Header="Редактировать" Click="Edit_Click"/>
                         <Separator/>
                         <MenuItem Header="Удалить" Click="Delete_Click"/>
-                        <Separator/>
-                        <MenuItem Header="Посмотреть иинформацию" Click="ShowInfo_Click"/>
+                        <!--Separator/-->
+                        <!--MenuItem Header="Посмотреть иинформацию" Click="ShowInfo_Click"/-->
                     </ContextMenu>
                 </ListView.ContextMenu>
             </ListView>

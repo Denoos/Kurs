@@ -46,7 +46,7 @@ namespace APIKurs.Controllers.EndPoints
         // POST: api/Ppes
         [HttpPost("PostPpe")]
         [Authorize(Roles = "1,AdminHavaetPelmeni")]
-        public async Task<ActionResult<Ppe>> PostPpe(Ppe condition)
+        public async Task<ActionResult> PostPpe(Ppe condition)
             => await db.PostPpe(condition);
 
         // DELETE: api/Ppes/5

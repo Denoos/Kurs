@@ -678,7 +678,7 @@ namespace CLientApp.Logic
 
             try
             {
-                var responce = await _client.PutAsJsonAsync<Ppe>($"Ppes/PutPpe", item, _options);
+                var responce = await _client.PutAsJsonAsync($"Ppes/PutPpe", item, _options);
                 var list = await GetAllPpes();
 
                 if (responce is null)

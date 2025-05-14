@@ -3,12 +3,12 @@
   "WorkspaceRootPath": "C:\\Users\\Denoos\\source\\repos\\Denoos\\Kurs\\KursSolution\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{42B17DAD-7312-4BC0-8965-C29E7A8BB227}|CLientApp\\CLientApp.csproj|c:\\users\\denoos\\source\\repos\\denoos\\kurs\\kurssolution\\clientapp\\logic\\databaseendpoint.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{42B17DAD-7312-4BC0-8965-C29E7A8BB227}|CLientApp\\CLientApp.csproj|solutionrelative:clientapp\\logic\\databaseendpoint.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{42B17DAD-7312-4BC0-8965-C29E7A8BB227}|CLientApp\\CLientApp.csproj|c:\\users\\denoos\\source\\repos\\denoos\\kurs\\kurssolution\\clientapp\\view\\pages\\menues\\ppepagemenu.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{42B17DAD-7312-4BC0-8965-C29E7A8BB227}|CLientApp\\CLientApp.csproj|solutionrelative:clientapp\\view\\pages\\menues\\ppepagemenu.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{42B17DAD-7312-4BC0-8965-C29E7A8BB227}|CLientApp\\CLientApp.csproj|c:\\users\\denoos\\source\\repos\\denoos\\kurs\\kurssolution\\clientapp\\view\\pages\\forms\\userformpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{42B17DAD-7312-4BC0-8965-C29E7A8BB227}|CLientApp\\CLientApp.csproj|solutionrelative:clientapp\\view\\pages\\forms\\userformpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{42B17DAD-7312-4BC0-8965-C29E7A8BB227}|CLientApp\\CLientApp.csproj|c:\\users\\denoos\\source\\repos\\denoos\\kurs\\kurssolution\\clientapp\\view\\pages\\menues\\ppepagemenu.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{42B17DAD-7312-4BC0-8965-C29E7A8BB227}|CLientApp\\CLientApp.csproj|solutionrelative:clientapp\\view\\pages\\menues\\ppepagemenu.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     }
   ],
   "DocumentGroupContainers": [
@@ -18,7 +18,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Bookmark",
@@ -26,28 +26,27 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "DataBaseEndPoint.cs",
-              "DocumentMoniker": "C:\\Users\\Denoos\\source\\repos\\Denoos\\Kurs\\KursSolution\\CLientApp\\Logic\\DataBaseEndPoint.cs",
-              "RelativeDocumentMoniker": "CLientApp\\Logic\\DataBaseEndPoint.cs",
-              "ToolTip": "C:\\Users\\Denoos\\source\\repos\\Denoos\\Kurs\\KursSolution\\CLientApp\\Logic\\DataBaseEndPoint.cs",
-              "RelativeToolTip": "CLientApp\\Logic\\DataBaseEndPoint.cs",
-              "ViewState": "AgIAAEwCAAAAAAAAAAAIwGsCAAANAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-14T11:25:27.866Z",
+              "DocumentIndex": 1,
+              "Title": "PpePageMenu.xaml",
+              "DocumentMoniker": "C:\\Users\\Denoos\\source\\repos\\Denoos\\Kurs\\KursSolution\\CLientApp\\View\\Pages\\Menues\\PpePageMenu.xaml",
+              "RelativeDocumentMoniker": "CLientApp\\View\\Pages\\Menues\\PpePageMenu.xaml",
+              "ToolTip": "C:\\Users\\Denoos\\source\\repos\\Denoos\\Kurs\\KursSolution\\CLientApp\\View\\Pages\\Menues\\PpePageMenu.xaml",
+              "RelativeToolTip": "CLientApp\\View\\Pages\\Menues\\PpePageMenu.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-05-14T12:01:12.341Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "UserFormPage.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\Denoos\\source\\repos\\Denoos\\Kurs\\KursSolution\\CLientApp\\View\\Pages\\Forms\\UserFormPage.xaml.cs",
-              "RelativeDocumentMoniker": "CLientApp\\View\\Pages\\Forms\\UserFormPage.xaml.cs",
-              "ToolTip": "C:\\Users\\Denoos\\source\\repos\\Denoos\\Kurs\\KursSolution\\CLientApp\\View\\Pages\\Forms\\UserFormPage.xaml.cs",
-              "RelativeToolTip": "CLientApp\\View\\Pages\\Forms\\UserFormPage.xaml.cs",
-              "ViewState": "AgIAAEEAAAAAAAAAAAAlwFMAAAAqAAAAAAAAAA==",
+              "DocumentIndex": 0,
+              "Title": "PpePageMenu.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\Denoos\\source\\repos\\Denoos\\Kurs\\KursSolution\\CLientApp\\View\\Pages\\Menues\\PpePageMenu.xaml.cs",
+              "RelativeDocumentMoniker": "CLientApp\\View\\Pages\\Menues\\PpePageMenu.xaml.cs",
+              "ToolTip": "C:\\Users\\Denoos\\source\\repos\\Denoos\\Kurs\\KursSolution\\CLientApp\\View\\Pages\\Menues\\PpePageMenu.xaml.cs",
+              "RelativeToolTip": "CLientApp\\View\\Pages\\Menues\\PpePageMenu.xaml.cs",
+              "ViewState": "AgIAAGwAAAAAAAAAAAArwH0AAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-14T10:06:11.711Z",
+              "WhenOpened": "2025-05-14T11:50:58.955Z",
               "EditorCaption": ""
             }
           ]

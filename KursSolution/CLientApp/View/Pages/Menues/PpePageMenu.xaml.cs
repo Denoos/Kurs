@@ -52,7 +52,9 @@ namespace CLientApp.View.Pages.Menues
             _window = window;
             RenderList();
             DataContext = this;
+            Thread.Sleep(300);
             Conditions = [.. await _db.GetAllConditions()];
+            Thread.Sleep(300);
             Types = [.. await _db.GetAllPpeTypes()];
         }
 
@@ -99,7 +101,7 @@ namespace CLientApp.View.Pages.Menues
         {
             var snd = (ComboBox)sender;
             var item = (ComboBoxItem)snd.SelectedItem;
-            Sorting = item.ContentStringFormat;
+            Sorting = item.Content.ToString();
         }
 
         private void Signal([CallerMemberName] string? prop = null)
@@ -109,7 +111,8 @@ namespace CLientApp.View.Pages.Menues
         {
             var list = await _db.GetAllPpes();
 
-            list = [..list.Where(p =>
+            if (!string.IsNullOrEmpty(searching))
+                list = [..list.Where(p =>
                 p.Title.Contains(searching) ||
                 p.InventoryNumber.Contains(searching) ||
                 p.Condition.Title.Contains(searching) ||
@@ -118,25 +121,61 @@ namespace CLientApp.View.Pages.Menues
                 p.DateEnd.ToString().Contains(searching)
                 )];
 
-            if ((Model.Condition)ComboFilter_Condition.SelectedValue is not null)
+            string cond = "";
+            var type = "";
+            if (ComboFilter_Condition is not null && ComboFilter_Condition.SelectedValue is not null)
             {
-                var cond = (Model.Condition)ComboFilter_Condition.SelectedValue;
-                var type = (PpeType)ComboFilter_Type.SelectedValue;
-                list = [.. list.Where(p=>
-                p.Condition.Title == cond.Title ||
-                p.Type.Title == type.Title
-                )];
+                var b = "";
+                try
+                {
+                    var a = (ComboBoxItem)ComboFilter_Condition.SelectedValue;
+                    b = a.Content.ToString().ToLower();
+                }
+                catch
+                {
+                    var a = (Model.Condition)ComboFilter_Condition.SelectedValue;
+                    b = a.Title.ToLower();
+                }
+                cond = b;
             }
 
-            list = sorting switch
+            if (ComboFilter_Type is not null && ComboFilter_Type.SelectedValue is not null)
             {
-                "По названию" => [.. list.OrderBy(i => i.Title)],
-                "По дате получения" => [.. list.OrderBy(i => i.DateGet)],
-                "По дате окончания" => [.. list.OrderBy(i => i.DateEnd)],
-                "По типу" => [.. list.OrderBy(i => i.TypeId)],
-                "По состоянию" => [.. list.OrderBy(i => i.ConditionId)],
-                _ => [.. list.OrderBy(i => i.InventoryNumber)],
-            };
+                var b = "";
+                try
+                {
+                    var a = (ComboBoxItem)ComboFilter_Type.SelectedValue;
+                    b = a.Content.ToString().ToLower();
+                }
+                catch
+                {
+                    var a = (PpeType)ComboFilter_Type.SelectedValue;
+                    b = a.Title.ToLower();
+                }
+                type = b;
+            }
+
+            if (type.ToLower() != "не выбрано")
+                list = [.. list.Where(p=>
+                p.Type.Title.ToLower() == type.ToLower()
+                )];
+            
+            if (cond.ToLower() != "не выбрано")
+                list = [.. list.Where(p=>
+                p.Condition.Title.ToLower() == cond.ToLower()
+                )];
+
+
+            if (!string.IsNullOrEmpty(sorting))
+                list = sorting switch
+                {
+                    "По названию" => [.. list.OrderBy(i => i.Title)],
+                    "По дате получения" => [.. list.OrderBy(i => i.DateGet)],
+                    "По дате окончания" => [.. list.OrderBy(i => i.DateEnd)],
+                    "По типу" => [.. list.OrderBy(i => i.TypeId)],
+                    "По состоянию" => [.. list.OrderBy(i => i.ConditionId)],
+                    _ => [.. list.OrderBy(i => i.InventoryNumber)],
+                };
 
             SortedList = [.. list];
         }
