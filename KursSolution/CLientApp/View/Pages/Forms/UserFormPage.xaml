@@ -45,8 +45,7 @@
                          FontSize="16" 
                          Padding="5"/>
 
-                <ComboBox DisplayMemberPath="Title"  IsEnabled="{Binding IsEnabled}" ItemsSource="{Binding Items}" Margin="20, 10" Height="40" SelectedItem="{Binding Item.IdRoleNavigation, Mode=TwoWay}" />
-
+                <ComboBox DisplayMemberPath="Ttle" x:Name="Roleus" IsEnabled="{Binding IsEnabled}" ItemsSource="{Binding Items}" Margin="20, 10" Height="40" SelectedItem="{Binding Item.IdRoleNavigation, Mode=TwoWay}" />
 
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,10">
                     <Button IsEnabled="{Binding IsEnabled}" Content="Сохранить" 

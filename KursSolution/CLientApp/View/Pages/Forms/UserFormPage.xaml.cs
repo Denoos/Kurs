@@ -36,7 +36,7 @@ namespace CLientApp.View.Pages.Forms
         public event PropertyChangedEventHandler? PropertyChanged;
 
         public User Item { get => item; set { item = value; Signal(); } }
-        private List<Role> Items { get => roles; set { roles = value; Signal(); } }
+        public List<Role> Items { get => roles; set { roles = value; Signal(); } }
         public bool IsEnabled { get => isEnabled; set { isEnabled = value; Signal(); } }
 
         private void Signal([CallerMemberName] string? prop = null)
@@ -46,8 +46,8 @@ namespace CLientApp.View.Pages.Forms
         {
             InitializeComponent();
             _mainWindow = window;
-            GetElements();
             IsEnabled = IsEn;
+            GetElements();
             if (item is not null)
             {
                 isAdd = false;
@@ -55,10 +55,16 @@ namespace CLientApp.View.Pages.Forms
             }
             else Item = new();
             DataContext = this;
+
+            if (Item.IdRoleNavigation is not null)
+                Roleus.SelectedValue = Item.IdRoleNavigation;
+            else Item.IdRoleNavigation = new Role() { Ttle = "Не выбрано!"};
+
+            Signal();
         }
 
         private async Task GetElements()
-            => Items = await _db.GetAllRoles();
+            => Items = [.. await _db.GetAllRoles()];
 
         private async void Save_Click(object sender, RoutedEventArgs e)
         {

@@ -230,7 +230,9 @@ namespace CLientApp.Logic
                 var resp = await _client.GetAsync($"User/GetPosts");
                 var responce = resp.Content.ReadFromJsonAsync<IEnumerable<Role>>(_options);
 
-                return responce.Result.ToList();
+                var result = responce.Result.ToList();
+
+                return result;
             }
             catch (Exception ex)
             {
