@@ -115,7 +115,7 @@ namespace CLientApp.View.Pages.Menues
                 MessageBox.Show("Пожалуйста выберите должность!", "Внимание!");
             else
             {
-                if (MessageBox.Show("Вы действительно хотите удалить должность?", "Удаление!", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                if (MessageBox.Show("Вы действительно хотите удалить должность? Все сотрудники с такой должностю также удалятся!", "Удаление!", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
                     _db.DeletePost(SelectedItem);
                 Thread.Sleep(200);
                 RenderList(Search);

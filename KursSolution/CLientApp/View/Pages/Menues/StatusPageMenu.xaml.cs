@@ -116,7 +116,7 @@ namespace CLientApp.View.Pages.Menues
                 MessageBox.Show("Пожалуйста выберите статус!", "Внимание!");
             else
             {
-                if (MessageBox.Show("Вы действительно хотите удалить статус?", "Удаление!", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                if (MessageBox.Show("Вы действительно хотите удалить статус? Все сотрудники с таким статусом также удалятся!", "Удаление!", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
                     _db.DeleteStatus(SelectedItem);
                 Thread.Sleep(200);
                 RenderList(Search);

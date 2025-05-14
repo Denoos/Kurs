@@ -127,7 +127,7 @@ namespace CLientApp.View.Pages.Menues
         {
             if (SelectedItem is not null)
                 _window.SetPage(new PpeTypeFormPage(_window, false, SelectedItem));
-            else MessageBox.Show("Пожалуйста выберите тип СИЗ!", "Внимание!");
+            else MessageBox.Show("Пожалуйста выберите тип СИЗ! Все СИЗ с таким типом также удалятся!", "Внимание!");
         }
     }
 }

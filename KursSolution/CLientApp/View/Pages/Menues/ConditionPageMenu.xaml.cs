@@ -115,7 +115,7 @@ namespace CLientApp.View.Pages.Menues
                 MessageBox.Show("Пожалуйста выберите состояние!", "Внимание!");
             else
             {
-                if (MessageBox.Show("Вы действительно хотите удалить состояние?", "Удаление!", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                if (MessageBox.Show("Вы действительно хотите удалить состояние? Все СИЗ с таким состоянием также удалятся!", "Удаление!", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
                     _db.DeleteCondition(SelectedItem);
                 Thread.Sleep(200);
                 RenderList(Search);
