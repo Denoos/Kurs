@@ -3,13 +3,16 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:CLientApp.View.Convertors" 
       mc:Ignorable="d" 
       Background="White"
       Title="Главная страница">
 
     <Page.Resources>
+        <local:DateToBackGroundConverter x:Key="ExpirationDateConverter"/>
         <CollectionViewSource x:Key="Conditions" Source="{Binding Path=Conditions}" />
         <CollectionViewSource x:Key="Types" Source="{Binding Path=Types}" />
+        <CollectionViewSource x:Key="Persons" Source="{Binding Path=Persons}" />
     </Page.Resources>
 
     <Grid>
@@ -41,6 +44,7 @@
                     <ComboBoxItem Content="По дате окончания" />
                     <ComboBoxItem Content="По типу" />
                     <ComboBoxItem Content="По состоянию" />
+                    <ComboBoxItem Content="По сотруднику" />
                 </ComboBox>
             </StackPanel>
 
@@ -64,19 +68,39 @@
                         </CompositeCollection>
                     </ComboBox.ItemsSource>
                 </ComboBox>
+
+                <ComboBox x:Name="ComboFilter_Person" SelectionChanged="Filter_Changed" Width="220" Margin="10,0"  DisplayMemberPath="Surname" IsSynchronizedWithCurrentItem="True" DockPanel.Dock="Top">
+                    <ComboBox.ItemsSource>
+                        <CompositeCollection>
+                            <ComboBoxItem Content="Не выбрано" />
+                            <CollectionContainer Collection="{Binding Source={StaticResource Persons}}" />
+                        </CompositeCollection>
+                    </ComboBox.ItemsSource>
+                </ComboBox>
             </StackPanel>
 
             <ListView ItemsSource="{Binding SortedList}" SelectedItem="{Binding SelectedPpe}" MinHeight="100" Height="800" Margin="10">
-                <ListView.View>
-                    <GridView>
-                        <GridViewColumn DisplayMemberBinding="{Binding Title}" Header="Название" />
-                        <GridViewColumn DisplayMemberBinding="{Binding InventoryNumber}" Header="Инвентарный номер" />
-                        <GridViewColumn DisplayMemberBinding="{Binding Type.Title}" Header="Тип" />
-                        <GridViewColumn DisplayMemberBinding="{Binding Condition.Title}" Header="Состояние" />
-                        <GridViewColumn DisplayMemberBinding="{Binding DateGet, StringFormat='Получено: {0:dd.MM.yyyy}'}" Header="Дата получения" />
-                        <GridViewColumn DisplayMemberBinding="{Binding DateEnd, StringFormat='Срок действия: {0:dd.MM.yyyy}'}" Header="Дата окончания" />
-                    </GridView>
-                </ListView.View>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <StackPanel Width="400" Orientation="Vertical">
+                                <TextBlock Text="{Binding Title}"/>
+                                <TextBlock Text="{Binding InventoryNumber}"/>
+                                <TextBlock Text="{Binding PeopleId}"/>
+                            </StackPanel>
+                                
+                            <StackPanel Width="250" Orientation="Vertical">
+                                <TextBlock Text="{Binding Type.Title}"/>
+                                <TextBlock Text="{Binding Condition.Title}"/>
+                            </StackPanel> 
+                            
+                            <StackPanel Width="250" Orientation="Vertical">
+                                <TextBlock Text="{Binding DateGet}" Background="{Binding DateGet}"/>
+                                <TextBlock Text="{Binding DateEnd}" Background="{Binding DateEnd, Converter={StaticResource ExpirationDateConverter}}"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
                 
                 <ListView.ContextMenu>
                     <ContextMenu>

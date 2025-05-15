@@ -21,5 +21,5 @@ public partial class Person
 
     public virtual Status Status { get; set; } = null!;
 
-    public virtual ICollection<Ppe> IdPpes { get; set; } = new List<Ppe>();
+    public virtual string ToString { get => $"{Name} {Surname} {Patronymic}"; } = null!;
 }

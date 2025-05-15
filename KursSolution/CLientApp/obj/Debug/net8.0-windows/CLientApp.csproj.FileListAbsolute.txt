@@ -132,3 +132,4 @@ C:\Users\Denoos\source\repos\Denoos\Kurs\KursSolution\CLientApp\bin\Debug\net8.0
 C:\Users\Denoos\source\repos\Denoos\Kurs\KursSolution\CLientApp\bin\Debug\net8.0-windows\tr\Microsoft.CodeAnalysis.Workspaces.resources.dll
 C:\Users\Denoos\source\repos\Denoos\Kurs\KursSolution\CLientApp\bin\Debug\net8.0-windows\zh-Hans\Microsoft.CodeAnalysis.Workspaces.resources.dll
 C:\Users\Denoos\source\repos\Denoos\Kurs\KursSolution\CLientApp\bin\Debug\net8.0-windows\zh-Hant\Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:\Users\Denoos\source\repos\Denoos\Kurs\KursSolution\CLientApp\obj\Debug\net8.0-windows\GeneratedInternalTypeHelper.g.cs

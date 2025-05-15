@@ -56,13 +56,15 @@
             </StackPanel>
 
             <ListView ItemsSource="{Binding SortedList}" SelectedItem="{Binding SelectedItem}" MinHeight="100" Height="800" Margin="10">
-                <ListView.View>
-                    <GridView>
-                        <GridViewColumn DisplayMemberBinding="{Binding Login}" Header="Логин" />
-                        <GridViewColumn DisplayMemberBinding="{Binding Password}" Header="Пароль (закодирован)" />
-                        <GridViewColumn DisplayMemberBinding="{Binding IdRoleNavigation.Ttle}" Header="Роль" />
-                    </GridView>
-                </ListView.View>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel>
+                            <TextBlock Text="{Binding Login}"/>
+                            <TextBlock Text="{Binding Password}"/>
+                            <TextBlock Text="{Binding IdRoleNavigation.Ttle}"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
                 
                 <ListView.ContextMenu>
                     <ContextMenu>

@@ -19,9 +19,9 @@ public partial class Ppe
 
     public DateOnly DateEnd { get; set; }
 
+    public int? PeopleId { get; set; }
+
     public virtual Condition Condition { get; set; } = null!;
 
     public virtual PpeType Type { get; set; } = null!;
-
-    public virtual ICollection<Person> IdPeople { get; set; } = new List<Person>();
 }

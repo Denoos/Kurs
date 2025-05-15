@@ -95,30 +95,6 @@ public partial class QwertyContext : DbContext
             entity.HasOne(d => d.Status).WithMany(p => p.People)
                 .HasForeignKey(d => d.StatusId)
                 .HasConstraintName("FK_people_status_id");
-
-            entity.HasMany(d => d.IdPpes).WithMany(p => p.IdPeople)
-                .UsingEntity<Dictionary<string, object>>(
-                    "CrossPpePerson",
-                    r => r.HasOne<Ppe>().WithMany()
-                        .HasForeignKey("IdPpe")
-                        .HasConstraintName("FK_cross_ppe_people_ppe_id"),
-                    l => l.HasOne<Person>().WithMany()
-                        .HasForeignKey("IdPeople")
-                        .HasConstraintName("FK_cross_ppe_people_people_id"),
-                    j =>
-                    {
-                        j.HasKey("IdPeople", "IdPpe")
-                            .HasName("PRIMARY")
-                            .HasAnnotation("MySql:IndexPrefixLength", new[] { 0, 0 });
-                        j.ToTable("cross_ppe_people");
-                        j.HasIndex(new[] { "IdPpe" }, "FK_cross_ppe_people_ppe_id");
-                        j.IndexerProperty<int>("IdPeople")
-                            .HasColumnType("int(11)")
-                            .HasColumnName("id_people");
-                        j.IndexerProperty<int>("IdPpe")
-                            .HasColumnType("int(11)")
-                            .HasColumnName("id_ppe");
-                    });
         });
 
         modelBuilder.Entity<Post>(entity =>
@@ -162,6 +138,9 @@ public partial class QwertyContext : DbContext
                 .HasMaxLength(255)
                 .HasDefaultValueSql("''")
                 .HasColumnName("inventory_number");
+            entity.Property(e => e.PeopleId)
+                .HasColumnType("int(11)")
+                .HasColumnName("people_id");
             entity.Property(e => e.Title)
                 .HasMaxLength(255)
                 .HasDefaultValueSql("''")

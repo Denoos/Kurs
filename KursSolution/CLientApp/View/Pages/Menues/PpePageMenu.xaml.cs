@@ -40,6 +40,7 @@ namespace CLientApp.View.Pages.Menues
         public ObservableCollection<Ppe> SortedList { get => list; set { list = value; Signal(); } }
         public ObservableCollection<Model.Condition> Conditions { get => conditions; set { conditions = value; Signal(); } }
         public ObservableCollection<PpeType> Types { get => types; set { types = value; Signal(); } }
+        public ObservableCollection<PpeType> Types { get => types; set { types = value; Signal(); } }
         public string Search { get => search; set { search = value; Signal(); RenderList(Sorting, Search); } }
         public string Sorting { get => sorting; set { sorting = value; Signal(); RenderList(Sorting, Search); } }
 
@@ -174,6 +175,7 @@ namespace CLientApp.View.Pages.Menues
                     "По дате окончания" => [.. list.OrderBy(i => i.DateEnd)],
                     "По типу" => [.. list.OrderBy(i => i.TypeId)],
                     "По состоянию" => [.. list.OrderBy(i => i.ConditionId)],
+                    "По сотруднику" => [.. list.OrderBy(i => i.PeopleId)],
                     _ => [.. list.OrderBy(i => i.InventoryNumber)],
                 };
 
