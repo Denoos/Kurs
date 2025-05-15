@@ -122,6 +122,8 @@ public partial class QwertyContext : DbContext
 
             entity.HasIndex(e => e.TypeId, "FK_ppe_ppe_type_id");
 
+            entity.HasIndex(e => e.PeopleId, "people_id").IsUnique();
+
             entity.Property(e => e.Id)
                 .HasColumnType("int(11)")
                 .HasColumnName("id");

@@ -63,6 +63,19 @@
                     <ComboBox x:Name="Typus" MinWidth="300" DisplayMemberPath="Title"  IsEnabled="{Binding IsEnabled}" ItemsSource="{Binding ItemsSecond}" Margin="20, 10" Height="40" SelectedItem="{Binding Item.Type, Mode=TwoWay}" />
                 </StackPanel>
 
+                <TextBlock Text="Ответственный" FontSize="18" FontWeight="Bold" Foreground="#FF4500" 
+                    HorizontalAlignment="Left" Margin="0,0,0,20"/>
+
+                <StackPanel Orientation="Horizontal">
+                    <Label Width="500" IsEnabled="False"
+                         Content="{Binding SelectPerson.AllToString}"
+                         Margin="0,0,0,10" 
+                         Height="40" 
+                         FontSize="16" 
+                         Padding="5"/>
+                    <ComboBox x:Name="Resp" MinWidth="300" IsEnabled="{Binding IsEnabled}" DisplayMemberPath="AllToString" ItemsSource="{Binding ItemsThird}" Margin="20, 10" Height="40" SelectedItem="{Binding SelectPerson}"/>
+                </StackPanel>
+
                 <StackPanel Orientation="Vertical">
                     <StackPanel Margin="30, 5">
                         <TextBlock Text="Дата получения" FontSize="16" FontWeight="Bold" Foreground="#FF4500"/>

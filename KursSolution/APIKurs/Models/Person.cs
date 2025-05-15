@@ -21,5 +21,5 @@ public partial class Person
 
     public virtual Status Status { get; set; } = null!;
 
-    public virtual string ToString { get => $"{Name} {Surname} {Patronymic}"; }
+    public virtual string AllToString { get => $"{Name} {Surname} {Patronymic}"; }
 }

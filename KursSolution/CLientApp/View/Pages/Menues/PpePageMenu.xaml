@@ -69,10 +69,11 @@
                     </ComboBox.ItemsSource>
                 </ComboBox>
 
-                <ComboBox x:Name="ComboFilter_Person" SelectionChanged="Filter_Changed" Width="220" Margin="10,0"  DisplayMemberPath="Surname" IsSynchronizedWithCurrentItem="True" DockPanel.Dock="Top">
+                <ComboBox x:Name="ComboFilter_Person" SelectionChanged="Filter_Changed" Width="220" Margin="10,0"  DisplayMemberPath="AllToString" IsSynchronizedWithCurrentItem="True" DockPanel.Dock="Top">
                     <ComboBox.ItemsSource>
                         <CompositeCollection>
                             <ComboBoxItem Content="Не выбрано" />
+                            <ComboBoxItem Content="На складе" />
                             <CollectionContainer Collection="{Binding Source={StaticResource Persons}}" />
                         </CompositeCollection>
                     </ComboBox.ItemsSource>

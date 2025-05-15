@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Diagnostics.Eventing.Reader;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
@@ -33,6 +34,7 @@ namespace CLientApp.View.Pages.Menues
         private Ppe selectedPpe;
         private ObservableCollection<Ppe> list;
         private ObservableCollection<PpeType> types;
+        private ObservableCollection<Person> persons;
         private ObservableCollection<Model.Condition> conditions;
 
         public event PropertyChangedEventHandler? PropertyChanged;
@@ -40,7 +42,7 @@ namespace CLientApp.View.Pages.Menues
         public ObservableCollection<Ppe> SortedList { get => list; set { list = value; Signal(); } }
         public ObservableCollection<Model.Condition> Conditions { get => conditions; set { conditions = value; Signal(); } }
         public ObservableCollection<PpeType> Types { get => types; set { types = value; Signal(); } }
-        public ObservableCollection<PpeType> Types { get => types; set { types = value; Signal(); } }
+        public ObservableCollection<Person> Persons { get => persons; set { persons = value; Signal(); } }
         public string Search { get => search; set { search = value; Signal(); RenderList(Sorting, Search); } }
         public string Sorting { get => sorting; set { sorting = value; Signal(); RenderList(Sorting, Search); } }
 
@@ -53,10 +55,12 @@ namespace CLientApp.View.Pages.Menues
             _window = window;
             RenderList();
             DataContext = this;
-            Thread.Sleep(300);
+            Thread.Sleep(400);
             Conditions = [.. await _db.GetAllConditions()];
-            Thread.Sleep(300);
+            Thread.Sleep(400);
             Types = [.. await _db.GetAllPpeTypes()];
+            Thread.Sleep(400);
+            Persons = [.. await _db.GetAllPersons()];
         }
 
         private void NavigationButtonClicked(object sender, RoutedEventArgs e)
@@ -124,6 +128,7 @@ namespace CLientApp.View.Pages.Menues
 
             string cond = "";
             var type = "";
+            var pers = "";
             if (ComboFilter_Condition is not null && ComboFilter_Condition.SelectedValue is not null)
             {
                 var b = "";
@@ -156,15 +161,41 @@ namespace CLientApp.View.Pages.Menues
                 type = b;
             }
 
+            if (ComboFilter_Type is not null && ComboFilter_Type.SelectedValue is not null)
+            {
+                var b = "";
+                try
+                {
+                    var a = (ComboBoxItem)ComboFilter_Person.SelectedValue;
+                    b = a.Content.ToString().ToLower();
+                }
+                catch
+                {
+                    var a = (Person)ComboFilter_Person.SelectedValue;
+                    b = a.Id.ToString().ToLower();
+                }
+                pers = b;
+            }
+
             if (type.ToLower() != "не выбрано")
                 list = [.. list.Where(p=>
                 p.Type.Title.ToLower() == type.ToLower()
                 )];
-            
+
             if (cond.ToLower() != "не выбрано")
                 list = [.. list.Where(p=>
                 p.Condition.Title.ToLower() == cond.ToLower()
                 )];
+
+            if (pers.ToLower() != "не выбрано")
+                if (pers.ToLower() == "на складе")
+                    list = [.. list.Where(p=>
+                    p.PeopleId == null
+                    )];
+                else
+                    list = [.. list.Where(p=>
+                    p.PeopleId.ToString().ToLower() == pers.ToLower()
+                    )];
 
 
             if (!string.IsNullOrEmpty(sorting))
@@ -202,7 +233,7 @@ namespace CLientApp.View.Pages.Menues
             {
                 if (MessageBox.Show("Вы действительно хотите удалить СИЗ?", "Удаление!", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
                     _db.DeletePpe(SelectedPpe);
-                Thread.Sleep(500); 
+                Thread.Sleep(500);
                 RenderList(Sorting, Search);
             }
         }

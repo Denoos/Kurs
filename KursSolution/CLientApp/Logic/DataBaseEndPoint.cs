@@ -182,6 +182,14 @@ namespace CLientApp.Logic
             }
         }
 
+        public async Task<Person> GetPerson(int? id)
+        {
+            var a =await GetAllPersons();
+            if (id == null)
+                return new Person();
+            return a.FirstOrDefault(s => s.Id == id);
+        }
+
         public async Task<List<Status>> GetAllStatuses()
         {
             try

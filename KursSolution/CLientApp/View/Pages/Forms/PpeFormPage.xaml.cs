@@ -30,15 +30,21 @@ namespace CLientApp.View.Pages.Forms
         private DataBaseEndPoint _db = DataBaseEndPoint.Instance;
         private Ppe item;
         private bool isEnabled;
+        private Person selectPerson;
+        private string selectPersonText;
         private bool isAdd = true;
         private List<Model.Condition> roles;
         private List<PpeType> itemsSecond;
+        private List<Person> itemsThird;
 
         public event PropertyChangedEventHandler? PropertyChanged;
 
+        public Person SelectPerson { get => selectPerson; set { selectPerson = value; Signal(); } }
+        public string SelectPersonText { get => selectPersonText; set { selectPersonText = value; Signal(); } }
         public Ppe Item { get => item; set { item = value; Signal(); } }
         public List<Model.Condition> Items { get => roles; set { roles = value; Signal(); } }
         public List<PpeType> ItemsSecond { get => itemsSecond; set { itemsSecond = value; Signal(); } }
+        public List<Person> ItemsThird { get => itemsThird; set { itemsThird = value; Signal(); } }
         public bool IsEnabled { get => isEnabled; set { isEnabled = value; Signal(); } }
 
         private void Signal([CallerMemberName] string? prop = null)
@@ -54,10 +60,11 @@ namespace CLientApp.View.Pages.Forms
             {
                 isAdd = false;
                 Item = item;
+                GetSelectedValue();
             }
             else Item = new();
             DataContext = this;
-
+            SelectPersonText = "";
             if (Item.Condition is not null)
                 Conditionus.SelectedValue = Item.Condition;
             else Item.Condition = new Model.Condition() { Title = "Не выбрано!" };
@@ -69,10 +76,14 @@ namespace CLientApp.View.Pages.Forms
             Signal();
         }
 
+        private async Task GetSelectedValue()
+            => SelectPerson = await _db.GetPerson(Item.PeopleId);
+
         private async Task GetItems()
         {
             Items = [.. await _db.GetAllConditions()];
             ItemsSecond = [.. await _db.GetAllPpeTypes()];
+            ItemsThird = [.. await _db.GetAllPersons()];
         }
 
         private async void Save_Click(object sender, RoutedEventArgs e)
@@ -83,6 +94,8 @@ namespace CLientApp.View.Pages.Forms
                 MessageBox.Show("Выберите состояние СИЗ, а также его тип!", "Внимание!");
                 return;
             }
+            Item.PeopleId = ItemsThird.FirstOrDefault(s => s.AllToString == SelectPerson.AllToString).Id;
+
             Item.ConditionId = Item.Condition.Id;
             Item.TypeId = Item.Type.Id;
 
@@ -107,13 +120,13 @@ namespace CLientApp.View.Pages.Forms
         {
             var snd = (DatePicker)sender;
             Item.DateGet = DateOnly.FromDateTime((DateTime)snd.SelectedDate);
-            getDate.Text = Item.DateGet.ToString(); 
+            getDate.Text = Item.DateGet.ToString();
         }
-        
+
         private void EndDateChanged(object sender, SelectionChangedEventArgs e)
         {
             var snd = (DatePicker)sender;
-            Item.DateEnd= DateOnly.FromDateTime((DateTime)snd.SelectedDate);
+            Item.DateEnd = DateOnly.FromDateTime((DateTime)snd.SelectedDate);
             endDate.Text = Item.DateEnd.ToString();
         }
     }
