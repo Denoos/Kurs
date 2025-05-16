@@ -85,19 +85,19 @@
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">
                             <StackPanel Width="400" Orientation="Vertical">
-                                <TextBlock Text="{Binding Title}"/>
-                                <TextBlock Text="{Binding InventoryNumber}"/>
-                                <TextBlock Text="{Binding PeopleId}"/>
+                                <TextBlock FontSize="14" Text="{Binding Title}"/>
+                                <TextBlock FontSize="14" Text="{Binding InventoryNumber}"/>
+                                <TextBlock FontSize="14" Text="{Binding PeopleId}"/>
                             </StackPanel>
                                 
                             <StackPanel Width="250" Orientation="Vertical">
-                                <TextBlock Text="{Binding Type.Title}"/>
-                                <TextBlock Text="{Binding Condition.Title}"/>
+                                <TextBlock FontSize="14" Text="{Binding Type.Title}"/>
+                                <TextBlock FontSize="14" Text="{Binding Condition.Title}"/>
                             </StackPanel> 
                             
                             <StackPanel Width="250" Orientation="Vertical">
-                                <TextBlock Text="{Binding DateGet}" Background="{Binding DateGet}"/>
-                                <TextBlock Text="{Binding DateEnd}" Background="{Binding DateEnd, Converter={StaticResource ExpirationDateConverter}}"/>
+                                <TextBlock FontSize="14" Text="{Binding DateGet}" Background="{Binding DateGet}"/>
+                                <TextBlock FontSize="14" Text="{Binding DateEnd}" Background="{Binding DateEnd, Converter={StaticResource ExpirationDateConverter}}"/>
                             </StackPanel>
                         </StackPanel>
                     </DataTemplate>

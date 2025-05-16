@@ -54,6 +54,7 @@ namespace CLientApp.View.Pages.Menues
             Thread.Sleep(300);
             FirstSort = [.. await _db.GetAllRoles()];
             Thread.Sleep(300);
+            Signal();
         }
 
         private void NavigationButtonClicked(object sender, RoutedEventArgs e)

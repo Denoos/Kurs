@@ -35,25 +35,25 @@ namespace APIKurs.Controllers.EndPoints
 
         // GET: api/PpeTypes/5
         [HttpGet("GetPpeType")]
-        [Authorize(Roles = "0,1,AdminHavaetPelmeni")]
+        [Authorize(Roles = "AdminHavaetPelmeni")]
         public async Task<ActionResult<PpeType>> GetPpeType(int id)
             => await db.GetPpeType(id);
 
         // PUT: api/PpeTypes/5
         [HttpPut("PutPpeType")]
-        [Authorize(Roles = "1,AdminHavaetPelmeni")]
+        [Authorize(Roles = "AdminHavaetPelmeni")]
         public async Task<IActionResult> PutPpeType(PpeType condition)
             => await db.PutPpeType(condition.Id, condition);
 
         // POST: api/PpeTypes
         [HttpPost("PostPpeType")]
-        [Authorize(Roles = "1,AdminHavaetPelmeni")]
+        [Authorize(Roles = "AdminHavaetPelmeni")]
         public async Task<ActionResult<PpeType>> PostPpeType(PpeType condition)
             => await db.PostPpeType(condition);
 
         // DELETE: api/PpeTypes/5
         [HttpDelete("DeletePpeType")]
-        [Authorize(Roles = "1,AdminHavaetPelmeni")]
+        [Authorize(Roles = "AdminHavaetPelmeni")]
         public async Task<IActionResult> DeletePpeType(int id)
             => await db.DeletePpeType(id);
     }

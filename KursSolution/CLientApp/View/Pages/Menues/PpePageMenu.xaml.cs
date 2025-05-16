@@ -61,6 +61,7 @@ namespace CLientApp.View.Pages.Menues
             Types = [.. await _db.GetAllPpeTypes()];
             Thread.Sleep(400);
             Persons = [.. await _db.GetAllPersons()];
+            Signal();
         }
 
         private void NavigationButtonClicked(object sender, RoutedEventArgs e)

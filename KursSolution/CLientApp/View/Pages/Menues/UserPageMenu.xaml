@@ -59,9 +59,9 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <StackPanel>
-                            <TextBlock Text="{Binding Login}"/>
-                            <TextBlock Text="{Binding Password}"/>
-                            <TextBlock Text="{Binding IdRoleNavigation.Ttle}"/>
+                            <TextBlock FontSize="14" Text="{Binding Login}"/>
+                            <TextBlock FontSize="14" Text="{Binding Password}"/>
+                            <TextBlock FontSize="14" Text="{Binding IdRoleNavigation.Ttle}"/>
                         </StackPanel>
                     </DataTemplate>
                 </ListView.ItemTemplate>

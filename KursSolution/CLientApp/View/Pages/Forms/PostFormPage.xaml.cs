@@ -50,6 +50,7 @@ namespace CLientApp.View.Pages.Forms
             }
             else Item = new();
             DataContext = this;
+            Signal();
         }
 
         private async void Save_Click(object sender, RoutedEventArgs e)

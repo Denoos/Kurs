@@ -117,7 +117,7 @@ namespace CLientApp.View.Pages.Forms {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/CLientApp;component/view/pages/forms/ppeformpage.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/CLientApp;V1.0.0.0;component/view/pages/forms/ppeformpage.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\..\..\View\Pages\Forms\PpeFormPage.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

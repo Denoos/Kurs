@@ -61,6 +61,7 @@ namespace CLientApp.View.Pages.Forms
                 isAdd = false;
                 Item = item;
                 GetSelectedValue();
+                Signal();
             }
             else Item = new();
             DataContext = this;

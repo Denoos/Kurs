@@ -29,6 +29,9 @@
     <Compile Update="View\Pages\Menues\ConditionPageMenu.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="View\Pages\Menues\NotificationPageMenu.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="View\Pages\Menues\PersonPageMenu.xaml.cs">
       <SubType>Code</SubType>
     </Compile>

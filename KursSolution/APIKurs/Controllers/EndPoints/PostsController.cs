@@ -25,25 +25,25 @@ namespace APIKurs.Controllers.EndPoints
 
         // GET: api/Posts/5
         [HttpGet("GetPost")]
-        [Authorize(Roles = "0,1,AdminHavaetPelmeni")]
+        [Authorize(Roles = "AdminHavaetPelmeni")]
         public async Task<ActionResult<Post>> GetPost(int id)
             => await db.GetPost(id);
 
         // PUT: api/Posts/5
         [HttpPut("PutPost")]
-        [Authorize(Roles = "1,AdminHavaetPelmeni")]
+        [Authorize(Roles = "AdminHavaetPelmeni")]
         public async Task<IActionResult> PutPost(Post condition)
             => await db.PutPost(condition.Id, condition);
 
         // POST: api/Posts
         [HttpPost("PostPost")]
-        [Authorize(Roles = "1,AdminHavaetPelmeni")]
+        [Authorize(Roles = "AdminHavaetPelmeni")]
         public async Task<ActionResult<Post>> PostPost(Post condition)
             => await db.PostPost(condition);
 
         // DELETE: api/Posts/5
         [HttpDelete("DeletePost")]
-        [Authorize(Roles = "1,AdminHavaetPelmeni")]
+        [Authorize(Roles = "AdminHavaetPelmeni")]
         public async Task<IActionResult> DeletePost(int id)
             => await db.DeletePost(id);
     }

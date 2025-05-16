@@ -44,6 +44,7 @@ namespace CLientApp.View.Pages.Menues
             _window = window;
             RenderList();
             DataContext = this;
+            Signal();
         }
 
         private void NavigationButtonClicked(object sender, RoutedEventArgs e)

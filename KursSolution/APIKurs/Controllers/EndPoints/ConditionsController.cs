@@ -25,25 +25,25 @@ namespace APIKurs.Controllers.EndPoints
 
         // GET: api/Conditions/5
         [HttpGet("GetCondition")]
-        [Authorize(Roles = "0,1,AdminHavaetPelmeni")]
+        [Authorize(Roles = "AdminHavaetPelmeni")]
         public async Task<ActionResult<Condition>> GetCondition(int id)
             => await db.GetCondition(id);
 
         // PUT: api/Conditions/5
         [HttpPut("PutCondition")]
-        [Authorize(Roles = "1,AdminHavaetPelmeni")]
+        [Authorize(Roles = "AdminHavaetPelmeni")]
         public async Task<IActionResult> PutCondition(Condition condition)
             => await db.PutCondition(condition.Id, condition);
 
         // POST: api/Conditions
         [HttpPost("PostCondition")]
-        [Authorize(Roles = "1,AdminHavaetPelmeni")]
+        [Authorize(Roles = "AdminHavaetPelmeni")]
         public async Task<ActionResult<Condition>> PostCondition(Condition condition)
             => await db.PostCondition(condition);
 
         // DELETE: api/Conditions/5
         [HttpDelete("DeleteCondition")]
-        [Authorize(Roles = "1,AdminHavaetPelmeni")]
+        [Authorize(Roles = "AdminHavaetPelmeni")]
         public async Task<IActionResult> DeleteCondition(int id)
             => await db.DeleteCondition(id);
     }

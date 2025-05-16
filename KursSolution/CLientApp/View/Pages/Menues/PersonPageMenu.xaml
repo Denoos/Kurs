@@ -66,7 +66,7 @@
                 </ComboBox>
             </StackPanel>
 
-            <ListView ItemsSource="{Binding SortedList}" SelectedItem="{Binding SelectedItem}" MinHeight="100" Height="800" Margin="10">
+            <ListView FontSize="16" ItemsSource="{Binding SortedList}" SelectedItem="{Binding SelectedItem}" MinHeight="100" Height="800" Margin="10">
                 <ListView.View>
                     <GridView>
                         <GridViewColumn DisplayMemberBinding="{Binding Name}" Header="Имя" />

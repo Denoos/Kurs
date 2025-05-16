@@ -41,6 +41,7 @@ namespace CLientApp.View.Pages.Forms
             InitializeComponent();
             _mainWindow = window;
             DataContext = this;
+            Signal();
         }
 
         private async void LoginButton_Click(object sender, RoutedEventArgs e)

@@ -57,6 +57,7 @@ namespace CLientApp.View.Pages.Menues
             FirstSort = [.. await _db.GetAllStatuses()];
             Thread.Sleep(300);
             SecondSort = [.. await _db.GetAllPosts()];
+            Signal();
         }
 
         private void NavigationButtonClicked(object sender, RoutedEventArgs e)

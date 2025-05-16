@@ -24,13 +24,15 @@ namespace CLientApp
     public partial class MainWindow : Window, INotifyPropertyChanged
     {
         private Page page;
+        public Page PreviousPage;
+
 
         public event PropertyChangedEventHandler? PropertyChanged;
 
-        public Page CurrentPage { get =>  page; set { page = value; Signal(); } }
+        public Page CurrentPage { get => page; set { page = value; Signal(); } }
         public JsonSerializerOptions options;
 
-        private void Signal([CallerMemberName]string? prop = null)
+        private void Signal([CallerMemberName] string? prop = null)
             => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
         public MainWindow()
         {
@@ -47,6 +49,9 @@ namespace CLientApp
             DataBaseEndPoint.Instance.SetOptions(options);
         }
         public void SetPage(Page _page)
-            => CurrentPage = _page;
+        {
+            PreviousPage = CurrentPage;
+            CurrentPage = _page;
+        }
     }
 }
