@@ -24,12 +24,13 @@ namespace CLientApp
     public partial class MainWindow : Window, INotifyPropertyChanged
     {
         private Page page;
-        public Page PreviousPage;
+        public Page previousPage;
 
 
         public event PropertyChangedEventHandler? PropertyChanged;
 
         public Page CurrentPage { get => page; set { page = value; Signal(); } }
+        public Page PreviousPage { get => previousPage; set { previousPage = value; Signal(); } }
         public JsonSerializerOptions options;
 
         private void Signal([CallerMemberName] string? prop = null)

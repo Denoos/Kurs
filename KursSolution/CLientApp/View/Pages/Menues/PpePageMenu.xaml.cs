@@ -61,12 +61,14 @@ namespace CLientApp.View.Pages.Menues
             Types = [.. await _db.GetAllPpeTypes()];
             Thread.Sleep(400);
             Persons = [.. await _db.GetAllPersons()];
+            Thread.Sleep(400);
             Signal();
         }
 
         private void NavigationButtonClicked(object sender, RoutedEventArgs e)
         {
             var button = (Button)sender;
+
             switch (button.Content)
             {
                 case "Типы СИЗ":
@@ -95,6 +97,10 @@ namespace CLientApp.View.Pages.Menues
 
                 case "Выход":
                     _window.SetPage(new LoginFormPage(_window));
+                    break;
+
+                case "Уведомления":
+                    _window.SetPage(new NotificationPageMenu(_window, SortedList.ToList()));
                     break;
 
                 default:
@@ -162,7 +168,7 @@ namespace CLientApp.View.Pages.Menues
                 type = b;
             }
 
-            if (ComboFilter_Type is not null && ComboFilter_Type.SelectedValue is not null)
+            if (ComboFilter_Person is not null && ComboFilter_Type.SelectedValue is not null)
             {
                 var b = "";
                 try
@@ -178,23 +184,26 @@ namespace CLientApp.View.Pages.Menues
                 pers = b;
             }
 
-            if (type.ToLower() != "не выбрано")
-                list = [.. list.Where(p=>
+            if (!string.IsNullOrEmpty(type.ToLower()))
+                if (type.ToLower() != "не выбрано")
+                    list = [.. list.Where(p=>
                 p.Type.Title.ToLower() == type.ToLower()
                 )];
 
-            if (cond.ToLower() != "не выбрано")
-                list = [.. list.Where(p=>
+            if (!string.IsNullOrEmpty(cond.ToLower()))
+                if (cond.ToLower() != "не выбрано")
+                    list = [.. list.Where(p=>
                 p.Condition.Title.ToLower() == cond.ToLower()
                 )];
 
-            if (pers.ToLower() != "не выбрано")
-                if (pers.ToLower() == "на складе")
-                    list = [.. list.Where(p=>
+            if (!string.IsNullOrEmpty(pers.ToLower()))
+                if (pers.ToLower() != "не выбрано")
+                    if (pers.ToLower() == "на складе")
+                        list = [.. list.Where(p=>
                     p.PeopleId == null
                     )];
-                else
-                    list = [.. list.Where(p=>
+                    else
+                        list = [.. list.Where(p=>
                     p.PeopleId.ToString().ToLower() == pers.ToLower()
                     )];
 

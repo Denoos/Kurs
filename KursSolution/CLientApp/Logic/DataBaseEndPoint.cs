@@ -104,7 +104,7 @@ namespace CLientApp.Logic
         {
             try
             {
-                var resp = await _client.GetAsync($"Ppes/GetPpes");
+                var resp = _client.GetAsync($"Ppes/GetPpes").Result;
                 var responce = resp.Content.ReadFromJsonAsync<IEnumerable<Ppe>>(_options);
 
                 return responce.Result.ToList();
@@ -115,7 +115,7 @@ namespace CLientApp.Logic
                 return [];
             }
         }
-
+        
         public async Task<List<Model.Condition>> GetAllConditions()
         {
             try
