@@ -22,14 +22,14 @@
                             <TextBlock FontSize="20" Text="{Binding Title}" />
                         </StackPanel>
                         <TextBlock FontSize="16" Text="{Binding Content}" />
-                        <Button Content="Удалить" Click="Delete"/>
                     </StackPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
 
-        <StackPanel Background="White" Grid.Row="1">
+        <StackPanel Background="White" Grid.Row="1" Orientation="Horizontal">
             <Button FontSize="18" Padding="20,10" Margin="20" Click="Back_Click" Content="Назад"/>
+            <Button FontSize="18" Padding="20,10" Margin="20"  Content="Удалить" Click="Delete"/>
         </StackPanel>
     </Grid>
 </Page>

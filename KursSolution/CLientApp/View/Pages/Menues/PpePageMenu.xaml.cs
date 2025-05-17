@@ -100,7 +100,7 @@ namespace CLientApp.View.Pages.Menues
                     break;
 
                 case "Уведомления":
-                    _window.SetPage(new NotificationPageMenu(_window, SortedList.ToList()));
+                    _window.SetPage(new NotificationPageMenu(_window, SortedList));
                     break;
 
                 default:

@@ -27,7 +27,7 @@ namespace CLientApp.View.Pages.Menues
     public partial class NotificationPageMenu : Page, INotifyPropertyChanged
     {
         private MainWindow _main;
-        private List<Notify_Model> list;
+        private ObservableCollection<Notify_Model> list;
         private Notify_Model selected;
         private NotifyLogic _logic;
 
@@ -35,13 +35,13 @@ namespace CLientApp.View.Pages.Menues
         private void Signal([CallerMemberName] string? prop = null)
             => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
 
-        public List<Notify_Model> NotificationsList { get => list; set { list = value; Signal(); } }
+        public ObservableCollection<Notify_Model> NotificationsList { get => list; set { list = value; Signal(); } }
         public Notify_Model SelectedNoty { get => selected; set { selected = value; Signal(); } }
-        public NotificationPageMenu(MainWindow main, List<Ppe> ppes)
+        public NotificationPageMenu(MainWindow main, ObservableCollection<Ppe> ppes)
         {
-            _logic = new NotifyLogic(ppes);
+            _logic = new NotifyLogic(ppes.ToList());
             _main = main;
-            NotificationsList = _logic.GetNotifyes();
+            NotificationsList = [.. _logic.GetNotifyes()];
             InitializeComponent();
             this.DataContext = this;
         }
