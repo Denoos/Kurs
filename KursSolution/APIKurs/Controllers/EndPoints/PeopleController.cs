@@ -45,6 +45,6 @@ namespace APIKurs.Controllers.EndPoints
         [HttpDelete("DeletePerson")]
         [Authorize(Roles = "1,AdminHavaetPelmeni")]
         public async Task<IActionResult> DeletePerson(int id)
-            => await db.DeletePerson(id);
+            => await db.ChangeDeletePerson(id);
     }
 }

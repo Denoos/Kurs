@@ -190,26 +190,17 @@ namespace APIKurs.Controllers.BackStage
             return CreatedAtAction("GetCondition", new { id = condition.Id }, condition);
         }
 
-        public async Task<IActionResult> DeleteCondition(int id)
+        public async Task<IActionResult> ChangeDeleteCondition(int id)
         {
             var condition = await _context.Conditions.FindAsync(id);
             if (condition == null)
             {
                 return NotFound();
             }
+            
+            condition.IsDeleted = true;
 
-
-            //********************************************************************************************
-            //                              Эта штука потом заменит то, что ниже
-            //********************************************************************************************
-            //condition.IsDeleted = true;
-
-            //_context.Conditions.Update(condition);
-            //await _context.SaveChangesAsync();
-            //********************************************************************************************
-
-
-            _context.Conditions.Remove(condition);
+            _context.Conditions.Update(condition);
             await _context.SaveChangesAsync();
 
             if (_context.Conditions.Contains(condition))
@@ -308,7 +299,23 @@ namespace APIKurs.Controllers.BackStage
             return NoContent();
         }
 
-        public async Task<IActionResult> DeletePerson(int id)
+        public async Task<IActionResult> ChangeDeletePerson(int id)
+        {
+            var person = await _context.People.FindAsync(id);
+            if (person == null)
+            {
+                return NotFound();
+            }
+
+            person.IsDeleted = true;
+
+            _context.People.Update(person);
+            await _context.SaveChangesAsync();
+
+            return NoContent();
+        }
+        
+        public async Task<IActionResult> DeletePersonForever(int id)
         {
             var person = await _context.People.FindAsync(id);
             if (person == null)
@@ -380,7 +387,23 @@ namespace APIKurs.Controllers.BackStage
             return CreatedAtAction("GetPost", new { id = post.Id }, post);
         }
 
-        public async Task<IActionResult> DeletePost(int id)
+        public async Task<IActionResult> ChangeDeletePost(int id)
+        {
+            var post = await _context.Posts.FindAsync(id);
+            if (post == null)
+            {
+                return NotFound();
+            }
+    
+            post.IsDeleted = true;
+
+            _context.Posts.Update(post);
+            await _context.SaveChangesAsync();
+
+            return NoContent();
+        }
+        
+        public async Task<IActionResult> DeletePostForever(int id)
         {
             var post = await _context.Posts.FindAsync(id);
             if (post == null)
@@ -468,7 +491,23 @@ namespace APIKurs.Controllers.BackStage
         }
 
 
-        public async Task<IActionResult> DeletePpe(int id)
+        public async Task<IActionResult> ChangeDeletePpe(int id)
+        {
+            var ppe = await _context.Ppes.FindAsync(id);
+            if (ppe == null)
+            {
+                return NotFound();
+            }
+
+            ppe.IsDeleted = true;
+
+            _context.Ppes.Update(ppe);
+            await _context.SaveChangesAsync();
+
+            return NoContent();
+        }
+
+        public async Task<IActionResult> DeletePpeForever(int id)
         {
             var ppe = await _context.Ppes.FindAsync(id);
             if (ppe == null)
@@ -539,7 +578,23 @@ namespace APIKurs.Controllers.BackStage
             return CreatedAtAction("GetPpeType", new { id = ppeType.Id }, ppeType);
         }
 
-        public async Task<IActionResult> DeletePpeType(int id)
+        public async Task<IActionResult> ChangeDeletePpeType(int id)
+        {
+            var ppeType = await _context.PpeTypes.FindAsync(id);
+            if (ppeType == null)
+            {
+                return NotFound();
+            }
+
+            ppeType.IsDeleted = true;
+
+            _context.PpeTypes.Update(ppeType);
+            await _context.SaveChangesAsync();
+
+            return NoContent();
+        }
+        
+        public async Task<IActionResult> DeletePpeTypeForever(int id)
         {
             var ppeType = await _context.PpeTypes.FindAsync(id);
             if (ppeType == null)
@@ -612,7 +667,23 @@ namespace APIKurs.Controllers.BackStage
             return CreatedAtAction("GetStatus", new { id = status.Id }, status);
         }
 
-        public async Task<IActionResult> DeleteStatus(int id)
+        public async Task<IActionResult> ChangeDeleteStatus(int id)
+        {
+            var status = await _context.Statuses.FindAsync(id);
+            if (status == null)
+            {
+                return NotFound();
+            }
+
+            status.IsDeleted = true;
+
+            _context.Statuses.Update(status);
+            await _context.SaveChangesAsync();
+
+            return NoContent();
+        }
+
+        public async Task<IActionResult> DeleteStatusForever(int id)
         {
             var status = await _context.Statuses.FindAsync(id);
             if (status == null)
@@ -705,7 +776,23 @@ namespace APIKurs.Controllers.BackStage
             return NoContent();
         }
 
-        public async Task<IActionResult> DeleteUser(int id)
+        public async Task<IActionResult> ChangeDeleteUser(int id)
+        {
+            var user = await _context.Users.FindAsync(id);
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            user.IsDeleted = true;
+
+            _context.Users.Update(user);
+            await _context.SaveChangesAsync();
+
+            return NoContent();
+        }
+        
+        public async Task<IActionResult> DeleteUserForever(int id)
         {
             var user = await _context.Users.FindAsync(id);
             if (user == null)
@@ -722,6 +809,19 @@ namespace APIKurs.Controllers.BackStage
         private bool UserExists(int id)
         {
             return _context.Users.Any(e => e.Id == id);
+        }
+
+        //Roles
+
+        public async Task<ActionResult<Status>> PostRole(Role role)
+        {
+            _context.Roles.Add(role);
+            await _context.SaveChangesAsync();
+
+            if (_context.Roles.Contains(role))
+                return Ok();
+
+            return NoContent();
         }
     }
 }
