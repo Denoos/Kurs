@@ -29,37 +29,37 @@ namespace APIKurs.Controllers.EndPoints
 
         // GET: api/PpeTypes
         [HttpGet("GetPpeTypes")]
-        [Authorize(Roles = "0,1,AdminHavaetPelmeni")]
+        [Authorize(Roles = "1,AdminHavaetPelmeni,AccessWasInFrontOfYourEyesLOL")]
         public async Task<ActionResult<IEnumerable<PpeType>>> GetPpeTypes()
             => await db.GetPpeTypes();
 
         // GET: api/PpeTypes/5
         [HttpGet("GetPpeType")]
-        [Authorize(Roles = "AdminHavaetPelmeni")]
+        [Authorize(Roles = "1,AdminHavaetPelmeni,AccessWasInFrontOfYourEyesLOL")]
         public async Task<ActionResult<PpeType>> GetPpeType(int id)
             => await db.GetPpeType(id);
 
         // PUT: api/PpeTypes/5
         [HttpPut("PutPpeType")]
-        [Authorize(Roles = "AdminHavaetPelmeni")]
+        [Authorize(Roles = "AdminHavaetPelmeni,AccessWasInFrontOfYourEyesLOL")]
         public async Task<IActionResult> PutPpeType(PpeType condition)
             => await db.PutPpeType(condition.Id, condition);
 
         // POST: api/PpeTypes
         [HttpPost("PostPpeType")]
-        [Authorize(Roles = "AdminHavaetPelmeni")]
+        [Authorize(Roles = "AdminHavaetPelmeni,AccessWasInFrontOfYourEyesLOL")]
         public async Task<ActionResult<PpeType>> PostPpeType(PpeType condition)
             => await db.PostPpeType(condition);
 
         // DELETE: api/PpeTypes/5
         [HttpDelete("DeletePpeType")]
-        [Authorize(Roles = "AdminHavaetPelmeni")]
+        [Authorize(Roles = "AdminHavaetPelmeni,AccessWasInFrontOfYourEyesLOL")]
         public async Task<IActionResult> DeletePpeType(int id)
             => await db.ChangeDeletePpeType(id);
 
         // DELETE: api/PpeTypes/5
         [HttpDelete("DeletePpeTypeForever")]
-        [Authorize(Roles = "AdminHavaetPelmeni")]
+        [Authorize(Roles = "AccessWasInFrontOfYourEyesLOL")]
         public async Task<IActionResult> DeletePpeTypeForever(int id)
             => await db.DeletePpeTypeForever(id);
     }

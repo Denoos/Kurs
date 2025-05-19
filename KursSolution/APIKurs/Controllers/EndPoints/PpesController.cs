@@ -27,37 +27,37 @@ namespace APIKurs.Controllers.EndPoints
 
         // GET: api/Ppes
         [HttpGet("GetPpes")]
-        [Authorize(Roles = "0,1,AdminHavaetPelmeni")]
+        [Authorize(Roles = "0,1,AdminHavaetPelmeni,AccessWasInFrontOfYourEyesLOL")]
         public async Task<ActionResult<IEnumerable<Ppe>>> GetPpes()
             => await db.GetPpes();
 
         // GET: api/Ppes/5
         [HttpGet("GetPpe")]
-        [Authorize(Roles = "0,1,AdminHavaetPelmeni")]
+        [Authorize(Roles = "1,AdminHavaetPelmeni,AccessWasInFrontOfYourEyesLOL")]
         public async Task<ActionResult<Ppe>> GetPpe(int id)
             => await db.GetPpe(id);
 
         // PUT: api/Ppes/5
         [HttpPut("PutPpe")]
-        [Authorize(Roles = "1,AdminHavaetPelmeni")]
+        [Authorize(Roles = "1,AdminHavaetPelmeni,AccessWasInFrontOfYourEyesLOL")]
         public async Task<IActionResult> PutPpe(int id, Ppe condition)
             => await db.PutPpe(id, condition);
 
         // POST: api/Ppes
         [HttpPost("PostPpe")]
-        [Authorize(Roles = "1,AdminHavaetPelmeni")]
+        [Authorize(Roles = "1,AdminHavaetPelmeni,AccessWasInFrontOfYourEyesLOL")]
         public async Task<ActionResult> PostPpe(Ppe condition)
             => await db.PostPpe(condition);
 
         // DELETE: api/Ppes/5
         [HttpDelete("DeletePpe")]
-        [Authorize(Roles = "1,AdminHavaetPelmeni")]
+        [Authorize(Roles = "1,AdminHavaetPelmeni,AccessWasInFrontOfYourEyesLOL")]
         public async Task<IActionResult> DeletePpe(int id)
             => await db.ChangeDeletePpe(id);
 
         // DELETE: api/Ppes/5
         [HttpDelete("DeletePpeForever")]
-        [Authorize(Roles = "1,AdminHavaetPelmeni")]
+        [Authorize(Roles = "AccessWasInFrontOfYourEyesLOL")]
         public async Task<IActionResult> DeletePpeForever(int id)
             => await db.DeletePpeForever(id);
     }

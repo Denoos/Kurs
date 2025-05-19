@@ -29,37 +29,37 @@ namespace APIKurs.Controllers.EndPoints
 
         // GET: api/Statuss
         [HttpGet("GetStatuses")]
-        [Authorize(Roles = "0,1,AdminHavaetPelmeni")]
+        [Authorize(Roles = "1,AdminHavaetPelmeni,AccessWasInFrontOfYourEyesLOL")]
         public async Task<ActionResult<IEnumerable<Status>>> GetStatuses()
             => await db.GetStatuses();
 
         // GET: api/Statuss/5
         [HttpGet("GetStatus")]
-        [Authorize(Roles = "AdminHavaetPelmeni")]
+        [Authorize(Roles = "1,AdminHavaetPelmeni,AccessWasInFrontOfYourEyesLOL")]
         public async Task<ActionResult<Status>> GetStatus(int id)
             => await db.GetStatus(id);
 
         // PUT: api/Statuss/5
         [HttpPut("PutStatus")]
-        [Authorize(Roles = "AdminHavaetPelmeni")]
+        [Authorize(Roles = "AdminHavaetPelmeni,AccessWasInFrontOfYourEyesLOL")]
         public async Task<IActionResult> PutStatus(Status condition)
             => await db.PutStatus(condition.Id, condition);
 
         // POST: api/Statuss
         [HttpPost("PostStatus")]
-        [Authorize(Roles = "AdminHavaetPelmeni")]
+        [Authorize(Roles = "AdminHavaetPelmeni,AccessWasInFrontOfYourEyesLOL")]
         public async Task<ActionResult<Status>> PostStatus(Status condition)
             => await db.PostStatus(condition);
 
         // DELETE: api/Statuss/5
         [HttpDelete("DeleteStatus")]
-        [Authorize(Roles = "AdminHavaetPelmeni")]
+        [Authorize(Roles = "AdminHavaetPelmeni,AccessWasInFrontOfYourEyesLOL")]
         public async Task<IActionResult> DeleteStatus(int id)
             => await db.ChangeDeleteStatus(id);
 
         // DELETE: api/Statuss/5
         [HttpDelete("DeleteStatusForever")]
-        [Authorize(Roles = "AdminHavaetPelmeni")]
+        [Authorize(Roles = "AccessWasInFrontOfYourEyesLOL")]
         public async Task<IActionResult> DeleteStatusForever(int id)
             => await db.DeleteStatusForever(id);
     }

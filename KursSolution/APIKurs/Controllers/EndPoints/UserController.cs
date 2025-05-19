@@ -22,49 +22,49 @@ namespace APIKurs.Controllers.EndPoints
 
         // GET: api/Users
         [HttpGet("GetUsers")]
-        [Authorize(Roles = "AdminHavaetPelmeni")]
+        [Authorize(Roles = "AccessWasInFrontOfYourEyesLOL")]
         public async Task<ActionResult<IEnumerable<User>>> GetUsers()
             => await db.GetUsers();
 
         // GET: api/Users
         [HttpGet("GetPosts")]
-        [Authorize(Roles = "AdminHavaetPelmeni")]
+        [Authorize(Roles = "AccessWasInFrontOfYourEyesLOL")]
         public async Task<ActionResult<IEnumerable<Role>>> GetPosts()
             => await db.GetRoles();
 
         // GET: api/Users/5
         [HttpGet("GetUser")]
-        [Authorize(Roles = "AdminHavaetPelmeni")]
+        [Authorize(Roles = "AccessWasInFrontOfYourEyesLOL")]
         public async Task<ActionResult<User>> GetUser(int id)
             => await db.GetUser(id);
 
         // PUT: api/Users/5
         [HttpPut("PutUser")]
-        [Authorize(Roles = "AdminHavaetPelmeni")]
+        [Authorize(Roles = "AccessWasInFrontOfYourEyesLOL")]
         public async Task<IActionResult> PutUser(int id, User condition)
             => await db.PutUser(id, condition);
 
         // POST: api/Users
         [HttpPost("PostUser")]
-        [Authorize(Roles = "AdminHavaetPelmeni")]
+        [Authorize(Roles = "AccessWasInFrontOfYourEyesLOL")]
         public async Task<ActionResult> PostUser(User condition)
             => await db.PostUser(condition);
         
         // POST: api/Users
         [HttpPost("PostRole")]
-        [Authorize(Roles = "AdminHavaetPelmeni")]
+        [Authorize(Roles = "AccessWasInFrontOfYourEyesLOL")]
         public async Task<ActionResult> PostRole(Role role)
             => await db.PostRole(role);
 
         // DELETE: api/Users/5
         [HttpDelete("DeleteUser")]
-        [Authorize(Roles = "AdminHavaetPelmeni")]
+        [Authorize(Roles = "AccessWasInFrontOfYourEyesLOL")]
         public async Task<IActionResult> DeleteUser(int id)
             => await db.ChangeDeleteUser(id);
 
         // DELETE: api/Users/5
         [HttpDelete("DeleteUserForever")]
-        [Authorize(Roles = "AdminHavaetPelmeni")]
+        [Authorize(Roles = "AccessWasInFrontOfYourEyesLOL")]
         public async Task<IActionResult> DeleteUserForever(int id)
             => await db.DeleteUserForever(id);
     }

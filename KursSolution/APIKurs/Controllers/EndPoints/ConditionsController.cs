@@ -19,37 +19,37 @@ namespace APIKurs.Controllers.EndPoints
 
         // GET: api/Conditions
         [HttpGet("GetConditions")]
-        [Authorize(Roles = "0,1,AdminHavaetPelmeni")]
+        [Authorize(Roles = "1,AdminHavaetPelmeni,AccessWasInFrontOfYourEyesLOL")]
         public async Task<ActionResult<IEnumerable<Condition>>> GetConditions()
             => await db.GetConditions();
 
         // GET: api/Conditions/5
         [HttpGet("GetCondition")]
-        [Authorize(Roles = "AdminHavaetPelmeni")]
+        [Authorize(Roles = "1,AdminHavaetPelmeni,AccessWasInFrontOfYourEyesLOL")]
         public async Task<ActionResult<Condition>> GetCondition(int id)
             => await db.GetCondition(id);
 
         // PUT: api/Conditions/5
         [HttpPut("PutCondition")]
-        [Authorize(Roles = "AdminHavaetPelmeni")]
+        [Authorize(Roles = "AdminHavaetPelmeni,AccessWasInFrontOfYourEyesLOL")]
         public async Task<IActionResult> PutCondition(Condition condition)
             => await db.PutCondition(condition.Id, condition);
 
         // POST: api/Conditions
         [HttpPost("PostCondition")]
-        [Authorize(Roles = "AdminHavaetPelmeni")]
+        [Authorize(Roles = "AdminHavaetPelmeni,AccessWasInFrontOfYourEyesLOL")]
         public async Task<ActionResult<Condition>> PostCondition(Condition condition)
             => await db.PostCondition(condition);
 
         // DELETE: api/Conditions/5
         [HttpDelete("DeleteCondition")]
-        [Authorize(Roles = "AdminHavaetPelmeni")]
+        [Authorize(Roles = "AdminHavaetPelmeni,AccessWasInFrontOfYourEyesLOL")]
         public async Task<IActionResult> DeleteCondition(int id)
             => await db.ChangeDeleteCondition(id);
 
         // DELETE: api/Conditions/5
         [HttpDelete("DeleteConditionForever")]
-        [Authorize(Roles = "AdminHavaetPelmeni")]
+        [Authorize(Roles = "AccessWasInFrontOfYourEyesLOL")]
         public async Task<IActionResult> DeleteConditionForever(int id)
             => await db.DeleteConditionForever(id);
     }
