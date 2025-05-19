@@ -9,7 +9,7 @@ public partial class Status
 
     public string Title { get; set; } = null!;
 
-    public sbyte IsDeleted { get; set; }
+    public bool IsDeleted { get; set; }
 
     public virtual ICollection<Person> People { get; set; } = new List<Person>();
 }

@@ -18,8 +18,6 @@ public partial class QwertyContext : DbContext
 
     public virtual DbSet<Condition> Conditions { get; set; }
 
-    public virtual DbSet<Crossppeperson> Crossppepeople { get; set; }
-
     public virtual DbSet<Person> People { get; set; }
 
     public virtual DbSet<Post> Posts { get; set; }
@@ -53,25 +51,11 @@ public partial class QwertyContext : DbContext
             entity.Property(e => e.Id)
                 .HasColumnType("int(11)")
                 .HasColumnName("id");
-            entity.Property(e => e.IsDeleted)
-                .HasColumnType("tinyint(4)")
-                .HasColumnName("is_Deleted");
+            entity.Property(e => e.IsDeleted).HasColumnName("is_Deleted");
             entity.Property(e => e.Title)
                 .HasMaxLength(255)
                 .HasDefaultValueSql("''")
                 .HasColumnName("title");
-        });
-
-        modelBuilder.Entity<Crossppeperson>(entity =>
-        {
-            entity.HasKey(e => new { e.IdPpe, e.IdPeople })
-                .HasName("PRIMARY")
-                .HasAnnotation("MySql:IndexPrefixLength", new[] { 0, 0 });
-
-            entity.ToTable("crossppepeople");
-
-            entity.Property(e => e.IdPpe).HasColumnName("id_ppe");
-            entity.Property(e => e.IdPeople).HasColumnName("id_people");
         });
 
         modelBuilder.Entity<Person>(entity =>
@@ -87,9 +71,7 @@ public partial class QwertyContext : DbContext
             entity.Property(e => e.Id)
                 .HasColumnType("int(11)")
                 .HasColumnName("id");
-            entity.Property(e => e.IsDeleted)
-                .HasColumnType("tinyint(4)")
-                .HasColumnName("is_Deleted");
+            entity.Property(e => e.IsDeleted).HasColumnName("is_Deleted");
             entity.Property(e => e.Name)
                 .HasMaxLength(50)
                 .HasDefaultValueSql("''")
@@ -126,9 +108,7 @@ public partial class QwertyContext : DbContext
             entity.Property(e => e.Id)
                 .HasColumnType("int(11)")
                 .HasColumnName("id");
-            entity.Property(e => e.IsDeleted)
-                .HasColumnType("tinyint(4)")
-                .HasColumnName("is_Deleted");
+            entity.Property(e => e.IsDeleted).HasColumnName("is_Deleted");
             entity.Property(e => e.Title)
                 .HasMaxLength(255)
                 .HasDefaultValueSql("''")
@@ -163,9 +143,7 @@ public partial class QwertyContext : DbContext
                 .HasMaxLength(255)
                 .HasDefaultValueSql("''")
                 .HasColumnName("inventory_number");
-            entity.Property(e => e.IsDeleted)
-                .HasColumnType("tinyint(4)")
-                .HasColumnName("is_Deleted");
+            entity.Property(e => e.IsDeleted).HasColumnName("is_Deleted");
             entity.Property(e => e.PeopleId)
                 .HasColumnType("int(11)")
                 .HasColumnName("people_id");
@@ -199,9 +177,7 @@ public partial class QwertyContext : DbContext
             entity.Property(e => e.Id)
                 .HasColumnType("int(11)")
                 .HasColumnName("id");
-            entity.Property(e => e.IsDeleted)
-                .HasColumnType("tinyint(4)")
-                .HasColumnName("is_Deleted");
+            entity.Property(e => e.IsDeleted).HasColumnName("is_Deleted");
             entity.Property(e => e.Title)
                 .HasMaxLength(255)
                 .HasDefaultValueSql("''")
@@ -232,9 +208,7 @@ public partial class QwertyContext : DbContext
             entity.Property(e => e.Id)
                 .HasColumnType("int(11)")
                 .HasColumnName("id");
-            entity.Property(e => e.IsDeleted)
-                .HasColumnType("tinyint(4)")
-                .HasColumnName("is_Deleted");
+            entity.Property(e => e.IsDeleted).HasColumnName("is_Deleted");
             entity.Property(e => e.Title)
                 .HasMaxLength(255)
                 .HasDefaultValueSql("''")
@@ -255,9 +229,7 @@ public partial class QwertyContext : DbContext
             entity.Property(e => e.IdRole)
                 .HasColumnType("int(11)")
                 .HasColumnName("id_role");
-            entity.Property(e => e.IsDeleted)
-                .HasColumnType("tinyint(4)")
-                .HasColumnName("is_Deleted");
+            entity.Property(e => e.IsDeleted).HasColumnName("is_Deleted");
             entity.Property(e => e.Login)
                 .HasMaxLength(255)
                 .HasDefaultValueSql("''")

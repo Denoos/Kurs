@@ -17,7 +17,7 @@ public partial class Person
 
     public int StatusId { get; set; }
 
-    public sbyte IsDeleted { get; set; }
+    public bool IsDeleted { get; set; }
 
     public virtual Post Post { get; set; } = null!;
 

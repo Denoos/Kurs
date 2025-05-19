@@ -21,7 +21,7 @@ public partial class Ppe
 
     public int? PeopleId { get; set; }
 
-    public sbyte IsDeleted { get; set; }
+    public bool IsDeleted { get; set; }
 
     public virtual Condition Condition { get; set; } = null!;
 

@@ -198,6 +198,33 @@ namespace APIKurs.Controllers.BackStage
                 return NotFound();
             }
 
+
+            //********************************************************************************************
+            //                              Эта штука потом заменит то, что ниже
+            //********************************************************************************************
+            //condition.IsDeleted = true;
+
+            //_context.Conditions.Update(condition);
+            //await _context.SaveChangesAsync();
+            //********************************************************************************************
+
+
+            _context.Conditions.Remove(condition);
+            await _context.SaveChangesAsync();
+
+            if (_context.Conditions.Contains(condition))
+                return NoContent();
+            return Ok();
+        }
+
+        public async Task<IActionResult> DeleteConditionForever(int id)
+        {
+            var condition = await _context.Conditions.FindAsync(id);
+            if (condition == null)
+            {
+                return NotFound();
+            }
+
             _context.Conditions.Remove(condition);
             await _context.SaveChangesAsync();
 
