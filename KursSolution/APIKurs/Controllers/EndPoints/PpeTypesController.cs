@@ -56,5 +56,11 @@ namespace APIKurs.Controllers.EndPoints
         [Authorize(Roles = "AdminHavaetPelmeni")]
         public async Task<IActionResult> DeletePpeType(int id)
             => await db.ChangeDeletePpeType(id);
+
+        // DELETE: api/PpeTypes/5
+        [HttpDelete("DeletePpeTypeForever")]
+        [Authorize(Roles = "AdminHavaetPelmeni")]
+        public async Task<IActionResult> DeletePpeTypeForever(int id)
+            => await db.DeletePpeTypeForever(id);
     }
 }

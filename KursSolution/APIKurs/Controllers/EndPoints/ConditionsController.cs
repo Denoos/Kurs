@@ -46,5 +46,11 @@ namespace APIKurs.Controllers.EndPoints
         [Authorize(Roles = "AdminHavaetPelmeni")]
         public async Task<IActionResult> DeleteCondition(int id)
             => await db.ChangeDeleteCondition(id);
+
+        // DELETE: api/Conditions/5
+        [HttpDelete("DeleteConditionForever")]
+        [Authorize(Roles = "AdminHavaetPelmeni")]
+        public async Task<IActionResult> DeleteConditionForever(int id)
+            => await db.DeleteConditionForever(id);
     }
 }

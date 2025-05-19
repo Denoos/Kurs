@@ -46,5 +46,11 @@ namespace APIKurs.Controllers.EndPoints
         [Authorize(Roles = "AdminHavaetPelmeni")]
         public async Task<IActionResult> DeletePost(int id)
             => await db.ChangeDeletePost(id);
+
+        // DELETE: api/Posts/5
+        [HttpDelete("DeletePostForever")]
+        [Authorize(Roles = "AdminHavaetPelmeni")]
+        public async Task<IActionResult> DeletePostForever(int id)
+            => await db.DeletePostForever(id);
     }
 }
