@@ -51,6 +51,7 @@ namespace CLientApp.View.Pages.Menues
 
         private async Task BaseStart(MainWindow window)
         {
+            AdminCheckMethod();
             InitializeComponent();
             _window = window;
             RenderList();
@@ -63,6 +64,14 @@ namespace CLientApp.View.Pages.Menues
             Persons = [.. await _db.GetAllPersons()];
             Thread.Sleep(400);
             Signal();
+
+            Task.WaitAll();
+        }
+
+        private async void AdminCheckMethod()
+        {
+            if (await _db.CheckAdmin())
+                AdminCheck.Visibility = Visibility.Collapsed;
         }
 
         private void NavigationButtonClicked(object sender, RoutedEventArgs e)

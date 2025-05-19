@@ -39,12 +39,19 @@ namespace CLientApp.View.Pages.Menues
 
         public ConditionPageMenu(MainWindow window)
         {
+            AdminCheckMethod();
             InitializeComponent();
             _window = window;
             Search = "";
             RenderList();
             DataContext = this;
             Signal();
+        }
+
+        private async void AdminCheckMethod()
+        {
+            if (await _db.CheckAdmin())
+                AdminCheck.Visibility = Visibility.Collapsed;
         }
 
         private void NavigationButtonClicked(object sender, RoutedEventArgs e)

@@ -49,6 +49,7 @@ namespace CLientApp.View.Pages.Menues
 
         private async Task BaseStart(MainWindow window)
         {
+            AdminCheckMethod();
             InitializeComponent();
             _window = window;
             RenderList(null, null);
@@ -58,6 +59,12 @@ namespace CLientApp.View.Pages.Menues
             Thread.Sleep(300);
             SecondSort = [.. await _db.GetAllPosts()];
             Signal();
+        }
+
+        private async void AdminCheckMethod()
+        {
+            if (await _db.CheckAdmin())
+                AdminCheck.Visibility = Visibility.Collapsed;
         }
 
         private void NavigationButtonClicked(object sender, RoutedEventArgs e)

@@ -29,6 +29,28 @@ namespace CLientApp.Logic
         public void SetOptions(JsonSerializerOptions options)
             => this._options = options;
 
+        public async Task<bool> CheckAdmin()
+        {
+            try
+            {
+                var result = false;
+
+                var resp = await _client.GetAsync($"User/GetUsers");
+
+                Task.WaitAll();
+
+                if (resp != null && resp.StatusCode == System.Net.HttpStatusCode.OK)
+                    result = true;
+
+                return !result;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ошибка связи, проверьте подключение к сети!", "Ошибка!");
+                return false;
+            }
+        }
+
         public async Task<bool> Login(User user)
         {
             try
@@ -115,7 +137,7 @@ namespace CLientApp.Logic
                 return [];
             }
         }
-        
+
         public async Task<List<Model.Condition>> GetAllConditions()
         {
             try
@@ -184,7 +206,7 @@ namespace CLientApp.Logic
 
         public async Task<Person> GetPerson(int? id)
         {
-            var a =await GetAllPersons();
+            var a = await GetAllPersons();
             if (id == null)
                 return new Person();
             return a.FirstOrDefault(s => s.Id == id);

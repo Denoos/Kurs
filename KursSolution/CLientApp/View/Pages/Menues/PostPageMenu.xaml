@@ -21,7 +21,7 @@
             <Button Click="NavigationButtonClicked" FontSize="18" Padding="20,10" Margin="10, 40" Content="СИЗ"/>
             <Button Click="NavigationButtonClicked" FontSize="18" Padding="20,10" Margin="10, 40" Content="Сотрудники"/>
             <Button Click="NavigationButtonClicked" FontSize="18" Padding="20,10" Margin="10, 40" Content="Статусы сотрудников"/>
-            <Button Click="NavigationButtonClicked" FontSize="18" Padding="20,10" Margin="10, 40" Content="Пользователи"/>
+            <Button x:Name="AdminCheck" Click="NavigationButtonClicked" FontSize="18" Padding="20,10" Margin="10, 40" Content="Пользователи"/>
             <Button Click="NavigationButtonClicked" FontSize="18" Padding="20,10" Margin="10, 40" Content="Выход"/>
         </StackPanel>
         <!-- Правая часть с информацией о СИЗ -->
