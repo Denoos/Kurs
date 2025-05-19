@@ -12,9 +12,9 @@ TRACE;DEBUG;NET;NET8_0;NETCOREAPP
 C:\Users\Denoos\source\repos\Denoos\Kurs\KursSolution\CLientApp\App.xaml
 172014636328
 
-3340263641
+35-956119818
 2121235522511
 View\Pages\Forms\ConditionFormPage.xaml;View\Pages\Forms\LoginFormPage.xaml;View\Pages\Forms\PersonFormPage.xaml;View\Pages\Forms\PostFormPage.xaml;View\Pages\Forms\PpeFormPage.xaml;View\Pages\Forms\PpeTypeFormPage.xaml;View\Pages\Forms\StatusFormPage.xaml;View\Pages\Forms\UserFormPage.xaml;View\Pages\Menues\ConditionPageMenu.xaml;View\Pages\Menues\NotificationPageMenu.xaml;View\Pages\Menues\PersonPageMenu.xaml;View\Pages\Menues\PostPageMenu.xaml;View\Pages\Menues\PpePageMenu.xaml;View\Pages\Menues\PpeTypePageMenu.xaml;View\Pages\Menues\StatusPageMenu.xaml;View\Pages\Menues\UserPageMenu.xaml;View\Windows\MainWindow.xaml;
 
-False
+True
 

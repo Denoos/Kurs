@@ -18,6 +18,8 @@ public partial class QwertyContext : DbContext
 
     public virtual DbSet<Condition> Conditions { get; set; }
 
+    public virtual DbSet<Need> Needs { get; set; }
+
     public virtual DbSet<Person> People { get; set; }
 
     public virtual DbSet<Post> Posts { get; set; }
@@ -56,6 +58,39 @@ public partial class QwertyContext : DbContext
                 .HasMaxLength(255)
                 .HasDefaultValueSql("''")
                 .HasColumnName("title");
+        });
+
+        modelBuilder.Entity<Need>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PRIMARY");
+
+            entity.ToTable("needs");
+
+            entity.HasIndex(e => e.PpeId, "FK_needs_ppe_id");
+
+            entity.Property(e => e.Id)
+                .ValueGeneratedNever()
+                .HasColumnType("int(11)")
+                .HasColumnName("id");
+            entity.Property(e => e.Content)
+                .HasMaxLength(255)
+                .HasColumnName("content");
+            entity.Property(e => e.IsActual)
+                .IsRequired()
+                .HasDefaultValueSql("'1'")
+                .HasColumnName("is_Actual");
+            entity.Property(e => e.IsDeleted).HasColumnName("is_Deleted");
+            entity.Property(e => e.PpeId)
+                .HasColumnType("int(11)")
+                .HasColumnName("ppe_id");
+            entity.Property(e => e.Title)
+                .HasMaxLength(255)
+                .HasColumnName("title");
+
+            entity.HasOne(d => d.Ppe).WithMany(p => p.Needs)
+                .HasForeignKey(d => d.PpeId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_needs_ppe_id");
         });
 
         modelBuilder.Entity<Person>(entity =>

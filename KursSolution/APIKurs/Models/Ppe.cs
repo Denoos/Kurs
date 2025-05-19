@@ -25,6 +25,8 @@ public partial class Ppe
 
     public virtual Condition Condition { get; set; } = null!;
 
+    public virtual ICollection<Need> Needs { get; set; } = new List<Need>();
+
     public virtual Person? People { get; set; }
 
     public virtual PpeType Type { get; set; } = null!;
