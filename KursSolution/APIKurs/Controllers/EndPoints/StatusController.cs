@@ -55,6 +55,6 @@ namespace APIKurs.Controllers.EndPoints
         [HttpDelete("DeleteStatus")]
         [Authorize(Roles = "AdminHavaetPelmeni")]
         public async Task<IActionResult> DeleteStatus(int id)
-            => await db.DeleteStatus(id);
+            => await db.ChangeDeleteStatus(id);
     }
 }

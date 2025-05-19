@@ -49,11 +49,17 @@ namespace APIKurs.Controllers.EndPoints
         [Authorize(Roles = "AdminHavaetPelmeni")]
         public async Task<ActionResult> PostUser(User condition)
             => await db.PostUser(condition);
+        
+        // POST: api/Users
+        [HttpPost("PostRole")]
+        [Authorize(Roles = "AdminHavaetPelmeni")]
+        public async Task<ActionResult> PostRole(Role role)
+            => await db.PostRole(role);
 
         // DELETE: api/Users/5
         [HttpDelete("DeleteUser")]
         [Authorize(Roles = "AdminHavaetPelmeni")]
         public async Task<IActionResult> DeleteUser(int id)
-            => await db.DeleteUser(id);
+            => await db.ChangeDeleteUser(id);
     }
 }

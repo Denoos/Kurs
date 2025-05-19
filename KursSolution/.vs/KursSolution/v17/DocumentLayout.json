@@ -1,12 +1,7 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\Denoos\\source\\repos\\Denoos\\Kurs\\KursSolution\\",
-  "Documents": [
-    {
-      "AbsoluteMoniker": "D:0:0:{60D59FA2-1770-482E-A69E-C148C749B164}|APIKurs\\APIKurs.csproj|c:\\users\\denoos\\source\\repos\\denoos\\kurs\\kurssolution\\apikurs\\controllers\\backstage\\databasecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{60D59FA2-1770-482E-A69E-C148C749B164}|APIKurs\\APIKurs.csproj|solutionrelative:apikurs\\controllers\\backstage\\databasecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    }
-  ],
+  "Documents": [],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -14,24 +9,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": -1,
           "Children": [
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "DataBaseController.cs",
-              "DocumentMoniker": "C:\\Users\\Denoos\\source\\repos\\Denoos\\Kurs\\KursSolution\\APIKurs\\Controllers\\BackStage\\DataBaseController.cs",
-              "RelativeDocumentMoniker": "APIKurs\\Controllers\\BackStage\\DataBaseController.cs",
-              "ToolTip": "C:\\Users\\Denoos\\source\\repos\\Denoos\\Kurs\\KursSolution\\APIKurs\\Controllers\\BackStage\\DataBaseController.cs",
-              "RelativeToolTip": "APIKurs\\Controllers\\BackStage\\DataBaseController.cs",
-              "ViewState": "AgIAABQDAAAAAAAAAAD4vzMDAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-19T09:54:36.278Z",
-              "EditorCaption": ""
             }
           ]
         }

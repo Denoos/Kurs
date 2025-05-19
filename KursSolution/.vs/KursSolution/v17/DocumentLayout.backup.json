@@ -3,8 +3,24 @@
   "WorkspaceRootPath": "C:\\Users\\Denoos\\source\\repos\\Denoos\\Kurs\\KursSolution\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{60D59FA2-1770-482E-A69E-C148C749B164}|APIKurs\\APIKurs.csproj|c:\\users\\denoos\\source\\repos\\denoos\\kurs\\kurssolution\\apikurs\\controllers\\backstage\\databasecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{60D59FA2-1770-482E-A69E-C148C749B164}|APIKurs\\APIKurs.csproj|solutionrelative:apikurs\\controllers\\backstage\\databasecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{60D59FA2-1770-482E-A69E-C148C749B164}|APIKurs\\APIKurs.csproj|c:\\users\\denoos\\source\\repos\\denoos\\kurs\\kurssolution\\apikurs\\controllers\\endpoints\\peoplecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{60D59FA2-1770-482E-A69E-C148C749B164}|APIKurs\\APIKurs.csproj|solutionrelative:apikurs\\controllers\\endpoints\\peoplecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{60D59FA2-1770-482E-A69E-C148C749B164}|APIKurs\\APIKurs.csproj|c:\\users\\denoos\\source\\repos\\denoos\\kurs\\kurssolution\\apikurs\\controllers\\endpoints\\postscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{60D59FA2-1770-482E-A69E-C148C749B164}|APIKurs\\APIKurs.csproj|solutionrelative:apikurs\\controllers\\endpoints\\postscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{60D59FA2-1770-482E-A69E-C148C749B164}|APIKurs\\APIKurs.csproj|c:\\users\\denoos\\source\\repos\\denoos\\kurs\\kurssolution\\apikurs\\controllers\\endpoints\\ppescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{60D59FA2-1770-482E-A69E-C148C749B164}|APIKurs\\APIKurs.csproj|solutionrelative:apikurs\\controllers\\endpoints\\ppescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{60D59FA2-1770-482E-A69E-C148C749B164}|APIKurs\\APIKurs.csproj|c:\\users\\denoos\\source\\repos\\denoos\\kurs\\kurssolution\\apikurs\\controllers\\endpoints\\ppetypescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{60D59FA2-1770-482E-A69E-C148C749B164}|APIKurs\\APIKurs.csproj|solutionrelative:apikurs\\controllers\\endpoints\\ppetypescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{60D59FA2-1770-482E-A69E-C148C749B164}|APIKurs\\APIKurs.csproj|c:\\users\\denoos\\source\\repos\\denoos\\kurs\\kurssolution\\apikurs\\controllers\\endpoints\\statuscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{60D59FA2-1770-482E-A69E-C148C749B164}|APIKurs\\APIKurs.csproj|solutionrelative:apikurs\\controllers\\endpoints\\statuscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -14,23 +30,75 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 0,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "PeopleController.cs",
+              "DocumentMoniker": "C:\\Users\\Denoos\\source\\repos\\Denoos\\Kurs\\KursSolution\\APIKurs\\Controllers\\EndPoints\\PeopleController.cs",
+              "RelativeDocumentMoniker": "APIKurs\\Controllers\\EndPoints\\PeopleController.cs",
+              "ToolTip": "C:\\Users\\Denoos\\source\\repos\\Denoos\\Kurs\\KursSolution\\APIKurs\\Controllers\\EndPoints\\PeopleController.cs",
+              "RelativeToolTip": "APIKurs\\Controllers\\EndPoints\\PeopleController.cs",
+              "ViewState": "AgIAABEAAAAAAAAAAAAQwDEAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-19T10:23:05.597Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "PostsController.cs",
+              "DocumentMoniker": "C:\\Users\\Denoos\\source\\repos\\Denoos\\Kurs\\KursSolution\\APIKurs\\Controllers\\EndPoints\\PostsController.cs",
+              "RelativeDocumentMoniker": "APIKurs\\Controllers\\EndPoints\\PostsController.cs",
+              "ToolTip": "C:\\Users\\Denoos\\source\\repos\\Denoos\\Kurs\\KursSolution\\APIKurs\\Controllers\\EndPoints\\PostsController.cs",
+              "RelativeToolTip": "APIKurs\\Controllers\\EndPoints\\PostsController.cs",
+              "ViewState": "AgIAABEAAAAAAAAAAAAQwC8AAAAeAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-19T10:23:02.093Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "PpesController.cs",
+              "DocumentMoniker": "C:\\Users\\Denoos\\source\\repos\\Denoos\\Kurs\\KursSolution\\APIKurs\\Controllers\\EndPoints\\PpesController.cs",
+              "RelativeDocumentMoniker": "APIKurs\\Controllers\\EndPoints\\PpesController.cs",
+              "ToolTip": "C:\\Users\\Denoos\\source\\repos\\Denoos\\Kurs\\KursSolution\\APIKurs\\Controllers\\EndPoints\\PpesController.cs",
+              "RelativeToolTip": "APIKurs\\Controllers\\EndPoints\\PpesController.cs",
+              "ViewState": "AgIAAB8AAAAAAAAAAAAgwDcAAAAeAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-19T10:22:58.335Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "PpeTypesController.cs",
+              "DocumentMoniker": "C:\\Users\\Denoos\\source\\repos\\Denoos\\Kurs\\KursSolution\\APIKurs\\Controllers\\EndPoints\\PpeTypesController.cs",
+              "RelativeDocumentMoniker": "APIKurs\\Controllers\\EndPoints\\PpeTypesController.cs",
+              "ToolTip": "C:\\Users\\Denoos\\source\\repos\\Denoos\\Kurs\\KursSolution\\APIKurs\\Controllers\\EndPoints\\PpeTypesController.cs",
+              "RelativeToolTip": "APIKurs\\Controllers\\EndPoints\\PpeTypesController.cs",
+              "ViewState": "AgIAAB8AAAAAAAAAAAAgwDkAAAAeAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-19T10:22:54.774Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "DataBaseController.cs",
-              "DocumentMoniker": "C:\\Users\\Denoos\\source\\repos\\Denoos\\Kurs\\KursSolution\\APIKurs\\Controllers\\BackStage\\DataBaseController.cs",
-              "RelativeDocumentMoniker": "APIKurs\\Controllers\\BackStage\\DataBaseController.cs",
-              "ToolTip": "C:\\Users\\Denoos\\source\\repos\\Denoos\\Kurs\\KursSolution\\APIKurs\\Controllers\\BackStage\\DataBaseController.cs",
-              "RelativeToolTip": "APIKurs\\Controllers\\BackStage\\DataBaseController.cs",
-              "ViewState": "AgIAABQDAAAAAAAAAAD4vzEDAAAaAAAAAAAAAA==",
+              "DocumentIndex": 4,
+              "Title": "StatusController.cs",
+              "DocumentMoniker": "C:\\Users\\Denoos\\source\\repos\\Denoos\\Kurs\\KursSolution\\APIKurs\\Controllers\\EndPoints\\StatusController.cs",
+              "RelativeDocumentMoniker": "APIKurs\\Controllers\\EndPoints\\StatusController.cs",
+              "ToolTip": "C:\\Users\\Denoos\\source\\repos\\Denoos\\Kurs\\KursSolution\\APIKurs\\Controllers\\EndPoints\\StatusController.cs",
+              "RelativeToolTip": "APIKurs\\Controllers\\EndPoints\\StatusController.cs",
+              "ViewState": "AgIAACEAAAAAAAAAAAAowDkAAAAeAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-19T09:54:36.278Z",
+              "WhenOpened": "2025-05-19T10:22:51.193Z",
               "EditorCaption": ""
             }
           ]

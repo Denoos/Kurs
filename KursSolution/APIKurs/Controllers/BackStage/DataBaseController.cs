@@ -813,7 +813,7 @@ namespace APIKurs.Controllers.BackStage
 
         //Roles
 
-        public async Task<ActionResult<Status>> PostRole(Role role)
+        public async Task<ActionResult> PostRole(Role role)
         {
             _context.Roles.Add(role);
             await _context.SaveChangesAsync();
