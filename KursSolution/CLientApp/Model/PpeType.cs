@@ -9,5 +9,7 @@ public partial class PpeType
 
     public string Title { get; set; } = null!;
 
+    public sbyte IsDeleted { get; set; }
+
     public virtual ICollection<Ppe> Ppes { get; set; } = new List<Ppe>();
 }

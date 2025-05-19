@@ -15,5 +15,7 @@ public partial class User
 
     public int IdRole { get; set; }
 
+    public sbyte IsDeleted { get; set; }
+
     public virtual Role IdRoleNavigation { get; set; } = null!;
 }

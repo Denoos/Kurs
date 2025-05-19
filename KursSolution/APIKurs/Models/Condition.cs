@@ -9,5 +9,7 @@ public partial class Condition
 
     public string Title { get; set; } = null!;
 
+    public sbyte IsDeleted { get; set; }
+
     public virtual ICollection<Ppe> Ppes { get; set; } = new List<Ppe>();
 }

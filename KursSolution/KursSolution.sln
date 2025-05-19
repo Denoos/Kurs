@@ -11,6 +11,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "APIKurs", "APIKurs\APIKurs.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CLientApp", "CLientApp\CLientApp.csproj", "{42B17DAD-7312-4BC0-8965-C29E7A8BB227}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Updates", "Updates", "{D9B4E119-2937-4539-B69F-E5094284DB7E}"
+	ProjectSection(SolutionItems) = preProject
+		updates.txt = updates.txt
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

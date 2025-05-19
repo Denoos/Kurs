@@ -61,7 +61,7 @@ namespace CLientApp.View.Pages.Menues {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/CLientApp;component/view/pages/menues/statuspagemenu.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/CLientApp;V1.0.0.0;component/view/pages/menues/statuspagemenu.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\..\..\View\Pages\Menues\StatusPageMenu.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);
