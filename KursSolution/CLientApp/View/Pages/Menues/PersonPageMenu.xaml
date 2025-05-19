@@ -28,6 +28,29 @@
             <Button Click="NavigationButtonClicked" FontSize="18" Padding="20,10" Margin="10, 40" Content="Должности"/>
             <Button x:Name="AdminCheck" Click="NavigationButtonClicked" FontSize="18" Padding="20,10" Margin="10, 40" Content="Пользователи"/>
             <Button Click="NavigationButtonClicked" FontSize="18" Padding="20,10" Margin="10, 40" Content="Выход"/>
+            <StackPanel Orientation="Horizontal">
+                <Border Margin="40, 0" BorderThickness="3" Grid.Column="2" BorderBrush="#FF4500" CornerRadius="10" Padding="6" Background="#FFF5F5F5">
+                    <Button Content="⚙️" 
+                FontSize="18"
+                Width="Auto" 
+                Height="Auto" 
+                Background="#FF4500" 
+                Foreground="White" 
+                FontWeight="Bold" 
+                Click="NavigationButtonClicked"/>
+                </Border>
+
+                <Border Margin="40, 0" BorderThickness="3" Grid.Column="2" BorderBrush="#FF4500" CornerRadius="10" Padding="6" Background="#FFF5F5F5">
+                    <Button Content="🎙️" 
+                FontSize="18"
+                Width="Auto" 
+                Height="Auto" 
+                Background="#FF4500" 
+                Foreground="White" 
+                FontWeight="Bold" 
+                Click="NavigationButtonClicked"/>
+                </Border>
+            </StackPanel>
         </StackPanel>
         <!-- Правая часть с информацией о СИЗ -->
         <StackPanel Background="#FF4500" Grid.Column="1" Margin="10">

@@ -24,6 +24,29 @@
             <Button Click="NavigationButtonClicked" FontSize="18" Padding="20,10" Margin="10, 30" Content="Пользователи" x:Name="AdminCheck"/>
             <Button Click="NavigationButtonClicked" FontSize="18" Padding="20,10" Margin="10, 30" Content="В режим супер-пользователя"/>
             <Button Click="NavigationButtonClicked" FontSize="18" Padding="20,10" Margin="10, 30" Content="Выход"/>
+            <StackPanel Orientation="Horizontal">
+                <Border Margin="40, 0" BorderThickness="3" Grid.Column="2" BorderBrush="#FF4500" CornerRadius="10" Padding="6" Background="#FFF5F5F5">
+                    <Button Content="⚙️" 
+                            FontSize="18"
+                            Width="Auto" 
+                            Height="Auto" 
+                            Background="#FF4500" 
+                            Foreground="White" 
+                            FontWeight="Bold" 
+                            Click="NavigationButtonClicked"/>
+                </Border>
+
+                <Border Margin="40, 0" BorderThickness="3" Grid.Column="2" BorderBrush="#FF4500" CornerRadius="10" Padding="6" Background="#FFF5F5F5">
+                    <Button Content="🎙️" 
+                            FontSize="18"
+                            Width="Auto" 
+                            Height="Auto" 
+                            Background="#FF4500" 
+                            Foreground="White" 
+                            FontWeight="Bold" 
+                            Click="NavigationButtonClicked"/>
+                </Border>
+            </StackPanel>
         </StackPanel>
         <!-- Правая часть с информацией о СИЗ -->
         <StackPanel Background="#FF4500" Grid.Column="1" Margin="10">
@@ -37,7 +60,7 @@
             <ListView ItemsSource="{Binding SortedList}" SelectedItem="{Binding SelectedItem}" MinHeight="100" Height="800" Margin="10">
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                            <TextBlock Text="{Binding Title}" FontWeight="Bold" FontSize="14"/>
+                        <TextBlock Text="{Binding Title}" FontWeight="Bold" FontSize="14"/>
                     </DataTemplate>
                 </ListView.ItemTemplate>
                 <ListView.ContextMenu>

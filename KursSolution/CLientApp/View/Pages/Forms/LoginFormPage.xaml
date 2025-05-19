@@ -62,6 +62,7 @@
         <Border BorderThickness="3" Grid.Column="2" BorderBrush="#FF4500" HorizontalAlignment="Center" Margin="10" VerticalAlignment="Bottom" CornerRadius="10" Padding="6" Background="#FFF5F5F5">
             <StackPanel>
 
+                
                 <Button Content="Выйти" 
                 FontSize="18"
                 Width="100" 
