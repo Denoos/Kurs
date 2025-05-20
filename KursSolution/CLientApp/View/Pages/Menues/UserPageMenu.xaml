@@ -43,7 +43,7 @@
             </StackPanel>
 
             <!-- Выпадающие списки для фильтрации -->
-            <StackPanel Orientation="Horizontal" Height="30" Margin="25">
+            <StackPanel Orientation="Horizontal" Height="Auto" Margin="25">
                 <TextBlock Width="Auto" Foreground="White" FontSize="24" Text="Блок фильтрации:" Margin="10, 0" />
                 <ComboBox  x:Name="ComboFilter_Condition" SelectionChanged="Filter_Changed" Width="220" Margin="10,0" DisplayMemberPath="Ttle" IsSynchronizedWithCurrentItem="True" DockPanel.Dock="Top">
                     <ComboBox.ItemsSource>
@@ -53,6 +53,8 @@
                         </CompositeCollection>
                     </ComboBox.ItemsSource>
                 </ComboBox>
+
+                <Button Margin="150, 0" Content="Создать роль" Padding="15, 8" Height="Auto" Click="AddRole_Click" FontSize="20"/>
             </StackPanel>
 
             <ListView ItemsSource="{Binding SortedList}" SelectedItem="{Binding SelectedItem}" MinHeight="100" Height="800" Margin="10">

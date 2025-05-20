@@ -50,5 +50,8 @@
     <Compile Update="View\Pages\Menues\UserPageMenu.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="View\Windows\AddRoleForm.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
 </Project>

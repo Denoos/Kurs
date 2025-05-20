@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET8_0;NETCOREAPP;WINDOWS;WINDOWS7_0;NET5_0_OR_GREATER;NET6_0_OR_GREATER;NET7_0_OR_GREATER;NET8_0_OR_GREATER;NETCOREAPP3_0_OR_GREATER;NETCOREAPP3_1_OR_GREATER;WINDOWS7_0_OR_GREATER
 C:\Users\Denoos\source\repos\Denoos\Kurs\KursSolution\CLientApp\App.xaml
-172014636328
+181639784981
 
-361360602913
+37-1951603665
 2121235522511
-View\Pages\Forms\ConditionFormPage.xaml;View\Pages\Forms\LoginFormPage.xaml;View\Pages\Forms\PersonFormPage.xaml;View\Pages\Forms\PostFormPage.xaml;View\Pages\Forms\PpeFormPage.xaml;View\Pages\Forms\PpeTypeFormPage.xaml;View\Pages\Forms\StatusFormPage.xaml;View\Pages\Forms\UserFormPage.xaml;View\Pages\Menues\ConditionPageMenu.xaml;View\Pages\Menues\NotificationPageMenu.xaml;View\Pages\Menues\PersonPageMenu.xaml;View\Pages\Menues\PostPageMenu.xaml;View\Pages\Menues\PpePageMenu.xaml;View\Pages\Menues\PpeTypePageMenu.xaml;View\Pages\Menues\StatusPageMenu.xaml;View\Pages\Menues\UserPageMenu.xaml;View\Windows\MainWindow.xaml;
+View\Pages\Forms\ConditionFormPage.xaml;View\Pages\Forms\LoginFormPage.xaml;View\Pages\Forms\PersonFormPage.xaml;View\Pages\Forms\PostFormPage.xaml;View\Pages\Forms\PpeFormPage.xaml;View\Pages\Forms\PpeTypeFormPage.xaml;View\Pages\Forms\StatusFormPage.xaml;View\Pages\Forms\UserFormPage.xaml;View\Pages\Menues\ConditionPageMenu.xaml;View\Pages\Menues\NotificationPageMenu.xaml;View\Pages\Menues\PersonPageMenu.xaml;View\Pages\Menues\PostPageMenu.xaml;View\Pages\Menues\PpePageMenu.xaml;View\Pages\Menues\PpeTypePageMenu.xaml;View\Pages\Menues\StatusPageMenu.xaml;View\Pages\Menues\UserPageMenu.xaml;View\Windows\AddRoleForm.xaml;View\Windows\MainWindow.xaml;
 
 False
 

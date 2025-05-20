@@ -828,6 +828,40 @@ namespace CLientApp.Logic
             }
             return result;
         }
+        
+        public async Task<bool> AddRole(Role item)
+        {
+            var result = false;
+
+            if (item is null)
+                return result;
+
+            try
+            {
+                var responce = await _client.PostAsJsonAsync($"User/PostRole", item, _options);
+                var list = await GetAllRoles();
+
+                if (responce is null)
+                    return result;
+
+                if (list.FirstOrDefault(s=> s.Ttle == item.Ttle) is not null)
+                    result = true;
+            }
+            catch (Exception ex)
+            {
+                switch (ex.Message)
+                {
+                    case "One or more errors occurred. (Response status code does not indicate success: 403 (Forbidden).)":
+                        MessageBox.Show("Ошибка доступа, Вы не можете получить доступ к этой части приложения!", "Ошибка!");
+                        break;
+
+                    default:
+                        MessageBox.Show("Ошибка связи, проверьте подключение к сети!", "Ошибка!");
+                        break;
+                }
+            }
+            return result;
+        }
 
         public async Task<bool> EditUser(User item)
         {

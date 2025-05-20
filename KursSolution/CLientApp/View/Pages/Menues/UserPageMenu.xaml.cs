@@ -19,6 +19,7 @@ using CLientApp.Logic;
 using CLientApp.Model;
 using CLientApp.Models;
 using CLientApp.View.Pages.Forms;
+using CLientApp.View.Windows;
 
 namespace CLientApp.View.Pages.Menues
 {
@@ -195,5 +196,8 @@ namespace CLientApp.View.Pages.Menues
                 RenderList(Sorting, Search);
             }
         }
+
+        private void AddRole_Click(object sender, RoutedEventArgs e)
+            => new AddRoleForm().Show();
     }
 }
