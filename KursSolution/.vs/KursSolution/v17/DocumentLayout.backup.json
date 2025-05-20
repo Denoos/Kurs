@@ -1,20 +1,7 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\Denoos\\source\\repos\\Denoos\\Kurs\\KursSolution\\",
-  "Documents": [
-    {
-      "AbsoluteMoniker": "D:0:0:{D9B4E119-2937-4539-B69F-E5094284DB7E}|Updates{D9B4E119-2937-4539-B69F-E5094284DB7E}|C:\\Users\\Denoos\\source\\repos\\Denoos\\Kurs\\KursSolution\\updates.txt||{8B382828-6202-11D1-8870-0000F87579D2}",
-      "RelativeMoniker": "D:0:0:{D9B4E119-2937-4539-B69F-E5094284DB7E}|Updates{D9B4E119-2937-4539-B69F-E5094284DB7E}|solutionrelative:updates.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{60D59FA2-1770-482E-A69E-C148C749B164}|APIKurs\\APIKurs.csproj|c:\\users\\denoos\\source\\repos\\denoos\\kurs\\kurssolution\\apikurs\\controllers\\backstage\\databasecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{60D59FA2-1770-482E-A69E-C148C749B164}|APIKurs\\APIKurs.csproj|solutionrelative:apikurs\\controllers\\backstage\\databasecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{60D59FA2-1770-482E-A69E-C148C749B164}|APIKurs\\APIKurs.csproj|c:\\users\\denoos\\source\\repos\\denoos\\kurs\\kurssolution\\apikurs\\controllers\\endpoints\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{60D59FA2-1770-482E-A69E-C148C749B164}|APIKurs\\APIKurs.csproj|solutionrelative:apikurs\\controllers\\endpoints\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    }
-  ],
+  "Documents": [],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -22,50 +9,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": -1,
           "Children": [
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "updates.txt",
-              "DocumentMoniker": "C:\\Users\\Denoos\\source\\repos\\Denoos\\Kurs\\KursSolution\\updates.txt",
-              "RelativeDocumentMoniker": "updates.txt",
-              "ToolTip": "C:\\Users\\Denoos\\source\\repos\\Denoos\\Kurs\\KursSolution\\updates.txt",
-              "RelativeToolTip": "updates.txt",
-              "ViewState": "AgIAAA8AAAAAAAAAAAAAAC0AAAAEAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
-              "WhenOpened": "2025-05-19T13:01:45.765Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "DataBaseController.cs",
-              "DocumentMoniker": "C:\\Users\\Denoos\\source\\repos\\Denoos\\Kurs\\KursSolution\\APIKurs\\Controllers\\BackStage\\DataBaseController.cs",
-              "RelativeDocumentMoniker": "APIKurs\\Controllers\\BackStage\\DataBaseController.cs",
-              "ToolTip": "C:\\Users\\Denoos\\source\\repos\\Denoos\\Kurs\\KursSolution\\APIKurs\\Controllers\\BackStage\\DataBaseController.cs",
-              "RelativeToolTip": "APIKurs\\Controllers\\BackStage\\DataBaseController.cs",
-              "ViewState": "AgIAAGsAAAAAAAAAAAAswIQAAAA9AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-19T13:01:06.939Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "UserController.cs",
-              "DocumentMoniker": "C:\\Users\\Denoos\\source\\repos\\Denoos\\Kurs\\KursSolution\\APIKurs\\Controllers\\EndPoints\\UserController.cs",
-              "RelativeDocumentMoniker": "APIKurs\\Controllers\\EndPoints\\UserController.cs",
-              "ToolTip": "C:\\Users\\Denoos\\source\\repos\\Denoos\\Kurs\\KursSolution\\APIKurs\\Controllers\\EndPoints\\UserController.cs",
-              "RelativeToolTip": "APIKurs\\Controllers\\EndPoints\\UserController.cs",
-              "ViewState": "AgIAACYAAAAAAAAAAAAIwD0AAAA7AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-19T12:44:05.306Z",
-              "EditorCaption": ""
             }
           ]
         }

@@ -51,7 +51,13 @@ namespace CLientApp.View.Pages.Menues
         private async void AdminCheckMethod()
         {
             if (await _db.CheckAdmin())
+            {
                 AdminCheck.Visibility = Visibility.Collapsed;
+                PpeTypeBtn.Visibility = Visibility.Collapsed;
+                PersonStatusBtn.Visibility = Visibility.Collapsed;
+                PostsBtn.Visibility = Visibility.Collapsed;
+                SuperUserBtn.Visibility = Visibility.Collapsed;
+            }
         }
 
         private void NavigationButtonClicked(object sender, RoutedEventArgs e)
@@ -85,6 +91,12 @@ namespace CLientApp.View.Pages.Menues
 
                 case "Выход":
                     _window.SetPage(new LoginFormPage(_window));
+                    break;
+                
+                case "В режим администратора":
+                    
+                    //zaglushka
+
                     break;
 
                 default:

@@ -16,13 +16,15 @@
 
         <!-- Левая часть с кнопками навигации -->
         <StackPanel  Grid.Column="0" Background="#FF4500" Margin=" 30">
-            <Button Click="NavigationButtonClicked" FontSize="18" Padding="20,10" Margin="10, 40" Content="Типы СИЗ"/>
-            <Button Click="NavigationButtonClicked" FontSize="18" Padding="20,10" Margin="10, 40" Content="Состояния СИЗ"/>
-            <Button Click="NavigationButtonClicked" FontSize="18" Padding="20,10" Margin="10, 40" Content="СИЗ"/>
-            <Button Click="NavigationButtonClicked" FontSize="18" Padding="20,10" Margin="10, 40" Content="Сотрудники"/>
-            <Button Click="NavigationButtonClicked" FontSize="18" Padding="20,10" Margin="10, 40" Content="Статусы сотрудников"/>
-            <Button x:Name="AdminCheck" Click="NavigationButtonClicked" FontSize="18" Padding="20,10" Margin="10, 40" Content="Пользователи"/>
-            <Button Click="NavigationButtonClicked" FontSize="18" Padding="20,10" Margin="10, 40" Content="Выход"/>
+            <StackPanel  Grid.Column="0" Background="#FF4500" Margin=" 30">
+                <Button x:Name="PpeConditionBtn" Click="NavigationButtonClicked" FontSize="18" Padding="20,10" Margin="10, 40" Content="Состояния СИЗ"/>
+                <Button x:Name="PpeTypeBtn" Click="NavigationButtonClicked" FontSize="18" Padding="20,10" Margin="10, 30" Content="Типы СИЗ"/>
+                <Button Click="NavigationButtonClicked" FontSize="18" Padding="20,10" Margin="10, 30" Content="СИЗ"/>
+                <Button x:Name="PersonStatusBtn" Click="NavigationButtonClicked" FontSize="18" Padding="20,10" Margin="10, 30" Content="Статусы сотрудников"/>
+                <Button x:Name="PersonsBtn" Click="NavigationButtonClicked" FontSize="18" Padding="20,10" Margin="10, 30" Content="Сотрудники"/>
+                <Button x:Name="AdminCheck" Click="NavigationButtonClicked" FontSize="18" Padding="20,10" Margin="10, 30" Content="Пользователи"/>
+                <Button Click="NavigationButtonClicked" FontSize="18" Padding="20,10" Margin="10, 30" Content="Выход"/>
+            </StackPanel>
         </StackPanel>
         <!-- Правая часть с информацией о СИЗ -->
         <StackPanel Background="#FF4500" Grid.Column="1" Margin="10">

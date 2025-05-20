@@ -16,37 +16,13 @@
 
         <!-- Левая часть с кнопками навигации -->
         <StackPanel  Grid.Column="0" Background="#FF4500" Margin=" 30">
-            <Button Click="NavigationButtonClicked" FontSize="18" Padding="20,10" Margin="10, 30" Content="Типы СИЗ"/>
+            <Button x:Name="PpeTypeBtn" Click="NavigationButtonClicked" FontSize="18" Padding="20,10" Margin="10, 30" Content="Типы СИЗ"/>
             <Button Click="NavigationButtonClicked" FontSize="18" Padding="20,10" Margin="10, 30" Content="СИЗ"/>
             <Button Click="NavigationButtonClicked" FontSize="18" Padding="20,10" Margin="10, 30" Content="Сотрудники"/>
-            <Button Click="NavigationButtonClicked" FontSize="18" Padding="20,10" Margin="10, 30" Content="Статусы сотрудников"/>
-            <Button Click="NavigationButtonClicked" FontSize="18" Padding="20,10" Margin="10, 30" Content="Должности"/>
+            <Button x:Name="PersonStatusBtn" Click="NavigationButtonClicked" FontSize="18" Padding="20,10" Margin="10, 30" Content="Статусы сотрудников"/>
+            <Button x:Name="PostsBtn" Click="NavigationButtonClicked" FontSize="18" Padding="20,10" Margin="10, 30" Content="Должности"/>
             <Button Click="NavigationButtonClicked" FontSize="18" Padding="20,10" Margin="10, 30" Content="Пользователи" x:Name="AdminCheck"/>
-            <Button Click="NavigationButtonClicked" FontSize="18" Padding="20,10" Margin="10, 30" Content="В режим супер-пользователя"/>
             <Button Click="NavigationButtonClicked" FontSize="18" Padding="20,10" Margin="10, 30" Content="Выход"/>
-            <StackPanel Orientation="Horizontal">
-                <Border Margin="40, 0" BorderThickness="3" Grid.Column="2" BorderBrush="#FF4500" CornerRadius="10" Padding="6" Background="#FFF5F5F5">
-                    <Button Content="⚙️" 
-                            FontSize="18"
-                            Width="Auto" 
-                            Height="Auto" 
-                            Background="#FF4500" 
-                            Foreground="White" 
-                            FontWeight="Bold" 
-                            Click="NavigationButtonClicked"/>
-                </Border>
-
-                <Border Margin="40, 0" BorderThickness="3" Grid.Column="2" BorderBrush="#FF4500" CornerRadius="10" Padding="6" Background="#FFF5F5F5">
-                    <Button Content="🎙️" 
-                            FontSize="18"
-                            Width="Auto" 
-                            Height="Auto" 
-                            Background="#FF4500" 
-                            Foreground="White" 
-                            FontWeight="Bold" 
-                            Click="NavigationButtonClicked"/>
-                </Border>
-            </StackPanel>
         </StackPanel>
         <!-- Правая часть с информацией о СИЗ -->
         <StackPanel Background="#FF4500" Grid.Column="1" Margin="10">

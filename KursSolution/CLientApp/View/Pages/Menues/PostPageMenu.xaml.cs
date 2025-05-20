@@ -51,7 +51,12 @@ namespace CLientApp.View.Pages.Menues
         private async void AdminCheckMethod()
         {
             if (await _db.CheckAdmin())
+            {
                 AdminCheck.Visibility = Visibility.Collapsed;
+                PpeTypeBtn.Visibility = Visibility.Collapsed;
+                PersonStatusBtn.Visibility = Visibility.Collapsed;
+                PersonsBtn.Visibility = Visibility.Collapsed;
+            }
         }
 
         private void NavigationButtonClicked(object sender, RoutedEventArgs e)
