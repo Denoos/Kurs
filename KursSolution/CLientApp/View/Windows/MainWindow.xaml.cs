@@ -37,6 +37,7 @@ namespace CLientApp
             => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
         public MainWindow()
         {
+            var a = SettingsLogic.Instance;
             InitializeComponent();
             DataContext = this;
             SetPage(new LoginFormPage(this));
