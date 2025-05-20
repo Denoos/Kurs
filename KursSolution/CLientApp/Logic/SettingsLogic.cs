@@ -11,7 +11,7 @@ using CLientApp.Model;
 
 namespace CLientApp.Logic
 {
-    public class SettingsLogic: INotifyPropertyChanged
+    public class SettingsLogic : INotifyPropertyChanged
     {
         private static SettingsLogic instance;
         public static SettingsLogic Instance { get => instance ??= new(); }
@@ -27,6 +27,20 @@ namespace CLientApp.Logic
         {
             SettingsFileIsCreated();
             ReadCurrentSettings();
+        }
+
+        public void SaveNewSettings(CustomSettings settings)
+        {
+            if (settings.Color is not null)
+                Settings.Color = settings.Color;
+            if (settings.FontSize != 0)
+                Settings.FontSize = settings.FontSize;
+            if (settings.RadioIsWorking != null)
+                Settings.RadioIsWorking = settings.RadioIsWorking;
+
+            var currentSettings = $"color:#FF4500;fontsize:16;radioworking:true;-;color:{Settings.Color};fontsize:{Settings.FontSize};radioworking:{Settings.RadioIsWorking};";
+
+            File.WriteAllText($"{Environment.CurrentDirectory}/config.txt", currentSettings);
         }
 
         private void ReadCurrentSettings()
@@ -62,6 +76,19 @@ namespace CLientApp.Logic
             SetSettings(color, int.Parse(font), bool.Parse(radio));
         }
 
+        public void UseDeafaultSettings()
+        {
+            var allText = File.ReadAllText($"{Environment.CurrentDirectory}/config.txt");
+
+            var splittedForDefCust = allText.Split('-', StringSplitOptions.RemoveEmptyEntries);
+
+            var color = splittedForDefCust[0].Split(';', StringSplitOptions.RemoveEmptyEntries)[0].Split(':', StringSplitOptions.RemoveEmptyEntries)[1];
+            var font = splittedForDefCust[0].Split(';', StringSplitOptions.RemoveEmptyEntries)[1].Split(':', StringSplitOptions.RemoveEmptyEntries)[1];
+            var radio = splittedForDefCust[0].Split(';', StringSplitOptions.RemoveEmptyEntries)[2].Split(':', StringSplitOptions.RemoveEmptyEntries)[1];
+
+            SetSettings(color, int.Parse(font), bool.Parse(radio));
+        }
+
         private void SettingsFileIsCreated()
         {
             if (!File.Exists($"{Environment.CurrentDirectory}/config.txt"))
@@ -72,8 +99,6 @@ namespace CLientApp.Logic
         }
 
         private void SetSettings(string color, int fontsize, bool radioIsWork)
-        { 
-            
-        }
+            => Settings = new() { Color = color, FontSize = fontsize, RadioIsWorking = radioIsWork };
     }
 }
