@@ -52,7 +52,11 @@ namespace CLientApp.View.Pages.Menues
         {
             if (await _db.CheckAdmin())
             {
-                AdminCheck.Visibility = Visibility.Collapsed;
+                if (await _db.CheckAdmin())
+                {
+                    AdminCheck.Visibility = Visibility.Collapsed;
+                    DelFor.Visibility = Visibility.Collapsed;
+                }
                 PostsBtn.Visibility = Visibility.Collapsed;
                 PersonStatusBtn.Visibility = Visibility.Collapsed;
                 PpeConditionBtn.Visibility = Visibility.Collapsed;
@@ -129,7 +133,7 @@ namespace CLientApp.View.Pages.Menues
                 MessageBox.Show("Пожалуйста выберите тип СИЗ!", "Внимание!");
             else
             {
-                if (MessageBox.Show("Вы действительно хотите удалить тип СИЗ?", "Удаление!", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                if (MessageBox.Show("Вы действительно хотите удалить тип СИЗ? Все СИЗ с таким типом также не изменят значения, нужно будет поменять их вручную!", "Удаление!", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
                     _db.DeletePpeType(SelectedItem);
                 Thread.Sleep(200);
                 RenderList(Search);
@@ -140,7 +144,20 @@ namespace CLientApp.View.Pages.Menues
         {
             if (SelectedItem is not null)
                 _window.SetPage(new PpeTypeFormPage(_window, false, SelectedItem));
-            else MessageBox.Show("Пожалуйста выберите тип СИЗ! Все СИЗ с таким типом также удалятся!", "Внимание!");
+            else MessageBox.Show("Пожалуйста выберите тип СИЗ!", "Внимание!");
+        }
+
+        private void DeleteForever_Click(object sender, RoutedEventArgs e)
+        {
+            if (SelectedItem is null)
+                MessageBox.Show("Пожалуйста выберите тип СИЗ!", "Внимание!");
+            else
+            {
+                if (MessageBox.Show("Вы действительно хотите удалить тип СИЗ?  Все СИЗ с таким типом также удалятся из БД, предупредите пользователей об этом!", "Удаление!", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                    _db.DeletePpeTypeForever(SelectedItem);
+                Thread.Sleep(200);
+                RenderList(Search);
+            }
         }
     }
 }

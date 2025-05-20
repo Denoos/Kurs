@@ -50,9 +50,16 @@ namespace CLientApp.View.Pages.Menues
 
         private async void AdminCheckMethod()
         {
-            if (await _db.CheckAdmin())
+            if (await _db.CheckAdminTeammate())
             {
-                AdminCheck.Visibility = Visibility.Collapsed;
+                PpeTypeBtn.Visibility = Visibility.Collapsed;
+                PersonStatusBtn.Visibility = Visibility.Collapsed;
+                PpeConditionBtn.Visibility = Visibility.Collapsed;
+                if (await _db.CheckAdmin())
+                {
+                    AdminCheck.Visibility = Visibility.Collapsed;
+                    DelFor.Visibility = Visibility.Collapsed;
+                }
             }
         }
 
@@ -125,7 +132,7 @@ namespace CLientApp.View.Pages.Menues
                 MessageBox.Show("Пожалуйста выберите должность!", "Внимание!");
             else
             {
-                if (MessageBox.Show("Вы действительно хотите удалить должность? Все сотрудники с такой должностю также удалятся!", "Удаление!", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                if (MessageBox.Show("Вы действительно хотите удалить должность? Все сотрудники с такой должностю не изменят значения, нужно будет поменять их вручную!", "Удаление!", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
                     _db.DeletePost(SelectedItem);
                 Thread.Sleep(200);
                 RenderList(Search);
@@ -137,6 +144,19 @@ namespace CLientApp.View.Pages.Menues
             if (SelectedItem is not null)
                 _window.SetPage(new PostFormPage(_window, false, SelectedItem));
             else MessageBox.Show("Пожалуйста выберите должность!", "Внимание!");
+        }
+
+        private void DeleteForever_Click(object sender, RoutedEventArgs e)
+        {
+            if (SelectedItem is null)
+                MessageBox.Show("Пожалуйста выберите должность!", "Внимание!");
+            else
+            {
+                if (MessageBox.Show("Вы действительно хотите удалить должность? Все сотрудники с такой должностю также удалятся из БД, предупредите пользователей об этом!", "Удаление!", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                    _db.DeletePostForever(SelectedItem);
+                Thread.Sleep(200);
+                RenderList(Search);
+            }
         }
     }
 }

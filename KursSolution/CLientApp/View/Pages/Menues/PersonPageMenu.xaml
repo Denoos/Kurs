@@ -87,6 +87,7 @@
                         <MenuItem Header="Удалить" Click="Delete_Click"/>
                         <!--Separator/-->
                         <!--MenuItem Header="Посмотреть иинформацию" Click="ShowInfo_Click"/-->
+                        <MenuItem x:Name="DelFor" Header="Удалить навсегда" Click="DeleteForever_Click"/>
                     </ContextMenu>
                 </ListView.ContextMenu>
             </ListView>

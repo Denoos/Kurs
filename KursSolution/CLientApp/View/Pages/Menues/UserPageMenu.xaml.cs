@@ -182,5 +182,18 @@ namespace CLientApp.View.Pages.Menues
                 _window.SetPage(new UserFormPage(_window, false, SelectedItem));
             else MessageBox.Show("Пожалуйста выберите пользователя!", "Внимание!");
         }
+
+        private void DeleteForever_Click(object sender, RoutedEventArgs e)
+        {
+            if (SelectedItem is null)
+                MessageBox.Show("Пожалуйста выберите пользователя!", "Внимание!");
+            else
+            {
+                if (MessageBox.Show("Вы действительно хотите удалить пользователя навсегда? Восстановление будет невозможно!!", "Удаление!", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                    _db.DeleteUserForever(SelectedItem);
+                Thread.Sleep(500);
+                RenderList(Sorting, Search);
+            }
+        }
     }
 }

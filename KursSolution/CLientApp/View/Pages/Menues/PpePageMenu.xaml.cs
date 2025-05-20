@@ -72,7 +72,11 @@ namespace CLientApp.View.Pages.Menues
         {
             if (await _db.CheckAdmin())
             {
-                AdminCheck.Visibility = Visibility.Collapsed;
+                if (await _db.CheckAdmin())
+                {
+                    AdminCheck.Visibility = Visibility.Collapsed;
+                    DelFor.Visibility = Visibility.Collapsed;
+                }
                 PpeTypeBtn.Visibility = Visibility.Collapsed;
                 PersonStatusBtn.Visibility = Visibility.Collapsed;
                 PostsBtn.Visibility = Visibility.Collapsed;
@@ -268,6 +272,19 @@ namespace CLientApp.View.Pages.Menues
             if (SelectedPpe is not null)
                 _window.SetPage(new PpeFormPage(_window, false, SelectedPpe));
             else MessageBox.Show("Пожалуйста выберите СИЗ!", "Внимание!");
+        }
+
+        private void DeleteForever_Click(object sender, RoutedEventArgs e)
+        {
+            if (SelectedPpe is null)
+                MessageBox.Show("Пожалуйста выберите СИЗ!", "Внимание!");
+            else
+            {
+                if (MessageBox.Show("Вы действительно хотите удалить СИЗ?", "Удаление!", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                    _db.DeletePpe(SelectedPpe);
+                Thread.Sleep(500);
+                RenderList(Sorting, Search);
+            }
         }
     }
 }

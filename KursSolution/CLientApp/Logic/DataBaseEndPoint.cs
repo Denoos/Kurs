@@ -50,6 +50,29 @@ namespace CLientApp.Logic
                 return false;
             }
         }
+        
+        public async Task<bool> CheckAdminTeammate()
+        {
+            try
+            {
+                var result = false;
+
+                var list = await GetAllConditions();
+                var resp = await _client.PutAsJsonAsync($"Conditions/PutCondition", list[0], _options);
+
+                Task.WaitAll();
+
+                if (resp != null && resp.StatusCode == System.Net.HttpStatusCode.OK)
+                    result = true;
+
+                return !result;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ошибка связи, проверьте подключение к сети!", "Ошибка!");
+                return false;
+            }
+        }
 
         public async Task<bool> Login(User user)
         {
@@ -298,6 +321,25 @@ namespace CLientApp.Logic
                 return;
             }
         }
+        
+        public async Task DeletePpeForever(Ppe selectedItem)
+        {
+            if (selectedItem is null)
+                return;
+
+            try
+            {
+                var responce = await _client.DeleteAsync($"Ppes/DeletePpeForever?id={selectedItem.Id}");
+
+                if (responce != null && responce.StatusCode == System.Net.HttpStatusCode.OK)
+                    MessageBox.Show("Объект удален!", "Успех!");
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Ошибка связи, проверьте подключение к сети!", "Ошибка!");
+                return;
+            }
+        }
 
         public async Task DeleteCondition(Model.Condition selectedItem)
         {
@@ -307,6 +349,25 @@ namespace CLientApp.Logic
             try
             {
                 var responce = await _client.DeleteAsync($"Conditions/DeleteCondition?id={selectedItem.Id}");
+
+                if (responce != null && responce.StatusCode == System.Net.HttpStatusCode.OK)
+                    MessageBox.Show("Объект удален!", "Успех!");
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Ошибка связи, проверьте подключение к сети!", "Ошибка!");
+                return;
+            }
+        }
+        
+        public async Task DeleteConditionForever(Model.Condition selectedItem)
+        {
+            if (selectedItem is null)
+                return;
+
+            try
+            {
+                var responce = await _client.DeleteAsync($"Conditions/DeleteConditionForever?id={selectedItem.Id}");
 
                 if (responce != null && responce.StatusCode == System.Net.HttpStatusCode.OK)
                     MessageBox.Show("Объект удален!", "Успех!");
@@ -336,6 +397,25 @@ namespace CLientApp.Logic
                 return;
             }
         }
+        
+        public async Task DeletePostForever(Post selectedItem)
+        {
+            if (selectedItem is null)
+                return;
+
+            try
+            {
+                var responce = await _client.DeleteAsync($"Posts/DeletePostForever?id={selectedItem.Id}");
+
+                if (responce != null && responce.StatusCode == System.Net.HttpStatusCode.OK)
+                    MessageBox.Show("Объект удален!", "Успех!");
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Ошибка связи, проверьте подключение к сети!", "Ошибка!");
+                return;
+            }
+        }
 
         public async Task DeletePpeType(PpeType selectedItem)
         {
@@ -345,6 +425,25 @@ namespace CLientApp.Logic
             try
             {
                 var responce = await _client.DeleteAsync($"PpeTypes/DeletePpeType?id={selectedItem.Id}");
+
+                if (responce != null && responce.StatusCode == System.Net.HttpStatusCode.OK)
+                    MessageBox.Show("Объект удален!", "Успех!");
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Ошибка связи, проверьте подключение к сети!", "Ошибка!");
+                return;
+            }
+        }
+        
+        public async Task DeletePpeTypeForever(PpeType selectedItem)
+        {
+            if (selectedItem is null)
+                return;
+
+            try
+            {
+                var responce = await _client.DeleteAsync($"PpeTypes/DeletePpeTypeForever?id={selectedItem.Id}");
 
                 if (responce != null && responce.StatusCode == System.Net.HttpStatusCode.OK)
                     MessageBox.Show("Объект удален!", "Успех!");
@@ -374,6 +473,25 @@ namespace CLientApp.Logic
                 return;
             }
         }
+        
+        public async Task DeleteStatusForever(Status selectedItem)
+        {
+            if (selectedItem is null)
+                return;
+
+            try
+            {
+                var responce = await _client.DeleteAsync($"Status/DeleteStatusForever?id={selectedItem.Id}");
+
+                if (responce != null && responce.StatusCode == System.Net.HttpStatusCode.OK)
+                    MessageBox.Show("Объект удален!", "Успех!");
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Ошибка связи, проверьте подключение к сети!", "Ошибка!");
+                return;
+            }
+        }
 
         public async Task DeletePerson(Person selectedItem)
         {
@@ -393,6 +511,25 @@ namespace CLientApp.Logic
                 return;
             }
         }
+        
+        public async Task DeletePersonForever(Person selectedItem)
+        {
+            if (selectedItem is null)
+                return;
+
+            try
+            {
+                var responce = await _client.DeleteAsync($"People/DeletePersonForever?id={selectedItem.Id}");
+
+                if (responce != null && responce.StatusCode == System.Net.HttpStatusCode.OK)
+                    MessageBox.Show("Объект удален!", "Успех!");
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Ошибка связи, проверьте подключение к сети!", "Ошибка!");
+                return;
+            }
+        }
 
         public async Task DeleteUser(User selectedItem)
         {
@@ -402,6 +539,34 @@ namespace CLientApp.Logic
             try
             {
                 var responce = await _client.DeleteAsync($"User/DeleteUser?id={selectedItem.Id}");
+
+                if (responce != null && responce.StatusCode == System.Net.HttpStatusCode.OK)
+                    MessageBox.Show("Объект удален!", "Успех!");
+            }
+            catch (Exception ex)
+            {
+                switch (ex.Message)
+                {
+                    case "One or more errors occurred. (Response status code does not indicate success: 403 (Forbidden).)":
+                        MessageBox.Show("Ошибка доступа, Вы не можете получить доступ к этой части приложения!", "Ошибка!");
+                        break;
+
+                    default:
+                        MessageBox.Show("Ошибка связи, проверьте подключение к сети!", "Ошибка!");
+                        break;
+                }
+                return;
+            }
+        }
+        
+        public async Task DeleteUserForever(User selectedItem)
+        {
+            if (selectedItem is null)
+                return;
+
+            try
+            {
+                var responce = await _client.DeleteAsync($"User/DeleteUserForever?id={selectedItem.Id}");
 
                 if (responce != null && responce.StatusCode == System.Net.HttpStatusCode.OK)
                     MessageBox.Show("Объект удален!", "Успех!");

@@ -53,6 +53,8 @@ namespace CLientApp.View.Pages.Menues
             if (await _db.CheckAdmin())
             {
                 AdminCheck.Visibility = Visibility.Collapsed;
+                DelFor.Visibility = Visibility.Collapsed;
+
             }
         }
 
@@ -131,7 +133,7 @@ namespace CLientApp.View.Pages.Menues
                 MessageBox.Show("Пожалуйста выберите состояние!", "Внимание!");
             else
             {
-                if (MessageBox.Show("Вы действительно хотите удалить состояние? Все СИЗ с таким состоянием также удалятся!", "Удаление!", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                if (MessageBox.Show("Вы действительно хотите удалить состояние? Все СИЗ с таким состоянием не изменят значения, нужно будет поменять их вручную!", "Удаление!", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
                     _db.DeleteCondition(SelectedItem);
                 Thread.Sleep(200);
                 RenderList(Search);
@@ -143,6 +145,19 @@ namespace CLientApp.View.Pages.Menues
             if (SelectedItem is not null)
                 _window.SetPage(new ConditionFormPage(_window, false, SelectedItem));
             else MessageBox.Show("Пожалуйста выберите состояние!", "Внимание!");
+        }
+
+        private void DeleteForever_Click(object sender, RoutedEventArgs e)
+        {
+            if (SelectedItem is null)
+                MessageBox.Show("Пожалуйста выберите состояние!", "Внимание!");
+            else
+            {
+                if (MessageBox.Show("Вы действительно хотите удалить состояние? Все СИЗ с таким состоянием также удалятся из БД, предупредите пользователей об этом!", "Удаление!", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                    _db.DeleteConditionForever(SelectedItem);
+                Thread.Sleep(200);
+                RenderList(Search);
+            }
         }
     }
 }

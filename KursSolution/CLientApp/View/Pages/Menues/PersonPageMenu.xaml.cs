@@ -63,12 +63,16 @@ namespace CLientApp.View.Pages.Menues
 
         private async void AdminCheckMethod()
         {
-            if (await _db.CheckAdmin())
+            if (await _db.CheckAdminTeammate())
             {
-                AdminCheck.Visibility = Visibility.Collapsed;
                 PpeTypeBtn.Visibility = Visibility.Collapsed;
                 PersonStatusBtn.Visibility = Visibility.Collapsed;
                 PostsBtn.Visibility = Visibility.Collapsed;
+                if (await _db.CheckAdmin())
+                {
+                    AdminCheck.Visibility = Visibility.Collapsed;
+                    DelFor.Visibility = Visibility.Collapsed;
+                }
             }
         }
 
@@ -222,6 +226,19 @@ namespace CLientApp.View.Pages.Menues
             if (SelectedItem is not null)
                 _window.SetPage(new PersonFormPage(_window, false, SelectedItem));
             else MessageBox.Show("Пожалуйста выберите сотрудника!", "Внимание!");
+        }
+
+        private void DeleteForever_Click(object sender, RoutedEventArgs e)
+        {
+            if (SelectedItem is null)
+                MessageBox.Show("Пожалуйста выберите сотрудника!", "Внимание!");
+            else
+            {
+                if (MessageBox.Show("Вы действительно хотите удалить сотрудника?", "Удаление!", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                    _db.DeletePersonForever(SelectedItem);
+                Thread.Sleep(500);
+                RenderList(Sorting, Search);
+            }
         }
     }
 }
