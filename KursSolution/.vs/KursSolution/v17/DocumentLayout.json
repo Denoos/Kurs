@@ -1,7 +1,12 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\Denoos\\source\\repos\\Denoos\\Kurs\\KursSolution\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{D9B4E119-2937-4539-B69F-E5094284DB7E}|\u041D\u043E\u0432\u0430\u044F \u043F\u0430\u043F\u043A\u04301{D9B4E119-2937-4539-B69F-E5094284DB7E}|C:\\Users\\Denoos\\source\\repos\\Denoos\\Kurs\\KursSolution\\updates.txt||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{D9B4E119-2937-4539-B69F-E5094284DB7E}|\u041D\u043E\u0432\u0430\u044F \u043F\u0430\u043F\u043A\u04301{D9B4E119-2937-4539-B69F-E5094284DB7E}|solutionrelative:updates.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -9,11 +14,24 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": -1,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "updates.txt",
+              "DocumentMoniker": "C:\\Users\\Denoos\\source\\repos\\Denoos\\Kurs\\KursSolution\\updates.txt",
+              "RelativeDocumentMoniker": "updates.txt",
+              "ToolTip": "C:\\Users\\Denoos\\source\\repos\\Denoos\\Kurs\\KursSolution\\updates.txt",
+              "RelativeToolTip": "updates.txt",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
+              "WhenOpened": "2025-05-20T07:42:15.937Z",
+              "EditorCaption": ""
             }
           ]
         }

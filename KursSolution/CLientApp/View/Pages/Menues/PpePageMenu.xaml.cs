@@ -76,6 +76,7 @@ namespace CLientApp.View.Pages.Menues
                 PpeTypeBtn.Visibility = Visibility.Collapsed;
                 PersonStatusBtn.Visibility = Visibility.Collapsed;
                 PostsBtn.Visibility = Visibility.Collapsed;
+                PpeConditionBtn.Visibility = Visibility.Collapsed;
             }
         }
 

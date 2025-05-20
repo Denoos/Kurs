@@ -53,10 +53,6 @@ namespace CLientApp.View.Pages.Menues
             if (await _db.CheckAdmin())
             {
                 AdminCheck.Visibility = Visibility.Collapsed;
-                PpeTypeBtn.Visibility = Visibility.Collapsed;
-                PersonStatusBtn.Visibility = Visibility.Collapsed;
-                PostsBtn.Visibility = Visibility.Collapsed;
-                SuperUserBtn.Visibility = Visibility.Collapsed;
             }
         }
 

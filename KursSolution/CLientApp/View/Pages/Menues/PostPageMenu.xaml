@@ -21,7 +21,7 @@
                 <Button x:Name="PpeTypeBtn" Click="NavigationButtonClicked" FontSize="18" Padding="20,10" Margin="10, 30" Content="Типы СИЗ"/>
                 <Button Click="NavigationButtonClicked" FontSize="18" Padding="20,10" Margin="10, 30" Content="СИЗ"/>
                 <Button x:Name="PersonStatusBtn" Click="NavigationButtonClicked" FontSize="18" Padding="20,10" Margin="10, 30" Content="Статусы сотрудников"/>
-                <Button x:Name="PersonsBtn" Click="NavigationButtonClicked" FontSize="18" Padding="20,10" Margin="10, 30" Content="Сотрудники"/>
+                <Button Click="NavigationButtonClicked" FontSize="18" Padding="20,10" Margin="10, 30" Content="Сотрудники"/>
                 <Button x:Name="AdminCheck" Click="NavigationButtonClicked" FontSize="18" Padding="20,10" Margin="10, 30" Content="Пользователи"/>
                 <Button Click="NavigationButtonClicked" FontSize="18" Padding="20,10" Margin="10, 30" Content="Выход"/>
             </StackPanel>
