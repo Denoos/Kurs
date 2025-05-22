@@ -20,7 +20,7 @@ namespace CLientApp.Logic
         public static DataBaseEndPoint Instance { get => instance ??= new(); }
 
         private readonly HttpClient _client;
-        private User CurrentAccount;
+        public User CurrentAccount;
         private JsonSerializerOptions _options;
 
         public DataBaseEndPoint()
@@ -50,7 +50,7 @@ namespace CLientApp.Logic
                 return false;
             }
         }
-        
+
         public async Task<bool> CheckAdminTeammate()
         {
             try
@@ -72,6 +72,33 @@ namespace CLientApp.Logic
                 MessageBox.Show("Ошибка связи, проверьте подключение к сети!", "Ошибка!");
                 return false;
             }
+        }
+
+
+        public async Task<bool> PostDefaultSetting(string item)
+        {
+            var result = false;
+
+            if (item is null)
+                return result;
+
+            try
+            {
+                var responce = await _client.PostAsJsonAsync($"User/PostDefaultSetting", item);
+
+                if (responce is null)
+                    return result;
+
+                if (responce.StatusCode == System.Net.HttpStatusCode.OK)
+                    result = true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Код был введен неверно! Сис. админу было отправлено уведомление о попытке изменить данные!", "Ошибка!");
+                MessageBox.Show(ex.Message);
+            }
+
+            return result;
         }
 
         public async Task<bool> Login(User user)
@@ -321,7 +348,7 @@ namespace CLientApp.Logic
                 return;
             }
         }
-        
+
         public async Task DeletePpeForever(Ppe selectedItem)
         {
             if (selectedItem is null)
@@ -359,7 +386,7 @@ namespace CLientApp.Logic
                 return;
             }
         }
-        
+
         public async Task DeleteConditionForever(Model.Condition selectedItem)
         {
             if (selectedItem is null)
@@ -397,7 +424,7 @@ namespace CLientApp.Logic
                 return;
             }
         }
-        
+
         public async Task DeletePostForever(Post selectedItem)
         {
             if (selectedItem is null)
@@ -435,7 +462,7 @@ namespace CLientApp.Logic
                 return;
             }
         }
-        
+
         public async Task DeletePpeTypeForever(PpeType selectedItem)
         {
             if (selectedItem is null)
@@ -473,7 +500,7 @@ namespace CLientApp.Logic
                 return;
             }
         }
-        
+
         public async Task DeleteStatusForever(Status selectedItem)
         {
             if (selectedItem is null)
@@ -511,7 +538,7 @@ namespace CLientApp.Logic
                 return;
             }
         }
-        
+
         public async Task DeletePersonForever(Person selectedItem)
         {
             if (selectedItem is null)
@@ -558,7 +585,7 @@ namespace CLientApp.Logic
                 return;
             }
         }
-        
+
         public async Task DeleteUserForever(User selectedItem)
         {
             if (selectedItem is null)
@@ -828,7 +855,7 @@ namespace CLientApp.Logic
             }
             return result;
         }
-        
+
         public async Task<bool> AddRole(Role item)
         {
             var result = false;
@@ -844,7 +871,7 @@ namespace CLientApp.Logic
                 if (responce is null)
                     return result;
 
-                if (list.FirstOrDefault(s=> s.Ttle == item.Ttle) is not null)
+                if (list.FirstOrDefault(s => s.Ttle == item.Ttle) is not null)
                     result = true;
             }
             catch (Exception ex)

@@ -49,7 +49,7 @@ namespace APIKurs.Controllers.EndPoints
         [Authorize(Roles = "AccessWasInFrontOfYourEyesLOL")]
         public async Task<ActionResult> PostUser(User condition)
             => await db.PostUser(condition);
-        
+       
         // POST: api/Users
         [HttpPost("PostRole")]
         [Authorize(Roles = "AccessWasInFrontOfYourEyesLOL")]
@@ -67,5 +67,9 @@ namespace APIKurs.Controllers.EndPoints
         [Authorize(Roles = "AccessWasInFrontOfYourEyesLOL")]
         public async Task<IActionResult> DeleteUserForever(int id)
             => await db.DeleteUserForever(id);
+
+        [HttpPost("PostDefaultSetting")]
+        public async Task<ActionResult> PosDefaultSetting(string someStrongString)
+                => await AdminPanel.Instance.SetDefaultPassword(someStrongString);
     }
 }

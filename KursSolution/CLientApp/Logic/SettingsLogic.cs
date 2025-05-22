@@ -7,6 +7,7 @@ using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using CLientApp.Model;
 
 namespace CLientApp.Logic
@@ -18,6 +19,7 @@ namespace CLientApp.Logic
 
         private CustomSettings sett;
         public CustomSettings Settings { get => sett; set { sett = value; Signal(); } }
+        private int attemtCount;
 
         public event PropertyChangedEventHandler? PropertyChanged;
         private void Signal([CallerMemberName] string? prop = null)
@@ -27,6 +29,29 @@ namespace CLientApp.Logic
         {
             SettingsFileIsCreated();
             ReadCurrentSettings();
+
+            attemtCount = 0;
+        }
+
+        public CustomSettings GetCurrentSettings()
+        {
+            if (attemtCount > 3)
+            {
+                MessageBox.Show("Не удалось получить параметры!", "Ошибка!");
+                UseDeafaultSettings();
+                attemtCount = 0;
+            }
+
+            if (Settings is not null &&
+                Settings.Color is not null &&
+                Settings.FontSize > 0)
+                return Settings;
+            else
+            { 
+                attemtCount++;
+                ReadCurrentSettings();
+                return GetCurrentSettings();
+            }
         }
 
         public void SaveNewSettings(CustomSettings settings)
@@ -41,6 +66,19 @@ namespace CLientApp.Logic
             var currentSettings = $"color:#FF4500;fontsize:16;radioworking:true;-;color:{Settings.Color};fontsize:{Settings.FontSize};radioworking:{Settings.RadioIsWorking};";
 
             File.WriteAllText($"{Environment.CurrentDirectory}/config.txt", currentSettings);
+        }
+
+        public void UseDeafaultSettings()
+        {
+            var allText = File.ReadAllText($"{Environment.CurrentDirectory}/config.txt");
+
+            var splittedForDefCust = allText.Split('-', StringSplitOptions.RemoveEmptyEntries);
+
+            var color = splittedForDefCust[0].Split(';', StringSplitOptions.RemoveEmptyEntries)[0].Split(':', StringSplitOptions.RemoveEmptyEntries)[1];
+            var font = splittedForDefCust[0].Split(';', StringSplitOptions.RemoveEmptyEntries)[1].Split(':', StringSplitOptions.RemoveEmptyEntries)[1];
+            var radio = splittedForDefCust[0].Split(';', StringSplitOptions.RemoveEmptyEntries)[2].Split(':', StringSplitOptions.RemoveEmptyEntries)[1];
+
+            SetSettings(color, int.Parse(font), bool.Parse(radio));
         }
 
         private void ReadCurrentSettings()
@@ -72,19 +110,6 @@ namespace CLientApp.Logic
                 radio = splittedForDefCust[1].Split(';', StringSplitOptions.RemoveEmptyEntries)[2].Split(':', StringSplitOptions.RemoveEmptyEntries)[1];
             else
                 radio = splittedForDefCust[0].Split(';', StringSplitOptions.RemoveEmptyEntries)[2].Split(':', StringSplitOptions.RemoveEmptyEntries)[1];
-
-            SetSettings(color, int.Parse(font), bool.Parse(radio));
-        }
-
-        public void UseDeafaultSettings()
-        {
-            var allText = File.ReadAllText($"{Environment.CurrentDirectory}/config.txt");
-
-            var splittedForDefCust = allText.Split('-', StringSplitOptions.RemoveEmptyEntries);
-
-            var color = splittedForDefCust[0].Split(';', StringSplitOptions.RemoveEmptyEntries)[0].Split(':', StringSplitOptions.RemoveEmptyEntries)[1];
-            var font = splittedForDefCust[0].Split(';', StringSplitOptions.RemoveEmptyEntries)[1].Split(':', StringSplitOptions.RemoveEmptyEntries)[1];
-            var radio = splittedForDefCust[0].Split(';', StringSplitOptions.RemoveEmptyEntries)[2].Split(':', StringSplitOptions.RemoveEmptyEntries)[1];
 
             SetSettings(color, int.Parse(font), bool.Parse(radio));
         }

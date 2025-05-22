@@ -40,6 +40,7 @@ namespace CLientApp
             var ep = SettingsLogic.Instance;
             InitializeComponent();
             DataContext = this;
+            
             SetPage(new LoginFormPage(this));
             options = new()
             {

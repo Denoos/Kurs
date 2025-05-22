@@ -17,6 +17,7 @@ using System.Windows.Shapes;
 using CLientApp.Logic;
 using CLientApp.Model;
 using CLientApp.View.Pages.Menues;
+using CLientApp.View.Windows;
 
 namespace CLientApp.View.Pages.Forms
 {
@@ -48,7 +49,9 @@ namespace CLientApp.View.Pages.Forms
         {
             User = new() { Login = UsernameTextBox.Text, Password = PasswordBox.Password };
             if (await _db.Login(User))
-                _mainWindow.SetPage(new PpePageMenu(_mainWindow));
+                if (DataBaseEndPoint.Instance.CurrentAccount.IdRoleNavigation.Ttle == "0")
+                    _mainWindow.SetPage(new SimpleUserPageMenu(_mainWindow));
+                else _mainWindow.SetPage(new PpePageMenu(_mainWindow));
         }
 
         private async void RegisterButton_Click(object sender, RoutedEventArgs e)
@@ -63,5 +66,8 @@ namespace CLientApp.View.Pages.Forms
 
         private void ExitButton_Click(object sender, RoutedEventArgs e)
             => _mainWindow.Close();
+
+        private void DefPassword_Click(object sender, RoutedEventArgs e)
+            => new DefaultPasswordPage().Show();
     }
 }

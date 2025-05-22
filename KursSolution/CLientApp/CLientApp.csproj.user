@@ -44,6 +44,9 @@
     <Compile Update="View\Pages\Menues\PpeTypePageMenu.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="View\Pages\Menues\SimpleUserPageMenu.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="View\Pages\Menues\StatusPageMenu.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -51,6 +54,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="View\Windows\AddRoleForm.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\Windows\DefaultPasswordPage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
