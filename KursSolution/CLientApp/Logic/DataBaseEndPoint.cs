@@ -35,7 +35,7 @@ namespace CLientApp.Logic
             {
                 var result = false;
 
-                var resp = await _client.GetAsync($"User/GetUsers");
+                var resp = _client.GetAsync($"User/GetUsers").Result;
 
                 Task.WaitAll();
 

@@ -20,6 +20,9 @@
     <Compile Update="View\Pages\Forms\PpeTypeFormPage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="View\Pages\Forms\SettingsForm.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="View\Pages\Forms\StatusFormPage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>

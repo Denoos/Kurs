@@ -43,7 +43,10 @@ namespace CLientApp.View.Windows
                 return;
             }
             if (await DataBaseEndPoint.Instance.PostDefaultPassword(Key))
+            {
                 MessageBox.Show("Данные успешно изменены, используйте данные, выданные при внедрении системы на предприятие!!", "Успех!");
+                Key = "";
+            }
         }
 
         private void Back_Click(object sender, RoutedEventArgs e)

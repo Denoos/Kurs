@@ -66,6 +66,7 @@ namespace CLientApp.Logic
             var currentSettings = $"color:#FF4500;fontsize:16;radioworking:true;-;color:{Settings.Color};fontsize:{Settings.FontSize};radioworking:{Settings.RadioIsWorking};";
 
             File.WriteAllText($"{Environment.CurrentDirectory}/config.txt", currentSettings);
+            MessageBox.Show("Сохранено успешно!", "Уведомление!");
         }
 
         public void UseDeafaultSettings()

@@ -122,6 +122,9 @@ namespace CLientApp.View.Pages.Menues
                 case "Уведомления":
                     _window.SetPage(new NotificationPageMenu(_window, SortedList));
                     break;
+                case "⚙️":
+                    _window.SetPage(new SettingsForm(_window));
+                    break;
 
                 default:
                     _window.SetPage(new PpePageMenu(_window));
