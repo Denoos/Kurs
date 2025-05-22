@@ -24,7 +24,7 @@ namespace CLientApp.Logic
         private JsonSerializerOptions _options;
 
         public DataBaseEndPoint()
-            => _client = new() { BaseAddress = new Uri("http://localhost:5000/api/") };
+            => _client = new() { BaseAddress = new Uri("https://localhost:7230/api/") };
 
         public void SetOptions(JsonSerializerOptions options)
             => this._options = options;
