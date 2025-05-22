@@ -26,14 +26,14 @@ namespace CLientApp.View.Windows
     {
         private Role role;
         public Role Role { get => role; set { role = value; Signal(); } }
-
+        private CustomSettings _settings; public CustomSettings Settings { get => _settings; set { _settings = value; Signal(); } }
         public event PropertyChangedEventHandler? PropertyChanged;
         private void Signal([CallerMemberName] string? prop = null)
             => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
 
         public AddRoleForm()
         {
-            Role = new Role();
+            Settings = SettingsLogic.Instance.GetCurrentSettings(); Role = new Role();
             DataContext = this;
             InitializeComponent();
         }

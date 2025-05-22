@@ -14,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using CLientApp.Logic;
+using CLientApp.Model;
 
 namespace CLientApp.View.Windows
 {
@@ -24,12 +25,13 @@ namespace CLientApp.View.Windows
     {
         private string key;
         public string Key { get => key; set { key = value; Signal(); } }
-
+        private CustomSettings _settings; public CustomSettings Settings { get => _settings; set { _settings = value; Signal(); } }
         public event PropertyChangedEventHandler? PropertyChanged;
         private void Signal([CallerMemberName] string? prop = null)
             => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
         public DefaultPasswordPage()
         {
+            Settings = SettingsLogic.Instance.GetCurrentSettings(); 
             InitializeComponent();
             DataContext = this;
             Key = "";

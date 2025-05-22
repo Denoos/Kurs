@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using CLientApp.Logic;
+using CLientApp.Model;
 using CLientApp.View.Pages.Forms;
 
 namespace CLientApp
@@ -25,19 +26,20 @@ namespace CLientApp
     {
         private Page page;
         public Page previousPage;
-
+        private CustomSettings _settings;
 
         public event PropertyChangedEventHandler? PropertyChanged;
 
         public Page CurrentPage { get => page; set { page = value; Signal(); } }
         public Page PreviousPage { get => previousPage; set { previousPage = value; Signal(); } }
+        public CustomSettings Settings { get => _settings; set { _settings = value; Signal(); } }
         public JsonSerializerOptions options;
 
         private void Signal([CallerMemberName] string? prop = null)
             => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
         public MainWindow()
         {
-            var ep = SettingsLogic.Instance;
+            Settings = SettingsLogic.Instance.GetCurrentSettings();
             InitializeComponent();
             DataContext = this;
             
@@ -55,6 +57,7 @@ namespace CLientApp
         {
             PreviousPage = CurrentPage;
             CurrentPage = _page;
+            Signal("Settings");
         }
     }
 }

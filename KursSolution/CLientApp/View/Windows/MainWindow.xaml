@@ -8,8 +8,8 @@
         WindowStartupLocation="CenterScreen"
         WindowState="Maximized"
         ResizeMode="NoResize">
-    
-    <Border BorderThickness="10" CornerRadius="10" BorderBrush="#FF4500" Background="White">
+
+    <Border BorderThickness="10" CornerRadius="10" BorderBrush="{Binding Settings.Color}">
         <Grid>
             <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden" Content="{Binding CurrentPage}"/>
         </Grid>
