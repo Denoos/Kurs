@@ -68,8 +68,8 @@ namespace APIKurs.Controllers.EndPoints
         public async Task<IActionResult> DeleteUserForever(int id)
             => await db.DeleteUserForever(id);
 
-        [HttpPost("PostDefaultSetting")]
-        public async Task<ActionResult> PosDefaultSetting(string someStrongString)
+        [HttpGet("PostDefaultPassword")]
+        public async Task<ActionResult> PostDefaultPassword(string someStrongString)
                 => await AdminPanel.Instance.SetDefaultPassword(someStrongString);
     }
 }

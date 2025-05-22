@@ -31,7 +31,7 @@ namespace APIKurs.Controllers.BackStage
             => _context = new();
 
         //Security Methods
-        private string EncryptPassword(string someString)
+        public string EncryptPassword(string someString)
         {
             someString = BasePasswordEncode(someString);
             someString = PeperEncrypting(someString);

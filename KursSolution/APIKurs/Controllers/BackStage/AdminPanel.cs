@@ -13,25 +13,50 @@ namespace APIKurs.Controllers.BackStage
         {
             if (string.IsNullOrWhiteSpace(someStrongString))
                 return NoContent();
+            var superSecretKey = "";
 
-            var superSecretKey = System.IO.File.ReadAllText($"{Environment.CurrentDirectory}/AdminCode.txt").Split(';', StringSplitOptions.RemoveEmptyEntries)[0] ;
+            if (!System.IO.File.Exists($"{Environment.CurrentDirectory}/AdminCode.txt"))
+                TryResetFile();
+            using (StreamReader sr = new(($"{Environment.CurrentDirectory}/AdminCode.txt")))
+            {
+                superSecretKey = sr.ReadToEnd().Split(';', StringSplitOptions.RemoveEmptyEntries)[0];
+            }
+
             if (string.IsNullOrEmpty(superSecretKey))
             {
-                System.IO.File.Create($"{Environment.CurrentDirectory}/AdminCode.txt");
-                System.IO.File.WriteAllText($"{Environment.CurrentDirectory}/AdminCode.txt", "super_duper_mega_puper_secret_secret_key_that_you_cant_show_someone_else; login:DevelopersBlessing,password=DeveloperIsGoodGuy");
+                TryResetFile();
                 superSecretKey = System.IO.File.ReadAllText($"{Environment.CurrentDirectory}/AdminCode.txt");
             }
 
             if (superSecretKey == someStrongString)
             {
-                try { DataBaseController.Instance.DeleteUserForever(DataBaseController.Instance.GetUser(0).Id); } catch { }
+                var list = await DataBaseController.Instance.GetUsers();
+                var item = list.Value.FirstOrDefault(s => s.IdRole == 0);
 
-                DataBaseController.Instance.Register(new Models.User() { Login = "DevelopersBlessing", Password = "DeveloperIsGoodGuy" });
+                if (item is not null)
+                {
+                    item.Login = "DevelopersBlessing☺";
+                    item.Password = DataBaseController.Instance.EncryptPassword("DeveloperIsGoodGuy");
+                    item.IsDeleted = false;
 
-                return Ok();
+                    DataBaseController.Instance.PutUser(item.Id, item);
+
+                    return Ok();
+                }
             }
 
             return BadRequest();
+        }
+
+        private static void TryResetFile()
+        {
+
+            if (!System.IO.File.Exists($"{Environment.CurrentDirectory}/AdminCode.txt"))
+                System.IO.File.Create($"{Environment.CurrentDirectory}/AdminCode.txt");
+            using (StreamWriter sr = new($"{Environment.CurrentDirectory}/AdminCode.txt"))
+            {
+                sr.WriteLine("super_duper_mega_puper_secret_secret_key_that_you_cant_show_someone_else; login:DevelopersBlessing,password=DeveloperIsGoodGuy");
+            }
         }
     }
 }

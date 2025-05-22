@@ -75,7 +75,7 @@ namespace CLientApp.Logic
         }
 
 
-        public async Task<bool> PostDefaultSetting(string item)
+        public async Task<bool> PostDefaultPassword(string item)
         {
             var result = false;
 
@@ -84,7 +84,7 @@ namespace CLientApp.Logic
 
             try
             {
-                var responce = await _client.PostAsJsonAsync($"User/PostDefaultSetting", item);
+                var responce = await _client.GetAsync($"User/PostDefaultPassword?someStrongString={item}");
 
                 if (responce is null)
                     return result;
