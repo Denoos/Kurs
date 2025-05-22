@@ -28,7 +28,9 @@ namespace CLientApp.View.Pages.Menues
             DataContext = this;
             this._mainWindow = main;
             MessageBox.Show("Эта часть приложения находтся в разработке!");
-            _mainWindow.SetPage(new LoginFormPage(_mainWindow));
         }
+
+        private void Exit_Click(object sender, RoutedEventArgs e)
+            => _mainWindow.SetPage(new LoginFormPage(_mainWindow));
     }
 }

@@ -52,11 +52,11 @@ namespace CLientApp.View.Pages.Menues
         {
             if (await _db.CheckAdmin())
             {
-                if (await _db.CheckAdmin())
-                {
-                    AdminCheck.Visibility = Visibility.Collapsed;
-                    DelFor.Visibility = Visibility.Collapsed;
-                }
+                AdminCheck.Visibility = Visibility.Collapsed;
+                DelFor.Visibility = Visibility.Collapsed;
+            }
+            if (await _db.CheckAdminTeammate())
+            {
                 PostsBtn.Visibility = Visibility.Collapsed;
                 PersonStatusBtn.Visibility = Visibility.Collapsed;
                 PpeConditionBtn.Visibility = Visibility.Collapsed;

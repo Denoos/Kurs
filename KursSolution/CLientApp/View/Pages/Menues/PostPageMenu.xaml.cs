@@ -55,11 +55,11 @@ namespace CLientApp.View.Pages.Menues
                 PpeTypeBtn.Visibility = Visibility.Collapsed;
                 PersonStatusBtn.Visibility = Visibility.Collapsed;
                 PpeConditionBtn.Visibility = Visibility.Collapsed;
-                if (await _db.CheckAdmin())
-                {
-                    AdminCheck.Visibility = Visibility.Collapsed;
-                    DelFor.Visibility = Visibility.Collapsed;
-                }
+            }
+            if (await _db.CheckAdmin())
+            {
+                AdminCheck.Visibility = Visibility.Collapsed;
+                DelFor.Visibility = Visibility.Collapsed;
             }
         }
 

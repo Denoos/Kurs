@@ -9,6 +9,6 @@
       Title="SimpleUserPageMenu">
 
     <Grid>
-        
+        <Button Click="Exit_Click" Content="Назад" Padding="20" HorizontalAlignment="Center" VerticalAlignment="Center" />
     </Grid>
 </Page>

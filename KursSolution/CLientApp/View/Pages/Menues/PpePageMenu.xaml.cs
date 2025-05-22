@@ -70,17 +70,18 @@ namespace CLientApp.View.Pages.Menues
 
         private async void AdminCheckMethod()
         {
-            if (await _db.CheckAdmin())
+            if (await _db.CheckAdminTeammate())
             {
-                if (await _db.CheckAdmin())
-                {
-                    AdminCheck.Visibility = Visibility.Collapsed;
-                    DelFor.Visibility = Visibility.Collapsed;
-                }
                 PpeTypeBtn.Visibility = Visibility.Collapsed;
                 PersonStatusBtn.Visibility = Visibility.Collapsed;
                 PostsBtn.Visibility = Visibility.Collapsed;
                 PpeConditionBtn.Visibility = Visibility.Collapsed;
+            }
+
+            if (await _db.CheckAdmin())
+            {
+                AdminCheck.Visibility = Visibility.Collapsed;
+                DelFor.Visibility = Visibility.Collapsed;
             }
         }
 

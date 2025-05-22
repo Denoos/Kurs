@@ -54,7 +54,6 @@ namespace CLientApp.View.Pages.Menues
             {
                 AdminCheck.Visibility = Visibility.Collapsed;
                 DelFor.Visibility = Visibility.Collapsed;
-
             }
         }
 

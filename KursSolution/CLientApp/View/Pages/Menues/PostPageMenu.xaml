@@ -15,8 +15,8 @@
         </Grid.ColumnDefinitions>
 
         <!-- Левая часть с кнопками навигации -->
-        <StackPanel  Grid.Column="0" Background="#FF4500" Margin=" 30">
-            <StackPanel  Grid.Column="0" Background="#FF4500" Margin=" 30">
+        <StackPanel  Grid.Column="0" Background="#FF4500" Margin="30">
+            <StackPanel  Grid.Column="0" Background="#FF4500">
                 <Button x:Name="PpeConditionBtn" Click="NavigationButtonClicked" FontSize="18" Padding="20,10" Margin="10, 40" Content="Состояния СИЗ"/>
                 <Button x:Name="PpeTypeBtn" Click="NavigationButtonClicked" FontSize="18" Padding="20,10" Margin="10, 30" Content="Типы СИЗ"/>
                 <Button Click="NavigationButtonClicked" FontSize="18" Padding="20,10" Margin="10, 30" Content="СИЗ"/>

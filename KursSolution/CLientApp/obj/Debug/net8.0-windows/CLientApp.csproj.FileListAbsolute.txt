@@ -139,3 +139,5 @@ C:\Users\Denoos\source\repos\Denoos\Kurs\KursSolution\CLientApp\obj\Debug\net8.0
 C:\Users\Denoos\source\repos\Denoos\Kurs\KursSolution\CLientApp\obj\Debug\net8.0-windows\View\Windows\AddRoleForm.baml
 C:\Users\Denoos\source\repos\Denoos\Kurs\KursSolution\CLientApp\obj\Debug\net8.0-windows\View\Windows\DefaultPasswordPage.g.cs
 C:\Users\Denoos\source\repos\Denoos\Kurs\KursSolution\CLientApp\obj\Debug\net8.0-windows\View\Windows\DefaultPasswordPage.baml
+C:\Users\Denoos\source\repos\Denoos\Kurs\KursSolution\CLientApp\obj\Debug\net8.0-windows\View\Pages\Menues\SimpleUserPageMenu.g.cs
+C:\Users\Denoos\source\repos\Denoos\Kurs\KursSolution\CLientApp\obj\Debug\net8.0-windows\View\Pages\Menues\SimpleUserPageMenu.baml

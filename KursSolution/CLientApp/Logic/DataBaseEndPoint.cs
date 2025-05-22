@@ -120,6 +120,11 @@ namespace CLientApp.Logic
 
                 if (responce is null)
                     return false;
+                else
+                {
+                    CurrentAccount.IdRoleNavigation = responce.Title;
+                    CurrentAccount.IdRole = responce.Title.Id;
+                }
 
                 if (responce.Title is not null && !string.IsNullOrWhiteSpace(responce.Token))
                 {

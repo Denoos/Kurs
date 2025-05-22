@@ -68,8 +68,9 @@ namespace CLientApp.Logic
                             content = $"Внимание, {ppe.Title} с инвернтарным номером {ppe.InventoryNumber} будет просрочен через {delta.TotalDays.ToString()} дней! Рекомендуется заказать замену. (дата истечения срока: {ppe.DateEnd})!";
                         else if (delta.TotalDays <= 7)
                             content = $"ВНИМАНИЕ! {ppe.Title} С НОМЕРОМ {ppe.InventoryNumber} БУДЕТ ИСПОРЧЕН В ТЕЧЕНИИ НЕДЕЛИ!!! ЗАМЕНА НЕОБХОДИМА НЕМЕДЛЕННО!!!! ОСТАЛОСЬ ДНЕЙ: {delta.TotalDays.ToString().ToUpper()}!!! ДАТА ИСТЕЧЕНИЯ СРОКА: {ppe.DateEnd})!!!!!!!";
+                        else continue;
 
-                        result.Add(new Notify_Model { Id = index, Content = content, Title = title });
+                            result.Add(new Notify_Model { Id = index, Content = content, Title = title });
                         index++;
                     }
             }

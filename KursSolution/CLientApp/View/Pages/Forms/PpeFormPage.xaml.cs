@@ -100,6 +100,12 @@ namespace CLientApp.View.Pages.Forms
             Item.ConditionId = Item.Condition.Id;
             Item.TypeId = Item.Type.Id;
 
+            if (Item.DateGet >= Item.DateEnd)
+            {
+                MessageBox.Show("Дата окончания должна быть позже даты получения!", "Ошибка!");
+                return;
+            }
+
             if (!IsEnabled)
                 IsFail = false;
             else
