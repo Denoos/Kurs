@@ -29,7 +29,7 @@ namespace CLientApp.View.Pages.Forms
         private MainWindow _mainWindow;
         private DataBaseEndPoint _db = DataBaseEndPoint.Instance;
         private User user;
-
+        private CustomSettings _settings; public CustomSettings Settings { get => _settings; set { _settings = value; Signal(); } }
         public event PropertyChangedEventHandler? PropertyChanged;
 
         public User User { get => user; set { user = value; Signal(); } }
@@ -39,6 +39,7 @@ namespace CLientApp.View.Pages.Forms
 
         public LoginFormPage(MainWindow window)
         {
+            Settings = SettingsLogic.Instance.GetCurrentSettings(); 
             InitializeComponent();
             _mainWindow = window;
             DataContext = this;

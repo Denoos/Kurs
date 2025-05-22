@@ -31,6 +31,7 @@ namespace CLientApp.View.Pages.Forms
         private PpeType item;
         private bool isAdd = true;
 
+        private CustomSettings _settings; public CustomSettings Settings { get => _settings; set { _settings = value; Signal(); } }
         public event PropertyChangedEventHandler? PropertyChanged;
 
         public PpeType Item { get => item; set { item = value; Signal(); } }
@@ -39,6 +40,7 @@ namespace CLientApp.View.Pages.Forms
 
         public PpeTypeFormPage(MainWindow window, bool IsEn, PpeType item = null)
         {
+            Settings = SettingsLogic.Instance.GetCurrentSettings(); 
             InitializeComponent();
             _mainWindow = window;
             UsernameTextBox.IsEnabled = IsEn;

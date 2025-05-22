@@ -31,6 +31,7 @@ namespace CLientApp.View.Pages.Forms
         private Status item;
         private bool isAdd = true;
 
+        private CustomSettings _settings; public CustomSettings Settings { get => _settings; set { _settings = value; Signal(); } }
         public event PropertyChangedEventHandler? PropertyChanged;
 
         public Status Item { get => item; set { item = value; Signal(); } }
@@ -39,7 +40,7 @@ namespace CLientApp.View.Pages.Forms
 
         public StatusFormPage(MainWindow window, bool IsEn, Status item = null)
         {
-            InitializeComponent();
+            Settings = SettingsLogic.Instance.GetCurrentSettings(); InitializeComponent();
             _mainWindow = window;
             UsernameTextBox.IsEnabled = IsEn;
             if (item is not null)

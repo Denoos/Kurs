@@ -15,24 +15,24 @@
         </Grid.ColumnDefinitions>
 
         <!-- Левая часть с кнопками навигации -->
-        <StackPanel  Grid.Column="0" Background="#FF4500" Margin=" 30">
-            <Button Click="NavigationButtonClicked" FontSize="18" Padding="20,10" Margin="10, 40" Content="Состояния СИЗ"/>
-            <Button Click="NavigationButtonClicked" FontSize="18" Padding="20,10" Margin="10, 40" Content="СИЗ"/>
-            <Button Click="NavigationButtonClicked" FontSize="18" Padding="20,10" Margin="10, 40" Content="Типы СИЗ"/>
-            <Button Click="NavigationButtonClicked" FontSize="18" Padding="20,10" Margin="10, 40" Content="Сотрудники"/>
-            <Button Click="NavigationButtonClicked" FontSize="18" Padding="20,10" Margin="10, 40" Content="Должности"/>
-            <Button x:Name="AdminCheck" Click="NavigationButtonClicked" FontSize="18" Padding="20,10" Margin="10, 40" Content="Пользователи"/>
-            <Button Click="NavigationButtonClicked" FontSize="18" Padding="20,10" Margin="10, 40" Content="Выход"/>
+        <StackPanel  Grid.Column="0" Background="{Binding Settings.Color}" Margin=" 30">
+            <Button Click="NavigationButtonClicked" FontSize="{Binding Settings.FontSize}" Padding="20,10" Margin="10, 40" Content="Состояния СИЗ"/>
+            <Button Click="NavigationButtonClicked" FontSize="{Binding Settings.FontSize}" Padding="20,10" Margin="10, 40" Content="СИЗ"/>
+            <Button Click="NavigationButtonClicked" FontSize="{Binding Settings.FontSize}" Padding="20,10" Margin="10, 40" Content="Типы СИЗ"/>
+            <Button Click="NavigationButtonClicked" FontSize="{Binding Settings.FontSize}" Padding="20,10" Margin="10, 40" Content="Сотрудники"/>
+            <Button Click="NavigationButtonClicked" FontSize="{Binding Settings.FontSize}" Padding="20,10" Margin="10, 40" Content="Должности"/>
+            <Button x:Name="AdminCheck" Click="NavigationButtonClicked" FontSize="{Binding Settings.FontSize}" Padding="20,10" Margin="10, 40" Content="Пользователи"/>
+            <Button Click="NavigationButtonClicked" FontSize="{Binding Settings.FontSize}" Padding="20,10" Margin="10, 40" Content="Выход"/>
         </StackPanel>
         <!-- Правая часть с информацией о СИЗ -->
-        <StackPanel Background="#FF4500" Grid.Column="1" Margin="10">
+        <StackPanel Background="{Binding Settings.Color}" Grid.Column="1" Margin="10">
             <!-- Строка поиска -->
             <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
-                <TextBlock Text="Статусы" Width="200" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" Foreground="White" FontSize="24" Margin="10, 0" />
-                <TextBox Text="{Binding Search}"  Width="1100" Height="30" FontSize="18" TextAlignment="Justify" Margin="10,20" />
+                <TextBlock Text="Статусы" Width="200" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" Foreground="White" FontSize="{Binding Settings.FontSize}" Margin="10, 0" />
+                <TextBox Text="{Binding Search}"  Width="1100" Height="30" FontSize="{Binding Settings.FontSize}" TextAlignment="Justify" Margin="10,20" />
                 <StackPanel Orientation="Vertical">
-                    <Button FontSize="18" Padding="20,10" Margin="10, 40" Content="Поиск"/>
-                    <CheckBox x:Name="SeeAll" IsChecked="{Binding IsSeeAll}" HorizontalAlignment="Center" VerticalAlignment="Center" Content="Все элементы" Foreground="White" Margin="10,0" FontSize="20" VerticalContentAlignment="Center"/>
+                    <Button FontSize="{Binding Settings.FontSize}" Padding="20,10" Margin="10, 40" Content="Поиск"/>
+                    <CheckBox x:Name="SeeAll" IsChecked="{Binding IsSeeAll}" HorizontalAlignment="Center" VerticalAlignment="Center" Content="Все элементы" Foreground="White" Margin="10,0" FontSize="{Binding Settings.FontSize}" VerticalContentAlignment="Center"/>
                 </StackPanel>
             </StackPanel>
 

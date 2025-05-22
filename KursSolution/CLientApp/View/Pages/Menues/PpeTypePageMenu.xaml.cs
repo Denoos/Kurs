@@ -34,7 +34,7 @@ namespace CLientApp.View.Pages.Menues
         private DataBaseEndPoint _db = DataBaseEndPoint.Instance;
         private PpeType selectedItem;
         private ObservableCollection<PpeType> list;
-
+        private CustomSettings _settings; public CustomSettings Settings { get => _settings; set { _settings = value; Signal(); } }
         public event PropertyChangedEventHandler? PropertyChanged;
         public PpeType SelectedItem { get => selectedItem; set { selectedItem = value; Signal(); } }
         public ObservableCollection<PpeType> SortedList { get => list; set { list = value; Signal(); } }
@@ -43,7 +43,7 @@ namespace CLientApp.View.Pages.Menues
 
         public PpeTypePageMenu(MainWindow window)
         {
-            InitializeComponent();
+            Settings = SettingsLogic.Instance.GetCurrentSettings(); InitializeComponent();
             AdminCheckMethod();
             _window = window;
             RenderList();

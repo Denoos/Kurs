@@ -33,7 +33,7 @@ namespace CLientApp.View.Pages.Menues
         private DataBaseEndPoint _db = DataBaseEndPoint.Instance;
         private Status selectedItem;
         private ObservableCollection<Status> list;
-
+        private CustomSettings _settings; public CustomSettings Settings { get => _settings; set { _settings = value; Signal(); } }
         public event PropertyChangedEventHandler? PropertyChanged;
         public Status SelectedItem { get => selectedItem; set { selectedItem = value; Signal(); } }
         public ObservableCollection<Status> SortedList { get => list; set { list = value; Signal(); } }
@@ -42,7 +42,7 @@ namespace CLientApp.View.Pages.Menues
 
         public StatusPageMenu(MainWindow window)
         {
-            InitializeComponent();
+            Settings = SettingsLogic.Instance.GetCurrentSettings(); InitializeComponent();
             AdminCheckMethod();
             _window = window;
             RenderList();

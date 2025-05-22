@@ -34,6 +34,7 @@ namespace CLientApp.View.Pages.Menues
         private Post selectedItem;
         private ObservableCollection<Post> list;
 
+        private CustomSettings _settings; public CustomSettings Settings { get => _settings; set { _settings = value; Signal(); } }
         public event PropertyChangedEventHandler? PropertyChanged;
         public Post SelectedItem { get => selectedItem; set { selectedItem = value; Signal(); } }
         public ObservableCollection<Post> SortedList { get => list; set { list = value; Signal(); } }
@@ -42,7 +43,7 @@ namespace CLientApp.View.Pages.Menues
 
         public PostPageMenu(MainWindow window)
         {
-            InitializeComponent();
+            Settings = SettingsLogic.Instance.GetCurrentSettings(); InitializeComponent();
             AdminCheckMethod();
             _window = window;
             RenderList();

@@ -15,12 +15,12 @@
             <ColumnDefinition Width="1*" />
         </Grid.ColumnDefinitions>
 
-        <Border BorderThickness="3" Grid.Column="1" BorderBrush="#FF4500" HorizontalAlignment="Center" VerticalAlignment="Center" CornerRadius="30" Padding="20" Background="#FFF5F5F5">
+        <Border BorderThickness="3" Grid.Column="1" BorderBrush="{Binding Settings.Color}" HorizontalAlignment="Center" VerticalAlignment="Center" CornerRadius="30" Padding="20" Background="#FFF5F5F5">
             <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Width="500">
-                <TextBlock Text="Сотрудники" FontSize="24" FontWeight="Bold" Foreground="#FF4500" 
+                <TextBlock Text="Сотрудники" FontSize="{Binding Settings.FontSize}" FontWeight="Bold" Foreground="{Binding Settings.Color}" 
                            HorizontalAlignment="Center" Margin="0,0,0,20"/>
 
-                <TextBlock Text="Имя" FontSize="18" FontWeight="Bold" Foreground="#FF4500" 
+                <TextBlock Text="Имя" FontSize="{Binding Settings.FontSize}" FontWeight="Bold" Foreground="{Binding Settings.Color}" 
                            HorizontalAlignment="Left" Margin="0,0,0,20"/>
                 <TextBox 
                         Text="{Binding Item.Name}"
@@ -28,8 +28,8 @@
                          Height="40" 
                          FontSize="16" 
                          Padding="5"/>
-                
-                <TextBlock Text="Фамилия" FontSize="18" FontWeight="Bold" Foreground="#FF4500" 
+
+                <TextBlock Text="Фамилия" FontSize="{Binding Settings.FontSize}" FontWeight="Bold" Foreground="{Binding Settings.Color}" 
                            HorizontalAlignment="Left" Margin="0,0,0,20"/>
                 <TextBox  IsEnabled="{Binding IsEnabled}"
                         Text="{Binding Item.Surname}"
@@ -37,8 +37,8 @@
                          Height="40" 
                          FontSize="16" 
                          Padding="5"/>
-                
-                <TextBlock Text="Отчество" FontSize="18" FontWeight="Bold" Foreground="#FF4500" 
+
+                <TextBlock Text="Отчество" FontSize="{Binding Settings.FontSize}" FontWeight="Bold" Foreground="{Binding Settings.Color}" 
                            HorizontalAlignment="Left" Margin="0,0,0,20"/>
                 <TextBox 
                         Text="{Binding Item.Patronymic}"
@@ -46,8 +46,8 @@
                          Height="40" 
                          FontSize="16" 
                          Padding="5"/>
-                
-                <TextBlock Text="Должность" FontSize="18" FontWeight="Bold" Foreground="#FF4500" 
+
+                <TextBlock Text="Должность" FontSize="{Binding Settings.FontSize}" FontWeight="Bold" Foreground="{Binding Settings.Color}" 
                            HorizontalAlignment="Left" Margin="0,0,0,20"/>
                 <TextBox IsEnabled="False"
                         Text="{Binding Item.Post.Title}"
@@ -55,8 +55,8 @@
                          Height="40" 
                          FontSize="16" 
                          Padding="5"/>
-                
-                <TextBlock Text="Статус" FontSize="18" FontWeight="Bold" Foreground="#FF4500" 
+
+                <TextBlock Text="Статус" FontSize="{Binding Settings.FontSize}" FontWeight="Bold" Foreground="{Binding Settings.Color}" 
                            HorizontalAlignment="Left" Margin="0,0,0,20"/>
                 <TextBox IsEnabled="False"
                         Text="{Binding Item.Status.Title}"
@@ -71,10 +71,10 @@
 
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,10">
                     <Button Content="Сохранить" IsEnabled="{Binding IsEnabled}"
-                            FontSize="18"
+                            FontSize="{Binding Settings.FontSize}"
                             Width="200" 
                             Height="40" 
-                            Background="#FF4500" 
+                            Background="{Binding Settings.Color}" 
                             Foreground="White" 
                             FontWeight="Bold" 
                             Click="Save_Click"
@@ -83,9 +83,9 @@
                     <Button Content="Назад"
                             Click="Exit_Click"
                             Width="230"
-                            FontSize="18"
+                            FontSize="{Binding Settings.FontSize}"
                             Height="40" 
-                            Background="#FF4500" 
+                            Background="{Binding Settings.Color}" 
                             Foreground="White" 
                             FontWeight="Bold" 
                             Margin="10,0,0,0" 

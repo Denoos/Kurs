@@ -33,6 +33,7 @@ namespace CLientApp.View.Pages.Forms
         private bool isAdd = true;
         private List<Role> roles;
 
+        private CustomSettings _settings; public CustomSettings Settings { get => _settings; set { _settings = value; Signal(); } }
         public event PropertyChangedEventHandler? PropertyChanged;
 
         public User Item { get => item; set { item = value; Signal(); } }
@@ -44,7 +45,7 @@ namespace CLientApp.View.Pages.Forms
 
         public UserFormPage(MainWindow window, bool IsEn, User item = null)
         {
-            InitializeComponent();
+            Settings = SettingsLogic.Instance.GetCurrentSettings(); InitializeComponent();
             _mainWindow = window;
             IsEnabled = IsEn;
             GetElements();

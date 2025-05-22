@@ -59,7 +59,7 @@ namespace CLientApp.View.Pages.Forms
             }
 
             if (Settings.Color[0] != '#' ||
-                Settings.Color.Count() != 7)
+                Settings.Color.Length != 7)
             {
                 MessageBox.Show("Цвет имеет некорректное значение!!!", "Ошибка!");
                 return;
@@ -72,7 +72,10 @@ namespace CLientApp.View.Pages.Forms
             }
 
             if (MessageBox.Show("Вы действительно уверены, что хотите сохранить эти параметры??", "Внимание!", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+            {
                 SettingsLogic.Instance.SaveNewSettings(Settings);
+                BackButton_Click(sender, e);
+            }
         }
 
 

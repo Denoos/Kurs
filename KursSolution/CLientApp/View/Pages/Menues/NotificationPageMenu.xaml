@@ -7,7 +7,7 @@
       mc:Ignorable="d"
       Title="Уведомления">
 
-    <Grid HorizontalAlignment="Center" VerticalAlignment="Center" Background="#FF4500">
+    <Grid HorizontalAlignment="Center" VerticalAlignment="Center" Background="{Binding Settings.Color}">
         <Grid.RowDefinitions>
             <RowDefinition Height="8*" />
             <RowDefinition Height="1*" />
@@ -18,8 +18,8 @@
                 <DataTemplate>
                     <StackPanel Orientation="Vertical">
                         <StackPanel Orientation="Horizontal">
-                            <TextBlock FontSize="20" Text="{Binding Id}" />
-                            <TextBlock FontSize="20" Text="{Binding Title}" />
+                            <TextBlock FontSize="{Binding Settings.FontSize}" Text="{Binding Id}" />
+                            <TextBlock FontSize="{Binding Settings.FontSize}" Text="{Binding Title}" />
                         </StackPanel>
                         <TextBlock FontSize="16" Text="{Binding Content}" />
                     </StackPanel>
@@ -28,8 +28,8 @@
         </ListView>
 
         <StackPanel Background="White" Grid.Row="1" Orientation="Horizontal">
-            <Button FontSize="18" Padding="20,10" Margin="20" Click="Back_Click" Content="Назад"/>
-            <Button FontSize="18" Padding="20,10" Margin="20"  Content="Удалить" Click="Delete"/>
+            <Button FontSize="{Binding Settings.FontSize}" Padding="20,10" Margin="20" Click="Back_Click" Content="Назад"/>
+            <Button FontSize="{Binding Settings.FontSize}" Padding="20,10" Margin="20"  Content="Удалить" Click="Delete"/>
         </StackPanel>
     </Grid>
 </Page>

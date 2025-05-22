@@ -120,7 +120,7 @@ namespace CLientApp.Logic
             if (!File.Exists($"{Environment.CurrentDirectory}/config.txt"))
             {
                 File.Create($"{Environment.CurrentDirectory}/config.txtconfig.txt");
-                File.WriteAllText($"{Environment.CurrentDirectory}/config.txt", "color:#FF4500;fontsize:16;radioworking:true;-;color:;fontsize:;radioworking:");
+                File.WriteAllText($"{Environment.CurrentDirectory}/config.txt", "color:{Binding Settings.Color};fontsize:16;radioworking:true;-;color:;fontsize:;radioworking:");
             }
         }
 

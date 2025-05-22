@@ -24,7 +24,7 @@ namespace CLientApp.Logic
         private JsonSerializerOptions _options;
 
         public DataBaseEndPoint()
-            => _client = new() { BaseAddress = new Uri("https://localhost:7230/api/") };
+            => _client = new() { BaseAddress = new Uri("http://localhost:5000/api/") };
 
         public void SetOptions(JsonSerializerOptions options)
             => this._options = options;
@@ -574,6 +574,34 @@ namespace CLientApp.Logic
 
                 if (responce != null && responce.StatusCode == System.Net.HttpStatusCode.OK)
                     MessageBox.Show("Объект удален!", "Успех!");
+            }
+            catch (Exception ex)
+            {
+                switch (ex.Message)
+                {
+                    case "One or more errors occurred. (Response status code does not indicate success: 403 (Forbidden).)":
+                        MessageBox.Show("Ошибка доступа, Вы не можете получить доступ к этой части приложения!", "Ошибка!");
+                        break;
+
+                    default:
+                        MessageBox.Show("Ошибка связи, проверьте подключение к сети!", "Ошибка!");
+                        break;
+                }
+                return;
+            }
+        }
+        
+        public async Task RestoreUser(User selectedItem)
+        {
+            if (selectedItem is null)
+                return;
+
+            try
+            {
+                var responce = await _client.DeleteAsync($"User/RestoreUser?id={selectedItem.Id}");
+
+                if (responce != null && responce.StatusCode == System.Net.HttpStatusCode.OK)
+                    MessageBox.Show("Объект восстановлен!", "Успех!");
             }
             catch (Exception ex)
             {

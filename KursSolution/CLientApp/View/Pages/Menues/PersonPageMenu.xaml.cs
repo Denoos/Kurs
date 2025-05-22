@@ -37,6 +37,7 @@ namespace CLientApp.View.Pages.Menues
         private ObservableCollection<Status> firstSort;
         private ObservableCollection<Post> secondSort;
 
+        private CustomSettings _settings; public CustomSettings Settings { get => _settings; set { _settings = value; Signal(); } }
         public event PropertyChangedEventHandler? PropertyChanged;
         public Person SelectedItem { get => selectedItem; set { selectedItem = value; Signal(); } }
         public ObservableCollection<Person> SortedList { get => list; set { list = value; Signal(); } }
@@ -51,7 +52,7 @@ namespace CLientApp.View.Pages.Menues
 
         private async Task BaseStart(MainWindow window)
         {
-            InitializeComponent();
+            Settings = SettingsLogic.Instance.GetCurrentSettings(); InitializeComponent();
             AdminCheckMethod();
             _window = window;
             RenderList(null, null);

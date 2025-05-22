@@ -37,7 +37,7 @@ namespace CLientApp.View.Pages.Menues
         private ObservableCollection<PpeType> types;
         private ObservableCollection<Person> persons;
         private ObservableCollection<Model.Condition> conditions;
-
+        private CustomSettings _settings; public CustomSettings Settings { get => _settings; set { _settings = value; Signal(); } }
         public event PropertyChangedEventHandler? PropertyChanged;
         public Ppe SelectedPpe { get => selectedPpe; set { selectedPpe = value; Signal(); } }
         public ObservableCollection<Ppe> SortedList { get => list; set { list = value; Signal(); } }
@@ -53,7 +53,7 @@ namespace CLientApp.View.Pages.Menues
 
         private async Task BaseStart(MainWindow window)
         {
-            InitializeComponent();
+            Settings = SettingsLogic.Instance.GetCurrentSettings(); InitializeComponent();
             AdminCheckMethod();
             _window = window;
             RenderList();

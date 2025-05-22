@@ -15,12 +15,12 @@
             <ColumnDefinition Width="1*" />
         </Grid.ColumnDefinitions>
 
-        <Border BorderThickness="3" Grid.Column="1" BorderBrush="#FF4500" HorizontalAlignment="Center" VerticalAlignment="Center" CornerRadius="30" Padding="20" Background="#FFF5F5F5">
+        <Border BorderThickness="3" Grid.Column="1" BorderBrush="{Binding Settings.Color}" HorizontalAlignment="Center" VerticalAlignment="Center" CornerRadius="30" Padding="20" Background="#FFF5F5F5">
             <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
-                <TextBlock Text="Настройки" FontSize="24" FontWeight="Bold" Foreground="#FF4500" 
+                <TextBlock Text="Настройки" FontSize="{Binding Settings.FontSize}" FontWeight="Bold" Foreground="{Binding Settings.Color}" 
                        HorizontalAlignment="Center" Margin="0,0,0,20"/>
 
-                <TextBlock Text="Размер шрифта" FontSize="18" FontWeight="Bold" Foreground="#FF4500" 
+                <TextBlock Text="Размер шрифта" FontSize="{Binding Settings.FontSize}" FontWeight="Bold" Foreground="{Binding Settings.Color}" 
                        HorizontalAlignment="Left" Margin="0,0,0,20"/>
 
                 <Label Content="Пример текста" FontSize="{Binding Settings.FontSize}" MaxHeight="90"/>
@@ -29,7 +29,7 @@
                      FontSize="16" 
                      Padding="5"/>
 
-                <TextBlock Text="Дополнительный цвет" FontSize="18" FontWeight="Bold" Foreground="#FF4500" 
+                <TextBlock Text="Дополнительный цвет" FontSize="{Binding Settings.FontSize}" FontWeight="Bold" Foreground="{Binding Settings.Color}" 
                        HorizontalAlignment="Left" Margin="0,0,0,20"/>
                 <Label Width="150" Height="25" HorizontalAlignment="Left" Margin="20, 10" Background="{Binding Settings.Color}"/>
 
@@ -39,7 +39,7 @@
                          Padding="5"/>
 
                 <StackPanel x:Name="ForAdminStack">
-                    <TextBlock Text="Доступ к радио" FontSize="18" FontWeight="Bold" Foreground="#FF4500" 
+                    <TextBlock Text="Доступ к радио" FontSize="{Binding Settings.FontSize}" FontWeight="Bold" Foreground="{Binding Settings.Color}" 
                             HorizontalAlignment="Left" Margin="0,0,0,20"/>
 
                     <CheckBox IsChecked="{Binding Settings.RadioIsWorking}" VerticalContentAlignment="Center" Content="Разрешил ли начальник использоватеь радио" FontSize="16" />
@@ -47,28 +47,28 @@
 
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,10">
                     <Button Content="Назад" 
-                        FontSize="18"
+                        FontSize="{Binding Settings.FontSize}"
                         Width="200" 
                         Height="40" 
-                        Background="#FF4500" 
+                        Background="{Binding Settings.Color}" 
                         Foreground="White" 
                         FontWeight="Bold" 
                         Click="BackButton_Click"/>
 
                     <Button Content="Сохранить" 
                         Width="230"
-                        FontSize="18"
+                        FontSize="{Binding Settings.FontSize}"
                         Height="40" 
-                        Background="#FF4500" 
+                        Background="{Binding Settings.Color}" 
                         Foreground="White" 
                         FontWeight="Bold" 
                         Margin="10,0,0,0" 
                         Click="SaveButton_Click"/>
                     <Button Content="Стандартные" 
                         Width="230"
-                        FontSize="18"
+                        FontSize="{Binding Settings.FontSize}"
                         Height="40" 
-                        Background="#FF4500" 
+                        Background="{Binding Settings.Color}" 
                         Foreground="White" 
                         FontWeight="Bold" 
                         Margin="10,0,0,0" 

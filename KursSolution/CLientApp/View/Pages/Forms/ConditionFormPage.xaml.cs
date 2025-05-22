@@ -15,6 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using CLientApp.Logic;
+using CLientApp.Model;
 using CLientApp.Models;
 using CLientApp.View.Pages.Menues;
 
@@ -30,6 +31,7 @@ namespace CLientApp.View.Pages.Forms
         private Model.Condition item;
         private bool isAdd = true;
 
+        private CustomSettings _settings; public CustomSettings Settings { get => _settings; set { _settings = value; Signal(); } }
         public event PropertyChangedEventHandler? PropertyChanged;
 
         public Model.Condition Item { get => item; set { item = value; Signal(); } }
@@ -39,7 +41,7 @@ namespace CLientApp.View.Pages.Forms
 
         public ConditionFormPage(MainWindow window, bool IsEn, Model.Condition item = null)
         {
-            _mainWindow = window;
+            Settings = SettingsLogic.Instance.GetCurrentSettings(); _mainWindow = window;
             InitializeComponent();
             UsernameTextBox.IsEnabled = IsEn;
             if (item is not null)

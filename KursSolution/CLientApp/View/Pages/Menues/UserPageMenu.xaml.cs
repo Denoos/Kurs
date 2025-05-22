@@ -36,6 +36,7 @@ namespace CLientApp.View.Pages.Menues
         private User selectedItem;
         private ObservableCollection<User> list;
         private ObservableCollection<Role> firstSort;
+        private CustomSettings _settings; public CustomSettings Settings { get => _settings; set { _settings = value; Signal(); } }
 
         public event PropertyChangedEventHandler? PropertyChanged;
         public User SelectedItem { get => selectedItem; set { selectedItem = value; Signal(); } }
@@ -50,6 +51,7 @@ namespace CLientApp.View.Pages.Menues
 
         private async void BaseStart(MainWindow window)
         {
+            Settings = SettingsLogic.Instance.GetCurrentSettings();
             InitializeComponent();
             _window = window;
             RenderList(null, null);
@@ -207,5 +209,17 @@ namespace CLientApp.View.Pages.Menues
 
         private void AddRole_Click(object sender, RoutedEventArgs e)
             => new AddRoleForm().Show();
+
+        private void RestoreUser_Click(object sender, RoutedEventArgs e)
+        {
+            if (SelectedItem is null)
+                MessageBox.Show("Пожалуйста выберите пользователя!", "Внимание!");
+            else
+            {
+                _db.RestoreUser(SelectedItem);
+                Thread.Sleep(500);
+                RenderList(Sorting, Search);
+            }
+        }
     }
 }

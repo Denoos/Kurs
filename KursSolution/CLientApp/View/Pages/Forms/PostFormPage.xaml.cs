@@ -31,6 +31,7 @@ namespace CLientApp.View.Pages.Forms
         private Post item;
         private bool isAdd = true;
 
+        private CustomSettings _settings; public CustomSettings Settings { get => _settings; set { _settings = value; Signal(); } }
         public event PropertyChangedEventHandler? PropertyChanged;
 
         public Post Item { get => item; set { item = value; Signal(); } }
@@ -40,6 +41,7 @@ namespace CLientApp.View.Pages.Forms
 
         public PostFormPage(MainWindow window, bool IsEn, Post item = null)
         {
+            Settings = SettingsLogic.Instance.GetCurrentSettings(); 
             InitializeComponent();
             UsernameTextBox.IsEnabled = IsEn;
             _mainWindow = window;

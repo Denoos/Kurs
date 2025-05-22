@@ -37,6 +37,7 @@ namespace CLientApp.View.Pages.Forms
         private List<PpeType> itemsSecond;
         private List<Person> itemsThird;
 
+        private CustomSettings _settings; public CustomSettings Settings { get => _settings; set { _settings = value; Signal(); } }
         public event PropertyChangedEventHandler? PropertyChanged;
 
         public Person SelectPerson { get => selectPerson; set { selectPerson = value; Signal(); } }
@@ -52,7 +53,7 @@ namespace CLientApp.View.Pages.Forms
 
         public PpeFormPage(MainWindow window, bool IsEn, Ppe item = null)
         {
-            InitializeComponent();
+            Settings = SettingsLogic.Instance.GetCurrentSettings(); InitializeComponent();
             _mainWindow = window;
             IsEnabled = IsEn;
             GetItems();

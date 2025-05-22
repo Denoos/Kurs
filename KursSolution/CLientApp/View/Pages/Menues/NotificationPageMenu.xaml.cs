@@ -31,6 +31,7 @@ namespace CLientApp.View.Pages.Menues
         private Notify_Model selected;
         private NotifyLogic _logic;
 
+        private CustomSettings _settings; public CustomSettings Settings { get => _settings; set { _settings = value; Signal(); } }
         public event PropertyChangedEventHandler? PropertyChanged;
         private void Signal([CallerMemberName] string? prop = null)
             => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
@@ -39,7 +40,7 @@ namespace CLientApp.View.Pages.Menues
         public Notify_Model SelectedNoty { get => selected; set { selected = value; Signal(); } }
         public NotificationPageMenu(MainWindow main, ObservableCollection<Ppe> ppes)
         {
-            _logic = new NotifyLogic(ppes.ToList());
+            Settings = SettingsLogic.Instance.GetCurrentSettings(); _logic = new NotifyLogic(ppes.ToList());
             _main = main;
             NotificationsList = [.. _logic.GetNotifyes()];
             InitializeComponent();

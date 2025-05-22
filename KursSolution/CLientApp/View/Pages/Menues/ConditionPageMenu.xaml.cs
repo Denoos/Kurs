@@ -16,6 +16,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using CLientApp.Logic;
+using CLientApp.Model;
 using CLientApp.Models;
 using CLientApp.View.Pages.Forms;
 
@@ -33,6 +34,7 @@ namespace CLientApp.View.Pages.Menues
         private bool isSeeAll;
         private ObservableCollection<Model.Condition> list;
 
+        private CustomSettings _settings; public CustomSettings Settings { get => _settings; set { _settings = value; Signal(); } }
         public event PropertyChangedEventHandler? PropertyChanged;
         public Model.Condition SelectedItem { get => selectedItem; set { selectedItem = value; Signal(); } }
         public bool IsSeeAll { get => isSeeAll; set { isSeeAll = value; Signal(); RenderList(Search); } }
@@ -41,7 +43,7 @@ namespace CLientApp.View.Pages.Menues
 
         public ConditionPageMenu(MainWindow window)
         {
-            InitializeComponent();
+            Settings = SettingsLogic.Instance.GetCurrentSettings(); InitializeComponent();
             AdminCheckMethod();
             _window = window;
             Search = "";

@@ -15,12 +15,12 @@
             <ColumnDefinition Width="1*" />
         </Grid.ColumnDefinitions>
 
-        <Border Width="Auto" BorderThickness="3" Grid.Column="1" BorderBrush="#FF4500" HorizontalAlignment="Left" VerticalAlignment="Center" CornerRadius="30" Padding="20" Background="#FFF5F5F5" Margin="-10,0,0,0">
+        <Border Width="Auto" BorderThickness="3" Grid.Column="1" BorderBrush="{Binding Settings.Color}" HorizontalAlignment="Left" VerticalAlignment="Center" CornerRadius="30" Padding="20" Background="#FFF5F5F5" Margin="-10,0,0,0">
             <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
-                <TextBlock Text="СИЗ" FontSize="24" FontWeight="Bold" Foreground="#FF4500" 
+                <TextBlock Text="СИЗ" FontSize="{Binding Settings.FontSize}" FontWeight="Bold" Foreground="{Binding Settings.Color}" 
                            HorizontalAlignment="Center" Margin="0,0,0,20"/>
 
-                <TextBlock Text="Название" FontSize="18" FontWeight="Bold" Foreground="#FF4500" 
+                <TextBlock Text="Название" FontSize="{Binding Settings.FontSize}" FontWeight="Bold" Foreground="{Binding Settings.Color}" 
                            HorizontalAlignment="Left" Margin="0,0,0,20"/>
                 <TextBox IsEnabled="{Binding IsEnabled}" Name="UsernameTextBox" 
                          Text="{Binding Item.Title}"
@@ -28,7 +28,7 @@
                          Height="40" 
                          FontSize="16" 
                          Padding="5"/>
-                <TextBlock Text="Инвентарный номер" FontSize="18" FontWeight="Bold" Foreground="#FF4500" 
+                <TextBlock Text="Инвентарный номер" FontSize="{Binding Settings.FontSize}" FontWeight="Bold" Foreground="{Binding Settings.Color}" 
                            HorizontalAlignment="Left" Margin="0,0,0,20"/>
                 <TextBox IsEnabled="{Binding IsEnabled}"
                          Text="{Binding Item.InventoryNumber}"
@@ -37,7 +37,7 @@
                          FontSize="16" 
                          Padding="5"/>
 
-                <TextBlock Text="Состояние" FontSize="18" FontWeight="Bold" Foreground="#FF4500" 
+                <TextBlock Text="Состояние" FontSize="{Binding Settings.FontSize}" FontWeight="Bold" Foreground="{Binding Settings.Color}" 
                            HorizontalAlignment="Left" Margin="0,0,0,20"/>
 
                 <StackPanel Orientation="Horizontal">
@@ -50,7 +50,7 @@
                     <ComboBox x:Name="Conditionus" MinWidth="300" DisplayMemberPath="Title"   IsEnabled="{Binding IsEnabled}" ItemsSource="{Binding Items}" Margin="20, 10" Height="40" SelectedItem="{Binding Item.Condition, Mode=TwoWay}" />
                 </StackPanel>
 
-                <TextBlock Text="Тип" FontSize="18" FontWeight="Bold" Foreground="#FF4500" 
+                <TextBlock Text="Тип" FontSize="{Binding Settings.FontSize}" FontWeight="Bold" Foreground="{Binding Settings.Color}" 
                            HorizontalAlignment="Left" Margin="0,0,0,20"/>
 
                 <StackPanel Orientation="Horizontal">
@@ -63,7 +63,7 @@
                     <ComboBox x:Name="Typus" MinWidth="300" DisplayMemberPath="Title"  IsEnabled="{Binding IsEnabled}" ItemsSource="{Binding ItemsSecond}" Margin="20, 10" Height="40" SelectedItem="{Binding Item.Type, Mode=TwoWay}" />
                 </StackPanel>
 
-                <TextBlock Text="Ответственный" FontSize="18" FontWeight="Bold" Foreground="#FF4500" 
+                <TextBlock Text="Ответственный" FontSize="{Binding Settings.FontSize}" FontWeight="Bold" Foreground="{Binding Settings.Color}" 
                     HorizontalAlignment="Left" Margin="0,0,0,20"/>
 
                 <StackPanel Orientation="Horizontal">
@@ -78,7 +78,7 @@
 
                 <StackPanel Orientation="Vertical">
                     <StackPanel Margin="30, 5">
-                        <TextBlock Text="Дата получения" FontSize="16" FontWeight="Bold" Foreground="#FF4500"/>
+                        <TextBlock Text="Дата получения" FontSize="16" FontWeight="Bold" Foreground="{Binding Settings.Color}"/>
                         <StackPanel Orientation="Horizontal">
                             <TextBox x:Name="getDate" Width="500" IsEnabled="False"
                                  Text="{Binding Item.DateGet}"
@@ -91,7 +91,7 @@
                     </StackPanel>
 
                     <StackPanel Margin="30, 5">
-                        <TextBlock Text="Дата окончания" FontSize="16" FontWeight="Bold" Foreground="#FF4500"/>
+                        <TextBlock Text="Дата окончания" FontSize="16" FontWeight="Bold" Foreground="{Binding Settings.Color}"/>
                         <StackPanel Orientation="Horizontal">
                             <TextBox x:Name="endDate" Width="500" IsEnabled="False"
                                  Text="{Binding Item.DateEnd}"
@@ -106,21 +106,21 @@
 
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,10">
                     <Button IsEnabled="{Binding IsEnabled}" Content="Сохранить" 
-                            FontSize="18"
+                            FontSize="{Binding Settings.FontSize}"
                             Click="Save_Click"
                             Width="200" 
                             Height="40" 
-                            Background="#FF4500" 
+                            Background="{Binding Settings.Color}" 
                             Foreground="White" 
                             FontWeight="Bold" 
                             />
 
                     <Button Content="Назад" 
                             Width="230"
-                            FontSize="18"
+                            FontSize="{Binding Settings.FontSize}"
                             Click="Exit_Click"
                             Height="40" 
-                            Background="#FF4500" 
+                            Background="{Binding Settings.Color}" 
                             Foreground="White" 
                             FontWeight="Bold" 
                             Margin="10,0,0,0" 

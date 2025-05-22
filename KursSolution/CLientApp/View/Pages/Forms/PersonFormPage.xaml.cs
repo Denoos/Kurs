@@ -34,6 +34,7 @@ namespace CLientApp.View.Pages.Forms
         private List<Post> roles;
         private List<Status> itemsSecond;
 
+        private CustomSettings _settings; public CustomSettings Settings { get => _settings; set { _settings = value; Signal(); } }
         public event PropertyChangedEventHandler? PropertyChanged;
 
         public Person Item { get => item; set { item = value; Signal(); } }
@@ -46,6 +47,7 @@ namespace CLientApp.View.Pages.Forms
 
         public PersonFormPage(MainWindow window, bool IsEn, Person item = null)
         {
+            Settings = SettingsLogic.Instance.GetCurrentSettings(); 
             InitializeComponent();
             _mainWindow = window;
             IsEnabled = IsEn;

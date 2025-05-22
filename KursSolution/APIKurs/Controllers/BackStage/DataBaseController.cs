@@ -799,6 +799,22 @@ namespace APIKurs.Controllers.BackStage
 
             return NoContent();
         }
+        
+        public async Task<IActionResult> ChangeRestoreUser(int id)
+        {
+            var user = await _context.Users.FindAsync(id);
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            user.IsDeleted = false;
+
+            _context.Users.Update(user);
+            await _context.SaveChangesAsync();
+
+            return NoContent();
+        }
 
         public async Task<IActionResult> DeleteUserForever(int id)
         {
