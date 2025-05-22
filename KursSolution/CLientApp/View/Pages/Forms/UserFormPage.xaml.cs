@@ -48,6 +48,11 @@ namespace CLientApp.View.Pages.Forms
             _mainWindow = window;
             IsEnabled = IsEn;
             GetElements();
+            Items = [.. Items.Where(s=> s.Ttle == "0" ||
+            s.Ttle == "1" ||
+            s.Ttle == "AccessWasInFrontOfYourEyesLOL" ||
+            s.Ttle == "AdminHavaetPelmeni"
+            )];
             if (item is not null)
             {
                 isAdd = false;

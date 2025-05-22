@@ -58,8 +58,10 @@ namespace CLientApp.View.Pages.Menues
             DataContext = this;
             Thread.Sleep(300);
             FirstSort = [.. await _db.GetAllStatuses()];
+            FirstSort = [.. FirstSort.Where(s => s.IsDeleted == false)];
             Thread.Sleep(300);
             SecondSort = [.. await _db.GetAllPosts()];
+            SecondSort = [.. SecondSort.Where(s => s.IsDeleted == false)]; 
             Signal();
         }
 

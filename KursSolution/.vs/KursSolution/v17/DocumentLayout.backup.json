@@ -1,16 +1,7 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\Denoos\\source\\repos\\Denoos\\Kurs\\KursSolution\\",
-  "Documents": [
-    {
-      "AbsoluteMoniker": "D:0:0:{42B17DAD-7312-4BC0-8965-C29E7A8BB227}|CLientApp\\CLientApp.csproj|c:\\users\\denoos\\source\\repos\\denoos\\kurs\\kurssolution\\clientapp\\view\\pages\\menues\\userpagemenu.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{42B17DAD-7312-4BC0-8965-C29E7A8BB227}|CLientApp\\CLientApp.csproj|solutionrelative:clientapp\\view\\pages\\menues\\userpagemenu.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{42B17DAD-7312-4BC0-8965-C29E7A8BB227}|CLientApp\\CLientApp.csproj|c:\\users\\denoos\\source\\repos\\denoos\\kurs\\kurssolution\\clientapp\\view\\pages\\menues\\statuspagemenu.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{42B17DAD-7312-4BC0-8965-C29E7A8BB227}|CLientApp\\CLientApp.csproj|solutionrelative:clientapp\\view\\pages\\menues\\statuspagemenu.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    }
-  ],
+  "Documents": [],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -18,34 +9,8 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": -1,
           "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "StatusPageMenu.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\Denoos\\source\\repos\\Denoos\\Kurs\\KursSolution\\CLientApp\\View\\Pages\\Menues\\StatusPageMenu.xaml.cs",
-              "RelativeDocumentMoniker": "CLientApp\\View\\Pages\\Menues\\StatusPageMenu.xaml.cs",
-              "ToolTip": "C:\\Users\\Denoos\\source\\repos\\Denoos\\Kurs\\KursSolution\\CLientApp\\View\\Pages\\Menues\\StatusPageMenu.xaml.cs",
-              "RelativeToolTip": "CLientApp\\View\\Pages\\Menues\\StatusPageMenu.xaml.cs",
-              "ViewState": "AgIAAFkAAAAAAAAAAAAuwGwAAABCAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-22T13:03:52.159Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "UserPageMenu.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\Denoos\\source\\repos\\Denoos\\Kurs\\KursSolution\\CLientApp\\View\\Pages\\Menues\\UserPageMenu.xaml.cs",
-              "RelativeDocumentMoniker": "CLientApp\\View\\Pages\\Menues\\UserPageMenu.xaml.cs",
-              "ToolTip": "C:\\Users\\Denoos\\source\\repos\\Denoos\\Kurs\\KursSolution\\CLientApp\\View\\Pages\\Menues\\UserPageMenu.xaml.cs",
-              "RelativeToolTip": "CLientApp\\View\\Pages\\Menues\\UserPageMenu.xaml.cs",
-              "ViewState": "AgIAAGEAAAAAAAAAAAAYwHIAAAAaAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-22T13:03:53.583Z",
-              "EditorCaption": ""
-            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"

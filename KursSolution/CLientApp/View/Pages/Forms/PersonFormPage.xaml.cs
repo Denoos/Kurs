@@ -72,7 +72,9 @@ namespace CLientApp.View.Pages.Forms
         private async Task GetSortElements()
         {
             Items = [.. await _db.GetAllPosts()];
+            Items = [.. Items.Where(s => s.IsDeleted == false)];
             ItemsSecond = [.. await _db.GetAllStatuses()];
+            ItemsSecond = [.. ItemsSecond.Where(s => s.IsDeleted == false)];
         }
 
         private async void Save_Click(object sender, RoutedEventArgs e)

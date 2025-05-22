@@ -43,7 +43,7 @@ namespace CLientApp.View.Pages.Menues
         public ObservableCollection<Role> FirstSort { get => firstSort; set { firstSort = value; Signal(); } }
         public string Search { get => search; set { search = value; Signal(); RenderList(Sorting, Search); } }
         public string Sorting { get => sorting; set { sorting = value; Signal(); RenderList(Sorting, Search); } }
-        public bool IsSeeAll { get => isSeeAll; set { isSeeAll = value; Signal(); RenderList(Search); } }
+        public bool IsSeeAll { get => isSeeAll; set { isSeeAll = value; Signal(); RenderList(Sorting, Search); } }
 
         public UserPageMenu(MainWindow window)
            => BaseStart(window);
@@ -56,6 +56,11 @@ namespace CLientApp.View.Pages.Menues
             DataContext = this;
             Thread.Sleep(300);
             FirstSort = [.. await _db.GetAllRoles()];
+            FirstSort = [.. FirstSort.Where(s=> s.Ttle == "0" ||
+            s.Ttle == "1" ||
+            s.Ttle == "AccessWasInFrontOfYourEyesLOL" ||
+            s.Ttle == "AdminHavaetPelmeni"
+            )];
             Thread.Sleep(300);
             Signal();
         }

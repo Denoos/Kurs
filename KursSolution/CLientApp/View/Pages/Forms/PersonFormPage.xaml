@@ -65,9 +65,9 @@
                          FontSize="16" 
                          Padding="5"/>
 
-                <ComboBox x:Name="Postus" DisplayMemberPath="Title" IsEnabled="{Binding IsEnabled}" ItemsSource="{Binding Items}" Margin="20, 10" Height="40" SelectedItem="{Binding Item.Post, Mode=TwoWay}" />
+                <ComboBox x:Name="Postus" DisplayMemberPath="Title" IsEnabled="{Binding IsEnabled}" ItemsSource="{Binding Items}" Margin="20, 10" Height="40" SelectedItem="{Binding Item.Post}" />
                 
-                <ComboBox x:Name="Statusus" DisplayMemberPath="Title" IsEnabled="{Binding IsEnabled}" ItemsSource="{Binding ItemsSecond}" Margin="20, 10" Height="40" SelectedItem="{Binding Item.Status, Mode=TwoWay}" />
+                <ComboBox x:Name="Statusus" DisplayMemberPath="Title" IsEnabled="{Binding IsEnabled}" ItemsSource="{Binding ItemsSecond}" Margin="20, 10" Height="40" SelectedItem="{Binding Item.Status}" />
 
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,10">
                     <Button Content="Сохранить" IsEnabled="{Binding IsEnabled}"

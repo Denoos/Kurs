@@ -60,11 +60,13 @@ namespace CLientApp.View.Pages.Menues
             DataContext = this;
             Thread.Sleep(400);
             Conditions = [.. await _db.GetAllConditions()];
+            Conditions = [.. Conditions.Where(s => s.IsDeleted == false)];
             Thread.Sleep(400);
             Types = [.. await _db.GetAllPpeTypes()];
+            Types = [.. Types.Where(s => s.IsDeleted == false)];
             Thread.Sleep(400);
             Persons = [.. await _db.GetAllPersons()];
-            Thread.Sleep(400);
+            Persons = [.. Persons.Where(s => s.IsDeleted == false)];
             Signal();
 
             Task.WaitAll();
