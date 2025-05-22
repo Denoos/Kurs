@@ -28,6 +28,7 @@ namespace CLientApp.View.Pages.Menues
     public partial class StatusPageMenu : Page, INotifyPropertyChanged
     {
         private string search;
+        private bool isSeeAll;
         private MainWindow _window;
         private DataBaseEndPoint _db = DataBaseEndPoint.Instance;
         private Status selectedItem;
@@ -37,11 +38,12 @@ namespace CLientApp.View.Pages.Menues
         public Status SelectedItem { get => selectedItem; set { selectedItem = value; Signal(); } }
         public ObservableCollection<Status> SortedList { get => list; set { list = value; Signal(); } }
         public string Search { get => search; set { search = value; Signal(); RenderList(Search); } }
+        public bool IsSeeAll { get => isSeeAll; set { isSeeAll = value; Signal(); RenderList(Search); } }
 
         public StatusPageMenu(MainWindow window)
         {
-            AdminCheckMethod();
             InitializeComponent();
+            AdminCheckMethod();
             _window = window;
             RenderList();
             DataContext = this;
@@ -54,6 +56,7 @@ namespace CLientApp.View.Pages.Menues
             {
                 AdminCheck.Visibility = Visibility.Collapsed;
                 DelFor.Visibility = Visibility.Collapsed;
+                SeeAll.Visibility = Visibility.Collapsed;
             }
         }
 
@@ -102,7 +105,8 @@ namespace CLientApp.View.Pages.Menues
         private async Task RenderList(string? searching = null)
         {
             var list = await _db.GetAllStatuses();
-
+            if (!IsSeeAll)
+                list = [.. list.Where(s => s.IsDeleted == false)];
             if (!string.IsNullOrEmpty(searching))
                 list = [..list.Where(p =>
                 p.Title.Contains(searching)

@@ -29,6 +29,7 @@ namespace CLientApp.View.Pages.Menues
     {
         private string search;
         private string sorting;
+        private bool isSeeAll;
         private MainWindow _window;
         private DataBaseEndPoint _db = DataBaseEndPoint.Instance;
         private Person selectedItem;
@@ -41,6 +42,7 @@ namespace CLientApp.View.Pages.Menues
         public ObservableCollection<Person> SortedList { get => list; set { list = value; Signal(); } }
         public ObservableCollection<Status> FirstSort { get => firstSort; set { firstSort = value; Signal(); } }
         public ObservableCollection<Post> SecondSort { get => secondSort; set { secondSort = value; Signal(); } }
+        public bool IsSeeAll { get => isSeeAll; set { isSeeAll = value; Signal(); RenderList(Sorting, Search); } }
         public string Search { get => search; set { search = value; Signal(); RenderList(Sorting, Search); } }
         public string Sorting { get => sorting; set { sorting = value; Signal(); RenderList(Sorting, Search); } }
 
@@ -49,8 +51,8 @@ namespace CLientApp.View.Pages.Menues
 
         private async Task BaseStart(MainWindow window)
         {
-            AdminCheckMethod();
             InitializeComponent();
+            AdminCheckMethod();
             _window = window;
             RenderList(null, null);
             DataContext = this;
@@ -68,11 +70,13 @@ namespace CLientApp.View.Pages.Menues
                 PpeTypeBtn.Visibility = Visibility.Collapsed;
                 PersonStatusBtn.Visibility = Visibility.Collapsed;
                 PostsBtn.Visibility = Visibility.Collapsed;
+                PpeConditionBtn.Visibility = Visibility.Collapsed;
             }
             if (await _db.CheckAdmin())
             {
                 AdminCheck.Visibility = Visibility.Collapsed;
                 DelFor.Visibility = Visibility.Collapsed;
+                SeeAll.Visibility = Visibility.Collapsed;
             }
         }
 
@@ -128,6 +132,9 @@ namespace CLientApp.View.Pages.Menues
         private async Task RenderList(string? sorting = null, string? searching = null)
         {
             var list = await _db.GetAllPersons();
+
+            if (!IsSeeAll)
+                list = [.. list.Where(s => s.IsDeleted == false)];
 
             if (!string.IsNullOrEmpty(searching))
                 list = [..list.Where(p =>

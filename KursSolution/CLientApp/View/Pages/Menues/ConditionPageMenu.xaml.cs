@@ -30,17 +30,19 @@ namespace CLientApp.View.Pages.Menues
         private MainWindow _window;
         private DataBaseEndPoint _db = DataBaseEndPoint.Instance;
         private Model.Condition selectedItem;
+        private bool isSeeAll;
         private ObservableCollection<Model.Condition> list;
 
         public event PropertyChangedEventHandler? PropertyChanged;
         public Model.Condition SelectedItem { get => selectedItem; set { selectedItem = value; Signal(); } }
+        public bool IsSeeAll { get => isSeeAll; set { isSeeAll = value; Signal(); RenderList(Search); } }
         public ObservableCollection<Model.Condition> SortedList { get => list; set { list = value; Signal(); } }
         public string Search { get => search; set { search = value; Signal(); RenderList(Search); } }
 
         public ConditionPageMenu(MainWindow window)
         {
-            AdminCheckMethod();
             InitializeComponent();
+            AdminCheckMethod();
             _window = window;
             Search = "";
             RenderList();
@@ -54,6 +56,7 @@ namespace CLientApp.View.Pages.Menues
             {
                 AdminCheck.Visibility = Visibility.Collapsed;
                 DelFor.Visibility = Visibility.Collapsed;
+                SeeAll.Visibility = Visibility.Collapsed;
             }
         }
 
@@ -89,9 +92,9 @@ namespace CLientApp.View.Pages.Menues
                 case "Выход":
                     _window.SetPage(new LoginFormPage(_window));
                     break;
-                
+
                 case "В режим администратора":
-                    
+
                     //zaglushka
 
                     break;
@@ -108,6 +111,9 @@ namespace CLientApp.View.Pages.Menues
         private async Task RenderList(string? searching = null)
         {
             var list = await _db.GetAllConditions();
+
+            if (!IsSeeAll)
+                list = [.. list.Where(s => s.IsDeleted == false)];
 
             if (!string.IsNullOrEmpty(searching))
                 list = [..list.Where(p =>

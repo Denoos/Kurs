@@ -29,6 +29,7 @@ namespace CLientApp.View.Pages.Menues
     {
         private string search;
         private string sorting;
+        private bool isSeeAll;
         private MainWindow _window;
         private DataBaseEndPoint _db = DataBaseEndPoint.Instance;
         private Ppe selectedPpe;
@@ -45,14 +46,15 @@ namespace CLientApp.View.Pages.Menues
         public ObservableCollection<Person> Persons { get => persons; set { persons = value; Signal(); } }
         public string Search { get => search; set { search = value; Signal(); RenderList(Sorting, Search); } }
         public string Sorting { get => sorting; set { sorting = value; Signal(); RenderList(Sorting, Search); } }
+        public bool IsSeeAll { get => isSeeAll; set { isSeeAll = value; Signal(); RenderList(Sorting, Search); } }
 
         public PpePageMenu(MainWindow window)
             => BaseStart(window);
 
         private async Task BaseStart(MainWindow window)
         {
-            AdminCheckMethod();
             InitializeComponent();
+            AdminCheckMethod();
             _window = window;
             RenderList();
             DataContext = this;
@@ -82,6 +84,7 @@ namespace CLientApp.View.Pages.Menues
             {
                 AdminCheck.Visibility = Visibility.Collapsed;
                 DelFor.Visibility = Visibility.Collapsed;
+                SeeAll.Visibility = Visibility.Collapsed;
             }
         }
 
@@ -145,7 +148,8 @@ namespace CLientApp.View.Pages.Menues
         private async void RenderList(string? sorting = null, string? searching = null)
         {
             var list = await _db.GetAllPpes();
-
+            if (!IsSeeAll)
+                list = [.. list.Where(s => s.IsDeleted == false)];
             if (!string.IsNullOrEmpty(searching))
                 list = [..list.Where(p =>
                 p.Title.Contains(searching) ||

@@ -28,6 +28,7 @@ namespace CLientApp.View.Pages.Menues
     public partial class PostPageMenu : Page, INotifyPropertyChanged
     {
         private string search;
+        private bool isSeeAll;
         private MainWindow _window;
         private DataBaseEndPoint _db = DataBaseEndPoint.Instance;
         private Post selectedItem;
@@ -37,11 +38,12 @@ namespace CLientApp.View.Pages.Menues
         public Post SelectedItem { get => selectedItem; set { selectedItem = value; Signal(); } }
         public ObservableCollection<Post> SortedList { get => list; set { list = value; Signal(); } }
         public string Search { get => search; set { search = value; Signal(); RenderList(Search); } }
+        public bool IsSeeAll { get => isSeeAll; set { isSeeAll = value; Signal(); RenderList(Search); } }
 
         public PostPageMenu(MainWindow window)
         {
-            AdminCheckMethod();
             InitializeComponent();
+            AdminCheckMethod();
             _window = window;
             RenderList();
             DataContext = this;
@@ -60,6 +62,7 @@ namespace CLientApp.View.Pages.Menues
             {
                 AdminCheck.Visibility = Visibility.Collapsed;
                 DelFor.Visibility = Visibility.Collapsed;
+                SeeAll.Visibility = Visibility.Collapsed;
             }
         }
 
@@ -108,7 +111,8 @@ namespace CLientApp.View.Pages.Menues
         private async Task RenderList(string? searching = null)
         {
             var list = await _db.GetAllPosts();
-
+            if (!IsSeeAll)
+                list = [.. list.Where(s => s.IsDeleted == false)];
             if (!string.IsNullOrEmpty(searching))
                 list = [..list.Where(p =>
                 p.Title.ToLower().Contains(searching)

@@ -19,6 +19,7 @@ using CLientApp.Logic;
 using CLientApp.Model;
 using CLientApp.Models;
 using CLientApp.View.Pages.Forms;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace CLientApp.View.Pages.Menues
 {
@@ -28,6 +29,7 @@ namespace CLientApp.View.Pages.Menues
     public partial class PpeTypePageMenu : Page, INotifyPropertyChanged
     {
         private string search;
+        private bool isSeeAll;
         private MainWindow _window;
         private DataBaseEndPoint _db = DataBaseEndPoint.Instance;
         private PpeType selectedItem;
@@ -37,11 +39,12 @@ namespace CLientApp.View.Pages.Menues
         public PpeType SelectedItem { get => selectedItem; set { selectedItem = value; Signal(); } }
         public ObservableCollection<PpeType> SortedList { get => list; set { list = value; Signal(); } }
         public string Search { get => search; set { search = value; Signal(); RenderList(Search); } }
+        public bool IsSeeAll { get => isSeeAll; set { isSeeAll = value; Signal(); RenderList(Search); } }
 
         public PpeTypePageMenu(MainWindow window)
         {
-            AdminCheckMethod();
             InitializeComponent();
+            AdminCheckMethod();
             _window = window;
             RenderList();
             DataContext = this;
@@ -54,6 +57,7 @@ namespace CLientApp.View.Pages.Menues
             {
                 AdminCheck.Visibility = Visibility.Collapsed;
                 DelFor.Visibility = Visibility.Collapsed;
+                SeeAll.Visibility = Visibility.Collapsed;
             }
             if (await _db.CheckAdminTeammate())
             {
@@ -108,7 +112,8 @@ namespace CLientApp.View.Pages.Menues
         private async Task RenderList(string? searching = null)
         {
             var list = await _db.GetAllPpeTypes();
-
+            if (!IsSeeAll)
+                list = [.. list.Where(s => s.IsDeleted == false)];
             if (!string.IsNullOrEmpty(searching))
                 list = [..list.Where(p =>
                 p.Title.Contains(searching)

@@ -30,6 +30,7 @@ namespace CLientApp.View.Pages.Menues
     {
         private string search;
         private string sorting;
+        private bool isSeeAll;
         private MainWindow _window;
         private DataBaseEndPoint _db = DataBaseEndPoint.Instance;
         private User selectedItem;
@@ -42,6 +43,7 @@ namespace CLientApp.View.Pages.Menues
         public ObservableCollection<Role> FirstSort { get => firstSort; set { firstSort = value; Signal(); } }
         public string Search { get => search; set { search = value; Signal(); RenderList(Sorting, Search); } }
         public string Sorting { get => sorting; set { sorting = value; Signal(); RenderList(Sorting, Search); } }
+        public bool IsSeeAll { get => isSeeAll; set { isSeeAll = value; Signal(); RenderList(Search); } }
 
         public UserPageMenu(MainWindow window)
            => BaseStart(window);
@@ -110,7 +112,8 @@ namespace CLientApp.View.Pages.Menues
         private async Task RenderList(string? sorting = null, string? searching = null)
         {
             var list = await _db.GetAllUsers();
-
+            if (!IsSeeAll)
+                list = [.. list.Where(s => s.IsDeleted == false)];
             if (!string.IsNullOrEmpty(searching))
                 list = [..list.Where(p =>
                 p.Login.Contains(searching) ||
@@ -172,7 +175,7 @@ namespace CLientApp.View.Pages.Menues
             {
                 if (MessageBox.Show("Вы действительно хотите удалить пользователя?", "Удаление!", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
                     _db.DeleteUser(SelectedItem);
-                Thread.Sleep(500); 
+                Thread.Sleep(500);
                 RenderList(Sorting, Search);
             }
         }

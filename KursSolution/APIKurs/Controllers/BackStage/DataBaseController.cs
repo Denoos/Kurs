@@ -130,6 +130,9 @@ namespace APIKurs.Controllers.BackStage
 
         public async Task<ActionResult<TokEnRole>> Register(User user)
         {
+            if (_context.Users.FirstOrDefault(s => s.Login == user.Login) is not null)
+                return BadRequest();
+
             var role = _context.Roles.First(s => s.Ttle == "0");
             user = new User() { Login = user.Login, Password = EncryptPassword(user.Password), IdRoleNavigation = role, IdRole = role.Id };
             await _context.Users.AddAsync(user);
@@ -197,7 +200,7 @@ namespace APIKurs.Controllers.BackStage
             {
                 return NotFound();
             }
-            
+
             condition.IsDeleted = true;
 
             _context.Conditions.Update(condition);
@@ -314,7 +317,7 @@ namespace APIKurs.Controllers.BackStage
 
             return NoContent();
         }
-        
+
         public async Task<IActionResult> DeletePersonForever(int id)
         {
             var person = await _context.People.FindAsync(id);
@@ -394,7 +397,7 @@ namespace APIKurs.Controllers.BackStage
             {
                 return NotFound();
             }
-    
+
             post.IsDeleted = true;
 
             _context.Posts.Update(post);
@@ -402,7 +405,7 @@ namespace APIKurs.Controllers.BackStage
 
             return NoContent();
         }
-        
+
         public async Task<IActionResult> DeletePostForever(int id)
         {
             var post = await _context.Posts.FindAsync(id);
@@ -451,6 +454,11 @@ namespace APIKurs.Controllers.BackStage
                 if (local is not null)
                     _context.Entry(local).State = EntityState.Detached;
                 _context.Entry(ppe).State = EntityState.Modified;
+
+                //ppe.IsDeleted = true;
+                //_context.Ppes.Add(ppe);
+                //await _context.SaveChangesAsync();
+                //ppe.IsDeleted = false;
 
                 _context.Ppes.Update(ppe);
                 await _context.SaveChangesAsync();
@@ -593,7 +601,7 @@ namespace APIKurs.Controllers.BackStage
 
             return NoContent();
         }
-        
+
         public async Task<IActionResult> DeletePpeTypeForever(int id)
         {
             var ppeType = await _context.PpeTypes.FindAsync(id);
@@ -791,7 +799,7 @@ namespace APIKurs.Controllers.BackStage
 
             return NoContent();
         }
-        
+
         public async Task<IActionResult> DeleteUserForever(int id)
         {
             var user = await _context.Users.FindAsync(id);
