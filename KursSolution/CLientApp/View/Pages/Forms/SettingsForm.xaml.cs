@@ -40,8 +40,8 @@ namespace CLientApp.View.Pages.Forms
             _main = main;
             Settings = SettingsLogic.Instance.GetCurrentSettings();
             Settings = new CustomSettings() { Color = Settings.Color, FontSize = Settings.FontSize, RadioIsWorking = Settings.RadioIsWorking };
-            if (DataBaseEndPoint.Instance.CheckAdmin().Result) ;
-                //ForAdminStack.Visibility = Visibility.Collapsed;
+            if (DataBaseEndPoint.Instance.CheckAdmin().Result)
+                ForAdminStack.Visibility = Visibility.Collapsed;
         }
 
         private void BackButton_Click(object sender, RoutedEventArgs e)
@@ -80,6 +80,13 @@ namespace CLientApp.View.Pages.Forms
         {
             var result = new Regex("#[0-9A-Fa-f]{6}").IsMatch(color);
             return result;
+        }
+
+        private void DefaultButton_Click(object sender, RoutedEventArgs e)
+        { 
+            SettingsLogic.Instance.UseDeafaultSettings();
+            Settings = SettingsLogic.Instance.GetCurrentSettings();
+            MessageBox.Show("Выставлены значения по умолчанию!", "Уведомление");
         }
     }
 }

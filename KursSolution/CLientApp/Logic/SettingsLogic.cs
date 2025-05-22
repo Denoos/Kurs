@@ -79,7 +79,7 @@ namespace CLientApp.Logic
             var font = splittedForDefCust[0].Split(';', StringSplitOptions.RemoveEmptyEntries)[1].Split(':', StringSplitOptions.RemoveEmptyEntries)[1];
             var radio = splittedForDefCust[0].Split(';', StringSplitOptions.RemoveEmptyEntries)[2].Split(':', StringSplitOptions.RemoveEmptyEntries)[1];
 
-            SetSettings(color, int.Parse(font), bool.Parse(radio));
+            SaveNewSettings(new CustomSettings() { Color = color, FontSize = int.Parse(font), RadioIsWorking = bool.Parse(radio)});
         }
 
         private void ReadCurrentSettings()
